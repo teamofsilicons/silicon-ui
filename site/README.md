@@ -22,4 +22,4 @@ npm run site:build   # static site in site/out, plus the registry JSON at /r/<it
 
 `vercel.json` at the repository root builds this site. Import the repository into Vercel and deploy, no settings
 needed. Demo photos and logos (`/media`, `/block-logos`) are not in this repository, so the site proxies them from
-uiarc.dev, through `vercel.json` in production and `next.config.mjs` in development.
+ui.teamofsilicons.com, through `vercel.json` in production and `next.config.mjs` in development.

@@ -104,11 +104,9 @@ const faceVariants: Variants = {
 };
 const fadeVariants: Variants = { hidden: { opacity: 0 }, shown: { opacity: 1, transition: { duration: motionTokens.duration.fast } }, gone: { opacity: 0, transition: { duration: motionTokens.duration.instant } } };
 
-export function ArcMark(props: { className?: string }) {
-  return <svg className={props.className} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M9 48V29C9 15 19 7 32 7s23 8 23 22v19" />
-    <path d="M20 48V31c0-8 5-13 12-13s12 5 12 13v17" />
-    <path d="M32 38v10" />
+export function SiliconMark(props: { className?: string }) {
+  return <svg className={props.className} viewBox="40 40 204 204" fill="currentColor" aria-hidden="true">
+    <rect x="49" y="117.9" width="47.7" height="47.7" /><rect x="70.2" y="70.2" width="47.7" height="47.7" /><rect x="70.2" y="165.6" width="47.7" height="47.7" /><rect x="90.06" y="141.75" width="72.78" height="72.78" transform="rotate(-45 90.06 141.75)" /><rect x="117.9" y="49" width="47.7" height="47.7" /><rect x="117.9" y="186.8" width="47.7" height="47.7" /><rect x="186.8" y="117.9" width="47.7" height="47.7" /><rect x="165.6" y="70.2" width="47.7" height="47.7" /><rect x="165.6" y="165.6" width="47.7" height="47.7" />
   </svg>;
 }
 
@@ -187,14 +185,14 @@ function Destination({ link, onChoose, children, ...rest }: DestinationProps) {
  */
 export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(function SiteHeader({
   variant = "mega",
-  brand = { name: "Arc" },
+  brand = { name: "Silicon" },
   items = siteHeaderExampleItems,
   current: currentProp,
   defaultCurrent,
   onCurrentChange,
   onNavigate,
   secondaryAction = { label: "Sign in" },
-  primaryAction = { label: "Get Arc" },
+  primaryAction = { label: "Get Silicon" },
   sticky = true,
   scrollContainer,
   scrollThreshold = 8,
@@ -348,7 +346,7 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(function Site
   };
 
   const brandNode = <Destination link={{ label: brand.name, href: brand.href }} className={styles.brand} onChoose={() => { onNavigate?.({ label: brand.name, href: brand.href }); close(); closeMenu(); }}>
-    {brand.mark ?? <ArcMark className={styles.brandMark} />}<span>{brand.name}</span>
+    {brand.mark ?? <SiliconMark className={styles.brandMark} />}<span>{brand.name}</span>
   </Destination>;
 
   return <header
@@ -530,11 +528,11 @@ export function SiteHeaderBlock({ variant: initial = "mega" }: { variant?: SiteH
         onNavigate={destination => setLast(destination.label)}
         scrollContainer={scrollRef}
         secondaryAction={{ label: "Sign in", onClick: () => setLast("Sign in") }}
-        primaryAction={{ label: "Get Arc", onClick: () => setLast("Get Arc") }}
+        primaryAction={{ label: "Get Silicon", onClick: () => setLast("Get Silicon") }}
       />
       <div className={styles.page}>
         <div className={styles.pageHero}>
-          <h2>{pageLabels[current] ?? "Arc"}</h2>
+          <h2>{pageLabels[current] ?? "Silicon"}</h2>
           <p className={styles.srOnly} aria-live="polite">{last ? `Opened ${last}` : ""}</p>
         </div>
         <div className={styles.pageRows} aria-hidden="true">

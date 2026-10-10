@@ -42,6 +42,8 @@ export interface Item {
   importPath: string;
   exportName: string;
   isDefault: boolean;
+  /** False when the component is only a default export, so it must be imported without braces. */
+  hasNamedExport: boolean;
   parts: ApiPart[];
   props: PropDoc[];
   dependencies: string[];
@@ -62,11 +64,18 @@ export interface Catalog {
 export const catalog = data as unknown as Catalog;
 
 /** The shadcn registry namespace the install commands use. */
-export const registryNamespace = "@uiarc";
+export const registryNamespace = "@silicon-ui";
 
 export function related(item: Item): NavEntry[] {
   for (const category of catalog.nav) for (const group of category.groups) {
     if (group.items.some(entry => entry.name === item.name)) return group.items.filter(entry => entry.name !== item.name);
   }
   return [];
+}
+
+/** `import { Button } from "…"`, or a default import when the component has no named export. */
+export function importLine(item: Pick<Item, "exportName" | "hasNamedExport" | "importPath">, names: string[] = [item.exportName]) {
+  if (item.hasNamedExport) return `import { ${names.join(", ")} } from "${item.importPath}";`;
+  const rest = names.filter(name => name !== item.exportName);
+  return `import ${item.exportName}${rest.length ? `, { ${rest.join(", ")} }` : ""} from "${item.importPath}";`;
 }
