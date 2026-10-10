@@ -2,6 +2,12 @@
 
 import { RotateCcw } from "lucide-react";
 
+import { Button } from "@/registry/components/button/button";
+import { Input } from "@/registry/components/input/input";
+import { NumberField } from "@/registry/components/number-field/number-field";
+import SegmentedControl from "@/registry/components/segmented-control/segmented-control";
+import { Select } from "@/registry/components/select/select";
+import { Switch } from "@/registry/components/switch/switch";
 import type { PropDoc } from "../lib/catalog";
 
 export type ControlValues = Record<string, unknown>;
@@ -25,6 +31,7 @@ interface ControlsProps {
   onClearEvents: () => void;
 }
 
+/** The props panel, built from Silicon UI's own controls: one per simple prop the component declares. */
 export function Controls({ docs, base, values, onChange, events, hasCallbacks, onClearEvents }: ControlsProps) {
   const current = (doc: PropDoc) => doc.name in values && values[doc.name] !== undefined ? values[doc.name] : base[doc.name] !== undefined ? base[doc.name] : parseDefault(doc.default);
   const set = (name: string, value: unknown) => onChange({ ...values, [name]: value });
@@ -33,40 +40,33 @@ export function Controls({ docs, base, values, onChange, events, hasCallbacks, o
   return <div className="controls">
     {docs.length > 0 && <div className="controls-head">
       <span>Props</span>
-      {changed && <button className="text-button" onClick={() => onChange({})}><RotateCcw size={12} aria-hidden="true" />Reset</button>}
+      {changed && <Button variant="ghost" size="sm" onClick={() => onChange({})}><RotateCcw size={13} aria-hidden="true" />Reset</Button>}
     </div>}
     {docs.length > 0 && <div className="controls-grid">
       {docs.map(doc => {
         const value = current(doc);
-        const id = `control-${doc.name}`;
         const control = doc.control;
         let input = null;
         if (control?.kind === "boolean") {
-          input = <button id={id} role="switch" aria-checked={value === true} className="mini-switch" onClick={() => set(doc.name, !(value === true))}><span /></button>;
+          input = <Switch label={doc.name} checked={value === true} onCheckedChange={checked => set(doc.name, checked)} />;
         } else if (control?.kind === "enum") {
-          const options = control.options;
           const asValue = (option: string) => control.numeric ? Number(option) : option;
-          input = options.length <= 4 && options.join("").length <= 28
-            ? <div className="segmented small" role="radiogroup" aria-labelledby={`${id}-label`}>
-              {options.map(option => <button key={option} role="radio" aria-checked={String(value) === option} onClick={() => set(doc.name, asValue(option))}>{option}</button>)}
-            </div>
-            : <select id={id} className="field" value={value === undefined ? "" : String(value)} onChange={event => set(doc.name, event.target.value === "" ? undefined : asValue(event.target.value))}>
-              {value === undefined && <option value="">—</option>}
-              {options.map(option => <option key={option} value={option}>{option}</option>)}
-            </select>;
+          input = control.options.length <= 4 && control.options.join("").length <= 28
+            ? <div className="control-field"><span className="control-label">{doc.name}</span><SegmentedControl label={doc.name} value={value === undefined ? "" : String(value)} onValueChange={option => set(doc.name, asValue(option))} options={control.options.map(option => ({ value: option, label: option }))} /></div>
+            : <Select label={doc.name} placeholder="Default" value={value === undefined ? undefined : String(value)} onValueChange={option => set(doc.name, asValue(option))} options={control.options.map(option => ({ value: option, label: option }))} />;
         } else if (control?.kind === "number") {
-          input = <input id={id} className="field" type="number" value={typeof value === "number" ? value : ""} placeholder="—" onChange={event => set(doc.name, event.target.value === "" ? undefined : Number(event.target.value))} />;
+          input = typeof value === "number"
+            ? <NumberField label={doc.name} size="sm" value={value} min={Number.MIN_SAFE_INTEGER} onValueChange={next => set(doc.name, next)} />
+            : <Input label={doc.name} type="number" placeholder="Default" value="" onChange={event => set(doc.name, event.target.value === "" ? undefined : Number(event.target.value))} />;
         } else if (control?.kind === "string") {
-          input = <input id={id} className="field" type="text" value={typeof value === "string" ? value : ""} placeholder="—" onChange={event => set(doc.name, event.target.value === "" && base[doc.name] === undefined ? undefined : event.target.value)} />;
+          input = <Input label={doc.name} placeholder="Default" value={typeof value === "string" ? value : ""} onChange={event => set(doc.name, event.target.value === "" && base[doc.name] === undefined ? undefined : event.target.value)} />;
         }
-        return <div key={doc.name} className="control" data-kind={control?.kind}>
-          <label id={`${id}-label`} htmlFor={id} title={doc.description || undefined}><code>{doc.name}</code></label>
-          {input}
-        </div>;
+        const wide = control?.kind === "enum" && control.options.length > 2 && control.options.join("").length > 14;
+        return <div key={doc.name} className="control" data-kind={control?.kind} data-wide={wide || undefined} title={doc.description || undefined}>{input}</div>;
       })}
     </div>}
     {hasCallbacks && <div className="events">
-      <div className="controls-head"><span>Events</span>{events.length > 0 && <button className="text-button" onClick={onClearEvents}>Clear</button>}</div>
+      <div className="controls-head"><span>Events</span>{events.length > 0 && <Button variant="ghost" size="sm" onClick={onClearEvents}>Clear</Button>}</div>
       {events.length ? <ol className="event-list">{events.map(event => <li key={event.id}><code>{event.name}</code><span>{event.detail}</span></li>)}</ol> : <p className="muted small">Interact with the preview to see its callbacks fire.</p>}
     </div>}
   </div>;

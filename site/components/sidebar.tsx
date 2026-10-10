@@ -3,7 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { BookOpen, ChevronDown, Component, LayoutTemplate, Menu, Moon, Palette, Search, Sun, X } from "lucide-react";
+import { BookOpen, ChevronDown, Component, LayoutTemplate, Menu, SearchX, X } from "lucide-react";
+
+import { EmptyState } from "@/registry/components/empty-state/empty-state";
+import { SearchField } from "@/registry/components/search-field/search-field";
+import SegmentedControl from "@/registry/components/segmented-control/segmented-control";
+import { Select } from "@/registry/components/select/select";
+import { ThemeSwitch, type Theme } from "@/registry/components/theme-switch/theme-switch";
 
 import type { NavCategory } from "../lib/catalog";
 import { useAppearance, accents } from "../lib/appearance";
@@ -80,13 +86,11 @@ export function Sidebar({ nav }: { nav: NavCategory[] }) {
     <button className="sidebar-toggle" onClick={() => setOpen(!open)} aria-label={open ? "Close navigation" : "Open navigation"}>{open ? <X size={18} /> : <Menu size={18} />}</button>
     <aside className="sidebar" data-open={open || undefined}>
       <Link href="/" className="brand"><svg className="brand-mark" viewBox="40 40 204 204" fill="currentColor" aria-hidden="true"><rect x="49" y="117.9" width="47.7" height="47.7" /><rect x="70.2" y="70.2" width="47.7" height="47.7" /><rect x="70.2" y="165.6" width="47.7" height="47.7" /><rect x="90.06" y="141.75" width="72.78" height="72.78" transform="rotate(-45 90.06 141.75)" /><rect x="117.9" y="49" width="47.7" height="47.7" /><rect x="117.9" y="186.8" width="47.7" height="47.7" /><rect x="186.8" y="117.9" width="47.7" height="47.7" /><rect x="165.6" y="70.2" width="47.7" height="47.7" /><rect x="165.6" y="165.6" width="47.7" height="47.7" /></svg>Silicon UI</Link>
-      <label className="sidebar-search">
-        <Search size={15} aria-hidden="true" />
-        <input ref={search} value={query} onChange={event => setQuery(event.target.value)} placeholder="Search" aria-label="Search components" onKeyDown={event => { if (event.key === "Escape") setQuery(""); }} />
-        <kbd>⌘K</kbd>
-      </label>
-      <div className="sidebar-filter" role="radiogroup" aria-label="Show">
-        {(["all", "component", "block"] as const).map(value => <button key={value} role="radio" aria-checked={filter === value} onClick={() => setFilter(value)}>{value === "all" ? "All" : value === "component" ? "Components" : "Blocks"}</button>)}
+      <div className="sidebar-search quiet-label">
+        <SearchField ref={search} label="Search components" placeholder="Search  ⌘K" value={query} onValueChange={setQuery} onKeyDown={event => { if (event.key === "Escape") setQuery(""); }} />
+      </div>
+      <div className="sidebar-filter">
+        <SegmentedControl label="Show" value={filter} onValueChange={value => setFilter(value as Filter)} options={[{ value: "all", label: "All" }, { value: "component", label: "Components" }, { value: "block", label: "Blocks" }]} />
       </div>
       <nav className="sidebar-nav" aria-label="Components">
         {!searching && filter === "all" && <div className="nav-category">
@@ -100,21 +104,17 @@ export function Sidebar({ nav }: { nav: NavCategory[] }) {
         {renderCategories(componentCategories, "c")}
         {blockCategories.length > 0 && <div className="nav-section-title"><LayoutTemplate size={14} aria-hidden="true" />Blocks<span className="nav-count">{count(blockCategories)}</span></div>}
         {renderCategories(blockCategories, "b")}
-        {!visible.length && <p className="nav-empty">Nothing matches “{query}”.</p>}
+        {!visible.length && <div className="nav-empty"><EmptyState icon={<SearchX size={20} aria-hidden="true" />} title="No matches" description={`Nothing is called “${query}”. Try a shorter word.`} /></div>}
       </nav>
-      <div className="sidebar-corners segmented small" role="radiogroup" aria-label="Corners">
-        {(["squircle", "round"] as const).map(value => <button key={value} role="radio" aria-checked={corners === value} onClick={() => setCorners(value)}>{value === "squircle" ? "Squircle" : "Round"}</button>)}
+      <div className="sidebar-corners">
+        <SegmentedControl label="Corners" value={corners} onValueChange={setCorners} options={[{ value: "squircle", label: "Squircle" }, { value: "round", label: "Round" }]} />
       </div>
       <div className="sidebar-footer">
-        <button className="icon-button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button>
-        <a className="icon-button" href="https://github.com/teamofsilicons/silicon-ui" target="_blank" rel="noreferrer" aria-label="Silicon UI on GitHub"><GithubMark /></a>
-        <label className="accent-select">
-          <Palette size={15} aria-hidden="true" />
-          <select value={accent} onChange={event => setAccent(event.target.value)} aria-label="Accent">
-            {accents.map(name => <option key={name} value={name}>{name[0]!.toUpperCase() + name.slice(1)}</option>)}
-          </select>
-          <span className="accent-dot" aria-hidden="true" />
-        </label>
+        <ThemeSwitch theme={theme as Theme} onThemeChange={next => setTheme(next)} iconOnly />
+        <a className="sidebar-github" href="https://github.com/teamofsilicons/silicon-ui" target="_blank" rel="noreferrer" aria-label="Silicon UI on GitHub"><GithubMark /></a>
+        <div className="accent-select quiet-label">
+          <Select label="Accent" value={accent} onValueChange={setAccent} options={accents.map(name => ({ value: name, label: name[0]!.toUpperCase() + name.slice(1) }))} />
+        </div>
       </div>
     </aside>
     {open && <div className="sidebar-scrim" onClick={() => setOpen(false)} />}
