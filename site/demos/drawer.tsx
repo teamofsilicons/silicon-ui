@@ -20,7 +20,7 @@ const invoice = <div style={{ display: "grid", gap: 20 }}>
 
 function ContainedDrawer() {
   const [host, setHost] = useState<HTMLDivElement | null>(null);
-  return <div ref={setHost} style={{ position: "relative", overflow: "hidden", width: "min(100%, 560px)", height: 320, display: "grid", placeItems: "center", border: "1px solid var(--border)", borderRadius: 14, background: "var(--surface)" }}>
+  return <div ref={setHost} style={{ position: "relative", overflow: "hidden", width: "min(100%, 560px)", height: 320, display: "grid", placeItems: "center", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)" }}>
     <Drawer>
       <DrawerTrigger asChild><Button variant="secondary">Filter tickets</Button></DrawerTrigger>
       <DrawerContent container={host} title="Filters" description="Showing 128 open tickets.">

@@ -96,7 +96,7 @@ export function Card({ title, description, media, action, avatar, meta, status, 
     if (!morph || !node || typeof ResizeObserver === "undefined") return;
     const observer = new ResizeObserver(() => {
       const computed = getComputedStyle(node);
-      const radius = px(node, computed.borderTopLeftRadius), surface = px(node, computed.getPropertyValue("--radius-surface")), measure = text?.offsetWidth || undefined;
+      const radius = px(node, computed.borderTopLeftRadius), surface = px(node, computed.getPropertyValue("--radius-overlay")), measure = text?.offsetWidth || undefined;
       setGeometry(current => current.card !== undefined && current.measure === measure ? current : { card: current.card ?? radius, panel: current.panel ?? surface, measure });
     });
     observer.observe(node);

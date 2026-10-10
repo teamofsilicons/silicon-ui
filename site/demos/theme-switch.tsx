@@ -28,10 +28,10 @@ function Screen({ theme }: { theme: Theme }) {
       <strong style={{ fontFamily: "var(--font-display)", fontSize: 15, fontWeight: 600 }}>Usage this week</strong>
       <span style={{ color: c.secondary, fontSize: 12 }}>Oct 4 – Oct 10</span>
     </div>
-    <div style={{ display: "grid", gap: 10, padding: 14, border: `1px solid ${c.border}`, borderRadius: 12, background: c.surface }}>
+    <div style={{ display: "grid", gap: 10, padding: 14, border: `1px solid ${c.border}`, borderRadius: "var(--radius-control)", background: c.surface }}>
       {usage.map(row => <div key={row.name} style={{ display: "grid", gridTemplateColumns: "112px 1fr 44px", alignItems: "center", gap: 10, fontSize: 12 }}>
         <span style={{ color: c.secondary, whiteSpace: "nowrap" }}>{row.name}</span>
-        <span style={{ height: 6, borderRadius: 3, background: c.muted }}><span style={{ display: "block", width: `${row.share * 100}%`, height: "100%", borderRadius: 3, background: c.bar }} /></span>
+        <span style={{ height: 6, borderRadius: "var(--radius-detail)", background: c.muted }}><span style={{ display: "block", width: `${row.share * 100}%`, height: "100%", borderRadius: "var(--radius-detail)", background: c.bar }} /></span>
         <span style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{row.tickets.toLocaleString("en-US")}</span>
       </div>)}
     </div>
@@ -94,7 +94,7 @@ function ThemeScene({ props }: { props: ThemeSwitchProps }) {
       <span style={{ color: "var(--text-muted)", fontSize: "var(--text-xs)" }}>Window theme: {theme}</span>
       <ThemeSwitch {...props} theme={theme} onThemeChange={change} />
     </div>
-    <div ref={scene} style={{ position: "relative", height: 210, overflow: "hidden", border: "1px solid var(--border)", borderRadius: 16, boxShadow: "0 1px 2px oklch(0% 0 0 / .06)" }}>
+    <div ref={scene} style={{ position: "relative", height: 210, overflow: "hidden", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", boxShadow: "0 1px 2px oklch(0% 0 0 / .06)" }}>
       <Screen theme={base} />
       {incoming && <div key={incoming.key} ref={layer} style={{ position: "absolute", inset: 0, clipPath: "inset(0 0 100% 0)" }}><Screen theme={incoming.theme} /></div>}
     </div>
@@ -103,7 +103,7 @@ function ThemeScene({ props }: { props: ThemeSwitchProps }) {
 
 function IconOnlyBar({ variant }: { variant: ThemeSwitchVariant }) {
   const [theme, setTheme] = useState<Theme>("light");
-  return <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "min(100%, 360px)", padding: "6px 6px 6px 16px", border: "1px solid var(--border)", borderRadius: 14, background: "var(--surface)" }}>
+  return <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "min(100%, 360px)", padding: "6px 6px 6px 16px", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)" }}>
     <strong style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}>Team of Silicons</strong>
     <ThemeSwitch theme={theme} variant={variant} iconOnly onThemeChange={setTheme} />
   </div>;

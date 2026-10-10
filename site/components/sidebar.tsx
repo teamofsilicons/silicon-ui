@@ -22,7 +22,7 @@ export function Sidebar({ nav }: { nav: NavCategory[] }) {
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
   const [open, setOpen] = useState(false);
   const search = useRef<HTMLInputElement>(null);
-  const { theme, accent, setTheme, setAccent } = useAppearance();
+  const { theme, accent, corners, setTheme, setAccent, setCorners } = useAppearance();
 
   // Close the phone drawer after navigating.
   const [openedAt, setOpenedAt] = useState(pathname);
@@ -102,6 +102,9 @@ export function Sidebar({ nav }: { nav: NavCategory[] }) {
         {renderCategories(blockCategories, "b")}
         {!visible.length && <p className="nav-empty">Nothing matches “{query}”.</p>}
       </nav>
+      <div className="sidebar-corners segmented small" role="radiogroup" aria-label="Corners">
+        {(["squircle", "round"] as const).map(value => <button key={value} role="radio" aria-checked={corners === value} onClick={() => setCorners(value)}>{value === "squircle" ? "Squircle" : "Round"}</button>)}
+      </div>
       <div className="sidebar-footer">
         <button className="icon-button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button>
         <a className="icon-button" href="https://github.com/teamofsilicons/silicon-ui" target="_blank" rel="noreferrer" aria-label="Silicon UI on GitHub"><GithubMark /></a>

@@ -28,7 +28,7 @@ export default function Introduction() {
           <li><p>Import <code>components/silicon-ui/foundation.css</code> once, in your root layout or entry file.</p></li>
           <li><p>Add any component or block by name.</p><CopyCommand command={`npx shadcn@latest add ${registryNamespace}/button`} block /></li>
         </ol>
-        <p className="muted">Requires React 19. Works in Next.js and Vite, with or without Tailwind. Set <code>data-theme=&quot;dark&quot;</code> and <code>data-accent</code> on <code>&lt;html&gt;</code> to change the appearance; the switches at the bottom of the sidebar do the same here.</p>
+        <p className="muted">Requires React 19. Works in Next.js and Vite, with or without Tailwind. Set <code>data-theme=&quot;dark&quot;</code>, <code>data-accent</code> and <code>data-corners=&quot;round&quot;</code> on <code>&lt;html&gt;</code> to change the appearance; the switches at the bottom of the sidebar do the same here. Corners are squircles by default.</p>
       </section>
 
       <section id="ai" className="section">

@@ -184,7 +184,7 @@ export function ComparisonTable({
               {visible.map(column => <div key={column.id} role="cell" className={styles.footCell} data-own={column === own || undefined}>
                 {column === own && cta && (cta.href && !cta.onClick
                   ? <a className={styles.cta} href={cta.href}>{cta.label}</a>
-                  : <motion.button type="button" layout={!reduced} className={styles.cta} style={{ borderRadius: 9999 }} data-done={ctaDone || undefined} whileTap={reduced ? undefined : { scale: .97 }} transition={morph} onClick={() => { cta.onClick?.(); if (cta.doneLabel) setCtaDone(true); }}>
+                  : <motion.button type="button" layout={!reduced} className={styles.cta} style={{ borderRadius: 999 }} data-done={ctaDone || undefined} whileTap={reduced ? undefined : { scale: .97 }} transition={morph} onClick={() => { cta.onClick?.(); if (cta.doneLabel) setCtaDone(true); }}>
                     <AnimatePresence mode="popLayout" initial={false}>
                       <motion.span key={ctaDone ? "done" : "idle"} layout={reduced ? false : "position"} className={styles.ctaLabel} initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8, filter: "blur(2px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8, filter: "blur(2px)" }} transition={{ duration: motionTokens.duration.standard, ease: [...motionTokens.ease.standard] }}>
                         {ctaDone ? <><Check size={14} strokeWidth={2} aria-hidden="true" />{cta.doneLabel}</> : cta.label}

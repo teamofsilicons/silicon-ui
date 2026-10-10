@@ -66,7 +66,7 @@
 .body { display: flex; gap: 10px; }
 
 .rail { position: relative; display: flex; width: 9.25rem; flex: none; flex-direction: column; gap: 2px; padding-right: 10px; border-right: 1px solid var(--border-subtle); }
-.railHighlight { position: absolute; top: 0; left: 0; border-radius: 12px; background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
+.railHighlight { position: absolute; top: 0; left: 0; border-radius: var(--radius-control); background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
 .preset {
   position: relative;
   display: flex;
@@ -75,7 +75,7 @@
   align-items: center;
   padding: 0 12px;
   border: 0;
-  border-radius: 12px;
+  border-radius: var(--radius-control);
   background: transparent;
   color: var(--text-secondary);
   cursor: pointer;
@@ -98,7 +98,7 @@
   place-items: center;
   padding: 0;
   border: 0;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-full);
   background: transparent;
   color: var(--text-secondary);
   cursor: pointer;
@@ -123,7 +123,7 @@
 
 /* The highlight lives under the days: one bar per week plus a solid end at each side of the range. */
 .layer { position: absolute; inset: 0; pointer-events: none; }
-.bar { position: absolute; height: calc(var(--cell) - 6px); border-radius: var(--radius-pill); background: var(--accent-subtle); }
+.bar { position: absolute; height: calc(var(--cell) - 6px); border-radius: var(--radius-full); background: var(--accent-subtle); }
 .thumb { position: absolute; top: 0; left: 0; width: var(--cell); height: var(--cell); }
 .thumb::before { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--accent); }
 

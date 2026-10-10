@@ -20,7 +20,7 @@ export default defineDemo<InViewTitleProps>({
     {
       title: "Scroll to reveal",
       description: "Each title reveals as it scrolls into the box, one per variant. once={false} replays them on every entry.",
-      render: () => <div style={{ width: "min(100%, 520px)", height: 320, overflowY: "auto", padding: "0 20px", border: "1px solid var(--border)", borderRadius: 16, background: "var(--background)" }}>
+      render: () => <div style={{ width: "min(100%, 520px)", height: 320, overflowY: "auto", padding: "0 20px", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--background)" }}>
         <p style={{ ...body, padding: "120px 0 160px", textAlign: "center", color: "var(--text-muted)" }}>Scroll down</p>
         {sections.map(section => <section key={section.variant} style={{ paddingBottom: 140 }}>
           <code style={{ color: "var(--text-muted)", fontSize: "var(--text-xs)" }}>{section.variant}</code>

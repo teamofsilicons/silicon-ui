@@ -42,7 +42,7 @@
 .editor a { color: var(--accent-strong); text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent); text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: text; }
 .editor code {
   padding: .12em .38em;
-  border-radius: 6px;
+  border-radius: var(--radius-detail);
   background: var(--surface-muted);
   font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   font-size: .86em;
@@ -66,7 +66,7 @@
   padding: 12px 14px;
   overflow-x: auto;
   border: 1px solid var(--border-subtle);
-  border-radius: 14px;
+  border-radius: var(--radius-control);
   background: var(--surface-muted);
   font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   font-size: var(--text-sm);
@@ -95,7 +95,7 @@
   translate: -50% -100%;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius-control);
   background: var(--surface-raised);
   box-shadow: var(--shadow-floating);
 }
@@ -118,7 +118,7 @@
   place-items: center;
   padding: 0;
   border: 0;
-  border-radius: 11px;
+  border-radius: var(--radius-detail);
   background: transparent;
   color: var(--text-secondary);
   cursor: pointer;
@@ -151,7 +151,7 @@
   place-items: center;
   padding: 0;
   border: 0;
-  border-radius: 11px;
+  border-radius: var(--radius-detail);
   background: var(--surface-muted);
   color: var(--text-muted);
   cursor: pointer;
@@ -171,14 +171,14 @@
   overscroll-behavior: contain;
   scrollbar-width: none;
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: var(--radius-control);
   background: var(--surface-raised);
   box-shadow: var(--shadow-floating);
 }
 .slash[data-above] { translate: 0 -100%; }
 .slashBody { padding: 6px; }
 .slashList { position: relative; display: grid; margin: 0; padding: 0; list-style: none; }
-.slashHighlight { position: absolute; top: 0; right: 0; left: 0; border-radius: 12px; background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
+.slashHighlight { position: absolute; top: 0; right: 0; left: 0; border-radius: var(--radius-control); background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
 .slashOption {
   position: relative;
   display: flex;
@@ -186,7 +186,7 @@
   align-items: center;
   gap: 10px;
   padding: 0 10px;
-  border-radius: 12px;
+  border-radius: var(--radius-control);
   color: var(--text-secondary);
   cursor: pointer;
   font-size: var(--text-sm);

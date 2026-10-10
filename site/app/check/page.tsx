@@ -43,7 +43,7 @@ export default function Check() {
       <p className="lede" data-check-summary>{loaded.length} demos loaded, {Object.keys(errors).length} with errors.</p>
       {Object.entries(errors).length > 0 && <ul data-check-errors>{Object.entries(errors).map(([name, message]) => <li key={name}><Link href={`/${name}`}>{name}</Link>: <code>{message}</code></li>)}</ul>}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(420px, 1fr))", gap: 16 }}>
-        {loaded.map(([name, demo]) => <section key={name} style={{ border: "1px solid var(--border)", borderRadius: 14, padding: 16, overflow: "hidden", maxHeight: 520 }}>
+        {loaded.map(([name, demo]) => <section key={name} style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-control)", padding: 16, overflow: "hidden", maxHeight: 520 }}>
           <h3 style={{ margin: "0 0 12px" }}><Link href={`/${name}`}>{name}</Link></h3>
           <Catch name={name} onError={onError}><Live demo={demo} /></Catch>
           {demo.examples?.map(example => <Catch key={example.title} name={`${name} › ${example.title}`} onError={onError}><ExampleView render={example.render} /></Catch>)}

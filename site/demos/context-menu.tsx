@@ -5,8 +5,8 @@ import { ContextMenu, type ContextMenuItem, type ContextMenuProps } from "@/regi
 import { defineDemo } from "../lib/demo";
 
 function FileCard({ name, meta, pinned }: { name: string; meta: string; pinned?: boolean }) {
-  return <div style={{ display: "flex", gap: 12, alignItems: "center", width: "min(100%, 360px)", padding: 16, border: "1px solid var(--border)", borderRadius: 16, background: "var(--surface)", cursor: "context-menu" }}>
-    <span style={{ display: "grid", placeItems: "center", width: 40, height: 40, flex: "none", borderRadius: 10, background: "var(--surface-muted)", color: "var(--text-secondary)" }}><FileSpreadsheet size={20} aria-hidden="true" /></span>
+  return <div style={{ display: "flex", gap: 12, alignItems: "center", width: "min(100%, 360px)", padding: 16, border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)", cursor: "context-menu" }}>
+    <span style={{ display: "grid", placeItems: "center", width: 40, height: 40, flex: "none", borderRadius: "var(--radius-detail)", background: "var(--surface-muted)", color: "var(--text-secondary)" }}><FileSpreadsheet size={20} aria-hidden="true" /></span>
     <span style={{ display: "grid", minWidth: 0, flex: 1 }}>
       <strong style={{ fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{name}</strong>
       <span style={{ color: "var(--text-muted)", fontSize: "var(--text-xs)" }}>{meta}</span>

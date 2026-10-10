@@ -5,7 +5,7 @@
   place-items: center;
   overflow: visible;
   border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-full);
   background: var(--surface-muted);
   color: var(--foreground);
   font-size: var(--text-xs);
@@ -41,7 +41,7 @@
   width: 10px;
   height: 10px;
   border: 2px solid var(--surface);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-full);
   box-shadow: 0 0 0 1px color-mix(in oklab, var(--border) 70%, transparent);
 }
 

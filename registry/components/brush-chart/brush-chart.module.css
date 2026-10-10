@@ -28,7 +28,7 @@
 .event[data-labelled] .eventLabel { opacity: 1; }
 .event[data-active] .eventLabel { color: var(--foreground); }
 
-.tooltip { position: absolute; top: 0; left: 0; z-index: 2; display: grid; min-width: 132px; max-width: min(220px, 100%); gap: 2px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
+.tooltip { position: absolute; top: 0; left: 0; z-index: 2; display: grid; min-width: 132px; max-width: min(220px, 100%); gap: 2px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
 .chart[data-active] .tooltip { opacity: 1; scale: 1; }
 .tipTitle { margin: 0 0 2px; color: var(--text-secondary); font-size: var(--text-xs); line-height: var(--leading-body); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .tipValue { margin: 0; color: var(--foreground); font-size: var(--text-base); font-weight: 500; line-height: var(--leading-body); font-variant-numeric: tabular-nums; }
@@ -44,7 +44,7 @@
 .axisLabel { position: absolute; top: 9px; color: var(--text-muted); font-size: var(--text-xs); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* Overview: the whole history, with everything outside the window stepped back. */
-.strip { --strip-radius: 10px; position: relative; grid-area: 3 / 1; min-width: 0; margin-top: 8px; border-radius: var(--strip-radius); background: color-mix(in oklab, var(--foreground) 2.5%, transparent); cursor: crosshair; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.strip { --strip-radius: var(--radius-detail); position: relative; grid-area: 3 / 1; min-width: 0; margin-top: 8px; border-radius: var(--strip-radius); background: color-mix(in oklab, var(--foreground) 2.5%, transparent); cursor: crosshair; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
 /* The overview drawing is clipped to the strip's corners; the handles stay outside the clip so they can overhang the ends. */
 .strip > .svg { clip-path: inset(0 round var(--strip-radius)); }
 .overviewLine { fill: none; stroke: color-mix(in oklab, var(--foreground) 28%, var(--surface)); stroke-width: 1; stroke-linejoin: round; }
@@ -58,7 +58,7 @@
 .window { position: absolute; top: 0; bottom: 0; border-radius: var(--strip-radius); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--series-1) 45%, transparent); cursor: grab; outline: none; transition: box-shadow var(--duration-fast) var(--ease-standard); }
 .window:active { cursor: grabbing; }
 .handle { position: absolute; top: 50%; display: grid; width: 28px; height: 44px; place-items: center; margin-left: -14px; translate: 0 -50%; cursor: ew-resize; outline: none; touch-action: none; }
-.grip { width: 6px; height: 22px; border-radius: 3px; background: var(--surface-raised); box-shadow: 0 0 0 1px color-mix(in oklab, var(--foreground) 26%, transparent), var(--shadow-resting); transition: transform var(--duration-instant) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
+.grip { width: 6px; height: 22px; border-radius: var(--radius-full); background: var(--surface-raised); box-shadow: 0 0 0 1px color-mix(in oklab, var(--foreground) 26%, transparent), var(--shadow-resting); transition: transform var(--duration-instant) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
 .handle:active .grip { transform: scaleY(1.12); }
 @media (hover: hover) and (pointer: fine) { .handle:hover .grip { transform: scaleY(1.12); } }
 

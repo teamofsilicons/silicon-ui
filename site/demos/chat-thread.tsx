@@ -31,7 +31,7 @@ export default defineDemo<ChatThreadProps>({
   hideControls: ["messages", "defaultMessages", "currentUserId", "groupWindow", "locale", "accept"],
   Preview: ({ props }) => {
     const [messages] = useState(() => conversation(Date.now()));
-    return <div style={{ width: "min(100%, 560px)", height: 560, border: "1px solid var(--border)", borderRadius: 16, overflow: "hidden", background: "var(--surface)" }}>
+    return <div style={{ width: "min(100%, 560px)", height: 560, border: "1px solid var(--border)", borderRadius: "var(--radius-control)", overflow: "hidden", background: "var(--surface)" }}>
       <ChatThread {...props} defaultMessages={messages} />
     </div>;
   },

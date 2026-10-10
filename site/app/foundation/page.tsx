@@ -13,7 +13,7 @@ function tokens() {
 
 export default function Foundation() {
   const names = tokens();
-  const colors = names.filter(name => !/^--(space|radius|control-height|font|text|tracking|leading|ease|duration|shadow|neutral)-/.test(name) && !/thumb-shadow|gradient$|gradient-(soft|line|ink)$/.test(name) && !name.startsWith("--focus"));
+  const colors = names.filter(name => !/^--(space|radius|control-height|font|text|tracking|leading|ease|duration|shadow|neutral|corner)-/.test(name) && !/thumb-shadow|gradient$|gradient-(soft|line|ink)$/.test(name) && !name.startsWith("--focus"));
   const neutrals = names.filter(name => name.startsWith("--neutral-"));
   const gradients = names.filter(name => /gradient(-soft|-line|-ink)?$/.test(name));
   const shadows = names.filter(name => name.startsWith("--shadow-"));
@@ -40,8 +40,12 @@ export default function Foundation() {
       </section>
 
       <section id="shape" className="section">
-        <h2>Radius and shadow</h2>
+        <h2>Radius, corners and shadow</h2>
         <div className="token-row">{radii.map(name => <div key={name} className="radius-sample"><span style={{ borderRadius: `var(${name})` }} /><code>{name}</code></div>)}</div>
+        <h3>Corner shape</h3>
+        <p className="muted">Squircle is the default. Set <code>data-corners=&quot;round&quot;</code> on <code>&lt;html&gt;</code>, or on any element, for round corners. Browsers without <code>corner-shape</code> draw round corners either way.</p>
+        <div className="token-row">{(["squircle", "round"] as const).map(shape => <div key={shape} className="radius-sample corner-sample" data-corners={shape}><span /><code>{shape}</code></div>)}</div>
+        <h3>Shadow</h3>
         <div className="token-row">{shadows.map(name => <div key={name} className="shadow-sample"><span style={{ boxShadow: `var(${name})` }} /><code>{name}</code></div>)}</div>
       </section>
 
@@ -61,6 +65,6 @@ export default function Foundation() {
         <ul className="file-list">{durations.map(name => <li key={name}><code>{name}</code></li>)}</ul>
       </section>
     </main>
-    <OnThisPage entries={[{ id: "color", title: "Color" }, { id: "shape", title: "Radius and shadow" }, { id: "type", title: "Type" }, { id: "space", title: "Space" }, { id: "motion", title: "Motion" }]} />
+    <OnThisPage entries={[{ id: "color", title: "Color" }, { id: "shape", title: "Radius and corners" }, { id: "type", title: "Type" }, { id: "space", title: "Space" }, { id: "motion", title: "Motion" }]} />
   </div>;
 }

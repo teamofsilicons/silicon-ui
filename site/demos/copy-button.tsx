@@ -1,7 +1,7 @@
 import { CopyButton, type CopyButtonProps } from "@/registry/components/copy-button/copy-button";
 import { defineDemo } from "../lib/demo";
 
-const field = { display: "flex", alignItems: "center", gap: 8, width: "min(100%, 420px)", padding: "6px 6px 6px 14px", border: "1px solid var(--border)", borderRadius: 12, background: "var(--surface)" } as const;
+const field = { display: "flex", alignItems: "center", gap: 8, width: "min(100%, 420px)", padding: "6px 6px 6px 14px", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)" } as const;
 const code = { flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontFamily: "var(--font-mono, ui-monospace, monospace)", fontSize: "var(--text-sm)", color: "var(--text-secondary)" } as const;
 
 export default defineDemo<CopyButtonProps>({

@@ -25,7 +25,7 @@ function ScrollFrame(props: SiteHeaderProps) {
       <p style={{ margin: 0, color: "var(--text-secondary)", fontSize: "var(--text-sm)" }}>The header picks up a surface once the page moves under it.</p>
     </div>
     <div style={rows} aria-hidden="true">
-      {Array.from({ length: 9 }, (_, index) => <div key={index} style={{ height: 120, borderRadius: 16, background: "var(--surface-muted)" }} />)}
+      {Array.from({ length: 9 }, (_, index) => <div key={index} style={{ height: 120, borderRadius: "var(--radius-control)", background: "var(--surface-muted)" }} />)}
     </div>
   </div>;
 }

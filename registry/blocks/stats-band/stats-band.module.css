@@ -2,17 +2,17 @@
 .band *, .band *::before, .band *::after { box-sizing: border-box; }
 .srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-.inner { max-width: 1120px; margin: 0 auto; padding: var(--space-24) var(--space-8); }
+.inner { max-width: 1120px; margin: 0 auto; padding: var(--space-screen) var(--space-block); }
 
 /* Header: the title on the left, the note on the right, sharing a last baseline. */
-.header { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: last baseline; gap: var(--space-4) var(--space-12); margin-bottom: var(--space-16); }
+.header { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: last baseline; gap: var(--space-inset) var(--space-page); margin-bottom: var(--space-stage); }
 .title { max-width: 16ch; margin: 0; font-family: var(--font-display); font-size: clamp(1.875rem, 1rem + 2.6cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
 .description { max-width: 34ch; margin: 0; justify-self: end; color: var(--text-secondary); font-size: var(--text-base); line-height: 1.5; text-wrap: pretty; }
 .header:not(:has(.title)) { grid-template-columns: minmax(0, 1fr); }
 .header:not(:has(.title)) .description { justify-self: start; }
 
 /* The grid. Every stat has the same rows, so numbers, labels, and visuals line up across the band. */
-.stats { position: relative; display: grid; grid-template-columns: repeat(var(--count), minmax(0, 1fr)); column-gap: var(--space-10); row-gap: var(--space-16); margin: 0; }
+.stats { position: relative; display: grid; grid-template-columns: repeat(var(--count), minmax(0, 1fr)); column-gap: var(--space-page); row-gap: var(--space-stage); margin: 0; }
 .stat {
   --start: calc(var(--i) * 90ms + var(--draw));
   --ink: var(--text-secondary);
@@ -20,7 +20,7 @@
   position: relative; display: flex; min-width: 0; flex-direction: column; cursor: default; -webkit-tap-highlight-color: transparent;
 }
 .stat:focus { outline: none; }
-.figure { order: -1; margin: 0 0 var(--space-5); }
+.figure { order: -1; margin: 0 0 var(--space-comfort); }
 .label { color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); text-wrap: pretty; }
 .caption { display: grid; margin: 2px 0 0; color: var(--text-muted); font-size: var(--text-sm); line-height: var(--leading-body); }
 .detail, .context { grid-area: 1 / 1; min-width: 0; text-wrap: pretty; transition: opacity var(--duration-standard) var(--ease-standard), transform var(--duration-standard) var(--ease-standard); }
@@ -37,7 +37,7 @@
 .sizer { visibility: hidden; }
 
 /* Visuals sit on the bottom row, all the same height, so they line up whatever the copy above them does. */
-.visual { position: relative; display: flex; flex: none; flex-direction: column; justify-content: flex-end; height: calc(56px + var(--space-8)); margin: auto 0 0; padding-top: var(--space-8); }
+.visual { position: relative; display: flex; flex: none; flex-direction: column; justify-content: flex-end; height: calc(56px + var(--space-block)); margin: auto 0 0; padding-top: var(--space-block); }
 .visual > * { position: relative; height: 100%; }
 .visual > .bars[data-dense] { height: 56%; }
 .draw { display: block; width: 100%; height: 100%; overflow: visible; }
@@ -51,7 +51,7 @@
 /* 90 days never fit 90 fixed gaps in a narrow column, so dense bars carve their gap out of their own slot. */
 .bars[data-dense] { gap: 0; }
 .bars[data-dense] .bar { border-radius: 0; clip-path: inset(0 22% 0 22%); }
-.bar { flex: 1 1 0; height: 100%; border-radius: 1px; background: var(--soft); transform: scaleY(var(--h)); transform-origin: bottom; transition: background-color var(--duration-standard) var(--ease-standard), transform 560ms var(--ease-enter); }
+.bar { flex: 1 1 0; height: 100%; border-radius: var(--radius-detail); background: var(--soft); transform: scaleY(var(--h)); transform-origin: bottom; transition: background-color var(--duration-standard) var(--ease-standard), transform 560ms var(--ease-enter); }
 .bar[data-ink] { background: var(--ink); }
 
 .map { display: flex; }
@@ -93,7 +93,7 @@
 .band[data-layout="divided"] .stats::after { bottom: 0; transition-delay: 120ms; }
 .band[data-layout="divided"][data-in-view] .stats::before,
 .band[data-layout="divided"][data-in-view] .stats::after { transform: scaleX(1); }
-.band[data-layout="divided"] .stat { padding: var(--space-10) var(--space-8) var(--space-8); }
+.band[data-layout="divided"] .stat { padding: var(--space-page) var(--space-block) var(--space-block); }
 .band[data-layout="divided"] .stat:first-child { padding-left: 0; }
 .band[data-layout="divided"] .stat:last-child { padding-right: 0; }
 .band[data-layout="divided"] .stat:not(:first-child)::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--border); transform: scaleY(0); transform-origin: top; transition: transform 700ms var(--ease-enter); transition-delay: calc(var(--i) * 90ms + 240ms); }
@@ -101,11 +101,11 @@
 
 /* Tablet: two by two. A band of three stacks instead of leaving an orphan. */
 @container stats (max-width: 800px) {
-  .inner { padding: var(--space-20) var(--space-8); }
-  .header { grid-template-columns: minmax(0, 1fr); margin-bottom: var(--space-12); }
+  .inner { padding: var(--space-screen) var(--space-block); }
+  .header { grid-template-columns: minmax(0, 1fr); margin-bottom: var(--space-page); }
   .description { justify-self: start; }
-  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-8); row-gap: var(--space-12); }
-  .band[data-layout="divided"] .stat { padding: var(--space-8) var(--space-8) var(--space-8); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-block); row-gap: var(--space-page); }
+  .band[data-layout="divided"] .stat { padding: var(--space-block) var(--space-block) var(--space-block); }
   .band[data-layout="divided"] .stat:nth-child(2n + 1) { padding-left: 0; }
   .band[data-layout="divided"] .stat:nth-child(2n) { padding-right: 0; }
   .band[data-layout="divided"] .stat:nth-child(2n + 1)::before { display: none; }
@@ -114,17 +114,17 @@
 
 /* Phone: one stat per row, the visual beside the number so nothing is cramped. */
 @container stats (max-width: 520px) {
-  .inner { padding: var(--space-16) var(--space-4); }
-  .header { margin-bottom: var(--space-10); }
-  .stats { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-10); }
-  .stat { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 40%); grid-template-areas: "figure visual" "label label" "caption caption"; column-gap: var(--space-6); }
-  .figure { grid-area: figure; align-self: end; margin-bottom: var(--space-3); }
+  .inner { padding: var(--space-stage) var(--space-inset); }
+  .header { margin-bottom: var(--space-page); }
+  .stats { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-page); }
+  .stat { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 40%); grid-template-areas: "figure visual" "label label" "caption caption"; column-gap: var(--space-section); }
+  .figure { grid-area: figure; align-self: end; margin-bottom: var(--space-group); }
   .label { grid-area: label; }
   .caption { grid-area: caption; }
-  .visual { grid-area: visual; align-self: end; height: 40px; margin: 0 0 var(--space-3); padding: 0; }
+  .visual { grid-area: visual; align-self: end; height: 40px; margin: 0 0 var(--space-group); padding: 0; }
   .map { justify-content: flex-end; }
   .band[data-layout="divided"] .stat,
-  .band[data-layout="divided"] .stat:nth-child(n) { padding: var(--space-8) 0; }
+  .band[data-layout="divided"] .stat:nth-child(n) { padding: var(--space-block) 0; }
   .band[data-layout="divided"] .stat::before { display: none; }
   .band[data-layout="divided"] .stat:nth-child(n + 2)::after { content: ""; position: absolute; top: 0; right: 0; left: 0; height: 1px; background: var(--border); }
 }
@@ -136,8 +136,8 @@
   .band[data-layout="divided"] .stats[data-count="3"] .stat:nth-child(n + 2)::after { content: ""; position: absolute; top: 0; right: 0; left: 0; height: 1px; background: var(--border); }
 }
 
-.preview { display: grid; width: 100%; justify-items: center; gap: var(--space-4); }
-.frame { width: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: 20px; background: var(--background); }
+.preview { display: grid; width: 100%; justify-items: center; gap: var(--space-inset); }
+.frame { width: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--background); }
 
 @media (prefers-reduced-motion: reduce) {
   .band .stat, .band .draw, .band .bar, .band .endDot,

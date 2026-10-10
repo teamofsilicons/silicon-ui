@@ -14,12 +14,12 @@ const heading = { fontSize: 12, color: "var(--text-muted)", textTransform: "uppe
 
 export default defineDemo<ResizablePanelsProps>({
   props: { label: "Support inbox" },
-  Preview: ({ props }) => <div style={{ width: "min(100%, 760px)", height: 340, border: "1px solid var(--border)", borderRadius: 14, background: "var(--surface)", overflow: "hidden" }}>
+  Preview: ({ props }) => <div style={{ width: "min(100%, 760px)", height: 340, border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)", overflow: "hidden" }}>
     <ResizablePanels {...props}>
       <ResizablePanel id="folders" label="Folders" defaultSize={22} minSize={150} collapsible>
         <div style={pane}>
           <div style={heading}>Folders</div>
-          {folders.map((folder, index) => <div key={folder} style={{ padding: "6px 8px", borderRadius: 8, background: index === 0 ? "var(--surface-muted)" : undefined }}>{folder}</div>)}
+          {folders.map((folder, index) => <div key={folder} style={{ padding: "6px 8px", borderRadius: "var(--radius-detail)", background: index === 0 ? "var(--surface-muted)" : undefined }}>{folder}</div>)}
         </div>
       </ResizablePanel>
       <ResizablePanel id="tickets" label="Tickets" defaultSize={36} minSize={200}>

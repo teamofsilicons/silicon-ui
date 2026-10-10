@@ -166,10 +166,12 @@ Components read semantic tokens, never raw colors. Change a token in `foundation
 | `--border`, `--border-subtle`, `--border-strong` | Separators and edges |
 | `--accent`, `--accent-strong`, `--accent-subtle` | Selection, progress and helpful context |
 | `--success`, `--warning`, `--danger` | Status, always paired with a label |
-| `--radius-control`, `--radius-panel`, `--radius-surface` | Controls, menus, cards |
+| `--radius-detail`, `--radius-control`, `--radius-container`, `--radius-overlay`, `--radius-full` | Marks (2px), controls (6), cards and menus (8), dialogs and sheets (12), pills and dots |
+| `--space-tight` … `--space-screen` | Spacing by role: tight 4, related 8, group 12, inset 16, comfort 20, section 24, block 32, page 48, stage 64, screen 80 |
 | `--font-display`, `--font-body` | Geist for headings, Inter for everything else |
 
 - **Dark mode:** set `data-theme="dark"` on `<html>`. Dark values are tuned separately, not inverted.
+- **Corners:** squircles by default. Every rounded corner is drawn with `corner-shape: squircle` where the browser supports it, and as a round corner elsewhere. Set `data-corners="round"` on `<html>` (or any element) for round corners.
 - **Accent:** set `data-accent` on `<html>` to `neutral`, `violet`, `blue`, `green`, `amber`, `orange`, `coral` or `rose`.
 - **Motion:** springs and durations live in `lib/motion-tokens.ts` (`components/silicon-ui/lib/motion-tokens.ts` after a CLI install). Every animation respects `prefers-reduced-motion`.
 

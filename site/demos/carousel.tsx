@@ -15,7 +15,7 @@ const venues: { id: PhotoId; title: string; detail: string }[] = [
 
 function Venue({ id, title, detail }: (typeof venues)[number]) {
   const image = photo(id);
-  return <figure style={{ margin: 0, overflow: "hidden", border: "1px solid var(--border)", borderRadius: 16, background: "var(--surface)" }}>
+  return <figure style={{ margin: 0, overflow: "hidden", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)" }}>
     <div style={{ position: "relative", aspectRatio: "4 / 3" }}>
       <SiliconImage src={image.src} alt={image.alt} fill sizes="340px" loading="eager" draggable={false} style={{ objectFit: "cover" }} />
     </div>

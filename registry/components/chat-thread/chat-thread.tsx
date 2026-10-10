@@ -632,7 +632,7 @@ export const ChatThread = forwardRef<ChatThreadHandle, ChatThreadProps>(function
       </div>
       <span className={styles.srOnly} role="status">{typingLabel}</span>
       <AnimatePresence>
-        {pill && <motion.button key="pill" type="button" className={styles.pill} onClick={() => scrollToBottom()} layout={!reduced} style={{ borderRadius: 16 }}
+        {pill && <motion.button key="pill" type="button" className={styles.pill} onClick={() => scrollToBottom()} layout={!reduced} style={{ borderRadius: 999 }}
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 12, scale: .94 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduced ? { opacity: 0 } : { opacity: 0, y: 12, scale: .94, transition: { duration: duration.exit, ease: standard } }}
           transition={reduced ? { duration: duration.fast } : { ...spring.morph, opacity: { duration: duration.fast } }}>
           {/* Icon and label hold their own size while the pill's width morphs, so the text never stretches. */}
