@@ -5,7 +5,7 @@ import nextTs from "eslint-config-next/typescript";
 export default defineConfig([
   ...nextVitals,
   ...nextTs,
-  // This repository has no pages or app directory, only components and blocks.
+  // The registry itself has no pages; only the docs site in site/ does, and it routes with its own app directory.
   { rules: { "@next/next/no-html-link-for-pages": "off" } },
-  globalIgnores(["node_modules/**", "public/**"]),
+  globalIgnores(["node_modules/**", "public/**", "site/.next/**", "site/out/**", "site/generated/**", "site/next-env.d.ts"]),
 ]);
