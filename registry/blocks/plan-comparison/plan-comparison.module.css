@@ -1,4 +1,4 @@
-.comparison { box-sizing: border-box; width: min(100%, 1060px); min-width: 0; margin-inline: auto; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-panel); background: var(--surface); color: var(--foreground); font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: var(--tracking-body); line-height: var(--leading-body); }
+.comparison { box-sizing: border-box; width: min(100%, 1060px); min-width: 0; margin-inline: auto; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-container); background: var(--surface); color: var(--foreground); font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: var(--tracking-body); line-height: var(--leading-body); }
 .comparison *, .comparison *::before, .comparison *::after { box-sizing: border-box; }
 
 /* Intro */

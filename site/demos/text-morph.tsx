@@ -19,7 +19,7 @@ function StatusExample() {
   const states = ["Draft", "In review", "Approved", "Paid"];
   return <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: "var(--text-sm)" }}>
     <span style={{ color: "var(--text-secondary)" }}>Invoice INV-2041</span>
-    <span style={{ padding: "2px 10px", borderRadius: 999, background: "var(--surface-muted)", fontWeight: 500 }}><TextMorph>{states[index]!}</TextMorph></span>
+    <span style={{ padding: "2px 10px", borderRadius: "var(--radius-full)", background: "var(--surface-muted)", fontWeight: 500 }}><TextMorph>{states[index]!}</TextMorph></span>
     <Button size="sm" variant="ghost" onClick={() => setIndex(value => (value + 1) % states.length)}>Advance</Button>
   </div>;
 }

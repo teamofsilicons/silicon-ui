@@ -22,7 +22,7 @@ const row = { display: "grid", gap: 2, padding: "10px 14px", borderBottom: "1px 
 
 export default defineDemo<ScrollAreaProps>({
   props: { label: "Activity log" },
-  Preview: ({ props }) => <div style={{ width: "min(100%, 380px)", border: "1px solid var(--border)", borderRadius: 14, background: "var(--surface)", overflow: "hidden" }}>
+  Preview: ({ props }) => <div style={{ width: "min(100%, 380px)", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)", overflow: "hidden" }}>
     <ScrollArea {...props} maxHeight={280}>
       {activity.map(([who, what], index) => <div key={index} style={row}>
         <strong style={{ fontSize: 13, fontWeight: 500 }}>{who}</strong>
@@ -36,7 +36,7 @@ export default defineDemo<ScrollAreaProps>({
       description: "A sideways strip. The mouse wheel scrolls it while there is room, and cards snap into place.",
       render: () => <ScrollArea orientation="horizontal" snap="x mandatory" label="Departments" style={{ width: "min(100%, 520px)" }}>
         <div style={{ display: "flex", gap: 12, padding: "4px 2px 14px" }}>
-          {deployments.map(item => <div key={item.team} style={{ flex: "0 0 160px", scrollSnapAlign: "start", padding: 16, border: "1px solid var(--border)", borderRadius: 14, background: "var(--surface)" }}>
+          {deployments.map(item => <div key={item.team} style={{ flex: "0 0 160px", scrollSnapAlign: "start", padding: 16, border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)" }}>
             <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>{item.team}</div>
             <div style={{ fontSize: 22, fontWeight: 600, marginTop: 4 }}>{item.tickets.toLocaleString("en-US")}</div>
             <div style={{ fontSize: 12, color: "var(--text-muted)" }}>tasks this week</div>

@@ -18,7 +18,7 @@ const items: UserMenuItem[] = [
 
 function TopBarExample() {
   const [status, setStatus] = useState<UserStatus>("busy");
-  return <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "min(100%, 520px)", padding: "8px 8px 8px 16px", border: "1px solid var(--border)", borderRadius: 14, background: "var(--surface)" }}>
+  return <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "min(100%, 520px)", padding: "8px 8px 8px 16px", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)" }}>
     <strong style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}>Northwind</strong>
     <UserMenu user={user} items={items} status={status} onStatusChange={setStatus} showName showTheme={false} onSignOut={() => wait(900)} />
   </div>;

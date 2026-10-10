@@ -15,7 +15,7 @@ const policy = `### Refund policy
 
 Refunds under $50 are approved by the support silicon. Anything larger goes to the **billing team** within one business day.`;
 
-const surface = { width: "min(100%, 600px)", padding: "18px 22px", border: "1px solid var(--border)", borderRadius: 16, background: "var(--surface)" } as const;
+const surface = { width: "min(100%, 600px)", padding: "18px 22px", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)" } as const;
 
 export default defineDemo<RichTextEditorProps>({
   props: { defaultMarkdown: handoff, "aria-label": "Handoff notes" },

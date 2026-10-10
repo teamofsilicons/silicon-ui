@@ -12,7 +12,7 @@ function AgentStatusExample() {
     const timer = setTimeout(() => setIndex(value => (value + 1) % steps.length), done ? 2600 : 2000);
     return () => clearTimeout(timer);
   }, [index, done]);
-  return <div style={{ display: "flex", alignItems: "center", gap: 10, width: "min(100%, 360px)", padding: "12px 14px", border: "1px solid var(--border)", borderRadius: 14, background: "var(--surface)", fontSize: "var(--text-sm)" }}>
+  return <div style={{ display: "flex", alignItems: "center", gap: 10, width: "min(100%, 360px)", padding: "12px 14px", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)", fontSize: "var(--text-sm)" }}>
     <span style={{ width: 8, height: 8, flex: "none", borderRadius: "50%", background: done ? "var(--success, var(--foreground))" : "var(--text-muted)" }} aria-hidden="true" />
     <span style={{ color: "var(--text-secondary)", flex: "none" }}>Support silicon</span>
     <TextShimmer active={!done}>{steps[index]!}</TextShimmer>

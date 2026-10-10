@@ -5,7 +5,7 @@ import { Button } from "@/registry/components/button/button";
 import { EmptyState, type EmptyStateProps } from "@/registry/components/empty-state/empty-state";
 import { defineDemo } from "../lib/demo";
 
-const frame = { width: "min(100%, 420px)", border: "1px dashed var(--border)", borderRadius: 16 } as const;
+const frame = { width: "min(100%, 420px)", border: "1px dashed var(--border)", borderRadius: "var(--radius-control)" } as const;
 
 function FirstDeployment() {
   const [requested, setRequested] = useState(false);

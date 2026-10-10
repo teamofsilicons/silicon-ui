@@ -16,10 +16,10 @@ export const metadata: Metadata = {
 };
 
 // Applies the saved appearance before first paint, so a dark reader never sees a light flash.
-const appearance = `try{var s=JSON.parse(localStorage.getItem("site-appearance")||"{}");var d=document.documentElement;d.dataset.theme=s.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.dataset.accent=s.accent||"neutral"}catch(e){}`;
+const appearance = `try{var s=JSON.parse(localStorage.getItem("site-appearance")||"{}");var d=document.documentElement;d.dataset.theme=s.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.dataset.accent=s.accent||"neutral";d.dataset.corners=s.corners||"squircle"}catch(e){}`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en" className={`${geist.variable} ${inter.variable}`} data-theme="light" data-accent="neutral" suppressHydrationWarning>
+  return <html lang="en" className={`${geist.variable} ${inter.variable}`} data-theme="light" data-accent="neutral" data-corners="squircle" suppressHydrationWarning>
     <head><script dangerouslySetInnerHTML={{ __html: appearance }} /></head>
     <body>
       <div className="shell">

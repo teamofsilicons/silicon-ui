@@ -48,7 +48,7 @@ export default defineDemo<ButtonGroupProps>({
     {
       title: "Collapsing labels",
       description: "When the row runs out of room, segments with an icon drop their labels and keep their icons.",
-      render: () => <div style={{ width: 200, maxWidth: "100%", display: "flex", justifyContent: "center", padding: 8, border: "1px dashed var(--border-strong)", borderRadius: 12 }}>
+      render: () => <div style={{ width: 200, maxWidth: "100%", display: "flex", justifyContent: "center", padding: 8, border: "1px dashed var(--border-strong)", borderRadius: "var(--radius-control)" }}>
         <ButtonGroup label="Report actions" menu={menu} items={[
           { id: "share", label: "Share", icon: <Link2 size={16} /> },
           { id: "duplicate", label: "Duplicate", icon: <Copy size={16} /> },

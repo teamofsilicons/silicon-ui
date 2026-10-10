@@ -2,6 +2,14 @@
 
 Changes ship continuously from `main`. Every item links to its live preview on [ui.teamofsilicons.com](https://ui.teamofsilicons.com).
 
+## 2026-10-10 (later)
+
+### Changed
+
+- **Spacing tokens by role.** `--space-tight` 4, `-related` 8, `-group` 12, `-inset` 16, `-comfort` 20, `-section` 24, `-block` 32, `-page` 48, `-stage` 64 and `-screen` 80 replace `--space-1` to `--space-24`. Spaces of 40px are now 48px (`page`) and 96px is now 80px (`screen`).
+- **Tighter corners by role.** `--radius-detail` 2px, `-control` 6px, `-container` 8px, `-overlay` 12px and `-full` replace `--radius-control` 18px, `-panel` 26px, `-surface` 34px and `-pill`. Every corner in every component now reads one of these tokens, with no fixed pixel corners left.
+- **Squircle corners by default.** Every rounded corner uses `corner-shape: squircle` where the browser supports it, and a round corner elsewhere. Set `data-corners="round"` on `<html>`, or on any element, to switch back. The docs sidebar has a switch to compare the two.
+
 ## 2026-10-10
 
 Silicon UI is live.

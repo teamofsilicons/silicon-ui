@@ -35,7 +35,7 @@
 .rank[data-move="up"] { color: var(--text-secondary); }
 .rankSwap { position: relative; display: inline-flex; overflow: hidden; }
 
-.tooltip { position: absolute; top: 0; left: 0; z-index: 2; display: grid; min-width: 168px; max-width: min(240px, 100%); gap: 3px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
+.tooltip { position: absolute; top: 0; left: 0; z-index: 2; display: grid; min-width: 168px; max-width: min(240px, 100%); gap: 3px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
 .stage[data-active] .tooltip { opacity: 1; scale: 1; }
 .tipTitle { margin: 0 0 2px; color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); white-space: nowrap; }
 .tipRow { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0; font-size: var(--text-sm); line-height: 1.3; }

@@ -22,17 +22,17 @@
   mask-image: radial-gradient(70% 80% at 72% 52%, #000 30%, transparent 85%);
 }
 
-.inner { display: grid; box-sizing: border-box; width: 100%; max-width: 1320px; grid-template-columns: minmax(0, .92fr) minmax(0, 1fr); align-items: center; gap: var(--space-16); margin: 0 auto; padding: clamp(88px, 12svh, 120px) var(--space-10) var(--space-12); }
+.inner { display: grid; box-sizing: border-box; width: 100%; max-width: 1320px; grid-template-columns: minmax(0, .92fr) minmax(0, 1fr); align-items: center; gap: var(--space-stage); margin: 0 auto; padding: clamp(88px, 12svh, 120px) var(--space-page) var(--space-page); }
 
-.copy { display: grid; justify-items: start; gap: var(--space-5); text-align: left; }
+.copy { display: grid; justify-items: start; gap: var(--space-comfort); text-align: left; }
 .title { max-width: 12ch; font-size: clamp(2.5rem, 1.2rem + 4.6cqi, 4.5rem); }
 .description { max-width: 500px; }
-.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-3); }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-group); margin-top: var(--space-group); }
 .fine { margin: 0; color: var(--text-muted); font-size: var(--text-sm); }
 
 /* The graph column: a small toolbar and the scaled graph under it. */
-.canvas { display: grid; justify-items: center; gap: var(--space-4); min-width: 0; }
-.toolbar { display: flex; width: min(100%, 640px); align-items: center; justify-content: space-between; gap: var(--space-3); }
+.canvas { display: grid; justify-items: center; gap: var(--space-inset); min-width: 0; }
+.toolbar { display: flex; width: min(100%, 640px); align-items: center; justify-content: space-between; gap: var(--space-group); }
 .file { display: inline-flex; min-width: 0; align-items: center; gap: 8px; color: var(--text-secondary); font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace); font-size: 13px; }
 .live { width: 7px; height: 7px; flex: none; border-radius: 50%; background: var(--text-muted); transition: background-color var(--duration-standard) var(--ease-standard); }
 .live[data-on] { background: var(--success); }
@@ -47,7 +47,7 @@
 /* A node: what the step is, what it found, and its state. The running step takes the accent. */
 .node {
   position: absolute; display: flex; align-items: center; gap: 12px;
-  border: 1px solid var(--border); border-radius: 14px; padding: 0 14px;
+  border: 1px solid var(--border); border-radius: var(--radius-control); padding: 0 14px;
   background: var(--surface); box-shadow: var(--node-shadow);
   font-size: 13px; line-height: 1.3;
   transition: border-color var(--duration-standard) var(--ease-standard), opacity var(--duration-standard) var(--ease-standard), background-color var(--duration-standard) var(--ease-standard);
@@ -78,22 +78,22 @@
 /* The run summary under the graph. */
 .summary { position: absolute; left: 0; display: flex; height: 44px; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--border-subtle); padding: 0 2px; color: var(--text-muted); font-size: 13px; }
 .event { display: inline-flex; align-items: center; gap: 12px; }
-.event code { border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1px 7px; background: var(--surface); color: var(--text-secondary); font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace); font-size: var(--text-xs); }
+.event code { border: 1px solid var(--border-subtle); border-radius: var(--radius-detail); padding: 1px 7px; background: var(--surface); color: var(--text-secondary); font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace); font-size: var(--text-xs); }
 .num { font-variant-numeric: tabular-nums; }
 .result { display: inline-flex; align-items: center; gap: 7px; }
 .result[data-done] { color: var(--foreground); }
 .result[data-done] svg { color: var(--success); }
 
 @container hero (max-width: 900px) {
-  .inner { grid-template-columns: minmax(0, 1fr); gap: var(--space-10); }
+  .inner { grid-template-columns: minmax(0, 1fr); gap: var(--space-page); }
   .hero::before { -webkit-mask-image: radial-gradient(90% 60% at 50% 78%, #000 30%, transparent 85%); mask-image: radial-gradient(90% 60% at 50% 78%, #000 30%, transparent 85%); }
 }
 @container hero (max-width: 560px) {
-  .inner { gap: var(--space-8); padding: 80px var(--space-4) var(--space-6); }
-  .copy { gap: var(--space-4); }
-  .actions { width: 100%; margin-top: var(--space-1); }
+  .inner { gap: var(--space-block); padding: 80px var(--space-inset) var(--space-section); }
+  .copy { gap: var(--space-inset); }
+  .actions { width: 100%; margin-top: var(--space-tight); }
   .actions > * { flex: 1 1 auto; }
-  .canvas { gap: var(--space-3); }
+  .canvas { gap: var(--space-group); }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -4,7 +4,7 @@
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: var(--radius-surface);
+  border-radius: var(--radius-overlay);
   background: var(--surface);
   color: var(--foreground);
   font-family: var(--font-body);

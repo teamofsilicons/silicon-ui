@@ -18,7 +18,7 @@ const items: ExpandingSearchItem[] = [
 ];
 const suggestions = [items[0]!, items[5]!, items[8]!];
 
-const bar = { display: "flex", alignItems: "center", gap: 16, padding: "10px 12px 10px 18px", border: "1px solid var(--border)", borderRadius: 16, background: "var(--surface)" } as const;
+const bar = { display: "flex", alignItems: "center", gap: 16, padding: "10px 12px 10px 18px", border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)" } as const;
 
 export default defineDemo<ExpandingSearchProps>({
   props: { label: "Search silicons, teams and invoices", items, suggestions, placeholder: "Search workspace" },

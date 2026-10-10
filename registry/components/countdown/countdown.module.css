@@ -5,8 +5,8 @@
 /* The shell springs to whatever it holds; the compact pill shows that morph as its own outline. */
 .shell { position: relative; display: flex; justify-content: center; }
 .content { position: relative; display: inline-flex; flex: none; align-items: center; justify-content: center; }
-.countdown[data-variant="compact"] .shell { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--surface); transition: border-color var(--duration-standard) var(--ease-standard), background-color var(--duration-standard) var(--ease-standard); }
-.countdown[data-variant="compact"] .content { min-height: 32px; padding: 0 var(--space-3); }
+.countdown[data-variant="compact"] .shell { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--surface); transition: border-color var(--duration-standard) var(--ease-standard), background-color var(--duration-standard) var(--ease-standard); }
+.countdown[data-variant="compact"] .content { min-height: 32px; padding: 0 var(--space-group); }
 .countdown[data-variant="compact"][data-complete] .shell { border-color: color-mix(in oklab, var(--success) 35%, var(--border)); background: color-mix(in oklab, var(--success) 9%, var(--surface)); }
 
 .units { display: inline-flex; align-items: flex-start; white-space: nowrap; }

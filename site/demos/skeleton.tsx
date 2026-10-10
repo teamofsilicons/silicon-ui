@@ -6,7 +6,7 @@ import { people } from "@/lib/media";
 import { defineDemo } from "../lib/demo";
 
 const box = { width: "min(100%, 400px)", display: "grid", gap: 16, justifyItems: "center" } as const;
-const card = { width: "100%", padding: 16, border: "1px solid var(--border)", borderRadius: 14, background: "var(--surface)", boxSizing: "border-box" } as const;
+const card = { width: "100%", padding: 16, border: "1px solid var(--border)", borderRadius: "var(--radius-control)", background: "var(--surface)", boxSizing: "border-box" } as const;
 const hannah = people[6];
 
 function Reveal() {

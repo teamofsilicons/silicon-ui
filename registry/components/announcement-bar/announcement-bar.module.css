@@ -2,7 +2,7 @@
 .collapse { overflow: hidden; container-type: inline-size; font-family: var(--font-body); letter-spacing: var(--tracking-body); }
 
 /* The side column mirrors the controls, so the message stays centered on the page rather than in the leftover space. */
-.bar { --icon: 32px; --control-gap: 2px; --muted: var(--text-secondary); display: grid; grid-template-columns: calc(var(--controls, 0) * var(--icon) + max(var(--controls, 0) - 1, 0) * var(--control-gap)) minmax(0, 1fr) auto; align-items: center; gap: var(--space-3); padding: 6px 8px 6px 16px; border-bottom: 1px solid var(--border); background: var(--surface-muted); color: var(--foreground); }
+.bar { --icon: 32px; --control-gap: 2px; --muted: var(--text-secondary); display: grid; grid-template-columns: calc(var(--controls, 0) * var(--icon) + max(var(--controls, 0) - 1, 0) * var(--control-gap)) minmax(0, 1fr) auto; align-items: center; gap: var(--space-group); padding: 6px 8px 6px 16px; border-bottom: 1px solid var(--border); background: var(--surface-muted); color: var(--foreground); }
 .bar[data-tone="inverted"] { --muted: color-mix(in oklab, var(--background) 66%, transparent); border-bottom-color: transparent; background: var(--foreground); color: var(--background); }
 
 .side { min-width: 0; }
@@ -50,7 +50,7 @@
 
 /* Narrow bars drop the mirror column and read from the start edge. */
 @container (max-width: 560px) {
-  .bar { grid-template-columns: 0 minmax(0, 1fr) auto; gap: 0 var(--space-2); padding-left: 14px; }
+  .bar { grid-template-columns: 0 minmax(0, 1fr) auto; gap: 0 var(--space-related); padding-left: 14px; }
   .face { justify-content: flex-start; }
   .message { justify-content: flex-start; column-gap: 10px; text-align: left; }
 }
