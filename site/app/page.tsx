@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Card } from "@/registry/components/card/card";
 import { CodeBlock } from "@/registry/components/code-block/code-block";
 import { CopyCommand } from "../components/copy-command";
 import { OnThisPage } from "../components/on-this-page";
@@ -40,13 +41,13 @@ export default function Introduction() {
         <h2>Components</h2>
         {categories.map(category => <div key={category.title} className="overview-category">
           <h3>{category.title}</h3>
-          <div className="related-grid">{category.groups.flatMap(group => group.items).map(entry => <Link key={entry.name} href={`/${entry.name}`} className="related-card"><strong>{entry.title}</strong><span>{entry.description}</span></Link>)}</div>
+          <div className="related-grid">{category.groups.flatMap(group => group.items).map(entry => <Link key={entry.name} href={`/${entry.name}`} className="related-link"><Card title={entry.title} description={entry.description} /></Link>)}</div>
         </div>)}
       </section>
 
       <section id="blocks" className="section">
         <h2>Blocks</h2>
-        <div className="related-grid">{blockCategories.flatMap(category => category.groups.flatMap(group => group.items)).map(entry => <Link key={entry.name} href={`/${entry.name}`} className="related-card"><strong>{entry.title}</strong><span>{entry.description}</span></Link>)}</div>
+        <div className="related-grid">{blockCategories.flatMap(category => category.groups.flatMap(group => group.items)).map(entry => <Link key={entry.name} href={`/${entry.name}`} className="related-link"><Card title={entry.title} description={entry.description} /></Link>)}</div>
       </section>
 
       <section id="credits" className="section">

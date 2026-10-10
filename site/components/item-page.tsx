@@ -2,9 +2,16 @@
 
 import Link from "next/link";
 import { Component as ReactComponent, useCallback, useEffect, useMemo, useRef, useState, type ComponentType, type ErrorInfo, type ReactNode } from "react";
-import { ChevronRight, Code2, Eye, Maximize2, Minimize2, Monitor, RotateCcw, Smartphone } from "lucide-react";
+import { Code2, Eye, Maximize2, Minimize2, RotateCcw } from "lucide-react";
 
+import { Badge } from "@/registry/components/badge/badge";
+import { Breadcrumb } from "@/registry/components/breadcrumb/breadcrumb";
+import { Button } from "@/registry/components/button/button";
+import { Card } from "@/registry/components/card/card";
 import { CodeBlock } from "@/registry/components/code-block/code-block";
+import SegmentedControl from "@/registry/components/segmented-control/segmented-control";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/components/tabs/tabs";
+import { Tooltip } from "@/registry/components/tooltip/tooltip";
 import type { Item, NavEntry, PropDoc } from "../lib/catalog";
 import { importLine, registryNamespace } from "../lib/catalog";
 import type { Demo } from "../lib/demo";
@@ -180,44 +187,44 @@ export function ItemPage({ item, related }: { item: Item; related: NavEntry[] })
   const layout = ready?.stage?.layout ?? (item.kind === "block" ? "fill" : "center");
   const toolbar = <div className="stage-toolbar">
     <span className="stage-status">{demo === null ? "Loading…" : demo === "missing" ? "No demo yet" : "Live"}</span>
-    <div className="segmented small" role="radiogroup" aria-label="Preview width">
-      <button role="radio" aria-checked={frame === "full"} onClick={() => setFrame("full")} aria-label="Full width"><Monitor size={14} /></button>
-      <button role="radio" aria-checked={frame === "mobile"} onClick={() => setFrame("mobile")} aria-label="Phone width"><Smartphone size={14} /></button>
-    </div>
-    <button className="icon-button small" onClick={() => setReplay(n => n + 1)} aria-label="Replay"><RotateCcw size={14} /></button>
-    <button className="icon-button small" onClick={() => setFullscreen(!fullscreen)} aria-label={fullscreen ? "Exit full screen" : "Full screen"}>{fullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}</button>
+    <SegmentedControl label="Preview width" value={frame} onValueChange={value => setFrame(value as "full" | "mobile")} options={[{ value: "full", label: "Desktop" }, { value: "mobile", label: "Phone" }]} />
+    <Tooltip content="Replay"><Button variant="ghost" size="sm" onClick={() => setReplay(n => n + 1)} aria-label="Replay"><RotateCcw size={14} aria-hidden="true" /></Button></Tooltip>
+    <Tooltip content={fullscreen ? "Exit full screen" : "Full screen"}><Button variant="ghost" size="sm" onClick={() => setFullscreen(!fullscreen)} aria-label={fullscreen ? "Exit full screen" : "Full screen"}>{fullscreen ? <Minimize2 size={14} aria-hidden="true" /> : <Maximize2 size={14} aria-hidden="true" />}</Button></Tooltip>
   </div>;
 
   return <div className="page">
     <main className="content">
-      <nav className="breadcrumb" aria-label="Breadcrumb">
-        <span>{item.kind === "block" ? "Blocks" : "Components"}</span><ChevronRight size={13} aria-hidden="true" />
-        <span>{item.category}</span>
-        {item.group && <><ChevronRight size={13} aria-hidden="true" /><span>{item.group}</span></>}
-      </nav>
+      <div className="breadcrumb"><Breadcrumb items={[{ label: item.kind === "block" ? "Blocks" : "Components" }, { label: item.category }, ...(item.group ? [{ label: item.group }] : [])]} /></div>
       <h1 className="title">{item.title}</h1>
       <p className="lede">{item.description}</p>
       <div className="title-row">
         <CopyCommand command={install} />
-        {item.tags.length > 0 && <div className="tags">{item.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}</div>}
+        {item.tags.length > 0 && <div className="tags">{item.tags.map(tag => <Badge key={tag} size="sm">{tag}</Badge>)}</div>}
       </div>
 
       <section id="preview" className="section">
-        <div className="view-tabs" role="tablist">
-          <button role="tab" aria-selected={tab === "preview"} onClick={() => setTab("preview")}><Eye size={15} aria-hidden="true" />Preview</button>
-          <button role="tab" aria-selected={tab === "code"} onClick={() => setTab("code")}><Code2 size={15} aria-hidden="true" />Code</button>
-        </div>
-        {tab === "preview" ? <>
-          <Stage layout={layout} minHeight={ready?.stage?.minHeight} toolbar={toolbar} frame={frame} fullscreen={fullscreen}>
-            {demo === "missing" ? <p className="muted">There is no demo for {item.title} yet. Add one in <code>site/demos/{item.name}.tsx</code>.</p> : ready ? <Boundary resetKey={mountKey}><Render key={mountKey} demo={ready} props={merged} /></Boundary> : null}
-          </Stage>
-          {ready && (controls.length > 0 || Object.keys(callbacks).length > 0) && <Controls docs={controls} base={baseProps} values={values} onChange={setValues} events={events} hasCallbacks={Object.keys(callbacks).length > 0} onClearEvents={() => setEvents([])} />}
-        </> : <div className="code-view">
-          <div className="file-tabs" role="tablist" aria-label="Files">
-            {files.map((entry, index) => <button key={entry.path} role="tab" aria-selected={index === activeFile} onClick={() => setActiveFile(index)} data-shared={!entry.own || undefined}>{entry.target.split("/").pop()}</button>)}
-          </div>
-          {file && <CodeBlock key={file.path} code={file.content} filename={file.target} language={file.path.split(".").pop() === "css" ? "css" : "tsx"} />}
-        </div>}
+        <Tabs value={tab} onValueChange={value => setTab(value as "preview" | "code")} className="view-tabs">
+          <TabsList aria-label="View">
+            <TabsTrigger value="preview"><span className="tab-label"><Eye size={15} aria-hidden="true" />Preview</span></TabsTrigger>
+            <TabsTrigger value="code"><span className="tab-label"><Code2 size={15} aria-hidden="true" />Code</span></TabsTrigger>
+          </TabsList>
+          <TabsContent value="preview">
+            <Stage layout={layout} minHeight={ready?.stage?.minHeight} toolbar={toolbar} frame={frame} fullscreen={fullscreen}>
+              {demo === "missing" ? <p className="muted">There is no demo for {item.title} yet. Add one in <code>site/demos/{item.name}.tsx</code>.</p> : ready ? <Boundary resetKey={mountKey}><Render key={mountKey} demo={ready} props={merged} /></Boundary> : null}
+            </Stage>
+            {ready && (controls.length > 0 || Object.keys(callbacks).length > 0) && <Controls docs={controls} base={baseProps} values={values} onChange={setValues} events={events} hasCallbacks={Object.keys(callbacks).length > 0} onClearEvents={() => setEvents([])} />}
+          </TabsContent>
+          <TabsContent value="code">
+            <Tabs value={file?.path} onValueChange={path => setActiveFile(Math.max(0, files.findIndex(entry => entry.path === path)))} className="file-tabs">
+              <TabsList aria-label="Files">
+                {files.map(entry => <TabsTrigger key={entry.path} value={entry.path}>{entry.target.split("/").pop()}</TabsTrigger>)}
+              </TabsList>
+              {files.map(entry => <TabsContent key={entry.path} value={entry.path}>
+                <CodeBlock code={entry.content} filename={entry.target} language={entry.path.split(".").pop() === "css" ? "css" : "tsx"} />
+              </TabsContent>)}
+            </Tabs>
+          </TabsContent>
+        </Tabs>
       </section>
 
       {hasExamples && ready && <section id="examples" className="section">
@@ -282,15 +289,15 @@ export function ItemPage({ item, related }: { item: Item; related: NavEntry[] })
         <h2>Dependencies</h2>
         <dl className="deps">
           <dt>npm</dt>
-          <dd>{item.dependencies.length ? item.dependencies.map(name => <a key={name} className="chip" href={`https://www.npmjs.com/package/${name}`} target="_blank" rel="noreferrer">{name}</a>) : <span className="muted">None</span>}</dd>
+          <dd>{item.dependencies.length ? item.dependencies.map(name => <a key={name} className="chip" href={`https://www.npmjs.com/package/${name}`} target="_blank" rel="noreferrer"><Badge size="sm">{name}</Badge></a>) : <span className="muted">None</span>}</dd>
           <dt>Registry</dt>
-          <dd>{item.registryDependencies.length ? item.registryDependencies.map(name => <Link key={name} className="chip" href={`/${name}`}>{name}</Link>) : <span className="muted">None</span>}</dd>
+          <dd>{item.registryDependencies.length ? item.registryDependencies.map(name => <Link key={name} className="chip" href={`/${name}`}><Badge size="sm">{name}</Badge></Link>) : <span className="muted">None</span>}</dd>
         </dl>
       </section>
 
       {related.length > 0 && <section id="related" className="section">
         <h2>Related</h2>
-        <div className="related-grid">{related.map(entry => <Link key={entry.name} href={`/${entry.name}`} className="related-card"><strong>{entry.title}</strong><span>{entry.description}</span></Link>)}</div>
+        <div className="related-grid">{related.map(entry => <Link key={entry.name} href={`/${entry.name}`} className="related-link"><Card title={entry.title} description={entry.description} /></Link>)}</div>
       </section>}
     </main>
     <OnThisPage entries={toc} />
