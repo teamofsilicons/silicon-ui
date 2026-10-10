@@ -58,7 +58,7 @@ button { font: inherit; color: inherit; }
 .icon-button.small { width: 28px; height: 28px; border-radius: var(--radius-control); }
 .accent-select { position: relative; display: flex; align-items: center; gap: 8px; flex: 1; height: 34px; padding: 0 10px; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface); color: var(--text-secondary); }
 .accent-select select { flex: 1; appearance: none; border: 0; background: none; color: var(--foreground); font: inherit; cursor: pointer; outline: 0; }
-.accent-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+.accent-dot { width: 12px; height: 12px; border-radius: 50%; corner-shape: round; background: var(--accent); }
 
 .sidebar-toggle { display: none; }
 .sidebar-scrim { display: none; }
@@ -74,7 +74,7 @@ button { font: inherit; color: inherit; }
 .lede { max-width: 68ch; margin: 0 0 20px; color: var(--text-secondary); font-size: var(--text-base); }
 .title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { padding: 2px 8px; border: 1px solid var(--border); border-radius: var(--radius-full); color: var(--text-muted); font-size: var(--text-xs); }
+.tag { padding: 2px 8px; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; color: var(--text-muted); font-size: var(--text-xs); }
 
 .command { display: inline-flex; align-items: center; gap: 4px; max-width: 100%; height: 38px; padding: 0 4px 0 12px; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface-muted); }
 .command code { overflow: auto hidden; white-space: nowrap; scrollbar-width: none; }
@@ -108,7 +108,7 @@ button { font: inherit; color: inherit; }
 .stage[data-layout="fill"] .stage-content { margin: 0; background: var(--background); border-top: 1px solid var(--border); }
 .stage[data-frame="mobile"] .stage-content { max-width: 390px; border: 1px solid var(--border); border-radius: var(--radius-overlay); background: var(--background); padding: 28px 16px; min-height: 560px; overflow: hidden; }
 .stage[data-frame="mobile"][data-layout="fill"] .stage-content { padding: 0; margin: 0 auto 32px; }
-.stage[data-fullscreen] { position: fixed; inset: 0; z-index: 1000; border-radius: 0; border: 0; }
+.stage[data-fullscreen] { position: fixed; inset: 0; z-index: 1000; border-radius: 0; corner-shape: round; border: 0; }
 .stage:not(.variant .stage) { min-height: 380px; }
 .variant .stage { min-height: 120px; border-radius: var(--radius-container); }
 .variant .stage-canvas { padding: 24px 16px; }
@@ -129,8 +129,8 @@ button { font: inherit; color: inherit; }
 .control .field { width: 150px; }
 .field { height: 30px; padding: 0 8px; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--background); color: var(--foreground); font: inherit; outline: 0; }
 .field:focus { border-color: var(--border-strong); }
-.mini-switch { position: relative; width: 34px; height: 20px; padding: 0; border: 0; border-radius: var(--radius-full); background: var(--control-track); cursor: pointer; transition: background var(--duration-fast) var(--ease-standard); }
-.mini-switch span { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--control-thumb); box-shadow: var(--control-thumb-shadow); transition: transform var(--duration-fast) var(--ease-standard); }
+.mini-switch { position: relative; width: 34px; height: 20px; padding: 0; border: 0; border-radius: var(--radius-full); corner-shape: round; background: var(--control-track); cursor: pointer; transition: background var(--duration-fast) var(--ease-standard); }
+.mini-switch span { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; corner-shape: round; background: var(--control-thumb); box-shadow: var(--control-thumb-shadow); transition: transform var(--duration-fast) var(--ease-standard); }
 .mini-switch[aria-checked="true"] { background: var(--control-on); }
 .mini-switch[aria-checked="true"] span { transform: translateX(14px); background: var(--control-thumb-on); }
 .text-button { display: inline-flex; align-items: center; gap: 4px; padding: 0; border: 0; background: none; color: var(--text-secondary); cursor: pointer; font-size: var(--text-xs); text-transform: none; letter-spacing: 0; }
@@ -180,7 +180,7 @@ button { font: inherit; color: inherit; }
 .deps { display: grid; grid-template-columns: 90px 1fr; gap: 10px 16px; margin: 0; }
 .deps dt { color: var(--text-muted); }
 .deps dd { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
-.chip { padding: 2px 9px; border: 1px solid var(--border); border-radius: var(--radius-full); font-family: ui-monospace, monospace; font-size: var(--text-xs); text-decoration: none; }
+.chip { padding: 2px 9px; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; font-family: ui-monospace, monospace; font-size: var(--text-xs); text-decoration: none; }
 .chip:hover { border-color: var(--border-strong); }
 
 .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
@@ -241,3 +241,6 @@ button { font: inherit; color: inherit; }
   .stage-canvas { padding: 56px 16px 24px; }
   .control .field { width: 130px; }
 }
+
+/* Inline circles in demos (avatars, dots) stay round under squircle corners. */
+[style*="border-radius: 50%"], [style*="border-radius:50%"] { corner-shape: round; }

@@ -13,7 +13,7 @@
   box-sizing: content-box;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: var(--radius-control);
+  border-radius: var(--radius-control); corner-shape: var(--corner-shape);
   background: var(--surface);
   transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
 }
@@ -68,7 +68,7 @@
 .token {
   margin: 0 -3px;
   padding: 1px 3px;
-  border-radius: var(--radius-detail);
+  border-radius: var(--radius-detail); corner-shape: var(--corner-shape);
   background: var(--accent-subtle);
   color: var(--accent-strong);
   box-decoration-break: clone;
@@ -83,7 +83,7 @@
   max-width: 100%;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: var(--radius-control);
+  border-radius: var(--radius-control); corner-shape: var(--corner-shape);
   background: var(--surface-raised);
   box-shadow: var(--shadow-floating);
 }
@@ -91,7 +91,7 @@
 .popoverBody { padding: 6px; }
 
 .list { position: relative; display: grid; margin: 0; padding: 0; list-style: none; }
-.highlight { position: absolute; top: 0; right: 0; left: 0; border-radius: var(--radius-control); background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
+.highlight { position: absolute; top: 0; right: 0; left: 0; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
 
 .option {
   position: relative;
@@ -100,7 +100,7 @@
   align-items: center;
   gap: 10px;
   padding: 7px 10px 7px 8px;
-  border-radius: var(--radius-control);
+  border-radius: var(--radius-control); corner-shape: var(--corner-shape);
   cursor: pointer;
   font-size: var(--text-sm);
   -webkit-tap-highlight-color: transparent;
@@ -113,7 +113,7 @@
   flex: none;
   overflow: hidden;
   place-items: center;
-  border-radius: 50%;
+  border-radius: 50%; corner-shape: round;
   background: var(--surface-muted);
   color: var(--text-secondary);
   font-size: var(--text-xs);

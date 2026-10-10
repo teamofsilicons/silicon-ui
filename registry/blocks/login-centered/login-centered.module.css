@@ -1,6 +1,6 @@
 /* The screen fills its container like a viewport. Bars share one height, so the stage center and the ring center stay the same point. */
-.screen { --bar: 64px; container: login-centered / inline-size; position: relative; isolation: isolate; display: grid; grid-template-rows: var(--bar) minmax(0, 1fr) var(--bar); width: 100%; min-width: 0; min-height: 640px; justify-self: stretch; align-self: stretch; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-container); background: var(--background); color: var(--foreground); font-family: var(--font-body); letter-spacing: var(--tracking-body); }
-.fullScreen { min-height: 100dvh; border: 0; border-radius: 0; }
+.screen { --bar: 64px; container: login-centered / inline-size; position: relative; isolation: isolate; display: grid; grid-template-rows: var(--bar) minmax(0, 1fr) var(--bar); width: 100%; min-width: 0; min-height: 640px; justify-self: stretch; align-self: stretch; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--background); color: var(--foreground); font-family: var(--font-body); letter-spacing: var(--tracking-body); }
+.fullScreen { min-height: 100dvh; border: 0; border-radius: 0; corner-shape: round; }
 
 /* Quiet line backdrop. The mask only fades the outer rings into the canvas; nothing here is filled. */
 .backdrop { position: absolute; inset: 0; z-index: -1; pointer-events: none; -webkit-mask-image: radial-gradient(ellipse 72% 78% at 50% 50%, #000 38%, transparent 100%); mask-image: radial-gradient(ellipse 72% 78% at 50% 50%, #000 38%, transparent 100%); }
@@ -15,11 +15,11 @@
 .switch { display: inline-flex; min-width: 0; align-items: center; gap: var(--space-tight); margin: 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-body); white-space: nowrap; }
 .switchPrompt { position: relative; display: inline-grid; justify-items: end; }
 .switchPrompt > span, .switchButton > span { grid-area: 1 / 1; }
-.switchButton { position: relative; display: inline-grid; min-height: var(--control-height-sm); align-items: center; justify-items: center; border: 0; border-radius: var(--radius-full); padding: 0 var(--space-group); background: none; color: var(--foreground); font: inherit; font-weight: 500; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard); }
+.switchButton { position: relative; display: inline-grid; min-height: var(--control-height-sm); align-items: center; justify-items: center; border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group); background: none; color: var(--foreground); font: inherit; font-weight: 500; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard); }
 .switchButton:active { background: var(--surface-muted); }
 
 .stage { display: grid; min-width: 0; place-items: center; padding: var(--space-section) var(--space-inset); }
-.card { width: min(100%, 420px); min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-overlay); background: var(--surface); box-shadow: var(--shadow-resting); }
+.card { width: min(100%, 420px); min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-overlay); corner-shape: var(--corner-shape); background: var(--surface); box-shadow: var(--shadow-resting); }
 /* Clips the leaving step while the height glides; steps carry their own padding. */
 .viewport { overflow: hidden; }
 .track { position: relative; }
@@ -35,17 +35,17 @@
 .wide { width: 100%; }
 /* Rings leave the fingerprint while the device is asked. They sit in the label, so they take the button's text color. */
 .pulse { position: relative; display: inline-grid; place-items: center; }
-.pulseRing { position: absolute; inset: -2px; border: 1.5px solid currentColor; border-radius: var(--radius-full); pointer-events: none; }
+.pulseRing { position: absolute; inset: -2px; border: 1.5px solid currentColor; border-radius: var(--radius-full); corner-shape: round; pointer-events: none; }
 
 .divider { display: flex; align-items: center; gap: var(--space-group); margin: var(--space-comfort) 0; color: var(--text-muted); font-size: var(--text-xs); line-height: 1; }
 .divider::before, .divider::after { flex: 1; height: 1px; background: var(--border); content: ""; }
 .sso { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-related); }
 .sso .ssoButton { min-width: 0; padding-inline: var(--space-related); }
 
-.textButton { position: relative; display: inline-flex; min-height: var(--control-height-sm); align-items: center; justify-self: center; gap: var(--space-related); margin: var(--space-inset) 0 calc(var(--space-related) * -1); border: 0; border-radius: var(--radius-full); padding: 0 var(--space-group); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
+.textButton { position: relative; display: inline-flex; min-height: var(--control-height-sm); align-items: center; justify-self: center; gap: var(--space-related); margin: var(--space-inset) 0 calc(var(--space-related) * -1); border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
 .textButton:active:not([aria-disabled="true"]) { color: var(--foreground); background: var(--surface-muted); }
 .textButton[aria-disabled="true"] { color: var(--text-muted); font-weight: 400; cursor: default; }
-.inlineButton { border: 0; border-radius: var(--radius-detail); padding: 0; background: none; color: var(--foreground); font: inherit; font-weight: 500; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; cursor: pointer; transition: text-decoration-color var(--duration-fast) var(--ease-standard); }
+.inlineButton { border: 0; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); padding: 0; background: none; color: var(--foreground); font: inherit; font-weight: 500; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; cursor: pointer; transition: text-decoration-color var(--duration-fast) var(--ease-standard); }
 .resendLabel { display: inline-flex; align-items: baseline; gap: .3em; white-space: nowrap; }
 .time { display: inline-flex; font-variant-numeric: tabular-nums; }
 .timeColumn { position: relative; display: inline-flex; justify-content: center; }
@@ -61,7 +61,7 @@
 .status { position: relative; display: block; min-width: 0; flex: 1; }
 .status > span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .legal { display: flex; flex: none; gap: var(--space-tight); }
-.legal a { display: inline-flex; min-height: 32px; align-items: center; border-radius: var(--radius-full); padding: 0 var(--space-related); color: var(--text-secondary); text-decoration: none; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
+.legal a { display: inline-flex; min-height: 32px; align-items: center; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-related); color: var(--text-secondary); text-decoration: none; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
 .legal a:active { color: var(--foreground); }
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
@@ -75,7 +75,7 @@
 @container login-centered (max-width: 520px) {
   .bar, .foot { padding-inline: var(--space-inset); }
   .stage { padding: var(--space-inset); }
-  .card { border-radius: var(--radius-container); }
+  .card { border-radius: var(--radius-container); corner-shape: var(--corner-shape); }
   .step { padding: var(--space-section); }
 }
 @container login-centered (max-width: 400px) {

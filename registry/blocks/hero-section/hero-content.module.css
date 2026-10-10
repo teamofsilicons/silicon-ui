@@ -3,11 +3,11 @@
 .title { max-width: 16ch; }
 .description { max-width: 560px; }
 
-.announcement { display: inline-flex; max-width: 100%; min-height: 32px; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: var(--radius-full); padding: 4px var(--space-group); background: var(--surface); color: var(--text-secondary); font: inherit; font-size: var(--text-sm); text-align: left; text-decoration: none; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard); }
+.announcement { display: inline-flex; max-width: 100%; min-height: 32px; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; padding: 4px var(--space-group); background: var(--surface); color: var(--text-secondary); font: inherit; font-size: var(--text-sm); text-align: left; text-decoration: none; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard); }
 .arrow { flex: none; transition: transform var(--duration-fast) var(--ease-standard); }
 
 .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-group); margin-top: var(--space-group); }
-.action { display: inline-flex; height: var(--control-height-md); align-items: center; justify-content: center; gap: var(--space-related); border: 1px solid transparent; border-radius: var(--radius-control); padding: 0 var(--space-comfort); font: inherit; font-size: var(--text-sm); font-weight: 500; text-decoration: none; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: transform var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
+.action { display: inline-flex; height: var(--control-height-md); align-items: center; justify-content: center; gap: var(--space-related); border: 1px solid transparent; border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 0 var(--space-comfort); font: inherit; font-size: var(--text-sm); font-weight: 500; text-decoration: none; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: transform var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
 .action:active { transform: scale(.97); }
 .primary { background: var(--foreground); color: var(--background); }
 .secondary { border-color: var(--border); background: var(--surface); color: var(--foreground); }
@@ -18,7 +18,7 @@
   :is(.action, .announcement):hover .arrow { transform: translateX(2px); }
 }
 
-.install { display: flex; width: min(100%, 440px); height: var(--control-height-md); align-items: center; gap: var(--space-related); margin-top: var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); padding: 0 var(--space-tight) 0 var(--space-inset); background: var(--surface); font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; text-align: left; }
+.install { display: flex; width: min(100%, 440px); height: var(--control-height-md); align-items: center; gap: var(--space-related); margin-top: var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 0 var(--space-tight) 0 var(--space-inset); background: var(--surface); font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; text-align: left; }
 .prompt { color: var(--text-muted); }
 .command { flex: 1; overflow: hidden; color: var(--foreground); font: inherit; text-overflow: ellipsis; white-space: nowrap; }
 
@@ -46,4 +46,4 @@
 }
 
 /* Buttons are Silicon UI buttons; this only keeps them the height of the link actions beside them. */
-.button { height: var(--control-height-md); min-height: var(--control-height-md); border-radius: var(--radius-control); font-size: var(--text-sm); }
+.button { height: var(--control-height-md); min-height: var(--control-height-md); border-radius: var(--radius-control); corner-shape: var(--corner-shape); font-size: var(--text-sm); }

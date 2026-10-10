@@ -1,5 +1,5 @@
 /* Same card, spacing, and control heights as the sign in variants, so the family reads as one flow. */
-.block { container: signup / inline-size; width: min(100%, 432px); min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-overlay); background: var(--surface); color: var(--foreground); font-family: var(--font-body); letter-spacing: var(--tracking-body); }
+.block { container: signup / inline-size; width: min(100%, 432px); min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-overlay); corner-shape: var(--corner-shape); background: var(--surface); color: var(--foreground); font-family: var(--font-body); letter-spacing: var(--tracking-body); }
 .viewport { overflow: hidden; }
 .track { position: relative; }
 .step { display: grid; min-width: 0; padding: var(--space-block); }
@@ -24,7 +24,7 @@
 .feedbackText > span { display: block; }
 .feedbackText[data-error] { color: var(--danger); }
 .meter { display: flex; flex: none; gap: 3px; }
-.meter span { width: 20px; height: 3px; border-radius: var(--radius-full); background: var(--border); transition: background-color var(--duration-fast) var(--ease-standard); }
+.meter span { width: 20px; height: 3px; border-radius: var(--radius-full); corner-shape: round; background: var(--border); transition: background-color var(--duration-fast) var(--ease-standard); }
 .meter span[data-on] { background: var(--accent); }
 .meter[data-level="1"] span[data-on] { background: var(--danger); }
 .meter[data-level="2"] span[data-on] { background: var(--warning); }
@@ -60,5 +60,5 @@
   .footer { padding-inline: var(--space-comfort); }
   .meter span { width: 14px; }
 }
-@media (max-width: 480px) { .block { border-radius: var(--radius-container); } }
+@media (max-width: 480px) { .block { border-radius: var(--radius-container); corner-shape: var(--corner-shape); } }
 @media (prefers-reduced-motion: reduce) { .meter span, .textButton { transition: none; } }

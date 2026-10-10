@@ -62,7 +62,9 @@
   --space-tight: 4px; --space-related: 8px; --space-group: 12px; --space-inset: 16px; --space-comfort: 20px;
   --space-section: 24px; --space-block: 32px; --space-page: 48px; --space-stage: 64px; --space-screen: 80px;
   /* Radius, by role: detail for small marks and swatches, control for buttons and fields, container for cards and menus,
-     overlay for dialogs and sheets, full for pills and dots. Every corner in every component reads one of these. */
+     overlay for dialogs and sheets, full for pills and dots. Every corner in every component reads one of these.
+     These are the round values (2 / 6 / 8 / 12). Squircle corners use larger radii, set with the corner rule below, so
+     both shapes feel equally round. */
   --radius-detail: 2px; --radius-control: 6px; --radius-container: 8px; --radius-overlay: 12px; --radius-full: 999px;
   /* Corner shape. Squircle by default; see the corner rule after the dark theme. */
   --corner-shape: squircle;
@@ -129,6 +131,13 @@
 :root[data-corners="round"], [data-corners="round"] { --corner-shape: round; }
 :root[data-corners="squircle"], [data-corners="squircle"] { --corner-shape: squircle; }
 *, ::before, ::after { corner-shape: var(--corner-shape); }
+/* A squircle at the same radius reads about 0.55x as round as a circular corner, so squircle radii are about 1.8x the
+   round ones: 4 / 11 / 14 / 21 feel like 2 / 6 / 8 / 12. Only browsers that draw squircles get them; the rest keep the
+   round values above, so their corners never look oversized. */
+@supports (corner-shape: squircle) {
+  :root, [data-corners="squircle"] { --radius-detail: 4px; --radius-control: 11px; --radius-container: 14px; --radius-overlay: 21px; }
+  :root[data-corners="round"], [data-corners="round"] { --radius-detail: 2px; --radius-control: 6px; --radius-container: 8px; --radius-overlay: 12px; }
+}
 
 :root[data-accent="neutral"] { --accent: oklch(33% 0 0); --accent-strong: oklch(24% 0 0); --accent-subtle: oklch(33% 0 0 / .1); }
 :root[data-accent="violet"] { --accent: #7747ff; --accent-strong: #5528ce; --accent-subtle: rgb(119 71 255 / .13); }

@@ -12,10 +12,10 @@
 
 /* The travelling highlight. Motion sets its box to the active segment; the visible shape sits inset so the border stays crisp. */
 .highlight { position: absolute; z-index: 0; top: 0; left: 0; pointer-events: none; }
-.highlight::before { position: absolute; inset: var(--bg-inset); border-radius: calc(var(--bg-radius) - var(--bg-inset) - 1px); background: var(--bg-highlight); content: ""; transition: background-color var(--duration-fast) var(--ease-standard); }
+.highlight::before { position: absolute; inset: var(--bg-inset); border-radius: calc(var(--bg-radius) - var(--bg-inset) - 1px); corner-shape: var(--corner-shape); background: var(--bg-highlight); content: ""; transition: background-color var(--duration-fast) var(--ease-standard); }
 .highlight[data-pressed]::before { background: var(--bg-highlight-pressed); transition-duration: var(--duration-instant); }
 
-.segment { position: relative; z-index: 1; display: inline-flex; flex: none; min-width: calc(var(--bg-h) - 2px); height: calc(var(--bg-h) - 2px); align-items: center; justify-content: center; margin: 0; padding: 0 var(--bg-pad-x); border: 0; border-radius: 0; background: transparent; color: inherit; font: inherit; font-size: var(--text-sm); font-weight: 500; letter-spacing: var(--tracking-body); line-height: 1; white-space: nowrap; text-decoration: none; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+.segment { position: relative; z-index: 1; display: inline-flex; flex: none; min-width: calc(var(--bg-h) - 2px); height: calc(var(--bg-h) - 2px); align-items: center; justify-content: center; margin: 0; padding: 0 var(--bg-pad-x); border: 0; border-radius: 0; corner-shape: round; background: transparent; color: inherit; font: inherit; font-size: var(--text-sm); font-weight: 500; letter-spacing: var(--tracking-body); line-height: 1; white-space: nowrap; text-decoration: none; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
 .vertical .segment { width: 100%; justify-content: flex-start; }
 .vertical .iconOnly, .vertical .trigger { justify-content: center; padding: 0; }
 .iconOnly { width: calc(var(--bg-h) - 2px); padding: 0; }
@@ -60,7 +60,7 @@
 
 /* The menu grows from the group's edge: offset toward it, scale from the Radix origin, and leave faster than it arrives.
    Transitions instead of keyframes, so a close that interrupts the open reverses from where the menu is. */
-.menu { --menu-x: 0px; --menu-y: -5px; z-index: 60; min-width: min(13rem, var(--radix-dropdown-menu-content-available-width)); max-width: var(--radix-dropdown-menu-content-available-width); padding: 5px; border: 1px solid var(--border); border-radius: var(--radius-container); background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-floating); transform-origin: var(--radix-dropdown-menu-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-spring) var(--ease-spring); }
+.menu { --menu-x: 0px; --menu-y: -5px; z-index: 60; min-width: min(13rem, var(--radix-dropdown-menu-content-available-width)); max-width: var(--radix-dropdown-menu-content-available-width); padding: 5px; border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-floating); transform-origin: var(--radix-dropdown-menu-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-spring) var(--ease-spring); }
 .menu[data-side="top"] { --menu-y: 5px; }
 .menu[data-side="left"] { --menu-x: 5px; --menu-y: 0px; }
 .menu[data-side="right"] { --menu-x: -5px; --menu-y: 0px; }
@@ -70,7 +70,7 @@
 }
 /* Radix unmounts when the exit animation ends, so a no-op keyframe times the exit while the transition does the visual work. */
 .menu[data-state="closed"] { opacity: 0; transform: translate(calc(var(--menu-x) * .5), calc(var(--menu-y) * .5)) scale(.985); transition: opacity 130ms var(--ease-standard), transform 130ms var(--ease-standard); animation: menu-exit 130ms linear both; pointer-events: none; }
-.item { display: flex; min-height: 36px; align-items: center; gap: 10px; padding: 0 11px; border-radius: calc(var(--radius-container) - 6px); color: inherit; font-size: var(--text-sm); text-decoration: none; cursor: pointer; outline: none; transition: opacity var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms), transform var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms); }
+.item { display: flex; min-height: 36px; align-items: center; gap: 10px; padding: 0 11px; border-radius: calc(var(--radius-container) - 6px); corner-shape: var(--corner-shape); color: inherit; font-size: var(--text-sm); text-decoration: none; cursor: pointer; outline: none; transition: opacity var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms), transform var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms); }
 .item[data-highlighted] { background: var(--surface-muted); }
 .item[data-disabled] { cursor: default; opacity: .45; }
 .itemIcon { display: inline-flex; flex: none; color: var(--text-secondary); }

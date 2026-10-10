@@ -45,13 +45,13 @@
 .trend { margin-right: 3px; }
 .area { fill: var(--soft); opacity: .22; transition: fill var(--duration-standard) var(--ease-standard); }
 .line { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; transition: stroke var(--duration-standard) var(--ease-standard); }
-.endDot { position: absolute; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 2px var(--background); transition: background-color var(--duration-standard) var(--ease-standard), opacity 320ms var(--ease-standard), transform var(--duration-spring) var(--ease-spring); }
+.endDot { position: absolute; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; corner-shape: round; background: var(--ink); box-shadow: 0 0 0 2px var(--background); transition: background-color var(--duration-standard) var(--ease-standard), opacity 320ms var(--ease-standard), transform var(--duration-spring) var(--ease-spring); }
 
 .bars { display: flex; align-items: flex-end; gap: 3px; }
 /* 90 days never fit 90 fixed gaps in a narrow column, so dense bars carve their gap out of their own slot. */
 .bars[data-dense] { gap: 0; }
-.bars[data-dense] .bar { border-radius: 0; clip-path: inset(0 22% 0 22%); }
-.bar { flex: 1 1 0; height: 100%; border-radius: var(--radius-detail); background: var(--soft); transform: scaleY(var(--h)); transform-origin: bottom; transition: background-color var(--duration-standard) var(--ease-standard), transform 560ms var(--ease-enter); }
+.bars[data-dense] .bar { border-radius: 0; corner-shape: round; clip-path: inset(0 22% 0 22%); }
+.bar { flex: 1 1 0; height: 100%; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); background: var(--soft); transform: scaleY(var(--h)); transform-origin: bottom; transition: background-color var(--duration-standard) var(--ease-standard), transform 560ms var(--ease-enter); }
 .bar[data-ink] { background: var(--ink); }
 
 .map { display: flex; }
@@ -137,7 +137,7 @@
 }
 
 .preview { display: grid; width: 100%; justify-items: center; gap: var(--space-inset); }
-.frame { width: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--background); }
+.frame { width: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--background); }
 
 @media (prefers-reduced-motion: reduce) {
   .band .stat, .band .draw, .band .bar, .band .endDot,

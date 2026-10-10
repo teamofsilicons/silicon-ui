@@ -2,6 +2,13 @@
 
 Changes ship continuously from `main`. Every item links to its live preview on [ui.teamofsilicons.com](https://ui.teamofsilicons.com).
 
+## 2026-10-11
+
+### Changed
+
+- **Circles stay circles.** Anything round by design keeps a true round shape under squircle corners: spinners, dots, avatars, radio buttons, switch tracks and pills (`50%` and `--radius-full`). Closed morph select and expanding search are round too, and turn squircle as they open. Skeleton text lines are capsules.
+- **Squircle radii are compensated.** A squircle reads about half as round as a circular corner at the same radius. Squircle mode therefore uses 4 / 11 / 14 / 21 (`detail` / `control` / `container` / `overlay`), which feel like round 2 / 6 / 8 / 12. Round mode, and browsers without `corner-shape`, keep 2 / 6 / 8 / 12.
+
 ## 2026-10-10 (later)
 
 ### Changed

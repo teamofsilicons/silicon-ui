@@ -4,18 +4,18 @@
 .stage { position: relative; isolation: isolate; width: min(100%, 20rem); height: calc(var(--card-height) + var(--stack-peek)); outline: none; }
 /* Each slot scales from its bottom edge, so the cards behind show a thin, even edge below the one in front. */
 .slot { position: absolute; top: 0; right: 0; left: 0; height: var(--card-height); pointer-events: none; transform-origin: 50% 100%; }
-.card { position: absolute; inset: 0; border-radius: var(--radius-overlay); pointer-events: auto; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.card { position: absolute; inset: 0; border-radius: var(--radius-overlay); corner-shape: var(--corner-shape); pointer-events: auto; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
 .card[data-top] { cursor: grab; }
 .card[data-dragging] { cursor: grabbing; }
 .card:not([data-top]) { pointer-events: none; }
 /* Resting cards sit flat on their borders; a card in the hand or in flight floats and casts a shadow. */
-.card::before { position: absolute; inset: 0; border-radius: inherit; box-shadow: var(--shadow-floating); content: ""; opacity: 0; pointer-events: none; transition: opacity var(--duration-fast) var(--ease-standard); }
+.card::before { position: absolute; inset: 0; border-radius: inherit; corner-shape: inherit; box-shadow: var(--shadow-floating); content: ""; opacity: 0; pointer-events: none; transition: opacity var(--duration-fast) var(--ease-standard); }
 .card[data-dragging]::before, .card[data-flying]::before { opacity: 1; }
-.face { position: relative; height: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: inherit; background: var(--surface); color: var(--foreground); }
+.face { position: relative; height: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: inherit; corner-shape: inherit; background: var(--surface); color: var(--foreground); }
 .shade { position: absolute; inset: 0; background: oklch(0% 0 0 / .035); pointer-events: none; }
 :global(:root[data-theme="dark"]) .shade { background: oklch(0% 0 0 / .22); }
 
-.stamp { position: absolute; top: var(--space-inset); display: inline-flex; height: 2rem; align-items: center; gap: 6px; padding: 0 var(--space-group) 0 10px; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--surface-raised); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; white-space: nowrap; pointer-events: none; }
+.stamp { position: absolute; top: var(--space-inset); display: inline-flex; height: 2rem; align-items: center; gap: 6px; padding: 0 var(--space-group) 0 10px; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface-raised); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; white-space: nowrap; pointer-events: none; }
 .stamp[data-side="right"] { left: var(--space-inset); border-color: color-mix(in oklab, var(--success) 32%, var(--border)); background: color-mix(in oklab, var(--success) 9%, var(--surface-raised)); }
 .stamp[data-side="right"] svg { color: var(--success); }
 .stamp[data-side="left"] { right: var(--space-inset); }
@@ -27,11 +27,11 @@
 .stage:focus-visible { --focus-outline-width: 0px; }
 .stage:focus-visible .card[data-top], .stage:focus-visible .empty { outline: 2px solid var(--focus-outline, color-mix(in oklab, var(--accent-strong) 72%, transparent)); outline-offset: 3px; }
 
-.empty { position: absolute; top: 0; right: 0; left: 0; display: grid; height: var(--card-height); place-content: center; justify-items: center; gap: var(--space-group); padding: var(--space-section); border: 1px solid var(--border); border-radius: var(--radius-overlay); background: var(--surface); text-align: center; }
+.empty { position: absolute; top: 0; right: 0; left: 0; display: grid; height: var(--card-height); place-content: center; justify-items: center; gap: var(--space-group); padding: var(--space-section); border: 1px solid var(--border); border-radius: var(--radius-overlay); corner-shape: var(--corner-shape); background: var(--surface); text-align: center; }
 .emptyTitle { margin: 0; font-size: var(--text-base); font-weight: 500; }
 
 .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-related); }
-.control { display: inline-flex; min-height: var(--control-height-md); align-items: center; justify-content: center; gap: var(--space-related); padding: 0 var(--space-inset); border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface); color: var(--foreground); font: inherit; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
+.control { display: inline-flex; min-height: var(--control-height-md); align-items: center; justify-content: center; gap: var(--space-related); padding: 0 var(--space-inset); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--surface); color: var(--foreground); font: inherit; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
 .control svg { flex: none; }
 /* The approving action follows the selected accent. */
 .control[data-tone="primary"] { border-color: var(--accent); background: var(--accent); color: var(--accent-foreground); }

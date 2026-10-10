@@ -38,7 +38,7 @@
   align-content: start;
   min-width: 0;
   border: 1px solid var(--border);
-  border-radius: var(--radius-container);
+  border-radius: var(--radius-container); corner-shape: var(--corner-shape);
   padding: 22px 22px 18px;
   background: var(--paper);
   box-shadow: var(--paper-shadow);
@@ -59,14 +59,14 @@
 .stack[data-compact] .subject { font-size: var(--text-xl); }
 .stories { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
 .story { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 44px; }
-.thumb { display: block; width: 44px; height: 44px; border-radius: var(--radius-detail); object-fit: cover; background: var(--surface-muted); }
+.thumb { display: block; width: 44px; height: 44px; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); object-fit: cover; background: var(--surface-muted); }
 .storyTitle { display: -webkit-box; overflow: hidden; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-body); -webkit-box-orient: vertical; -webkit-line-clamp: 2; text-wrap: pretty; }
 .minutes { color: var(--text-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 /* Readers: faces and a count that ticks up by one. */
 .readers { display: flex; align-items: center; gap: var(--space-group); color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-body); }
 .faces { display: flex; flex: none; padding-left: 6px; }
-.faces img { display: block; width: 28px; height: 28px; margin-left: -6px; border: 2px solid var(--background); border-radius: 50%; object-fit: cover; }
+.faces img { display: block; width: 28px; height: 28px; margin-left: -6px; border: 2px solid var(--background); border-radius: 50%; corner-shape: round; object-fit: cover; }
 .card .faces img { border-color: var(--surface); }
 .readerLine { min-width: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .count { display: inline-block; color: var(--foreground); }
@@ -76,7 +76,7 @@
 /* Card: a self-contained card whose top is a tray holding the stack, cropped where the card body begins. */
 .newsletter[data-variant="card"] { padding: var(--space-screen) var(--space-section); }
 .cardShell { display: grid; width: 100%; place-items: center; }
-.card { display: grid; width: min(100%, 460px); overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-overlay); background: var(--surface); box-shadow: var(--shadow-resting); }
+.card { display: grid; width: min(100%, 460px); overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-overlay); corner-shape: var(--corner-shape); background: var(--surface); box-shadow: var(--shadow-resting); }
 .tray { display: grid; height: 248px; grid-template-rows: minmax(0, 1fr); overflow: hidden; justify-items: center; border-bottom: 1px solid var(--border); padding: 20px 32px 0; background: var(--surface-muted); }
 .tray .stack { height: 100%; -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 64px), transparent); }
 .tray .issue { box-shadow: none; }
@@ -89,7 +89,7 @@
 
 /* The pill: one field that holds the input and the button. */
 .form { container: signup / inline-size; display: grid; gap: var(--space-group); min-width: 0; }
-.pill { position: relative; display: flex; height: 58px; align-items: center; gap: 6px; border: 1px solid var(--border-strong); border-radius: var(--radius-full); padding: 5px 5px 5px 22px; background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-standard) var(--ease-standard); }
+.pill { position: relative; display: flex; height: 58px; align-items: center; gap: 6px; border: 1px solid var(--border-strong); border-radius: var(--radius-full); corner-shape: round; padding: 5px 5px 5px 22px; background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-standard) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .pill:not([data-done]):hover { border-color: color-mix(in oklab, var(--foreground) 32%, var(--border-strong)); } }
 .pill:focus-within { border-color: var(--foreground); }
 .pill.pill[data-invalid] { border-color: var(--danger); }
@@ -98,7 +98,7 @@
 .input::placeholder { color: var(--text-muted); }
 .pill[data-done] .input { color: var(--text-secondary); }
 
-.submit { position: relative; display: inline-flex; height: 100%; min-height: 44px; flex: none; align-items: center; justify-content: center; border: 0; border-radius: var(--radius-full); padding: 0 20px; background: var(--foreground); color: var(--background); font: inherit; font-size: var(--text-sm); font-weight: 500; cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-standard) var(--ease-standard), color var(--duration-standard) var(--ease-standard); }
+.submit { position: relative; display: inline-flex; height: 100%; min-height: 44px; flex: none; align-items: center; justify-content: center; border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 20px; background: var(--foreground); color: var(--background); font: inherit; font-size: var(--text-sm); font-weight: 500; cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-standard) var(--ease-standard), color var(--duration-standard) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .submit[data-state="idle"]:hover, .submit[data-state="retry"]:hover { background: color-mix(in oklab, var(--foreground) 84%, var(--background)); } }
 .submit[data-state="sending"] { cursor: progress; }
 .submit[data-state="done"] { background: color-mix(in oklab, var(--success) 13%, var(--surface)); color: var(--success); cursor: default; }
@@ -106,7 +106,7 @@
 .sizer, .label { display: inline-flex; grid-area: 1 / 1; align-items: center; gap: 8px; }
 .sizer { visibility: hidden; }
 .note.sizer { display: block; }
-.spinner { width: 14px; height: 14px; border: 2px solid color-mix(in oklab, currentColor 30%, transparent); border-top-color: currentColor; border-radius: 50%; animation: spin 700ms linear infinite; }
+.spinner { width: 14px; height: 14px; border: 2px solid color-mix(in oklab, currentColor 30%, transparent); border-top-color: currentColor; border-radius: 50%; corner-shape: round; animation: spin 700ms linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .check { display: inline-flex; width: 16px; height: 16px; }
 .check svg { width: 16px; height: 16px; }
@@ -130,10 +130,10 @@
   .newsletter[data-variant="inline"] .inline { padding: var(--space-page) var(--space-inset); gap: var(--space-page); }
   .description { font-size: var(--text-base); }
   .intro .form { margin-top: var(--space-block); }
-  .issue { border-radius: var(--radius-control); padding: 18px 18px 16px; }
+  .issue { border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 18px 18px 16px; }
   .subject, .stack[data-compact] .subject { font-size: var(--text-xl); }
   .newsletter[data-variant="card"] { padding: var(--space-page) var(--space-inset); }
-  .card { border-radius: var(--radius-container); }
+  .card { border-radius: var(--radius-container); corner-shape: var(--corner-shape); }
   .tray { height: 232px; padding: 16px 20px 0; }
   .cardBody { padding: var(--space-section); }
   .note { padding-left: 4px; }
@@ -153,7 +153,7 @@
 /* On narrow phones the field and the button separate and stack, both full width. */
 @container signup (max-width: 300px) {
   .pill { height: auto; flex-direction: column; align-items: stretch; gap: 8px; border: 0; padding: 0; background: none; }
-  .input { height: 52px; flex: none; border: 1px solid var(--border-strong); border-radius: var(--radius-full); padding: 0 20px; background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard), color var(--duration-standard) var(--ease-standard); }
+  .input { height: 52px; flex: none; border: 1px solid var(--border-strong); border-radius: var(--radius-full); corner-shape: round; padding: 0 20px; background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard), color var(--duration-standard) var(--ease-standard); }
   .input:focus { border-color: var(--foreground); }
   .pill.pill[data-invalid] .input { border-color: var(--danger); }
   .pill.pill[data-done] .input { border-color: color-mix(in oklab, var(--success) 45%, var(--border)); }
@@ -166,7 +166,7 @@
 .controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-group) var(--space-section); }
 .simulate { display: inline-flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: var(--text-sm); }
 .simulate label { cursor: pointer; }
-.frame { width: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--background); }
+.frame { width: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--background); }
 .caption { margin: 0; color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); text-align: center; }
 
 @media (prefers-reduced-motion: reduce) {
