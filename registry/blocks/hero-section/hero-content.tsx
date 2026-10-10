@@ -40,7 +40,7 @@ export interface HeroContentProps {
   className?: string;
 }
 
-/** A link or button that looks like an Arc button. Links keep native navigation; a button with `doneLabel` confirms in place. */
+/** A link or button that looks like an Silicon UI button. Links keep native navigation; a button with `doneLabel` confirms in place. */
 export function ActionLink({ action, kind, className }: { action: HeroAction; kind: "primary" | "secondary"; className?: string }) {
   const [done, setDone] = useState(false);
   useEffect(() => {

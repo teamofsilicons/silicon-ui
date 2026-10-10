@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import ImageCompare, { type ImageCompareProps } from "@/registry/components/image-compare/image-compare";
-import { ArcImage } from "@/lib/arc-provider";
+import { SiliconImage } from "@/lib/silicon-provider";
 import { photo } from "@/lib/media";
 import { defineDemo } from "../lib/demo";
 
@@ -13,8 +13,8 @@ const raw = { filter: "grayscale(.85) contrast(.85) brightness(1.05)" } as const
 
 export default defineDemo<ImageCompareProps>({
   props: {
-    before: <ArcImage src={ridges.src} loading="eager" alt={`${ridges.alt}, ungraded`} width={ridges.width} height={ridges.height} style={raw} />,
-    after: <ArcImage src={ridges.src} loading="eager" alt={`${ridges.alt}, color graded`} width={ridges.width} height={ridges.height} />,
+    before: <SiliconImage src={ridges.src} loading="eager" alt={`${ridges.alt}, ungraded`} width={ridges.width} height={ridges.height} style={raw} />,
+    after: <SiliconImage src={ridges.src} loading="eager" alt={`${ridges.alt}, color graded`} width={ridges.width} height={ridges.height} />,
     labels: ["Raw", "Graded"],
     label: "Color grade",
   },
@@ -35,8 +35,8 @@ export default defineDemo<ImageCompareProps>({
           aspectRatio="3 / 4"
           labels={["Before", "After"]}
           label="Room restyle"
-          before={<ArcImage src={room.src} loading="eager" alt={`${room.alt}, before`} width={room.width} height={room.height} style={raw} />}
-          after={<ArcImage src={room.src} loading="eager" alt={`${room.alt}, after`} width={room.width} height={room.height} />}
+          before={<SiliconImage src={room.src} loading="eager" alt={`${room.alt}, before`} width={room.width} height={room.height} style={raw} />}
+          after={<SiliconImage src={room.src} loading="eager" alt={`${room.alt}, after`} width={room.width} height={room.height} />}
         />
       </div>,
     },

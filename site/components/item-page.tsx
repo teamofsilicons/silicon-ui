@@ -6,7 +6,7 @@ import { ChevronRight, Code2, Eye, Maximize2, Minimize2, Monitor, RotateCcw, Sma
 
 import { CodeBlock } from "@/registry/components/code-block/code-block";
 import type { Item, NavEntry, PropDoc } from "../lib/catalog";
-import { registryNamespace } from "../lib/catalog";
+import { importLine, registryNamespace } from "../lib/catalog";
 import type { Demo } from "../lib/demo";
 import { demos } from "../generated/demos";
 import { Controls, type ControlValues, parseDefault } from "./controls";
@@ -80,7 +80,7 @@ function usageFor(item: Item, demo: LoadedDemo, props: AnyProps, docs: PropDoc[]
   })();
   const used = parts.filter(name => name === item.exportName || new RegExp(`<${name}[\\s>/]`).test(body));
   const names = used.length ? used : [item.exportName];
-  return `import { ${names.join(", ")} } from "${item.importPath}";\n\n${body}`;
+  return `${importLine(item, names)}\n\n${body}`;
 }
 
 /** `Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onDrag">` reads as the base type plus what it leaves out. */
@@ -253,13 +253,13 @@ export function ItemPage({ item, related }: { item: Item; related: NavEntry[] })
           <li><p>Copy these files into your project. Shared files are skipped if you already have them.</p>
             <ul className="file-list">{item.files.map(entry => <li key={entry.path}><code>{entry.target}</code>{!entry.own && <span className="muted"> shared</span>}</li>)}</ul>
           </li>
-          <li><p>Install the foundation once per app for the design and motion tokens: <CopyCommand command={`npx shadcn@latest add ${registryNamespace}/arc-foundation`} inline /></p></li>
+          <li><p>Install the foundation once per app for the design and motion tokens: <CopyCommand command={`npx shadcn@latest add ${registryNamespace}/silicon-foundation`} inline /></p></li>
         </ol>
       </section>
 
       <section id="usage" className="section">
         <h2>Usage</h2>
-        {ready ? <CodeBlock code={usageFor(item, ready, Object.fromEntries(Object.entries(merged).filter(([name]) => name in values || name === "children" || ["string", "number", "boolean"].includes(typeof baseProps[name]))), item.props)} language="tsx" /> : <CodeBlock code={`import { ${item.exportName} } from "${item.importPath}";`} language="tsx" />}
+        {ready ? <CodeBlock code={usageFor(item, ready, Object.fromEntries(Object.entries(merged).filter(([name]) => name in values || name === "children" || ["string", "number", "boolean"].includes(typeof baseProps[name]))), item.props)} language="tsx" /> : <CodeBlock code={importLine(item)} language="tsx" />}
       </section>
 
       {hasApi && <section id="api" className="section">

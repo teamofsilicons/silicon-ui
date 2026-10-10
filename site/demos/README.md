@@ -44,7 +44,7 @@ export default defineDemo<SegmentedControlProps>({
 
 ## Rules
 
-- Import components from `@/registry/...`, never from `components/arc/...`.
+- Import components from `@/registry/...`, never from `components/silicon-ui/...`.
 - Use realistic, specific copy. The product is Team of Silicons, which deploys AI employees ("silicons") into
   companies, so departments, teams, tickets, invoices, deployments and usage make good sample data. Keep it plausible
   and short.

@@ -56,7 +56,7 @@ export interface AnnouncementBarProps {
   className?: string;
 }
 
-const storageKey = (id: string) => `arc-announcement:${id}`;
+const storageKey = (id: string) => `silicon-announcement:${id}`;
 /** Forgets a remembered dismissal so the bar with this id shows again. */
 export function clearAnnouncementDismissal(id: string) {
   try { window.localStorage.removeItem(storageKey(id)); } catch { /* Storage can be blocked. */ }

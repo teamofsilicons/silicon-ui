@@ -2,7 +2,7 @@ import { Avatar } from "@/registry/components/avatar/avatar";
 import { Badge } from "@/registry/components/badge/badge";
 import { Button } from "@/registry/components/button/button";
 import { Card, type CardProps } from "@/registry/components/card/card";
-import { ArcImage } from "@/lib/arc-provider";
+import { SiliconImage } from "@/lib/silicon-provider";
 import { avatar, person, photo } from "@/lib/media";
 import { defineDemo } from "../lib/demo";
 
@@ -29,7 +29,7 @@ export default defineDemo<CardProps>({
   Preview: ({ props }) => <div style={{ width: "min(100%, 340px)" }}>
     <Card
       {...props}
-      media={<div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10" }}><ArcImage src={office.src} alt={office.alt} fill sizes="340px" style={{ objectFit: "cover" }} /></div>}
+      media={<div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10" }}><SiliconImage src={office.src} alt={office.alt} fill sizes="340px" style={{ objectFit: "cover" }} /></div>}
       avatar={<Avatar name={owner.name} src={avatar("olivia-bennett")} size="sm" />}
       action={<Badge tone="success" size="sm">Live</Badge>}
       details={details}

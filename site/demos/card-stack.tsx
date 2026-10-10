@@ -1,6 +1,6 @@
 import CardStack, { type CardStackProps } from "@/registry/components/card-stack/card-stack";
 import { Button } from "@/registry/components/button/button";
-import { ArcImage } from "@/lib/arc-provider";
+import { SiliconImage } from "@/lib/silicon-provider";
 import { photo, type PhotoId } from "@/lib/media";
 import { defineDemo } from "../lib/demo";
 
@@ -18,7 +18,7 @@ function VenueCard({ id, city, detail }: Venue) {
   const image = photo(id);
   return <div style={{ display: "grid", gridTemplateRows: "1fr auto", height: "100%" }}>
     <div style={{ position: "relative", minHeight: 0 }}>
-      <ArcImage src={image.src} alt={image.alt} fill sizes="320px" draggable={false} style={{ objectFit: "cover" }} />
+      <SiliconImage src={image.src} alt={image.alt} fill sizes="320px" draggable={false} style={{ objectFit: "cover" }} />
     </div>
     <div style={{ display: "grid", gap: 2, padding: "12px 16px 14px" }}>
       <strong style={{ fontSize: 16, fontWeight: 500 }}>{city}</strong>

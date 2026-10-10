@@ -40,7 +40,7 @@ function navigation() {
     }
     const bold = line.match(/^\*\*(.+)\*\*$/);
     if (bold && category) { group = { title: bold[1].trim(), items: [] }; category.groups.push(group); continue; }
-    const row = line.match(/^\| \[([^\]]+)\]\(https:\/\/uiarc\.dev\/components\/(?:blocks\/)?([a-z0-9-]+)\) \| (.*?) \|/);
+    const row = line.match(/^\| \[([^\]]+)\]\(https:\/\/ui\.teamofsilicons\.com\/([a-z0-9-]+)\) \| (.*?) \|/);
     if (row && category) {
       if (!group) { group = { title: null, items: [] }; category.groups.push(group); }
       group.items.push({ name: row[2], title: row[1], description: row[3] });
@@ -169,7 +169,7 @@ function partOf(symbol, exportName, source) {
 
 function propsOf(file, name) {
   const main = mainExport(file, name);
-  if (!main) return { exportName: pascal(name), isDefault: false, parts: [] };
+  if (!main) return { exportName: pascal(name), isDefault: false, hasNamedExport: false, parts: [] };
   const moduleSymbol = checker.getSymbolAtLocation(main.source);
   const parts = [];
   const seen = new Set();
@@ -184,7 +184,8 @@ function propsOf(file, name) {
   }
   if (!parts.length) { const part = partOf(main.symbol, main.exportName, main.source); if (part) parts.push(part); }
   parts.sort((a, b) => Number(b.name === main.exportName) - Number(a.name === main.exportName));
-  return { exportName: main.exportName, isDefault: main.isDefault, parts };
+  const hasNamedExport = checker.getExportsOfModule(moduleSymbol).some(symbol => symbol.getName() === main.exportName);
+  return { exportName: main.exportName, isDefault: main.isDefault, hasNamedExport, parts };
 }
 
 // ─── Catalog ────────────────────────────────────────────────────────────────
@@ -219,6 +220,7 @@ for (const item of registry.items) {
     importPath: "@/" + item.files[0].target.replace(/^@/, "").replace(/\.tsx?$/, ""),
     exportName: extracted.exportName,
     isDefault: extracted.isDefault,
+    hasNamedExport: extracted.hasNamedExport ?? false,
     parts: extracted.parts,
     props: extracted.parts.find(part => part.name === extracted.exportName)?.props ?? [],
     dependencies: (item.dependencies ?? []).map(npmName),

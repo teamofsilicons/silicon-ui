@@ -32,7 +32,7 @@ export interface SiteFooterNewsletter {
 }
 
 export interface SiteFooterProps {
-  /** `columns` pairs a newsletter with link columns, `minimal` is one quiet row, `logo` ends in a large fading Arc mark. */
+  /** `columns` pairs a newsletter with link columns, `minimal` is one quiet row, `logo` ends in a large fading Silicon mark. */
   variant?: SiteFooterVariant;
   brand?: { name: string; href?: string; mark?: ReactNode };
   /** One short line under the brand. */
@@ -73,11 +73,9 @@ function FooterLink({ link, onNavigate, className }: { link: SiteFooterLink; onN
   return <button type="button" className={className ?? styles.link} onClick={onClick}>{content}</button>;
 }
 
-function ArcMark({ className }: { className?: string }) {
-  return <svg className={className} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M9 48V29C9 15 19 7 32 7s23 8 23 22v19" />
-    <path d="M20 48V31c0-8 5-13 12-13s12 5 12 13v17" />
-    <path d="M32 38v10" />
+function SiliconMark({ className }: { className?: string }) {
+  return <svg className={className} viewBox="40 40 204 204" fill="currentColor" aria-hidden="true">
+    <rect x="49" y="117.9" width="47.7" height="47.7" /><rect x="70.2" y="70.2" width="47.7" height="47.7" /><rect x="70.2" y="165.6" width="47.7" height="47.7" /><rect x="90.06" y="141.75" width="72.78" height="72.78" transform="rotate(-45 90.06 141.75)" /><rect x="117.9" y="49" width="47.7" height="47.7" /><rect x="117.9" y="186.8" width="47.7" height="47.7" /><rect x="186.8" y="117.9" width="47.7" height="47.7" /><rect x="165.6" y="70.2" width="47.7" height="47.7" /><rect x="165.6" y="165.6" width="47.7" height="47.7" />
   </svg>;
 }
 
@@ -148,11 +146,11 @@ function Newsletter({ title, description, placeholder = "you@example.com", onSub
 
 /**
  * A website footer in three layouts: link columns with a newsletter signup, a single quiet row, and a closing
- * variant where the Arc arch rises in, oversized and cropped by the bottom edge, fading into the page.
+ * variant where the Silicon mark rises in, oversized and cropped by the bottom edge, fading into the page.
  */
 export const SiteFooter = forwardRef<HTMLElement, SiteFooterProps>(function SiteFooter({
   variant = "columns",
-  brand = { name: "Arc" },
+  brand = { name: "Silicon" },
   tagline = "Interface components that move with intent.",
   columns = siteFooterExampleColumns,
   links,
@@ -167,7 +165,7 @@ export const SiteFooter = forwardRef<HTMLElement, SiteFooterProps>(function Site
   const reduced = !!useReducedMotion();
   const gradientId = useId().replace(/:/g, "");
   const brandNode = <FooterLink link={{ label: brand.name, href: brand.href }} onNavigate={onNavigate} className={styles.brand} />;
-  const brandWithMark = <span className={styles.brandRow}>{brand.mark ?? <ArcMark className={styles.brandMark} />}{brandNode}</span>;
+  const brandWithMark = <span className={styles.brandRow}>{brand.mark ?? <SiliconMark className={styles.brandMark} />}{brandNode}</span>;
   const statusNode = status && (status.href
     ? <a className={styles.status} href={status.href} data-tone={status.tone ?? "success"} onClick={() => onNavigate?.({ label: status.label, href: status.href })}><span className={styles.statusDot} aria-hidden="true" />{status.label}</a>
     : <button type="button" className={styles.status} data-tone={status.tone ?? "success"} onClick={() => onNavigate?.({ label: status.label })}><span className={styles.statusDot} aria-hidden="true" />{status.label}</button>);
@@ -219,8 +217,8 @@ export const SiteFooter = forwardRef<HTMLElement, SiteFooterProps>(function Site
       <svg className={styles.bigMark} viewBox="0 3.5 64 30" fill="none" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round" preserveAspectRatio="xMidYMin meet">
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" style={{ stopColor: "var(--arc-gradient-from)" }} />
-            <stop offset="1" style={{ stopColor: "var(--arc-gradient-to)" }} />
+            <stop offset="0" style={{ stopColor: "var(--silicon-gradient-from)" }} />
+            <stop offset="1" style={{ stopColor: "var(--silicon-gradient-to)" }} />
           </linearGradient>
         </defs>
         <g stroke={`url(#${gradientId})`}>

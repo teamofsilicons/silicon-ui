@@ -1,12 +1,12 @@
 name: Bug report
-description: Something in an Arc component or block does not work as documented.
+description: Something in a Silicon UI component or block does not work as documented.
 title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to report this. Please check the [live preview](https://uiarc.dev/components) first to see whether it happens there too.
+        Thanks for taking the time to report this. Please check the [live preview](https://ui.teamofsilicons.com) first to see whether it happens there too.
   - type: input
     id: item
     attributes:
@@ -28,7 +28,7 @@ body:
       label: Steps to reproduce
       description: The smallest steps or code that show the problem. A link to a repository or sandbox is ideal.
       placeholder: |
-        1. Install with `npx shadcn@latest add @uiarc/...`
+        1. Install with `npx shadcn@latest add @silicon-ui/...`
         2. Render ...
         3. Click ...
     validations:
@@ -49,7 +49,7 @@ body:
     attributes:
       label: How did you install it?
       options:
-        - shadcn CLI (@uiarc registry)
+        - shadcn CLI (@silicon-ui registry)
         - shadcn CLI (full URL)
         - Copied the files
         - MCP or an AI tool

@@ -45,5 +45,5 @@
   .action:active { transform: none; }
 }
 
-/* Buttons are Arc buttons; this only keeps them the height of the link actions beside them. */
+/* Buttons are Silicon UI buttons; this only keeps them the height of the link actions beside them. */
 .button { height: var(--control-height-md); min-height: var(--control-height-md); border-radius: var(--radius-control); font-size: var(--text-sm); }

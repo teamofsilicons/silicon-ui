@@ -53,7 +53,7 @@ export interface HeroLumenProps {
 
 /**
  * Centered hero, one full screen: a headline over a drifting mesh, and a live revenue dashboard rising from the bottom edge. The
- * window settles from a tilt as it enters and runs off the bottom of the screen into a fade. It is real markup built from Arc
+ * window settles from a tilt as it enters and runs off the bottom of the screen into a fade. It is real markup built from Silicon UI
  * charts; its range control works.
  */
 export function HeroLumen({ primaryAction = { label: "Start free trial", doneLabel: "Trial started" }, secondaryAction = { label: "Book a demo", doneLabel: "Demo requested" }, animateIn = true, className }: HeroLumenProps) {

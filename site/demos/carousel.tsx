@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Carousel, { type CarouselProps } from "@/registry/components/carousel/carousel";
-import { ArcImage } from "@/lib/arc-provider";
+import { SiliconImage } from "@/lib/silicon-provider";
 import { photo, type PhotoId } from "@/lib/media";
 import { defineDemo } from "../lib/demo";
 
@@ -17,7 +17,7 @@ function Venue({ id, title, detail }: (typeof venues)[number]) {
   const image = photo(id);
   return <figure style={{ margin: 0, overflow: "hidden", border: "1px solid var(--border)", borderRadius: 16, background: "var(--surface)" }}>
     <div style={{ position: "relative", aspectRatio: "4 / 3" }}>
-      <ArcImage src={image.src} alt={image.alt} fill sizes="340px" loading="eager" draggable={false} style={{ objectFit: "cover" }} />
+      <SiliconImage src={image.src} alt={image.alt} fill sizes="340px" loading="eager" draggable={false} style={{ objectFit: "cover" }} />
     </div>
     <figcaption style={{ display: "grid", gap: 2, padding: "12px 14px 14px" }}>
       <strong style={{ fontSize: 15, fontWeight: 500 }}>{title}</strong>

@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        New items ship regularly. Check the [full library](https://uiarc.dev/components) first, the thing you need may already be there under another name.
+        New items ship regularly. Check the [full library](https://ui.teamofsilicons.com) first, the thing you need may already be there under another name.
   - type: input
     id: name
     attributes:
