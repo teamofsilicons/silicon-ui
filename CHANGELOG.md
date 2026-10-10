@@ -4,6 +4,11 @@ Changes ship continuously from `main`. Every item links to its live preview on [
 
 ## 2026-10-11
 
+### Fixed
+
+- **Action button and split button labels morph like Text morph.** Both had their own copy of the text morph, which started the width spring a frame late, staggered new letters by their position in the whole word, and clipped letters with a hard edge, so the morph felt delayed and shifty. Both now use Text morph, and their registry items depend on `text-morph`.
+- **Every menu's highlight glides.** The split button menu and Select now use the same gliding highlight as the dropdown menu: it glides between items for the pointer and jumps instantly for the keyboard. The behaviour lives in one shared helper, `lib/menu-highlight.tsx`.
+
 ### Changed
 
 - **Circles stay circles.** Anything round by design keeps a true round shape under squircle corners: spinners, dots, avatars, radio buttons, switch tracks and pills (`50%` and `--radius-full`). Closed morph select and expanding search are round too, and turn squircle as they open. Skeleton text lines are capsules.
