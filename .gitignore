@@ -7,3 +7,9 @@ bun.lockb
 *.tsbuildinfo
 .DS_Store
 .env*
+site/.next/
+site/out/
+site/generated/
+site/next-env.d.ts
+.vercel/
+.vercel

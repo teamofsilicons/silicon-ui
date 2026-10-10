@@ -1,0 +1,5 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": { "jsx": "preserve", "plugins": [{ "name": "next" }], "paths": { "@/*": ["../*"] } },
+  "include": ["**/*.ts", "**/*.tsx", "../types/**/*.d.ts"]
+}

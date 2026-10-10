@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm install",
+  "buildCommand": "npm run site:build",
+  "outputDirectory": "site/out",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/media/:path*", "destination": "https://uiarc.dev/media/:path*" },
+    { "source": "/block-logos/:path*", "destination": "https://uiarc.dev/block-logos/:path*" }
+  ],
+  "headers": [
+    { "source": "/r/(.*)", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] }
+  ]
+}

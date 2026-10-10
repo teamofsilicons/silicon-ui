@@ -21,7 +21,10 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "check:registry": "node scripts/check-registry.mjs",
-    "check": "npm run typecheck && npm run lint && npm run check:registry"
+    "check": "npm run typecheck && npm run lint && npm run check:registry",
+    "site:extract": "node site/scripts/extract.mjs",
+    "site:dev": "npm run site:extract && next dev site",
+    "site:build": "npm run site:extract && next build site && node site/scripts/copy-registry.mjs"
   },
   "devDependencies": {
     "@radix-ui/react-accordion": "^1.2.20",
