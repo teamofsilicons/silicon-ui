@@ -96,7 +96,8 @@
         "motion"
       ],
       "registryDependencies": [
-        "https://ui.teamofsilicons.com/r/silicon-motion-tokens.json"
+        "https://ui.teamofsilicons.com/r/silicon-motion-tokens.json",
+        "https://ui.teamofsilicons.com/r/text-morph.json"
       ],
       "files": [
         {
@@ -108,6 +109,16 @@
           "path": "registry/components/action-button/action-button.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/action-button/action-button.module.css"
+        },
+        {
+          "path": "registry/components/text-morph/text-morph.tsx",
+          "type": "registry:component",
+          "target": "@components/silicon-ui/text-morph/text-morph.tsx"
+        },
+        {
+          "path": "registry/components/text-morph/text-morph.module.css",
+          "type": "registry:component",
+          "target": "@components/silicon-ui/text-morph/text-morph.module.css"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/action-button",
