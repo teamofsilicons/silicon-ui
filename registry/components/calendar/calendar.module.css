@@ -11,7 +11,7 @@
 .srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .navigation { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 2px; margin-right: -6px; }
 /* Quiet header controls: a fill on hover, a short press, and a spring release. */
-.navButton, .todayButton { display: grid; height: 32px; place-items: center; border: 0; border-radius: var(--radius-full); background: transparent; color: var(--text-secondary); font: inherit; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard), scale var(--duration-spring) var(--ease-spring); }
+.navButton, .todayButton { display: grid; height: 32px; place-items: center; border: 0; border-radius: var(--radius-full); corner-shape: round; background: transparent; color: var(--text-secondary); font: inherit; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard), scale var(--duration-spring) var(--ease-spring); }
 .navButton { width: 32px; }
 .todayButton { padding: 0 11px; font-size: var(--text-sm); font-weight: 500; line-height: 1; }
 @media (hover: hover) and (pointer: fine) { .navButton:hover:not([aria-disabled]), .todayButton:hover:not([aria-disabled]) { background: var(--surface-muted); color: var(--foreground); } }
@@ -26,20 +26,20 @@
 .monthBody[inert] { pointer-events: none; }
 .grid { display: grid; row-gap: 4px; }
 .placeholderDay { aspect-ratio: 1; }
-.day { position: relative; display: grid; width: 100%; aspect-ratio: 1; min-width: 0; place-items: center; border: 0; border-radius: 50%; padding: 0; background: transparent; color: var(--foreground); font: inherit; font-size: var(--text-sm); font-weight: 400; line-height: 1; font-variant-numeric: tabular-nums; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard) var(--number-delay, 0ms); }
+.day { position: relative; display: grid; width: 100%; aspect-ratio: 1; min-width: 0; place-items: center; border: 0; border-radius: 50%; corner-shape: round; padding: 0; background: transparent; color: var(--foreground); font: inherit; font-size: var(--text-sm); font-weight: 400; line-height: 1; font-variant-numeric: tabular-nums; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard) var(--number-delay, 0ms); }
 /* The inner circle carries hover and press; the grid cell itself never moves, so the hit area stays put. */
-.day::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: transparent; transition: background-color var(--duration-fast) var(--ease-standard), scale var(--duration-spring) var(--ease-spring); }
+.day::before { content: ""; position: absolute; inset: 0; border-radius: inherit; corner-shape: inherit; background: transparent; transition: background-color var(--duration-fast) var(--ease-standard), scale var(--duration-spring) var(--ease-spring); }
 .dayNumber { position: relative; transition: opacity var(--duration-fast) var(--ease-standard) var(--number-delay, 0ms), scale var(--duration-spring) var(--ease-spring); }
 /* The selected disc is one element per month, one cell in size, placed by week and weekday under the day buttons. It glides on a transform, so the strip sliding around it never bends its path. Press scales the inner fill so it never fights the glide. */
 .highlight { position: absolute; top: 0; left: 0; width: calc((100% - 24px) / 7); aspect-ratio: 1; pointer-events: none; will-change: transform; }
-.highlightFill { position: absolute; inset: 0; border-radius: 50%; background: var(--accent); transition: background-color var(--duration-fast) var(--ease-standard), scale var(--duration-spring) var(--ease-spring); }
+.highlightFill { position: absolute; inset: 0; border-radius: 50%; corner-shape: round; background: var(--accent); transition: background-color var(--duration-fast) var(--ease-standard), scale var(--duration-spring) var(--ease-spring); }
 @media (hover: hover) and (pointer: fine) { .day:hover:not(:disabled):not(.selected)::before { background: var(--surface-muted); } .monthBody:has(.day.selected:hover) .highlightFill { background: var(--accent-strong); } }
 .day:active:not(:disabled)::before, .day:active:not(:disabled) .dayNumber, .monthBody:has(.day.selected:active:not(:disabled)) .highlightFill { scale: .94; transition-duration: var(--duration-fast), 100ms; transition-timing-function: var(--ease-standard); }
 /* Outside days dim their number, not the button, so a disc gliding onto one keeps its full strength. */
 .day.outside { color: var(--text-muted); }
 .day.outside:not(.selected) .dayNumber { opacity: .8; }
 /* Today is a small dot under the number. It takes the number's color, so it flips with it when the disc arrives. */
-.day.today .dayNumber::after { content: ""; position: absolute; top: calc(100% + 4px); left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; }
+.day.today .dayNumber::after { content: ""; position: absolute; top: calc(100% + 4px); left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; corner-shape: round; background: currentColor; }
 .day.selected, .day.today { font-weight: 500; }
 .day.selected { color: var(--accent-foreground); }
 .day:disabled { cursor: default; color: var(--text-muted); }

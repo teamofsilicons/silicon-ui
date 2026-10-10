@@ -37,7 +37,7 @@
 .selectInput { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
 .selectBox { position: relative; display: block; width: 18px; height: 18px; flex: none; border: 1px solid var(--border-strong); border-radius: var(--radius-detail); background: var(--surface); color: var(--control-glyph); pointer-events: none; transition: border-color var(--duration-fast) var(--ease-standard), transform var(--duration-spring) var(--ease-spring); }
 .selectBox[data-on] { border-color: var(--control-on); }
-.selectFill { position: absolute; inset: -1px; border-radius: inherit; background: var(--control-on); }
+.selectFill { position: absolute; inset: -1px; border-radius: inherit; corner-shape: inherit; background: var(--control-on); }
 .selectMark { position: absolute; inset: -1px; width: 18px; height: 18px; overflow: visible; }
 /* The native checkbox is hidden, so its keyboard focus outline is drawn on the visible box. */
 .selectInput:focus-visible + .selectBox { outline: var(--focus-outline-width, 2px) solid var(--focus-outline, color-mix(in oklab, var(--accent-strong) 72%, transparent)); outline-offset: 2px; }

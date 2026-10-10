@@ -43,7 +43,7 @@ export default function Foundation() {
         <h2>Radius, corners and shadow</h2>
         <div className="token-row">{radii.map(name => <div key={name} className="radius-sample"><span style={{ borderRadius: `var(${name})` }} /><code>{name}</code></div>)}</div>
         <h3>Corner shape</h3>
-        <p className="muted">Squircle is the default. Set <code>data-corners=&quot;round&quot;</code> on <code>&lt;html&gt;</code>, or on any element, for round corners. Browsers without <code>corner-shape</code> draw round corners either way.</p>
+        <p className="muted">Squircle is the default. Set <code>data-corners=&quot;round&quot;</code> on <code>&lt;html&gt;</code>, or on any element, for round corners. Browsers without <code>corner-shape</code> draw round corners either way. A squircle feels about half as round as a circle at the same radius, so squircle mode uses radii of 4 / 11 / 14 / 21 to feel like round 2 / 6 / 8 / 12. Circles and capsules always stay round.</p>
         <div className="token-row">{(["squircle", "round"] as const).map(shape => <div key={shape} className="radius-sample corner-sample" data-corners={shape}><span /><code>{shape}</code></div>)}</div>
         <h3>Shadow</h3>
         <div className="token-row">{shadows.map(name => <div key={name} className="shadow-sample"><span style={{ boxShadow: `var(${name})` }} /><code>{name}</code></div>)}</div>

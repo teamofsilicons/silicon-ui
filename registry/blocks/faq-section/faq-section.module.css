@@ -37,7 +37,7 @@
 .category { position: relative; isolation: isolate; display: flex; height: 40px; align-items: center; justify-content: space-between; gap: var(--space-group); border: 0; border-radius: var(--radius-control); padding: 0 var(--space-group); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; text-align: left; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard); }
 .category[aria-pressed="true"] { color: var(--foreground); }
 @media (hover: hover) and (pointer: fine) { .category:hover { color: var(--foreground); } }
-.categoryHighlight { position: absolute; z-index: -1; inset: 0; border-radius: inherit; background: var(--surface-muted); }
+.categoryHighlight { position: absolute; z-index: -1; inset: 0; border-radius: inherit; corner-shape: inherit; background: var(--surface-muted); }
 .count { color: var(--text-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
 .stage { position: relative; min-width: 0; }
 .stageFace { width: 100%; }

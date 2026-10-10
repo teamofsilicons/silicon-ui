@@ -19,7 +19,7 @@
   top: 0;
   left: 0;
   border: 1.5px solid var(--control-on);
-  border-radius: var(--radius-control);
+  border-radius: var(--radius-control); corner-shape: var(--corner-shape);
   pointer-events: none;
 }
 
@@ -31,7 +31,7 @@
   gap: 4px 12px;
   padding: 14px 16px;
   border: 1px solid var(--border);
-  border-radius: var(--radius-control);
+  border-radius: var(--radius-control); corner-shape: var(--corner-shape);
   background: var(--surface);
   cursor: pointer;
   user-select: none;
@@ -53,12 +53,12 @@
   place-items: center;
   grid-area: indicator;
   border: 1.5px solid var(--border-strong);
-  border-radius: 50%;
+  border-radius: 50%; corner-shape: round;
   transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
 }
 .root[data-layout="grid"] .indicator { margin-top: 1px; }
 .card[data-checked] .indicator { border-color: var(--control-on); background: var(--control-on); }
-.indicatorDot { width: 6px; height: 6px; border-radius: 50%; background: var(--control-glyph); }
+.indicatorDot { width: 6px; height: 6px; border-radius: 50%; corner-shape: round; background: var(--control-glyph); }
 .card[aria-disabled="true"] .indicator { border-color: var(--border); }
 
 .body { display: grid; min-width: 0; gap: 2px; grid-area: body; }

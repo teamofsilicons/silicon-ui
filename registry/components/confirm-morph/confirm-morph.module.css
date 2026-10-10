@@ -25,12 +25,12 @@
   max-width: 100%;
   justify-content: flex-start;
   overflow: clip;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-full); corner-shape: round;
   background: var(--surface-raised);
   box-shadow: var(--shadow-resting);
   transition: background-color var(--duration-standard) var(--ease-standard), box-shadow var(--duration-standard) var(--ease-standard);
 }
-.surface::after { content: ""; position: absolute; inset: 0; border: 1px solid var(--border); border-radius: inherit; pointer-events: none; transition: border-color var(--duration-standard) var(--ease-standard); }
+.surface::after { content: ""; position: absolute; inset: 0; border: 1px solid var(--border); border-radius: inherit; corner-shape: inherit; pointer-events: none; transition: border-color var(--duration-standard) var(--ease-standard); }
 .root[data-disabled][data-state="idle"] .surface { box-shadow: none; }
 .root[data-disabled][data-state="idle"] .surface::after { border-color: var(--border-subtle); }
 
@@ -47,7 +47,7 @@
   gap: 8px;
   padding: 0 16px 0 14px;
   border: 0;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-full); corner-shape: round;
   background: transparent;
   color: var(--foreground);
   cursor: pointer;
@@ -75,7 +75,7 @@
   justify-content: center;
   padding: 0 12px;
   border: 0;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-full); corner-shape: round;
   cursor: pointer;
   font: inherit;
   font-weight: 500;

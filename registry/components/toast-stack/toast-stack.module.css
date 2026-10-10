@@ -12,7 +12,7 @@
 .list { position: relative; margin: 0; padding: 0; list-style: none; pointer-events: auto; }
 /* Tucked toasts scale from their top edge, so exactly the peek shows above the toast in front. */
 .item { position: absolute; right: 0; bottom: 0; left: 0; transform-origin: 50% 0; }
-.card { position: absolute; inset: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-container); background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-raised); container-type: inline-size; touch-action: pan-y; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-standard) var(--ease-standard), border-color var(--duration-standard) var(--ease-standard); }
+.card { position: absolute; inset: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-raised); container-type: inline-size; touch-action: pan-y; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-standard) var(--ease-standard), border-color var(--duration-standard) var(--ease-standard); }
 .item[data-front="true"] .card, .item[data-expanded="true"] .card { box-shadow: var(--shadow-floating); }
 /* Tucked toasts sit a step back in tone as well as scale. */
 .item[data-front="false"][data-expanded="false"] .card { background: var(--surface-muted); }
@@ -27,7 +27,7 @@
 .glyph { grid-area: 1 / 1; display: grid; place-items: center; }
 .glyph svg { display: block; }
 /* The spinner turns only while something is loading; the icon swap is its stop. */
-.spinner { display: block; width: 15px; height: 15px; border: 1.75px solid currentColor; border-right-color: transparent; border-radius: var(--radius-full); animation: spin .8s linear infinite; }
+.spinner { display: block; width: 15px; height: 15px; border: 1.75px solid currentColor; border-right-color: transparent; border-radius: var(--radius-full); corner-shape: round; animation: spin .8s linear infinite; }
 
 .copy { position: relative; min-width: 0; flex: 1; font-size: var(--text-sm); letter-spacing: var(--tracking-body); line-height: 20px; }
 .title { position: relative; display: block; font-weight: 500; }
@@ -38,8 +38,8 @@
 .actionSlot { display: flex; flex: none; justify-content: flex-end; margin-top: -4px; }
 .actionSlot[data-moving="true"] { overflow: hidden; }
 .action, .close { flex: none; border: 1px solid transparent; font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: scale var(--duration-spring) var(--ease-spring), background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard); }
-.action { height: 28px; padding: 0 var(--space-group); border-color: var(--border); border-radius: var(--radius-full); background: var(--surface); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; white-space: nowrap; }
-.close { display: grid; width: 28px; height: 28px; margin: -4px -2px 0 0; place-items: center; border-radius: var(--radius-full); background: transparent; color: var(--text-muted); }
+.action { height: 28px; padding: 0 var(--space-group); border-color: var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; white-space: nowrap; }
+.close { display: grid; width: 28px; height: 28px; margin: -4px -2px 0 0; place-items: center; border-radius: var(--radius-full); corner-shape: round; background: transparent; color: var(--text-muted); }
 @media (hover: hover) and (pointer: fine) {
   .action:hover { border-color: var(--border-strong); background: var(--surface-muted); }
   .close:hover { background: var(--surface-muted); color: var(--foreground); }

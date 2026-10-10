@@ -22,7 +22,7 @@
   padding-bottom: calc(var(--sheet-extension) + env(safe-area-inset-bottom, 0px));
   border: 1px solid var(--border);
   border-bottom: 0;
-  border-radius: var(--radius-overlay) var(--radius-overlay) 0 0;
+  border-radius: var(--radius-overlay) var(--radius-overlay) 0 0; corner-shape: var(--corner-shape);
   background: var(--surface-raised);
   color: var(--foreground);
   box-shadow: var(--shadow-floating);
@@ -39,8 +39,8 @@
 .header::after { position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: var(--border); content: ""; opacity: 0; transition: opacity var(--duration-fast) var(--ease-standard); }
 .sheet[data-scrolled] .header::after { opacity: 1; }
 
-.grabber { display: flex; width: 3.5rem; height: 1.25rem; align-items: center; justify-content: center; margin: 0 auto var(--space-tight); padding: 0; border: 0; border-radius: var(--radius-full); background: transparent; cursor: inherit; -webkit-tap-highlight-color: transparent; }
-.grabberBar { width: 2.25rem; height: 5px; border-radius: var(--radius-full); background: var(--border-strong); transition: background-color var(--duration-fast) var(--ease-standard); }
+.grabber { display: flex; width: 3.5rem; height: 1.25rem; align-items: center; justify-content: center; margin: 0 auto var(--space-tight); padding: 0; border: 0; border-radius: var(--radius-full); corner-shape: round; background: transparent; cursor: inherit; -webkit-tap-highlight-color: transparent; }
+.grabberBar { width: 2.25rem; height: 5px; border-radius: var(--radius-full); corner-shape: round; background: var(--border-strong); transition: background-color var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .grabber:hover .grabberBar { background: var(--text-muted); } }
 .sheet[data-dragging] .grabberBar { background: var(--text-muted); }
 
@@ -49,7 +49,7 @@
 .title { margin: 0; font-family: var(--font-body); font-size: var(--text-lg); font-weight: 500; letter-spacing: var(--tracking-body); line-height: var(--leading-body); }
 .description { margin: 2px 0 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-body); }
 
-.close { display: grid; flex: none; width: 2rem; height: 2rem; place-items: center; margin-top: -2px; padding: 0; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--surface-muted); color: var(--text-secondary); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard); }
+.close { display: grid; flex: none; width: 2rem; height: 2rem; place-items: center; margin-top: -2px; padding: 0; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface-muted); color: var(--text-secondary); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .close:hover { color: var(--foreground); border-color: var(--border-strong); } }
 .close:active { color: var(--foreground); }
 

@@ -32,7 +32,7 @@
 .cta svg { transition: transform var(--duration-fast) var(--ease-standard); }
 
 .controls { display: flex; align-items: center; gap: var(--control-gap); }
-.icon, .ring { position: relative; display: grid; width: var(--icon); height: var(--icon); flex: none; place-items: center; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
+.icon, .ring { position: relative; display: grid; width: var(--icon); height: var(--icon); flex: none; place-items: center; padding: 0; border: 0; border-radius: 50%; corner-shape: round; background: transparent; color: var(--muted); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
 .icon:active, .ring:active { background: color-mix(in oklab, currentColor 12%, transparent); color: inherit; }
 .ring svg { width: 20px; height: 20px; overflow: visible; transform: rotate(-90deg); }
 .ringTrack { fill: none; stroke: currentColor; stroke-opacity: .22; stroke-width: 1.75; }

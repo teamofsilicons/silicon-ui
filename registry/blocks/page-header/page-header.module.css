@@ -1,5 +1,5 @@
 /* The frame is the page: a fixed header over a scrolling body. Breakpoints follow the frame width, not the viewport. */
-.frame { --pad: 28px; position: relative; display: flex; width: min(100%, 980px); height: 640px; min-width: 0; flex-direction: column; margin-inline: auto; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface); color: var(--foreground); font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: var(--tracking-body); line-height: var(--leading-body); container: page-header / inline-size; }
+.frame { --pad: 28px; position: relative; display: flex; width: min(100%, 980px); height: 640px; min-width: 0; flex-direction: column; margin-inline: auto; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--surface); color: var(--foreground); font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: var(--tracking-body); line-height: var(--leading-body); container: page-header / inline-size; }
 
 .header { position: relative; z-index: 1; flex: none; padding: 16px var(--pad) 0; background: var(--surface); box-shadow: inset 0 -1px 0 var(--border); }
 .bar { display: grid; min-height: var(--control-height-sm); grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px; }
@@ -11,13 +11,13 @@
 .crumbs li { display: inline-flex; flex: none; align-items: center; gap: 6px; color: var(--text-muted); white-space: nowrap; }
 .crumbs li:last-child { flex: 0 1 auto; min-width: 0; }
 .crumbs li > svg { flex: none; color: var(--border-strong); }
-.crumb { margin: 0; border: 0; border-radius: var(--radius-detail); padding: 4px 2px; background: none; color: var(--text-muted); font: inherit; letter-spacing: inherit; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard); }
+.crumb { margin: 0; border: 0; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); padding: 4px 2px; background: none; color: var(--text-muted); font: inherit; letter-spacing: inherit; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard); }
 .current { display: block; min-width: 0; overflow: hidden; color: var(--text-secondary); text-overflow: ellipsis; }
 
-.compact { display: inline-flex; max-width: calc(100% + 8px); justify-self: start; align-items: center; gap: 10px; margin-left: -8px; border: 0; border-radius: var(--radius-detail); padding: 5px 8px; background: transparent; color: var(--foreground); font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-standard); }
+.compact { display: inline-flex; max-width: calc(100% + 8px); justify-self: start; align-items: center; gap: 10px; margin-left: -8px; border: 0; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); padding: 5px 8px; background: transparent; color: var(--foreground); font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-standard); }
 .compactTitle { min-width: 0; overflow: hidden; font-size: var(--text-base); font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
 .compactBadge { flex: none; }
-.dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.dot { width: 6px; height: 6px; border-radius: 50%; corner-shape: round; background: currentColor; }
 
 /* Secondary actions fold to the right, under the overflow button, as their slot narrows. Only the right edge clips. */
 .actions { display: flex; align-items: center; justify-content: flex-end; }
@@ -41,14 +41,14 @@
 .tabs { position: relative; display: flex; gap: 2px; margin: 2px calc(var(--pad) * -1) 0; padding: 0 calc(var(--pad) - 10px); overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab { position: relative; display: inline-flex; height: 44px; flex: none; align-items: center; gap: 6px; border: 0; padding: 0 10px; background: none; color: var(--text-secondary); font: inherit; font-weight: 500; letter-spacing: inherit; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard); }
-.tab::before { position: absolute; inset: 8px 0; border-radius: var(--radius-detail); background: color-mix(in oklab, var(--foreground) 4.5%, transparent); content: ""; opacity: 0; transition: opacity var(--duration-fast) var(--ease-standard); }
+.tab::before { position: absolute; inset: 8px 0; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); background: color-mix(in oklab, var(--foreground) 4.5%, transparent); content: ""; opacity: 0; transition: opacity var(--duration-fast) var(--ease-standard); }
 .tab[data-state="active"] { color: var(--foreground); }
 .tabLabel, .count { position: relative; }
 .count { color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .tab[data-state="active"] .count { color: var(--text-secondary); }
 /* The shared counter renders at display size by default; here it takes the tab's type. */
 .count > span { color: inherit; font-family: inherit; font-size: inherit; font-weight: inherit; letter-spacing: inherit; line-height: inherit; }
-.indicator { position: absolute; right: 10px; bottom: 0; left: 10px; height: 2px; border-radius: var(--radius-full) var(--radius-full) 0 0; background: var(--accent); }
+.indicator { position: absolute; right: 10px; bottom: 0; left: 10px; height: 2px; border-radius: var(--radius-full) var(--radius-full) 0 0; corner-shape: round; background: var(--accent); }
 
 .scroller { position: relative; flex: 1 1 auto; min-height: 0; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; padding: 28px var(--pad) 84px; scrollbar-color: var(--border-strong) transparent; scrollbar-width: thin; }
 /* Every panel is taller than the condensed viewport, so condensing never clamps the scroll back to the top. */
@@ -71,7 +71,7 @@
 .issue, .update { overflow-x: visible; overflow-y: clip; border-bottom: 1px solid var(--border-subtle); }
 .issue:last-child, .update:last-child { border-bottom-color: transparent; }
 .issueInner { position: relative; isolation: isolate; display: grid; min-height: 52px; grid-template-columns: 32px minmax(0, 1fr) auto auto; align-items: center; gap: 12px; margin-inline: -10px; padding: 4px 10px; }
-.check { position: relative; display: grid; width: 32px; height: 32px; place-items: center; margin-left: -7px; border: 0; border-radius: 50%; padding: 0; background: none; color: var(--text-muted); cursor: pointer; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
+.check { position: relative; display: grid; width: 32px; height: 32px; place-items: center; margin-left: -7px; border: 0; border-radius: 50%; corner-shape: round; padding: 0; background: none; color: var(--text-muted); cursor: pointer; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
 .checkGlyph { display: grid; place-items: center; }
 .issue[data-closing] .check { color: var(--success); cursor: default; }
 .issueText { display: flex; min-width: 0; align-items: baseline; gap: 12px; }
@@ -80,7 +80,7 @@
 .issue[data-closing] .issueTitle { color: var(--text-muted); text-decoration-color: currentColor; }
 .issueLabel { color: var(--text-muted); font-size: var(--text-xs); }
 /* A new row arrives lit and settles to the page, so it is easy to find without a lasting marker. */
-.issue[data-fresh] .issueInner::before, .update[data-fresh] .updateInner::before { position: absolute; z-index: -1; inset: 3px 0; border-radius: var(--radius-detail); background: color-mix(in oklab, var(--foreground) 6%, transparent); content: ""; animation: arrived 1.8s var(--ease-standard) both; }
+.issue[data-fresh] .issueInner::before, .update[data-fresh] .updateInner::before { position: absolute; z-index: -1; inset: 3px 0; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); background: color-mix(in oklab, var(--foreground) 6%, transparent); content: ""; animation: arrived 1.8s var(--ease-standard) both; }
 @keyframes arrived { 0%, 35% { opacity: 1; } 100% { opacity: 0; } }
 
 .updateInner { position: relative; isolation: isolate; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; margin-inline: -10px; padding: 18px 10px; }
@@ -101,20 +101,20 @@
 .empty button { margin-top: 14px; }
 
 .toastLayer { position: absolute; z-index: 3; right: 16px; bottom: 16px; left: 16px; display: flex; justify-content: center; pointer-events: none; }
-.toast { display: inline-flex; max-width: 100%; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: var(--radius-control); padding: 9px 14px; background: var(--surface-raised); box-shadow: var(--shadow-floating); color: var(--foreground); font-size: var(--text-sm); }
+.toast { display: inline-flex; max-width: 100%; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 9px 14px; background: var(--surface-raised); box-shadow: var(--shadow-floating); color: var(--foreground); font-size: var(--text-sm); }
 .toast > svg { flex: none; color: var(--text-secondary); }
 .toast[data-tone="success"] > svg { color: var(--success); }
 .toast[data-tone="error"] > svg { color: var(--danger); }
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* The menu grows from the overflow button. Transitions, not keyframes, so a quick reopen reverses from where it is. */
-.menu { --menu-y: -5px; position: relative; z-index: 60; min-width: 13rem; border: 1px solid var(--border); border-radius: var(--radius-container); padding: 5px; background: var(--surface-raised); box-shadow: var(--shadow-floating); color: var(--foreground); font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: var(--tracking-body); transform-origin: var(--radix-dropdown-menu-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-spring) var(--ease-spring); }
+.menu { --menu-y: -5px; position: relative; z-index: 60; min-width: 13rem; border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); padding: 5px; background: var(--surface-raised); box-shadow: var(--shadow-floating); color: var(--foreground); font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: var(--tracking-body); transform-origin: var(--radix-dropdown-menu-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-spring) var(--ease-spring); }
 .menu[data-side="top"] { --menu-y: 5px; }
 @starting-style { .menu[data-state="open"] { opacity: 0; transform: translateY(var(--menu-y)) scale(.97); } }
 .menu[data-state="closed"] { opacity: 0; transform: translateY(calc(var(--menu-y) * .5)) scale(.985); transition: opacity var(--duration-instant) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); animation: menu-exit var(--duration-instant) linear both; pointer-events: none; }
 @keyframes menu-exit { to { --menu-exit: 1; } }
-.highlight { position: absolute; top: 0; right: 5px; left: 5px; border-radius: calc(var(--radius-container) - 6px); background: var(--surface-muted); opacity: 0; pointer-events: none; }
-.item { position: relative; display: flex; min-height: 36px; align-items: center; gap: 10px; border-radius: calc(var(--radius-container) - 6px); padding: 0 11px; outline: none; cursor: pointer; user-select: none; }
+.highlight { position: absolute; top: 0; right: 5px; left: 5px; border-radius: calc(var(--radius-container) - 6px); corner-shape: var(--corner-shape); background: var(--surface-muted); opacity: 0; pointer-events: none; }
+.item { position: relative; display: flex; min-height: 36px; align-items: center; gap: 10px; border-radius: calc(var(--radius-container) - 6px); corner-shape: var(--corner-shape); padding: 0 11px; outline: none; cursor: pointer; user-select: none; }
 .item > svg { flex: none; color: var(--text-secondary); }
 .item[data-disabled] { opacity: .45; cursor: default; }
 .separator { height: 1px; margin: 4px -5px; background: var(--border-subtle); }
@@ -153,7 +153,7 @@
   .actions .create { width: var(--control-height-sm); padding-inline: 0; }
 }
 /* On a phone the frame is the screen, so it takes most of it rather than stopping short with the body cut mid list. */
-@media (max-width: 560px) { .frame { height: clamp(560px, calc(100svh - 48px), 760px); border-radius: var(--radius-control); } }
+@media (max-width: 560px) { .frame { height: clamp(560px, calc(100svh - 48px), 760px); border-radius: var(--radius-control); corner-shape: var(--corner-shape); } }
 
 @media (prefers-reduced-motion: reduce) {
   .crumb, .compact, .tab, .tab::before, .check, .issueTitle { transition: none; }
