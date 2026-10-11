@@ -84,6 +84,43 @@
       }
     },
     {
+      "name": "button-link",
+      "type": "registry:ui",
+      "title": "Button link",
+      "description": "A link that looks exactly like a button, for actions that go somewhere.",
+      "categories": [
+        "actions"
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "https://ui.teamofsilicons.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/components/button-link/button-link.tsx",
+          "type": "registry:component",
+          "target": "@components/silicon-ui/button-link/button-link.tsx"
+        },
+        {
+          "path": "registry/components/button-link/button-link.module.css",
+          "type": "registry:component",
+          "target": "@components/silicon-ui/button-link/button-link.module.css"
+        }
+      ],
+      "docs": "Docs and live preview: https://ui.teamofsilicons.com/button-link",
+      "meta": {
+        "tier": "free",
+        "kind": "component",
+        "docs": "https://ui.teamofsilicons.com/button-link",
+        "markdown": "https://ui.teamofsilicons.com/button-link.md",
+        "tags": [
+          "action",
+          "link",
+          "navigation"
+        ]
+      }
+    },
+    {
       "name": "action-button",
       "type": "registry:ui",
       "title": "Action button",
