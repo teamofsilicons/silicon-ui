@@ -37,6 +37,7 @@ Silicon UI is a library of React components and blocks with calm, physical motio
 - [Blocks](#blocks)
 - [AI tools](#ai-tools)
 - [Troubleshooting](#troubleshooting)
+- [The design system: rules, guardrails, docs](#the-design-system)
 - [How releases work](#how-releases-work)
 - [Repository layout](#repository-layout)
 - [Contributing](#contributing)
@@ -583,6 +584,10 @@ Silicon UI honors the reduced motion setting of your operating system and swaps 
 Only `silicon-foundation` writes `foundation.css`; components and blocks depend on `silicon-motion-tokens` instead. If you re-run `add @silicon-ui/silicon-foundation` after customizing your tokens, answer no to keep your file, or keep your overrides in a separate stylesheet loaded after it.
 
 </details>
+
+## The design system
+
+Silicon UI is also published to npm as [`@teamofsilicons/silicon-ui`](https://www.npmjs.com/package/@teamofsilicons/silicon-ui), with guardrails that keep apps consistent: an ESLint config that rejects re-created components, and `silicon-ui-check`, which rejects raw spacing, radius, colour and type values. The [`docs/`](./docs/README.md) folder explains the system: [using it in an app](./docs/using-in-an-app.md), the [rules](./docs/rules.md), the [guardrails](./docs/guardrails.md) and the Claude Code hook, [building with AI agents](./docs/ai-agents.md), [changing the library](./docs/contributing.md) and [releasing](./docs/releasing.md).
 
 ## How releases work
 

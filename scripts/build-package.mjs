@@ -113,6 +113,10 @@ fs.writeFileSync(path.join(out, "components.json"), `${JSON.stringify(catalog, n
 fs.writeFileSync(path.join(out, "package.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 fs.copyFileSync(path.join(root, "LICENSE"), path.join(out, "LICENSE"));
 fs.copyFileSync(path.join(root, "packaging", "README.md"), path.join(out, "README.md"));
+// The guardrails: an ESLint config and the CSS token check (see docs/guardrails.md).
+fs.copyFileSync(path.join(root, "packaging", "eslint.js"), path.join(out, "eslint.js"));
+fs.copyFileSync(path.join(root, "packaging", "check.mjs"), path.join(out, "check.mjs"));
+fs.chmodSync(path.join(out, "check.mjs"), 0o755);
 
 fs.rmSync(stage, { recursive: true, force: true });
 console.log(`Built ${manifest.name}@${manifest.version}: ${catalog.length} components in ${path.relative(root, out)}`);

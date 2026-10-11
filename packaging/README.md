@@ -59,6 +59,24 @@ import { SiliconProvider } from "@teamofsilicons/silicon-ui/provider";
 
 `@teamofsilicons/silicon-ui/components.json` lists every component, its import path and its exports.
 
+
+## Guardrails
+
+Two checks keep an app on the system, so screens stay consistent however they are built (including by AI):
+
+```js
+// eslint.config.mjs: raw <button>, <input>, <select>, <textarea>, <dialog> and borrowed library CSS are errors
+import siliconUi from "@teamofsilicons/silicon-ui/eslint";
+export default [...yourConfig, ...siliconUi()];
+```
+
+```sh
+npx silicon-ui-check                    # raw spacing, radius, colour or font size in CSS modules fails
+npx silicon-ui-check --update-baseline  # tolerate today's legacy values; only new drift fails
+```
+
+Full guide, including the Claude Code hook: [docs/guardrails.md](https://github.com/teamofsilicons/silicon-ui/blob/main/docs/guardrails.md).
+
 ## Licence
 
 MIT. Based on [Arc](https://github.com/kuratlielia/arc-library) by Elia Kuratli.
