@@ -13,3 +13,4 @@ site/generated/
 site/next-env.d.ts
 .vercel/
 .vercel
+dist/
