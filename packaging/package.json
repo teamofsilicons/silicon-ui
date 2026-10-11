@@ -37,6 +37,10 @@
       "types": "./lib/motion-tokens.d.ts",
       "default": "./lib/motion-tokens.js"
     },
+    "./lib/*": {
+      "types": "./lib/*.d.ts",
+      "default": "./lib/*.js"
+    },
     "./components.json": "./components.json",
     "./package.json": "./package.json",
     "./*": {
