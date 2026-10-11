@@ -26,6 +26,12 @@
   --accent-strong: oklch(24% 0 0);
   --accent-subtle: oklch(33% 0 0 / .1);
   --accent-foreground: var(--background);
+  /* Filled primary actions (Button primary, ActionButton). Neutral by default; an app sets its brand colour here. */
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  /* Profile pictures (Avatar, AvatarGroup, UserMenu). Circles by default; an app can choose e.g. 30% and squircle. */
+  --avatar-radius: var(--radius-full);
+  --avatar-corner-shape: round;
   /* Selection controls (switch, checkbox, radio, slider). --control-on fills a chosen control; --control-glyph is the check or dot drawn on it;
      thumbs stay white in both states so they always read against the track. Tuned per accent below so white thumbs hold on every hue. */
   --control-on: oklch(23% 0 0);

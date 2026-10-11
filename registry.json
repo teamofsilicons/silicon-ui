@@ -477,6 +477,16 @@
           "path": "registry/components/drawer/drawer.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/drawer/drawer.module.css"
+        },
+        {
+          "path": "lib/escape.ts",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/escape.ts"
+        },
+        {
+          "path": "lib/return-focus.ts",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/return-focus.ts"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/drawer",
@@ -1543,6 +1553,16 @@
           "path": "registry/components/dialog/dialog.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/dialog/dialog.module.css"
+        },
+        {
+          "path": "lib/escape.ts",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/escape.ts"
+        },
+        {
+          "path": "lib/return-focus.ts",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/return-focus.ts"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/dialog",
@@ -1579,6 +1599,11 @@
           "path": "registry/components/popover/popover.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/popover/popover.module.css"
+        },
+        {
+          "path": "lib/escape.ts",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/escape.ts"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/popover",
@@ -2897,6 +2922,16 @@
           "path": "registry/components/bottom-sheet/bottom-sheet.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/bottom-sheet/bottom-sheet.module.css"
+        },
+        {
+          "path": "lib/escape.ts",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/escape.ts"
+        },
+        {
+          "path": "lib/return-focus.ts",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/return-focus.ts"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/bottom-sheet",

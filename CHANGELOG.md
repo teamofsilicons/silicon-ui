@@ -2,6 +2,26 @@
 
 Changes ship continuously from `main`. Every item links to its live preview on [ui.teamofsilicons.com](https://ui.teamofsilicons.com).
 
+## 2026-10-12
+
+### Added
+
+- **npm package.** `npm install silicon-ui`, load `silicon-ui/styles.css` once, and import each component from its own path (`silicon-ui/button`). Components ship compiled with their CSS modules, so apps load only the CSS they use. `silicon-ui/components.json` lists every component and its exports. The shadcn registry stays for blocks and for copying code.
+- **Brand and avatar tokens.** `--primary` and `--primary-foreground` fill primary buttons and action buttons (neutral by default, so nothing changes until an app sets its brand colour). `--avatar-radius` and `--avatar-corner-shape` shape profile pictures in Avatar, Avatar group and User menu (circles by default). Button and Action button expose `data-variant` for app theming.
+
+### Fixed
+
+These come from Silicon Accounts, which had fixed them in its own copy.
+
+- **Focus returns to what opened a layer.** Dialog, Drawer and Bottom sheet put focus back on the element that opened them, also when they open from state rather than a Trigger (WCAG 2.4.3). Shared helper: `lib/return-focus.ts`.
+- **Escape closes the innermost thing first.** Inside a Dialog, Drawer, Bottom sheet or Popover, Escape first closes an open Combobox list, DatePicker calendar, InlineEdit or ConfirmMorph question, and only the next Escape closes the layer. Shared helper: `lib/escape.ts`.
+- **Combobox follows the WAI-ARIA pattern.** Focus alone no longer opens the list (typing, the arrow keys or a click do), leaving the field closes it, and the list is not a Tab stop.
+- **Phone input takes a whole number after "+".** Typing "+1 202 555 0142" into the country search moves it into the number field under its country.
+- **Timeline announces only news.** Older rows loaded below ("Show older") join quietly instead of sliding in and being announced.
+- **Confirm morph confirms from the keyboard at once.** The short re-arming delay now only guards against the opening pointer press.
+- **User menu** names the initials it shows, and hides the initials text from screen readers.
+- **Command palette** "No matching actions" is styled again (a broken selector).
+
 ## 2026-10-11
 
 ### Fixed
