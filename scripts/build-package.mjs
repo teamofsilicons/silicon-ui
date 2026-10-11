@@ -1,8 +1,8 @@
 /**
- * Builds the silicon-ui npm package into dist/package.
+ * Builds the @teamofsilicons/silicon-ui npm package into dist/package.
  *
  * Components ship as compiled ESM with their CSS modules alongside, so the app's bundler (Next.js, Vite) scopes the
- * classes and only loads the CSS of components the app uses. foundation.css ships as silicon-ui/styles.css.
+ * classes and only loads the CSS of components the app uses. foundation.css ships as styles.css.
  *
  *   node scripts/build-package.mjs        build
  *   cd dist/package && npm publish        publish
@@ -88,12 +88,14 @@ execFileSync(path.join(root, "node_modules", ".bin", "tsc"), ["-p", path.join(st
 fs.rmSync(path.join(out, "css-modules.d.ts"), { force: true });
 
 // 4. CSS: each component's module next to its compiled file, and the foundation as styles.css. The empty
-//    declaration lets TypeScript accept `import "silicon-ui/styles.css"` in apps without a CSS declaration.
+//    declaration lets TypeScript accept `import "@teamofsilicons/silicon-ui/styles.css"` in apps without a CSS declaration.
 for (const file of walk(path.join(stage, "components")).filter((f) => f.endsWith(".css"))) {
   fs.copyFileSync(file, path.join(out, path.relative(stage, file)));
 }
 fs.copyFileSync(path.join(root, "registry", "foundation.css"), path.join(out, "styles.css"));
 fs.writeFileSync(path.join(out, "styles.css.d.ts"), "export {};\n");
+
+const manifest = JSON.parse(fs.readFileSync(path.join(root, "packaging", "package.json"), "utf8"));
 
 // 5. A catalog of every component and what it exports, for people and for AI agents building screens.
 const registry = JSON.parse(fs.readFileSync(path.join(root, "registry.json"), "utf8"));
@@ -103,15 +105,14 @@ const catalog = fs.readdirSync(path.join(root, "registry", "components")).sort()
   const exports = [...source.matchAll(/^export\s+(?:declare\s+)?(?:function|const|class|interface|type|enum)\s+(\w+)/gm)].map((m) => m[1]);
   for (const m of source.matchAll(/^export\s*\{([^}]+)\}/gm)) exports.push(...m[1].split(",").map((s) => s.trim().split(/\s+as\s+/).pop()).filter(Boolean));
   const item = described.get(name);
-  return { name, import: `silicon-ui/${name}`, title: item?.title ?? name, description: item?.description ?? "", exports };
+  return { name, import: `${manifest.name}/${name}`, title: item?.title ?? name, description: item?.description ?? "", exports };
 });
 fs.writeFileSync(path.join(out, "components.json"), `${JSON.stringify(catalog, null, 2)}\n`);
 
 // 6. Manifest, licence and readme.
-const manifest = JSON.parse(fs.readFileSync(path.join(root, "packaging", "package.json"), "utf8"));
 fs.writeFileSync(path.join(out, "package.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 fs.copyFileSync(path.join(root, "LICENSE"), path.join(out, "LICENSE"));
 fs.copyFileSync(path.join(root, "packaging", "README.md"), path.join(out, "README.md"));
 
 fs.rmSync(stage, { recursive: true, force: true });
-console.log(`Built silicon-ui@${manifest.version}: ${catalog.length} components in ${path.relative(root, out)}`);
+console.log(`Built ${manifest.name}@${manifest.version}: ${catalog.length} components in ${path.relative(root, out)}`);

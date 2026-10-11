@@ -6,7 +6,7 @@ Changes ship continuously from `main`. Every item links to its live preview on [
 
 ### Added
 
-- **npm package.** `npm install silicon-ui`, load `silicon-ui/styles.css` once, and import each component from its own path (`silicon-ui/button`). Components ship compiled with their CSS modules, so apps load only the CSS they use. `silicon-ui/components.json` lists every component and its exports. The shadcn registry stays for blocks and for copying code.
+- **npm package.** `npm install @teamofsilicons/silicon-ui`, load `@teamofsilicons/silicon-ui/styles.css` once, and import each component from its own path (`@teamofsilicons/silicon-ui/button`). Components ship compiled with their CSS modules, so apps load only the CSS they use. `@teamofsilicons/silicon-ui/components.json` lists every component and its exports. The shadcn registry stays for blocks and for copying code.
 - **[Button link](https://ui.teamofsilicons.com/button-link).** A link that looks exactly like a Button, for actions that go somewhere. It renders on the server as a plain `<a>` (no client code), and `as={Link}` renders a router link instead. Apps had been rebuilding this from Button's CSS.
 - **Brand and avatar tokens.** `--primary` and `--primary-foreground` fill primary buttons and action buttons (neutral by default, so nothing changes until an app sets its brand colour). `--avatar-radius` and `--avatar-corner-shape` shape profile pictures in Avatar, Avatar group and User menu (circles by default). Button and Action button expose `data-variant` for app theming.
 

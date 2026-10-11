@@ -6,7 +6,7 @@ Browse every component at [ui.teamofsilicons.com](https://ui.teamofsilicons.com)
 ## Install
 
 ```sh
-npm install silicon-ui
+npm install @teamofsilicons/silicon-ui
 ```
 
 Requires React 19.
@@ -16,14 +16,14 @@ Requires React 19.
 Load the tokens once, in your root layout or entry file:
 
 ```tsx
-import "silicon-ui/styles.css";
+import "@teamofsilicons/silicon-ui/styles.css";
 ```
 
 Import each component from its own path:
 
 ```tsx
-import { Button } from "silicon-ui/button";
-import { Input } from "silicon-ui/input";
+import { Button } from "@teamofsilicons/silicon-ui/button";
+import { Input } from "@teamofsilicons/silicon-ui/input";
 
 export function Example() {
   return <Button variant="primary">Save</Button>;
@@ -50,14 +50,14 @@ Components render a plain `<a>` and `<img>` by default. To use your framework's,
 ```tsx
 import Link from "next/link";
 import Image from "next/image";
-import { SiliconProvider } from "silicon-ui/provider";
+import { SiliconProvider } from "@teamofsilicons/silicon-ui/provider";
 
 <SiliconProvider link={Link} image={Image}>{children}</SiliconProvider>
 ```
 
 ## Catalog
 
-`silicon-ui/components.json` lists every component, its import path and its exports.
+`@teamofsilicons/silicon-ui/components.json` lists every component, its import path and its exports.
 
 ## Licence
 
