@@ -6,6 +6,7 @@ Changes ship continuously from `main`. Every item links to its live preview on [
 
 ### Added
 
+- **[Tabs](https://ui.teamofsilicons.com/tabs) with icons (npm 0.3.0).** `TabsTrigger` takes an `icon`: it sits before the label at 16px, follows the label's colour (muted, then the active colour when selected) and is hidden from screen readers, so apps no longer wrap the label in their own span. Leave out the label and pass `aria-label` for an icon-only tab, which is square.
 - **Guardrails (npm 0.2.0).** `@teamofsilicons/silicon-ui/eslint` makes raw `<button>`, `<input>`, `<select>`, `<textarea>` and `<dialog>`, borrowed component CSS and local component copies lint errors. `silicon-ui-check` fails raw spacing, radius, colour and font-size values in CSS modules, with a baseline so existing apps only fail on new drift, and a `--hook` mode for Claude Code. See [docs/guardrails.md](./docs/guardrails.md).
 - **Design system docs** in [`docs/`](./docs/README.md): using Silicon UI in an app, the rules, the guardrails, building with AI agents, changing the library and releasing.
 - **npm package.** `npm install @teamofsilicons/silicon-ui`, load `@teamofsilicons/silicon-ui/styles.css` once, and import each component from its own path (`@teamofsilicons/silicon-ui/button`). Components ship compiled with their CSS modules, so apps load only the CSS they use. `@teamofsilicons/silicon-ui/components.json` lists every component and its exports. The shadcn registry stays for blocks and for copying code.
