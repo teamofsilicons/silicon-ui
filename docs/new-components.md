@@ -39,10 +39,14 @@ requested → approved → in design → experimental → stable
 | Stage | What happens | Who | Done when |
 | --- | --- | --- | --- |
 | **Requested** | Someone opens a *Component request* issue in `teamofsilicons/silicon-ui`: the need, where it is used, and the decision from section 1. | Anyone | The form is complete. |
-| **Approved** | The request is checked against the inventory and section 1. If it holds, a short **plan** is agreed in the issue (template below). If not, it is declined with the alternative (compose, token, existing variant). | Design approval: Anil. Technical approval: one engineer. | Both approve the plan. |
+| **Approved** | The request is checked against the inventory and section 1. If it holds, a short **plan** is agreed in the issue (template below). If not, it is declined with the alternative (compose, token, existing variant). | Anil | Anil approves the plan. |
 | **In design** | The component is built in a branch: source, CSS module, demo, registry entry with `"status": "experimental"`, changelog line. | Whoever took it | `npm run check:component <name>` passes. |
 | **Experimental** | The pull request is merged. The component is in Storybook under its category with an *experimental* badge and its **consistency report**, and in the next npm release, where apps can try it but the guardrails warn against shipping it. | Reviewers | Used in at least one real screen, and reviewed by eye in light and dark, at desktop and phone widths, with keyboard and reduced motion. |
-| **Stable** | A small pull request sets `"status": "stable"`. It ships in the next release as a normal component. | Design approval: Anil. Technical approval: one engineer. | Merged and released. |
+| **Stable** | A small pull request sets `"status": "stable"`. It ships in the next release as a normal component. | Anil | Merged and released. |
+
+**Approval** is one person, Anil, at the two decision points (the plan, and promotion to stable). Technical
+correctness is not a separate human sign-off: it is what `npm run check`, `npm run check:component` and CI enforce,
+and a change that fails them cannot be merged.
 
 A **variant** goes through the same flow, but usually lighter: the plan is a paragraph, and the change stays
 experimental only when it is large.

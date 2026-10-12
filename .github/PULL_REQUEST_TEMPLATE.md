@@ -12,7 +12,7 @@
 - [ ] `npm run check:component -- <name>` passes (add `--base main` for a variant of an existing component); the report is committed in `stories/reports/`
 - [ ] New components are registered with `"status": "experimental"`; promoting to stable is its own pull request
 - [ ] Checked in Storybook: light and dark, desktop and phone widths, keyboard, reduced motion
-- [ ] Design approval (Anil) and technical approval (an engineer)
+- [ ] Approved by Anil
 
 ## Every change
 
