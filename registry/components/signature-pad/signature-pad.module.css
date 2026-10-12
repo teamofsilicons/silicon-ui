@@ -2,7 +2,7 @@
   --ink-black: var(--foreground);
   --ink-blue: oklch(46% .17 262);
   --ink-violet: oklch(49% .2 292);
-  display: grid; gap: 10px; width: 100%; min-width: 0; font-family: var(--font-body); letter-spacing: var(--tracking-body);
+  display: grid; gap: var(--space-group); width: 100%; min-width: 0; font-family: var(--font-body); letter-spacing: var(--tracking-body);
 }
 :global(:root[data-theme="dark"]) .root { --ink-blue: oklch(76% .12 258); --ink-violet: oklch(77% .13 295); }
 
@@ -17,7 +17,7 @@
 .guide { position: absolute; inset: 0; pointer-events: none; }
 .baseline { position: absolute; left: 7%; right: 7%; top: 72%; border-top: 1.5px dashed var(--border-strong); }
 .mark { position: absolute; left: 7%; top: 72%; color: var(--text-muted); translate: 0 calc(-100% - 6px); }
-.signer { position: absolute; left: 7%; top: calc(72% + 8px); color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); }
+.signer { position: absolute; left: 7%; top: calc(72% + var(--space-related)); color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); }
 .hint {
   position: absolute; left: 50%; top: 72%; translate: -50% calc(-100% - 8px); color: var(--text-muted);
   font-size: var(--text-lg); line-height: var(--leading-body); white-space: nowrap;
@@ -37,15 +37,15 @@
   background: var(--foreground); opacity: .5;
 }
 .sweep::after {
-  content: ""; position: absolute; top: 0; bottom: 0; left: -28px; width: 28px;
+  content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--space-block) * -1); width: 28px;
   background: linear-gradient(to right, transparent, color-mix(in oklab, var(--foreground) 5%, transparent));
 }
 
-.toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
-.group { display: flex; align-items: center; gap: 2px; }
-.divider { width: 1px; height: 20px; margin: 0 6px; background: var(--border); }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-related); }
+.group { display: flex; align-items: center; gap: var(--space-hair); }
+.divider { width: 1px; height: 20px; margin: 0 var(--space-related); background: var(--border); }
 
-.choice { display: flex; align-items: center; gap: 2px; }
+.choice { display: flex; align-items: center; gap: var(--space-hair); }
 .option {
   position: relative; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: var(--radius-full); corner-shape: round;
   background: transparent; color: var(--foreground); cursor: pointer; -webkit-tap-highlight-color: transparent;
@@ -66,16 +66,16 @@
 .iconButton[aria-pressed="true"] { background: var(--surface-muted); color: var(--foreground); }
 .swap { display: grid; place-items: center; }
 
-.exports { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
-.exportLabel { margin-right: 4px; color: var(--text-muted); font-size: var(--text-xs); }
+.exports { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-related); }
+.exportLabel { margin-right: var(--space-tight); color: var(--text-muted); font-size: var(--text-xs); }
 .export {
-  display: grid; min-width: 76px; height: var(--control-height-sm); padding: 0 12px; border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape);
+  display: grid; min-width: 76px; height: var(--control-height-sm); padding: 0 var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape);
   background: var(--surface); color: var(--foreground); font: inherit; font-size: var(--text-sm); cursor: pointer; -webkit-tap-highlight-color: transparent;
   transition: background-color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard);
 }
 .export:active:not(:disabled) { transform: scale(.97); }
 .export:disabled { color: var(--text-muted); cursor: default; }
-.exportContent { display: inline-flex; grid-area: 1 / 1; align-items: center; justify-content: center; gap: 6px; }
+.exportContent { display: inline-flex; grid-area: 1 / 1; align-items: center; justify-content: center; gap: var(--space-related); }
 
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 

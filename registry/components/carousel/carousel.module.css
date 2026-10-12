@@ -13,7 +13,7 @@
 /* Controls line up with the edges of the centered slide. */
 .controls { display: flex; min-width: 0; align-items: center; gap: var(--space-related); padding-inline: calc((100cqw - var(--carousel-slide)) / 2); }
 .tabs { display: flex; min-width: 0; align-items: center; }
-.tab { display: grid; height: var(--control-height-sm); flex: none; place-items: center; border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 5px; background: transparent; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.tab { display: grid; height: var(--control-height-sm); flex: none; place-items: center; border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-tight); background: transparent; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 /* Resting dots use the strong border color; the fill fades in as the pill forms, and the drain covers it from the right while rotation runs. */
 .dot { position: relative; display: block; width: 6px; height: 6px; overflow: hidden; border-radius: var(--radius-full); corner-shape: round; background: var(--border-strong); transition: background-color var(--duration-fast) var(--ease-standard); }
 .dotFill, .dotDrain { position: absolute; inset: 0; }
@@ -33,7 +33,7 @@
 @container (max-width: 340px) {
   .controls { gap: var(--space-tight); padding-inline: max(0px, calc((100cqw - var(--carousel-slide)) / 2 - var(--space-related))); }
   .arrows { gap: var(--space-tight); }
-  .tab { padding: 0 4px; }
+  .tab { padding: 0 var(--space-tight); }
 }
 .visuallyHidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 

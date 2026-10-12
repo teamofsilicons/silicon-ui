@@ -10,7 +10,8 @@
  *   font-size  px or rem                                                                → var(--text-*)
  *
  * Allowed everywhere: 0, auto, inherit and other keywords, anything inside var() (including fallbacks), and
- * font-relative or layout-relative units (em, %, ch, vw, vh, cq*). Custom property definitions (--x: …) are not
+ * font-relative or layout-relative units (em, %, ch, vw, vh, cq*). 1px and -1px are allowed in spacing: they are
+ * hairline alignments against a border, not space. Mask properties are not colours (only their alpha is used). Custom property definitions (--x: …) are not
  * checked: tokens are defined that way, in the files you list under `ignore`. The visually hidden block (.srOnly,
  * .visuallyHidden, .sr-only) and @keyframes are skipped.
  *
@@ -43,7 +44,7 @@ const LENGTH = /(?<![\w.#-])(-?(?:\d*\.)?\d+)(px|rem)\b/g;
 const COLOR = /#[0-9a-f]{3,8}\b|\b(?:rgba?|hsla?|oklch|oklab|lab|lch|color)\(/i;
 const HIDDEN = /\.(?:srOnly|visuallyHidden|sr-only|visually-hidden)\b/;
 const FIX = {
-  spacing: "use a spacing token: var(--space-tight|related|group|inset|comfort|section|block|page|stage|screen)",
+  spacing: "use a spacing token: var(--space-hair|tight|related|group|inset|comfort|section|block|page|stage|screen)",
   radius: "use a radius token: var(--radius-detail|control|container|overlay|full)",
   color: "use a colour token: var(--foreground), var(--text-secondary), var(--border), var(--accent) …",
   "font-size": "use a type token: var(--text-xs|sm|base|lg|xl|2xl|3xl|4xl|5xl)",
@@ -102,10 +103,11 @@ export function checkCss(css) {
     const bare = withoutVars(value);
     for (const [rule, pattern] of Object.entries(RULES)) {
       if (!pattern.test(property)) continue;
-      const raw = [...bare.matchAll(LENGTH)].filter(match => Number(match[1]) !== 0).map(match => match[0]);
+      const hairline = match => rule === "spacing" && match[2] === "px" && Math.abs(Number(match[1])) === 1;
+      const raw = [...bare.matchAll(LENGTH)].filter(match => Number(match[1]) !== 0 && !hairline(match)).map(match => match[0]);
       if (raw.length) problems.push({ rule, line, property, value, raw: raw.join(", ") });
     }
-    const color = bare.match(COLOR);
+    const color = /^(?:-webkit-)?mask/.test(property) ? null : bare.match(COLOR);
     if (color) problems.push({ rule: "color", line, property, value, raw: color[0] });
   }
   return problems;

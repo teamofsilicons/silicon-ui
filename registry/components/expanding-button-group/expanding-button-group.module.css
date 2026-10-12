@@ -1,5 +1,5 @@
 /* A flat pill on the surface. Geometry comes from the component as --ebg-* variables, so the measured widths and the CSS agree. */
-.group { --ebg-h: 36px; --ebg-icon: 16px; --ebg-start: 10px; --ebg-gap: 7px; --ebg-end: 14px; --ebg-pad: 3px; position: relative; isolation: isolate; display: inline-flex; max-width: 100%; flex: none; align-items: center; gap: 2px; padding: var(--ebg-pad); border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface); }
+.group { --ebg-h: 36px; --ebg-icon: 16px; --ebg-start: 10px; --ebg-gap: 7px; --ebg-end: 14px; --ebg-pad: 3px; position: relative; isolation: isolate; display: inline-flex; max-width: 100%; flex: none; align-items: center; gap: var(--space-hair); padding: var(--ebg-pad); border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface); }
 
 /* The box never scales: its width is the animation, so a press answers with the icon and with color. The label overflows to the
    right of the icon and the clipped width reveals it. min-width keeps the spring's settle from pinching a collapsed button. */

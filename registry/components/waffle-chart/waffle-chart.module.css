@@ -19,23 +19,23 @@
 .cell[data-shape="framed"] { --inner: inset 0 0 0 2.5px var(--cell), inset 0 0 0 3.25px var(--surface); }
 .swatch[data-shape="framed"], .tipSwatch[data-shape="framed"] { box-shadow: inset 0 0 0 2px var(--cell), inset 0 0 0 3px var(--surface); }
 
-.tooltip { position: absolute; top: 0; left: 0; z-index: 2; display: grid; min-width: 150px; max-width: min(240px, 100%); gap: 2px; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
+.tooltip { position: absolute; top: 0; left: 0; z-index: 2; display: grid; min-width: 150px; max-width: min(240px, 100%); gap: var(--space-hair); padding: var(--space-related) var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
 .tooltip[data-shown] { opacity: 1; scale: 1; }
-.tipRow { display: flex; min-width: 0; align-items: center; gap: 8px; margin: 0; font-size: var(--text-sm); line-height: 1.3; }
+.tipRow { display: flex; min-width: 0; align-items: center; gap: var(--space-related); margin: 0; font-size: var(--text-sm); line-height: 1.3; }
 .tipSwatch { width: 10px; height: 10px; flex: none; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); background: var(--cell); transition: background-color var(--duration-fast) var(--ease-standard); }
 .tipName { min-width: 0; flex: 1; overflow: hidden; color: var(--text-secondary); text-overflow: ellipsis; white-space: nowrap; }
-.tipValue { flex: none; margin-left: 8px; font-weight: 500; font-variant-numeric: tabular-nums; }
-.tipMeta { margin: 0 0 0 18px; color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tipValue { flex: none; margin-left: var(--space-related); font-weight: 500; font-variant-numeric: tabular-nums; }
+.tipMeta { margin: 0 0 0 var(--space-comfort); color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .message { display: grid; min-height: 160px; place-items: center; margin: 0; color: var(--text-muted); font-size: var(--text-sm); }
 
 /* The legend doubles as the reading: each share rolls to its new value. */
-.legend { display: grid; min-width: 0; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 2px var(--space-related); margin: 0; padding: 0; list-style: none; }
+.legend { display: grid; min-width: 0; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: var(--space-hair) var(--space-related); margin: 0; padding: 0; list-style: none; }
 @container (min-width: 420px) { .figure[data-legend] .legend { grid-template-columns: minmax(0, 1fr); } }
 /* Below the side-by-side layout two columns would clip names like "Wind and solar", so the legend reads as one list. */
 /* Stacked, the legend shares the grid's measure and its row padding hangs outside, so swatches and shares line up with the cell edges. */
-@container (max-width: 419px) { .legend { grid-template-columns: minmax(0, 1fr); margin-inline: max(-10px, calc((100% - 320px) / 2)); } }
-.item { display: grid; width: 100%; min-height: 36px; grid-template-columns: 10px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 4px 10px; border: 0; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: transparent; color: var(--text-secondary); cursor: pointer; font: inherit; font-size: var(--text-sm); line-height: var(--leading-body); text-align: left; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
+@container (max-width: 419px) { .legend { grid-template-columns: minmax(0, 1fr); margin-inline: max(calc(var(--space-group) * -1), calc((100% - calc(var(--space-screen) + var(--space-screen) + var(--space-screen) + var(--space-screen))) / 2)); } }
+.item { display: grid; width: 100%; min-height: 36px; grid-template-columns: 10px minmax(0, 1fr) auto; align-items: center; gap: var(--space-group); padding: var(--space-tight) var(--space-group); border: 0; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: transparent; color: var(--text-secondary); cursor: pointer; font: inherit; font-size: var(--text-sm); line-height: var(--leading-body); text-align: left; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
 .item:active { transform: scale(.98); }
 .item[data-on] { color: var(--foreground); background: color-mix(in oklab, var(--foreground) 5%, transparent); }
 .item[data-dim] { opacity: .5; }

@@ -40,10 +40,10 @@
   touch-action: none;
   transition: opacity var(--duration-considered) var(--ease-standard);
 }
-.track[data-axis="y"] { top: 3px; right: 1px; bottom: 3px; width: 11px; }
-.track[data-axis="x"] { right: 3px; bottom: 1px; left: 3px; height: 11px; }
-.root[data-orientation="both"] > .track[data-axis="y"] { bottom: 13px; }
-.root[data-orientation="both"] > .track[data-axis="x"] { right: 13px; }
+.track[data-axis="y"] { top: var(--space-tight); right: 1px; bottom: var(--space-tight); width: 11px; }
+.track[data-axis="x"] { right: var(--space-tight); bottom: 1px; left: var(--space-tight); height: 11px; }
+.root[data-orientation="both"] > .track[data-axis="y"] { bottom: var(--space-group); }
+.root[data-orientation="both"] > .track[data-axis="x"] { right: var(--space-group); }
 .track[data-hidden] { display: none; }
 
 .thumb { position: absolute; top: 0; left: 0; will-change: transform; }
@@ -56,8 +56,8 @@
   background: color-mix(in oklab, var(--foreground) 30%, transparent);
   transition: width var(--duration-fast) var(--ease-standard), height var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
 }
-.track[data-axis="y"] .thumb::after { top: 0; right: 3px; bottom: 0; width: 5px; }
-.track[data-axis="x"] .thumb::after { right: 0; bottom: 3px; left: 0; height: 5px; }
+.track[data-axis="y"] .thumb::after { top: 0; right: var(--space-tight); bottom: 0; width: 5px; }
+.track[data-axis="x"] .thumb::after { right: 0; bottom: var(--space-tight); left: 0; height: 5px; }
 
 /* Visible while scrolling, while the pointer is over the area, and always when asked. Appearing is quick; leaving lingers. */
 .root[data-scrolling] > .track,
@@ -69,9 +69,9 @@
   .track:hover .thumb::after,
   .root[data-dragging] .thumb::after { background: color-mix(in oklab, var(--foreground) 46%, transparent); }
   .track[data-axis="y"]:hover .thumb::after,
-  .root[data-dragging="y"] .track[data-axis="y"] .thumb::after { width: 7px; right: 2px; }
+  .root[data-dragging="y"] .track[data-axis="y"] .thumb::after { width: 7px; right: var(--space-hair); }
   .track[data-axis="x"]:hover .thumb::after,
-  .root[data-dragging="x"] .track[data-axis="x"] .thumb::after { height: 7px; bottom: 2px; }
+  .root[data-dragging="x"] .track[data-axis="x"] .thumb::after { height: 7px; bottom: var(--space-hair); }
 }
 
 @media (prefers-reduced-motion: reduce) {

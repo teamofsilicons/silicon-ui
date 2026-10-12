@@ -28,7 +28,7 @@
 
 .fallback { animation: avatar-fallback-in var(--duration-standard) var(--ease-enter) both; }
 
-.sm { width: 28px; height: 28px; font-size: 10px; }
+.sm { width: 28px; height: 28px; font-size: var(--text-xs); }
 .md { width: 36px; height: 36px; }
 .lg { width: 48px; height: 48px; font-size: var(--text-sm); }
 .xl { width: 88px; height: 88px; font-size: var(--text-xl); }
@@ -47,7 +47,7 @@
 
 .sm .status { width: 8px; height: 8px; border-width: 1.5px; }
 .lg .status { width: 12px; height: 12px; }
-.xl .status { width: 14px; height: 14px; right: 4px; bottom: 4px; }
+.xl .status { width: 14px; height: 14px; right: var(--space-tight); bottom: var(--space-tight); }
 .online { background: var(--success); }
 .offline { background: var(--text-muted); }
 

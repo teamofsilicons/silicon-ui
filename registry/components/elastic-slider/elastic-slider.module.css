@@ -15,7 +15,7 @@
 /* Only the band stretches. Ticks, thumb, and tag ride along without distorting. */
 .track { position: absolute; inset: 0; border-radius: var(--radius-full); corner-shape: round; background: var(--control-track); will-change: transform; }
 .fill { position: absolute; inset: 0; border-radius: inherit; corner-shape: inherit; background: var(--control-fill); }
-.tick { position: absolute; top: 50%; width: 4px; height: 4px; margin: -2px 0 0 -2px; border-radius: var(--radius-full); corner-shape: round; background: color-mix(in oklab, var(--foreground) 32%, transparent); pointer-events: none; transition: background-color var(--duration-fast) var(--ease-standard); }
+.tick { position: absolute; top: 50%; width: 4px; height: 4px; margin: calc(var(--space-hair) * -1) 0 0 calc(var(--space-hair) * -1); border-radius: var(--radius-full); corner-shape: round; background: color-mix(in oklab, var(--foreground) 32%, transparent); pointer-events: none; transition: background-color var(--duration-fast) var(--ease-standard); }
 .tick[data-on] { background: color-mix(in oklab, var(--control-glyph) 60%, transparent); }
 .thumbs { position: absolute; inset: 0 calc(var(--elastic-thumb) / 2); container-type: inline-size; pointer-events: none; }
 /* Each layer is as wide as the rail and slides by a percentage of itself, so placing the thumb needs no measuring. */
@@ -23,11 +23,11 @@
 .shift { position: absolute; inset: 0; }
 .thumb { position: absolute; top: 50%; right: 0; box-sizing: border-box; width: var(--elastic-thumb); height: var(--elastic-thumb); translate: 50% -50%; border: 0; border-radius: var(--radius-full); corner-shape: round; background: var(--control-thumb); box-shadow: var(--control-thumb-shadow); pointer-events: auto; cursor: grab; outline: none; transition: box-shadow var(--duration-fast) var(--ease-standard); }
 /* A generous invisible hit area for fingertips. */
-.thumb::after { content: ""; position: absolute; inset: -12px; border-radius: inherit; corner-shape: inherit; }
+.thumb::after { content: ""; position: absolute; inset: calc(var(--space-group) * -1); border-radius: inherit; corner-shape: inherit; }
 .root[data-dragging], .root[data-dragging] .control, .root[data-dragging] .thumb { cursor: grabbing; }
 /* The tag centers on the thumb until it would pass the component's edge, then holds there. It hangs from its bottom edge, so a swing pivots on the thumb. */
-.bubbleAnchor { --edge: calc(var(--elastic-thumb) / 2); --x: calc(var(--at, 0) * 1cqw); position: absolute; right: 0; bottom: calc(50% + var(--elastic-thumb) / 2 + 10px); display: flex; translate: clamp(calc(100% - var(--edge) - var(--x)), 50%, calc(100cqw + var(--edge) - var(--x))) 0; pointer-events: none; }
-@media (pointer: coarse) { .bubbleAnchor { bottom: calc(50% + var(--elastic-thumb) / 2 + 20px); } }
+.bubbleAnchor { --edge: calc(var(--elastic-thumb) / 2); --x: calc(var(--at, 0) * 1cqw); position: absolute; right: 0; bottom: calc(50% + var(--elastic-thumb) / 2 + var(--space-group)); display: flex; translate: clamp(calc(100% - var(--edge) - var(--x)), 50%, calc(100cqw + var(--edge) - var(--x))) 0; pointer-events: none; }
+@media (pointer: coarse) { .bubbleAnchor { bottom: calc(50% + var(--elastic-thumb) / 2 + var(--space-comfort)); } }
 .bubble { display: inline-flex; min-height: 1.75rem; align-items: center; padding: 0 var(--space-group); border-radius: var(--radius-full); corner-shape: round; background: var(--foreground); color: var(--background); box-shadow: var(--shadow-raised); font-size: var(--text-sm); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; transform-origin: 50% 130%; }
 .marks { position: relative; grid-area: 2 / 2; height: 1.25rem; margin: 0 calc(var(--elastic-thumb) / 2); color: var(--text-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
 .markLabel { position: absolute; top: 0; translate: -50% 0; white-space: nowrap; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard); }

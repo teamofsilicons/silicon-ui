@@ -12,7 +12,7 @@
 .column h2 { margin: 0 0 var(--space-group); font-size: var(--text-sm); font-weight: 500; }
 .column ul, .inline { margin: 0; padding: 0; list-style: none; }
 .column ul { display: grid; gap: var(--space-related); }
-.link { display: inline-flex; align-items: center; gap: 3px; border: 0; padding: 2px 0; background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); text-align: left; text-decoration: none; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard); }
+.link { display: inline-flex; align-items: center; gap: var(--space-tight); border: 0; padding: var(--space-hair) 0; background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); text-align: left; text-decoration: none; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard); }
 .link:active, .link:focus-visible { color: var(--foreground); }
 .external { color: var(--text-muted); transition: transform var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) {
@@ -23,13 +23,13 @@
 /* Newsletter: input and button share one shell; the shell carries validation state with its border only. */
 .newsletter { display: grid; gap: var(--space-related); max-width: 400px; margin-top: var(--space-comfort); }
 .newsletterTitle { margin: 0; font-size: var(--text-sm); font-weight: 500; }
-.newsletterRow { display: flex; height: var(--control-height-md); align-items: center; gap: var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 3px 3px 3px var(--space-inset); background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard); }
+.newsletterRow { display: flex; height: var(--control-height-md); align-items: center; gap: var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: var(--space-tight) var(--space-tight) var(--space-tight) var(--space-inset); background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard); }
 .newsletterRow:focus-within { border-color: var(--border-strong); }
 .newsletterRow[data-invalid] { border-color: var(--danger); }
 .newsletterInput { width: 100%; min-width: 0; flex: 1; border: 0; padding: 0; background: none; color: var(--foreground); font: inherit; font-size: var(--text-sm); }
 .newsletterInput::placeholder { color: var(--text-muted); }
 .newsletterRow[data-done] .newsletterInput { color: var(--text-secondary); }
-.newsletterButton { flex: none; border-radius: calc(var(--radius-control) - 3px); corner-shape: var(--corner-shape); }
+.newsletterButton { flex: none; border-radius: calc(var(--radius-control) - var(--space-tight)); corner-shape: var(--corner-shape); }
 .messageSlot { position: relative; min-height: 20px; }
 .message { margin: 0; color: var(--text-muted); font-size: var(--text-xs); line-height: 20px; }
 .message[data-tone="error"] { color: var(--danger); }
@@ -39,7 +39,7 @@
 .bottomStart, .bottomEnd { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-related) var(--space-comfort); }
 .inline { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-tight) var(--space-inset); }
 .copyright { color: var(--text-muted); font-size: var(--text-sm); }
-.status { display: inline-flex; align-items: center; gap: var(--space-related); border: 0; padding: 2px 0; background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); text-decoration: none; cursor: pointer; }
+.status { display: inline-flex; align-items: center; gap: var(--space-related); border: 0; padding: var(--space-hair) 0; background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); text-decoration: none; cursor: pointer; }
 .statusDot { --tone: var(--success); width: 7px; height: 7px; border-radius: 50%; corner-shape: round; background: var(--tone); box-shadow: 0 0 0 3px color-mix(in oklab, var(--tone) 18%, transparent); }
 .status[data-tone="warning"] .statusDot { --tone: var(--warning); }
 .status[data-tone="danger"] .statusDot { --tone: var(--danger); }

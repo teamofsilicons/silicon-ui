@@ -28,14 +28,14 @@
 .marker[data-tone="danger"] { background: color-mix(in oklab, var(--danger) 12%, var(--surface)); color: var(--danger); }
 .marker svg { width: 14px; height: 14px; stroke-width: 2; }
 /* The line runs from just under this marker to just above the next one and draws downward from its top. */
-.segment { position: absolute; top: calc(var(--marker-top) + var(--marker) + var(--line-gap)); bottom: calc(var(--line-gap) - var(--marker-top)); left: calc(var(--marker) / 2 - .5px); width: 1px; background: var(--border-strong); transform-origin: 50% 0; }
+.segment { position: absolute; top: calc(var(--marker-top) + var(--marker) + var(--line-gap)); bottom: calc(var(--line-gap) - var(--marker-top)); left: calc(var(--marker) / 2 - var(--space-hair)); width: 1px; background: var(--border-strong); transform-origin: 50% 0; }
 
 .content { min-width: 0; }
-.trigger { display: grid; width: 100%; grid-template-columns: minmax(0, 1fr) auto; align-items: start; column-gap: var(--space-group); margin: 0; padding: 12px var(--space-group); border: 0; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: transparent; color: inherit; font: inherit; text-align: left; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard); }
+.trigger { display: grid; width: 100%; grid-template-columns: minmax(0, 1fr) auto; align-items: start; column-gap: var(--space-group); margin: 0; padding: var(--space-group) var(--space-group); border: 0; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: transparent; color: inherit; font: inherit; text-align: left; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard); }
 button.trigger { grid-template-columns: minmax(0, 1fr) auto 16px; cursor: pointer; }
 @media (hover: hover) and (pointer: fine) { button.trigger:hover { background: var(--surface-muted); } }
 button.trigger:active { background: var(--surface-muted); }
-.text { display: grid; min-width: 0; gap: 2px; }
+.text { display: grid; min-width: 0; gap: var(--space-hair); }
 .title { color: var(--text-secondary); font-size: var(--text-sm); line-height: 20px; }
 .actor { color: var(--foreground); font-weight: 500; }
 .meta { color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); }

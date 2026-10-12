@@ -22,14 +22,15 @@
     "lint": "eslint .",
     "build:registry": "node scripts/build-registry.mjs",
     "check:registry": "node scripts/check-registry.mjs",
-    "check": "npm run typecheck && npm run lint && npm run check:registry",
+    "check": "npm run typecheck && npm run lint && npm run check:registry && npm run check:tokens",
     "site:extract": "node site/scripts/extract.mjs",
     "site:dev": "npm run site:extract && next dev site",
     "site:build": "npm run build:registry && npm run site:extract && next build site && node site/scripts/postbuild.mjs",
     "build:package": "node scripts/build-package.mjs",
     "build:stories": "node scripts/build-stories.mjs",
     "storybook": "npm run build:stories && storybook dev -p 6006",
-    "build-storybook": "npm run build:stories && storybook build -o dist/storybook"
+    "build-storybook": "npm run build:stories && storybook build -o dist/storybook",
+    "check:tokens": "node packaging/check.mjs"
   },
   "devDependencies": {
     "@radix-ui/react-accordion": "^1.2.20",
@@ -55,5 +56,12 @@
     "storybook": "^10.6.1",
     "typescript": "^6.0.3",
     "vite": "^8.3.4"
+  },
+  "siliconUi": {
+    "css": [
+      "registry/**/*.module.css"
+    ],
+    "ignore": [],
+    "baseline": "silicon-ui-baseline.json"
   }
 }

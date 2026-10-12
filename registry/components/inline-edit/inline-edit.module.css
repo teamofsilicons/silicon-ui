@@ -5,8 +5,8 @@
 .root[data-variant="body"] { --pad-y: 5px; --size: var(--text-sm); --leading: round(var(--size) * 1.5, 1px); --weight: 400; --ink: var(--text-secondary); }
 /* Room for the actions is reserved in every state, so the text never rewraps when editing starts. */
 /* Inter at every size here: a heading host keeps its semantics but not the display face. */
-.line { display: block; min-width: 0; margin: 0; padding-inline-end: 66px; color: var(--ink); font-family: var(--font-body); font-size: var(--size); font-weight: var(--weight); line-height: var(--leading); letter-spacing: var(--tracking-body); }
-.root[data-multiline] .line { padding-inline-end: 38px; }
+.line { display: block; min-width: 0; margin: 0; padding-inline-end: var(--space-stage); color: var(--ink); font-family: var(--font-body); font-size: var(--size); font-weight: var(--weight); line-height: var(--leading); letter-spacing: var(--tracking-body); }
+.root[data-multiline] .line { padding-inline-end: var(--space-block); }
 .box { position: relative; display: inline-block; max-width: 100%; vertical-align: top; }
 .root[data-multiline] .box { display: block; }
 
@@ -16,7 +16,7 @@
 .root[data-multiline] .display { width: 100%; }
 .root[data-editing] .display { visibility: hidden; }
 /* While editing, a single line keeps a little extra room, so the next character never has to wait for the box. */
-.root[data-editing]:not([data-multiline]) .display { min-width: 5em; padding-inline-end: calc(var(--pad-x) + 16px); }
+.root[data-editing]:not([data-multiline]) .display { min-width: 5em; padding-inline-end: calc(var(--pad-x) + var(--space-inset)); }
 .display[aria-disabled="true"] { cursor: progress; }
 .layer { position: relative; display: block; transition: opacity var(--duration-standard) var(--ease-standard); }
 .layer[data-empty] { color: var(--text-muted); }
@@ -45,28 +45,28 @@ textarea.control { white-space: pre-wrap; overflow-wrap: break-word; }
 .root[data-flash="off"] .frame { transition-duration: var(--duration-considered); }
 
 /* The slot rides on the frame's edge, so it follows the width morph instead of jumping to the new width. */
-.slot { position: absolute; top: 50%; left: calc(100% + 6px); display: grid; min-height: 28px; margin-top: -14px; pointer-events: auto; }
-.root[data-multiline] .slot { top: 0; left: calc(100% + 8px); margin-top: calc(var(--pad-y) + var(--leading) / 2 - 13px); }
+.slot { position: absolute; top: 50%; left: calc(100% + var(--space-related)); display: grid; min-height: 28px; margin-top: calc(var(--space-inset) * -1); pointer-events: auto; }
+.root[data-multiline] .slot { top: 0; left: calc(100% + var(--space-related)); margin-top: calc(var(--pad-y) + var(--leading) / 2 - var(--space-group)); }
 .slotItem { display: grid; grid-area: 1 / 1; min-height: 28px; place-items: center start; }
-.actions { display: flex; gap: 4px; }
+.actions { display: flex; gap: var(--space-tight); }
 .root[data-multiline] .actions { flex-direction: column; }
 .save, .cancel { display: grid; width: 28px; height: 28px; flex: none; place-items: center; padding: 0; border: 1px solid transparent; border-radius: var(--radius-full); corner-shape: round; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
 .save { background: var(--foreground); color: var(--background); }
 .cancel { border-color: var(--border); background: var(--surface); color: var(--text-secondary); }
 .save:active, .cancel:active { transform: scale(.96); }
 @media (hover: hover) and (pointer: fine) { .save:hover { background: color-mix(in oklab, var(--foreground) 86%, var(--background)); } .cancel:hover { border-color: var(--border-strong); background: var(--surface-muted); color: var(--foreground); } }
-.pencil { margin-left: 2px; color: var(--text-muted); cursor: pointer; }
-.spinner { display: block; width: 14px; height: 14px; margin-left: 2px; border: 1.5px solid var(--text-muted); border-right-color: transparent; border-radius: var(--radius-full); corner-shape: round; animation: spin .7s linear infinite; }
+.pencil { margin-left: var(--space-hair); color: var(--text-muted); cursor: pointer; }
+.spinner { display: block; width: 14px; height: 14px; margin-left: var(--space-hair); border: 1.5px solid var(--text-muted); border-right-color: transparent; border-radius: var(--radius-full); corner-shape: round; animation: spin .7s linear infinite; }
 .saved { display: grid; margin-left: 1px; place-items: center; color: var(--success); }
 .failedIcon { margin-left: 1px; color: var(--danger); }
 
 /* The message row opens from a true zero; its spacing lives inside the clipped slot. */
 .reveal { display: block; overflow: hidden; }
 .revealInner { position: relative; display: block; }
-.message { display: flex; align-items: flex-start; gap: 6px; padding: 6px var(--pad-x) 4px calc(var(--pad-x) + 1px); color: var(--text-secondary); font-size: var(--text-xs); font-weight: 400; line-height: var(--leading-body); }
+.message { display: flex; align-items: flex-start; gap: var(--space-related); padding: var(--space-related) var(--pad-x) var(--space-tight) calc(var(--pad-x) + 1px); color: var(--text-secondary); font-size: var(--text-xs); font-weight: 400; line-height: var(--leading-body); }
 .message[data-tone="error"] { color: var(--danger); }
-.messageIcon { flex: none; margin-top: 2px; color: var(--danger); }
-.retry { margin: 0 0 0 2px; padding: 0; border: 0; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); background: none; color: var(--foreground); font: inherit; font-weight: 500; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; cursor: pointer; }
+.messageIcon { flex: none; margin-top: var(--space-hair); color: var(--danger); }
+.retry { margin: 0 0 0 var(--space-hair); padding: 0; border: 0; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); background: none; color: var(--foreground); font: inherit; font-weight: 500; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; cursor: pointer; }
 @media (hover: hover) and (pointer: fine) { .retry:hover { text-decoration-color: currentColor; } }
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @keyframes spin { to { transform: rotate(360deg); } }

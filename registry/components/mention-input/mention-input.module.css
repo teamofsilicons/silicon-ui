@@ -24,7 +24,7 @@
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  padding: 11px 14px;
+  padding: var(--space-group) var(--space-inset);
   border: 0;
   font: inherit;
   font-size: var(--text-base);
@@ -66,8 +66,8 @@
 
 /* A token is tinted around its own glyphs; the negative margin keeps every character where the textarea put it. */
 .token {
-  margin: 0 -3px;
-  padding: 1px 3px;
+  margin: 0 calc(var(--space-tight) * -1);
+  padding: 1px var(--space-tight);
   border-radius: var(--radius-detail); corner-shape: var(--corner-shape);
   background: var(--accent-subtle);
   color: var(--accent-strong);
@@ -88,7 +88,7 @@
   box-shadow: var(--shadow-floating);
 }
 .popover[data-above] { translate: 0 -100%; }
-.popoverBody { padding: 6px; }
+.popoverBody { padding: var(--space-related); }
 
 .list { position: relative; display: grid; margin: 0; padding: 0; list-style: none; }
 .highlight { position: absolute; top: 0; right: 0; left: 0; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
@@ -98,8 +98,8 @@
   display: flex;
   min-width: 0;
   align-items: center;
-  gap: 10px;
-  padding: 7px 10px 7px 8px;
+  gap: var(--space-group);
+  padding: var(--space-related) var(--space-group) var(--space-related) var(--space-related);
   border-radius: var(--radius-control); corner-shape: var(--corner-shape);
   cursor: pointer;
   font-size: var(--text-sm);
@@ -129,6 +129,6 @@
 .optionMeta { overflow: hidden; color: var(--text-muted); font-size: var(--text-xs); text-overflow: ellipsis; white-space: nowrap; }
 .count { flex: none; color: var(--text-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
 
-.empty { margin: 0; padding: 10px 10px; color: var(--text-secondary); font-size: var(--text-sm); }
+.empty { margin: 0; padding: var(--space-group) var(--space-group); color: var(--text-secondary); font-size: var(--text-sm); }
 
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

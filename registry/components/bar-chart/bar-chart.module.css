@@ -1,11 +1,11 @@
 .figure { display: grid; min-width: 0; gap: var(--space-comfort); margin: 0; color: var(--foreground); }
 
 /* The headline is the readout: the average at rest, the scrubbed bar while exploring. Each line keeps its height, so swaps never move the plot. */
-.header { display: grid; min-width: 0; gap: 2px; }
+.header { display: grid; min-width: 0; gap: var(--space-hair); }
 .kind, .when { display: block; min-height: calc(1em * var(--leading-body)); font-size: var(--text-sm); line-height: var(--leading-body); }
 .kind { color: var(--text-secondary); }
 .when { color: var(--text-muted); }
-.value { display: flex; min-width: 0; align-items: baseline; gap: 6px; font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); font-variant-numeric: tabular-nums; }
+.value { display: flex; min-width: 0; align-items: baseline; gap: var(--space-related); font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); font-variant-numeric: tabular-nums; }
 .unit { color: var(--text-secondary); font-family: var(--font-body); font-size: var(--text-base); font-weight: 400; letter-spacing: var(--tracking-body); }
 .swap { position: relative; display: block; min-width: 0; }
 .swapText { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -33,12 +33,12 @@
 .chart .bar[data-active] { fill: var(--accent); }
 
 .gutter { position: relative; grid-area: 1 / 2; min-width: 0; }
-.tick, .meanLabel { position: absolute; top: 0; left: 10px; display: block; height: 0; white-space: nowrap; pointer-events: none; }
+.tick, .meanLabel { position: absolute; top: 0; left: var(--space-group); display: block; height: 0; white-space: nowrap; pointer-events: none; }
 .tickText { display: block; transform: translateY(-50%); color: var(--text-muted); font-size: var(--text-xs); line-height: 1; font-variant-numeric: tabular-nums; }
 .meanLabel .tickText { color: var(--foreground); font-weight: 500; }
 
 .axis { position: relative; grid-area: 2 / 1; min-width: 0; overflow: hidden; }
-.axisLabel { position: absolute; top: 8px; left: 0; color: var(--text-muted); font-size: var(--text-xs); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.axisLabel { position: absolute; top: var(--space-related); left: 0; color: var(--text-muted); font-size: var(--text-xs); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* The scrubber covers the plot and its axes. Horizontal drags scrub, vertical swipes still scroll the page. */
 .scrubber { position: absolute; inset: 0; border-radius: calc(var(--radius-control) / 2); outline: none; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }

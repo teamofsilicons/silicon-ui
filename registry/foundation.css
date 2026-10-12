@@ -53,6 +53,27 @@
   --shadow-resting: 0 1px 2px oklch(0% 0 0 / .035);
   --shadow-raised: 0 6px 18px oklch(0% 0 0 / .065), 0 1px 3px oklch(0% 0 0 / .035);
   --shadow-floating: 0 20px 48px oklch(0% 0 0 / .105), 0 3px 10px oklch(0% 0 0 / .045);
+  /* Layers, edges and shadows by role (component CSS uses these instead of raw colours). */
+  --scrim: oklch(10% 0 0 / .46);              /* behind a modal layer: dialog, drawer, sheet, mobile menu */
+  --scrim-soft: oklch(10% 0 0 / .16);         /* behind a non-modal panel */
+  --shade: oklch(0% 0 0 / .035);              /* a faint tint over a surface, such as a stacked card */
+  --media-scrim: oklch(0% 0 0 / .45);         /* over a photo, under text */
+  --on-media: var(--color-white);             /* text over a photo */
+  --edge-inset: inset 0 0 0 1px oklch(0% 0 0 / .08);   /* a hairline inside a swatch, thumbnail or track */
+  --shadow-hairline: 0 0 0 .5px oklch(0% 0 0 / .14);
+  --shadow-knob: 0 2px 8px oklch(0% 0 0 / .3);   /* a draggable handle that must read on any colour */
+  --shadow-thumb: 0 1px 2px oklch(0% 0 0 / .06), 0 2px 6px oklch(0% 0 0 / .04);   /* small lifted controls and cards */
+  --shadow-drop: drop-shadow(0 18px 36px oklch(0% 0 0 / .12)) drop-shadow(0 2px 6px oklch(0% 0 0 / .06));   /* filter: floating previews */
+  --shadow-showcase: 0 1px 1px rgb(20 24 40 / .04), 0 10px 30px -12px rgb(20 24 40 / .22);   /* hero product shots */
+  --shadow-showcase-lg: 0 1px 1px rgb(20 24 40 / .04), 0 24px 48px -16px rgb(20 24 40 / .16), 0 60px 120px -40px rgb(40 48 110 / .22);
+  --glow: #b9c2ff;                            /* the light line on a dark hero window */
+  /* Code highlighting roles (CodeBlock); each has contrast in both themes. */
+  --syntax-string: oklch(46% .13 150); --syntax-number: oklch(50% .14 55); --syntax-keyword: oklch(48% .15 285);
+  --syntax-type: oklch(46% .13 230); --syntax-function: oklch(43% .12 25); --syntax-property: oklch(44% .12 85);
+  /* File types (TreeView): each brand hue, mixed with the text colour in the component. */
+  --file-typescript: #3178c6; --file-stylesheet: #8b6ace; --file-markdown: #38896b; --file-json: #c48637;
+  /* Theme-independent constants, for things that must stay black or white in both themes (colour picker planes). */
+  --color-black: #000; --color-white: #fff;
   /* Brand gradient: soft lavender to warm peach. Light enough for dark text (--silicon-gradient-foreground, >12:1). */
   --silicon-gradient-from: oklch(90% .045 300);
   --silicon-gradient-to: oklch(92% .045 65);
@@ -64,8 +85,8 @@
   --silicon-gradient-line: linear-gradient(100deg, oklch(83% .06 300), oklch(86% .06 65));
   /* Text-safe stops for gradient text and small marks (>4.5:1 on the surface). */
   --silicon-gradient-ink: linear-gradient(100deg, oklch(47% .1 300), oklch(50% .09 55));
-  /* Space, by role: tight 4 · related 8 · group 12 · inset 16 · comfort 20 · section 24 · block 32 · page 48 · stage 64 · screen 80. */
-  --space-tight: 4px; --space-related: 8px; --space-group: 12px; --space-inset: 16px; --space-comfort: 20px;
+  /* Space, by role: hair 2 · tight 4 · related 8 · group 12 · inset 16 · comfort 20 · section 24 · block 32 · page 48 · stage 64 · screen 80. */
+  --space-hair: 2px; --space-tight: 4px; --space-related: 8px; --space-group: 12px; --space-inset: 16px; --space-comfort: 20px;
   --space-section: 24px; --space-block: 32px; --space-page: 48px; --space-stage: 64px; --space-screen: 80px;
   /* Radius, by role: detail for small marks and swatches, control for buttons and fields, container for cards and menus,
      overlay for dialogs and sheets, full for pills and dots. Every corner in every component reads one of these.
@@ -123,6 +144,14 @@
   --shadow-resting: 0 1px 2px oklch(0% 0 0 / .18);
   --shadow-raised: 0 8px 22px oklch(0% 0 0 / .22);
   --shadow-floating: 0 22px 55px oklch(0% 0 0 / .34);
+  --scrim: oklch(0% 0 0 / .52);
+  --shade: oklch(0% 0 0 / .22);
+  --shadow-thumb: inset 0 1px 0 oklch(100% 0 0 / .05), 0 1px 2px oklch(0% 0 0 / .3);
+  --shadow-drop: drop-shadow(0 20px 44px oklch(0% 0 0 / .5));
+  --shadow-showcase: inset 0 1px 0 color-mix(in oklab, var(--foreground) 8%, transparent), 0 10px 30px -12px rgb(0 0 0 / .6);
+  --shadow-showcase-lg: inset 0 1px 0 color-mix(in oklab, var(--foreground) 9%, transparent), 0 24px 48px -16px rgb(0 0 0 / .6), 0 60px 140px -40px rgb(40 50 140 / .35);
+  --syntax-string: oklch(77% .15 150); --syntax-number: oklch(80% .14 75); --syntax-keyword: oklch(78% .16 285);
+  --syntax-type: oklch(79% .13 230); --syntax-function: oklch(80% .13 25); --syntax-property: oklch(79% .12 85);
   --silicon-gradient-from: oklch(38% .05 300);
   --silicon-gradient-to: oklch(40% .045 60);
   --silicon-gradient-foreground: oklch(96% .005 300);

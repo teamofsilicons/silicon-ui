@@ -1,7 +1,7 @@
 .root {
   position: relative;
   display: grid;
-  gap: 10px;
+  gap: var(--space-group);
   color: var(--foreground);
   font-family: var(--font-body);
   font-size: var(--text-sm);
@@ -10,7 +10,7 @@
 }
 .root *, .root *::before, .root *::after { box-sizing: border-box; }
 .root[data-layout="grid"] { grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--min-column, 180px)), 1fr)); }
-.root[data-layout="list"] { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.root[data-layout="list"] { grid-template-columns: minmax(0, 1fr); gap: var(--space-related); }
 
 /* The one moving part: a ring that springs from card to card. It sits over the card border so the card itself never changes size. */
 .ring {
@@ -28,8 +28,8 @@
   display: grid;
   min-width: 0;
   align-items: start;
-  gap: 4px 12px;
-  padding: 14px 16px;
+  gap: var(--space-tight) var(--space-group);
+  padding: var(--space-inset) var(--space-inset);
   border: 1px solid var(--border);
   border-radius: var(--radius-control); corner-shape: var(--corner-shape);
   background: var(--surface);
@@ -40,7 +40,7 @@
 }
 /* The body row takes any spare height, so prices sit on one baseline across a row even when a description wraps. */
 .root[data-layout="grid"] .card { grid-template-areas: "body indicator" "meta meta"; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: minmax(0, 1fr) auto; }
-.root[data-layout="list"] .card { grid-template-areas: "indicator body meta"; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; padding: 13px 16px 13px 14px; }
+.root[data-layout="list"] .card { grid-template-areas: "indicator body meta"; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; padding: var(--space-group) var(--space-inset) var(--space-group) var(--space-inset); }
 .card[data-checked] { background: color-mix(in oklab, var(--control-on) 4%, var(--surface)); }
 .card[aria-disabled="true"] { background: var(--surface-muted); cursor: not-allowed; }
 .card[aria-disabled="true"] :is(.label, .meta) { color: var(--text-muted); }
@@ -61,8 +61,8 @@
 .indicatorDot { width: 6px; height: 6px; border-radius: 50%; corner-shape: round; background: var(--control-glyph); }
 .card[aria-disabled="true"] .indicator { border-color: var(--border); }
 
-.body { display: grid; min-width: 0; gap: 2px; grid-area: body; }
-.label { display: flex; min-width: 0; align-items: center; gap: 8px; font-weight: 500; }
+.body { display: grid; min-width: 0; gap: var(--space-hair); grid-area: body; }
+.label { display: flex; min-width: 0; align-items: center; gap: var(--space-related); font-weight: 500; }
 .labelText { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .icon { display: grid; width: 18px; height: 18px; flex: none; place-items: center; color: var(--text-secondary); }
 .icon > svg { width: 18px; height: 18px; }
@@ -70,7 +70,7 @@
 .description { color: var(--text-secondary); font-size: var(--text-xs); line-height: var(--leading-body); text-wrap: pretty; }
 
 .meta { grid-area: meta; color: var(--foreground); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.root[data-layout="grid"] .meta { margin-top: 10px; font-size: var(--text-lg); }
+.root[data-layout="grid"] .meta { margin-top: var(--space-group); font-size: var(--text-lg); }
 .root[data-layout="list"] .meta { font-weight: 500; }
 
 @media (hover: hover) and (pointer: fine) {

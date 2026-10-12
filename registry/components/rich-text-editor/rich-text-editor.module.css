@@ -10,7 +10,7 @@
 /* The writing surface. Everything inside is plain semantic HTML, styled here so pasted and typed content look the same. */
 .editor {
   min-height: 8rem;
-  padding: 2px 0;
+  padding: var(--space-hair) 0;
   outline: none;
   color: var(--foreground);
   font-size: var(--text-base);
@@ -48,7 +48,7 @@
   font-size: .86em;
 }
 
-.editor blockquote { padding-left: 14px; border-left: 2px solid var(--border-strong); color: var(--text-secondary); }
+.editor blockquote { padding-left: var(--space-inset); border-left: 2px solid var(--border-strong); color: var(--text-secondary); }
 
 .editor ul,
 .editor ol { margin-block: 0; padding-left: 1.45em; }
@@ -63,7 +63,7 @@
 .editor ol > li::marker { font-variant-numeric: tabular-nums; }
 
 .editor pre {
-  padding: 12px 14px;
+  padding: var(--space-group) var(--space-inset);
   overflow-x: auto;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-control);
@@ -104,11 +104,11 @@
 .face[inert] { pointer-events: none; }
 
 .row,
-.linkRow { display: flex; align-items: center; gap: 2px; padding: 4px; }
-.blockTools { display: flex; align-items: center; gap: 2px; }
+.linkRow { display: flex; align-items: center; gap: var(--space-hair); padding: var(--space-tight); }
+.blockTools { display: flex; align-items: center; gap: var(--space-hair); }
 /* Narrow editors keep the inline marks; block types stay one slash away. */
 @container (max-width: 330px) { .blockTools { display: none; } }
-.divider { width: 1px; height: 18px; margin: 0 4px; background: var(--border); }
+.divider { width: 1px; height: 18px; margin: 0 var(--space-tight); background: var(--border); }
 
 .tool {
   display: grid;
@@ -134,7 +134,7 @@
   width: min(15rem, 60vw);
   height: 32px;
   min-width: 0;
-  padding: 0 8px;
+  padding: 0 var(--space-related);
   border: 0;
   background: transparent;
   color: var(--foreground);
@@ -176,7 +176,7 @@
   box-shadow: var(--shadow-floating);
 }
 .slash[data-above] { translate: 0 -100%; }
-.slashBody { padding: 6px; }
+.slashBody { padding: var(--space-related); }
 .slashList { position: relative; display: grid; margin: 0; padding: 0; list-style: none; }
 .slashHighlight { position: absolute; top: 0; right: 0; left: 0; border-radius: var(--radius-control); background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
 .slashOption {
@@ -184,8 +184,8 @@
   display: flex;
   height: 34px;
   align-items: center;
-  gap: 10px;
-  padding: 0 10px;
+  gap: var(--space-group);
+  padding: 0 var(--space-group);
   border-radius: var(--radius-control);
   color: var(--text-secondary);
   cursor: pointer;

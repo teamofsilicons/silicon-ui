@@ -15,6 +15,6 @@
 .stat { display: flex; flex-direction: column-reverse; }
 .stat dt { color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); }
 .stat dd { margin: 0; color: var(--foreground); font-size: var(--text-base); font-variant-numeric: tabular-nums; font-weight: 500; line-height: var(--leading-body); }
-.meta { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); }
+.meta { display: flex; align-items: center; gap: var(--space-related); color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); }
 .meta svg { flex: none; }
 @media (prefers-reduced-motion: reduce) { .avatar img { transition: none; } .avatar img[data-loading] { filter: none; } }

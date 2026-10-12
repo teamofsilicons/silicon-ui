@@ -35,7 +35,7 @@
 .wide { width: 100%; }
 /* Rings leave the fingerprint while the device is asked. They sit in the label, so they take the button's text color. */
 .pulse { position: relative; display: inline-grid; place-items: center; }
-.pulseRing { position: absolute; inset: -2px; border: 1.5px solid currentColor; border-radius: var(--radius-full); corner-shape: round; pointer-events: none; }
+.pulseRing { position: absolute; inset: calc(var(--space-hair) * -1); border: 1.5px solid currentColor; border-radius: var(--radius-full); corner-shape: round; pointer-events: none; }
 
 .divider { display: flex; align-items: center; gap: var(--space-group); margin: var(--space-comfort) 0; color: var(--text-muted); font-size: var(--text-xs); line-height: 1; }
 .divider::before, .divider::after { flex: 1; height: 1px; background: var(--border); content: ""; }
@@ -82,7 +82,7 @@
   .stage { padding-inline: var(--space-group); }
   .step { padding-inline: var(--space-comfort); }
   .heading h2 { font-size: var(--text-2xl); }
-  .sso .ssoButton { gap: 6px; padding-inline: var(--space-tight); font-size: var(--text-xs); }
+  .sso .ssoButton { gap: var(--space-related); padding-inline: var(--space-tight); font-size: var(--text-xs); }
   .switchButton { padding-inline: var(--space-related); }
 }
 @media (prefers-reduced-motion: reduce) {

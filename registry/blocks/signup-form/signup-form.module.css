@@ -23,7 +23,7 @@
 .feedbackText { position: relative; min-width: 0; flex: 1; color: var(--text-muted); }
 .feedbackText > span { display: block; }
 .feedbackText[data-error] { color: var(--danger); }
-.meter { display: flex; flex: none; gap: 3px; }
+.meter { display: flex; flex: none; gap: var(--space-tight); }
 .meter span { width: 20px; height: 3px; border-radius: var(--radius-full); corner-shape: round; background: var(--border); transition: background-color var(--duration-fast) var(--ease-standard); }
 .meter span[data-on] { background: var(--accent); }
 .meter[data-level="1"] span[data-on] { background: var(--danger); }
@@ -31,7 +31,7 @@
 .meter[data-level="4"] span[data-on] { background: var(--success); }
 
 /* The checkbox keeps a full size hit area; pull it out so the square lines up with the fields. */
-.updates { margin: calc(var(--space-related) * -1) 0 calc(var(--space-related) * -1) calc((var(--control-height-md) - 18px) / -2); }
+.updates { margin: calc(var(--space-related) * -1) 0 calc(var(--space-related) * -1) calc((var(--control-height-md) - var(--space-comfort)) / -2); }
 .row { overflow: hidden; }
 .submitError { margin: 0; color: var(--danger); font-size: var(--text-xs); line-height: var(--leading-body); }
 .legal { margin: var(--space-inset) 0 0; color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); text-wrap: pretty; }
@@ -56,7 +56,7 @@
 @container signup (max-width: 380px) {
   .step { padding: var(--space-section) var(--space-comfort); }
   .heading h2 { font-size: var(--text-2xl); }
-  .sso .ssoButton { gap: 6px; font-size: var(--text-xs); }
+  .sso .ssoButton { gap: var(--space-related); font-size: var(--text-xs); }
   .footer { padding-inline: var(--space-comfort); }
   .meter span { width: 14px; }
 }

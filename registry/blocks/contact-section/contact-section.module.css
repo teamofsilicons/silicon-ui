@@ -4,7 +4,7 @@
 .inner { display: grid; max-width: 1120px; gap: var(--space-page); margin: 0 auto; padding: var(--space-screen) var(--space-block); }
 .contact[data-variant="form"] .inner { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; gap: var(--space-page); }
 .intro { display: grid; align-content: start; gap: var(--space-group); max-width: 520px; }
-.title { margin: 0; font-family: var(--font-display); font-size: clamp(1.75rem, 1rem + 3cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
+.title { margin: 0; font-family: var(--font-display); font-size: clamp(var(--text-2xl), var(--text-base) + 3cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
 .description { margin: 0; color: var(--text-secondary); font-size: var(--text-base); line-height: 1.5; text-wrap: pretty; }
 .facts { display: grid; gap: var(--space-related); margin: var(--space-inset) 0 0; padding: 0; list-style: none; }
 .facts li { display: flex; min-height: 32px; align-items: center; gap: var(--space-related); color: var(--text-secondary); font-size: var(--text-sm); }
@@ -37,7 +37,7 @@
 
 /* Channels: a tab list beside one detail surface that morphs to each channel. */
 .channels { display: grid; grid-template-columns: minmax(220px, 300px) minmax(0, 1fr); align-items: start; gap: var(--space-section); }
-.channelList { display: grid; gap: 2px; }
+.channelList { display: grid; gap: var(--space-hair); }
 .channel { position: relative; isolation: isolate; display: flex; align-items: center; gap: var(--space-group); border: 0; border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: var(--space-group) var(--space-inset); background: none; color: var(--foreground); font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .channelHighlight { position: absolute; z-index: -1; inset: 0; border-radius: inherit; corner-shape: inherit; background: var(--surface-muted); }
 .channelIcon { display: flex; flex: none; color: var(--text-muted); transition: color var(--duration-fast) var(--ease-standard); }
@@ -51,7 +51,7 @@
 .channelDetail { display: grid; justify-items: start; gap: var(--space-group); }
 .channelDetail h3 { margin: 0; font-size: var(--text-lg); font-weight: 500; line-height: var(--leading-body); }
 .channelDetail p { max-width: 480px; margin: 0 0 var(--space-related); color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.6; }
-.copyRow { display: flex; width: min(100%, 360px); align-items: center; justify-content: space-between; gap: var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 4px 4px 4px var(--space-inset); font-size: var(--text-sm); }
+.copyRow { display: flex; width: min(100%, 360px); align-items: center; justify-content: space-between; gap: var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: var(--space-tight) var(--space-tight) var(--space-tight) var(--space-inset); font-size: var(--text-sm); }
 .copyRow > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .confirm { display: grid; justify-items: start; gap: var(--space-related); }
 .confirmNote { overflow: hidden; color: var(--text-secondary); font-size: var(--text-sm); }
@@ -64,7 +64,7 @@
 .officeHead { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-group); }
 .officeHead h3 { margin: 0; font-size: var(--text-lg); font-weight: 500; line-height: var(--leading-body); }
 /* Baseline alignment lets the time text, not the clock icon, sit on the city's baseline. */
-.officeTime { display: inline-flex; flex: none; align-items: baseline; gap: 6px; color: var(--text-secondary); font-size: var(--text-sm); }
+.officeTime { display: inline-flex; flex: none; align-items: baseline; gap: var(--space-related); color: var(--text-secondary); font-size: var(--text-sm); }
 .officeTime svg { align-self: center; }
 .officeStatus { display: inline-flex; align-items: center; gap: var(--space-related); color: var(--text-secondary); font-size: var(--text-sm); }
 .statusDot { width: 7px; height: 7px; border-radius: 50%; corner-shape: round; background: var(--border-strong); transition: background-color var(--duration-standard) var(--ease-standard); }

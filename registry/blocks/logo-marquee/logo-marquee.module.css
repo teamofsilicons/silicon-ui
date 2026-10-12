@@ -17,8 +17,8 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
   align-items: end;
-  gap: 48px;
-  padding: 40px 40px 36px;
+  gap: var(--space-page);
+  padding: var(--space-page) var(--space-page) var(--space-block);
 }
 
 .intro h2 {
@@ -34,7 +34,7 @@
 
 .intro p {
   max-width: 36ch;
-  margin: 0 0 3px;
+  margin: 0 0 var(--space-tight);
   color: var(--text-secondary);
   font-size: var(--text-base);
   line-height: var(--leading-body);
@@ -46,7 +46,7 @@
   overflow: hidden;
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
-  padding-block: 32px;
+  padding-block: var(--space-block);
   mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
 }
@@ -71,9 +71,9 @@
   display: flex;
   flex: none;
   align-items: center;
-  gap: 56px;
+  gap: var(--space-stage);
   margin: 0;
-  padding: 0 56px 0 0;
+  padding: 0 var(--space-stage) 0 0;
   list-style: none;
 }
 
@@ -81,7 +81,7 @@
   display: inline-flex;
   flex: none;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-group);
   color: var(--text-secondary);
   white-space: nowrap;
 }
@@ -115,8 +115,8 @@ img.brandMark { background: none; object-fit: contain; }
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 16px;
-  padding: 10px 16px;
+  gap: var(--space-inset);
+  padding: var(--space-group) var(--space-inset);
 }
 
 .motionButton { color: var(--text-secondary); }
@@ -136,17 +136,17 @@ img.brandMark { background: none; object-fit: contain; }
 @container logos (max-width: 639px) {
   .intro {
     grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 28px 20px 24px;
+    gap: var(--space-group);
+    padding: var(--space-block) var(--space-comfort) var(--space-section);
   }
 
   .intro h2 { font-size: var(--text-2xl); }
   .intro p { font-size: var(--text-sm); }
-  .marquee { padding-block: 24px; }
-  .brandList { gap: 40px; padding-right: 40px; }
+  .marquee { padding-block: var(--space-section); }
+  .brandList { gap: var(--space-page); padding-right: var(--space-page); }
   .brandName { font-size: var(--text-base); }
   .brandMark { width: 20px; height: 20px; }
-  .footer { padding-inline: 12px; }
+  .footer { padding-inline: var(--space-group); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -156,7 +156,7 @@ img.brandMark { background: none; object-fit: contain; }
   }
 
   .track { width: auto; justify-content: center; }
-  .brandList { flex-wrap: wrap; justify-content: center; row-gap: 20px; padding: 0 24px; }
+  .brandList { flex-wrap: wrap; justify-content: center; row-gap: var(--space-comfort); padding: 0 var(--space-section); }
   .brandList[aria-hidden="true"] { display: none; }
   .footer { display: none; }
 }

@@ -31,7 +31,7 @@
 .connector { position: absolute; overflow: hidden; border-radius: var(--radius-full); corner-shape: round; background: var(--border); pointer-events: none; }
 .horizontal .connector { top: calc(var(--marker) / 2 - 1px); inset-inline: calc(var(--marker) + var(--halo) + var(--space-tight)) calc(var(--halo) + var(--space-tight)); height: 2px; }
 /* Both ends keep a clear gap from the markers, and from the current step's ring. */
-.vertical .connector { top: calc(var(--marker) + var(--halo) + 2px); bottom: calc(var(--halo) + 2px); inset-inline-start: calc(var(--marker) / 2 - 1px); width: 2px; }
+.vertical .connector { top: calc(var(--marker) + var(--halo) + var(--space-hair)); bottom: calc(var(--halo) + var(--space-hair)); inset-inline-start: calc(var(--marker) / 2 - 1px); width: 2px; }
 .fill { position: absolute; inset: 0; border-radius: inherit; corner-shape: inherit; background: var(--accent); }
 .horizontal .fill { transform-origin: left center; }
 .horizontal .fill:dir(rtl) { transform-origin: right center; }
@@ -39,14 +39,14 @@
 
 .text { display: grid; min-width: 0; }
 /* Centers the first line of the label on the marker. */
-.vertical .text { padding-top: .25rem; }
+.vertical .text { padding-top: var(--space-tight); }
 .label { display: block; color: var(--text-muted); font-size: var(--text-sm); font-weight: 500; line-height: 1.25rem; overflow-wrap: break-word; transition: color var(--duration-standard) var(--ease-standard); }
 .item[data-status="complete"] .label { color: var(--text-secondary); }
 .item[data-status="current"] .label, .item[data-status="error"] .label { color: var(--foreground); }
 /* Changing text pops out of flow against this box while it leaves, so it must be the positioned parent. */
 .slot { display: block; }
 .slotInner { position: relative; display: block; }
-.description, .error { display: block; padding-top: 2px; font-size: var(--text-xs); font-weight: 400; line-height: var(--leading-body); overflow-wrap: break-word; }
+.description, .error { display: block; padding-top: var(--space-hair); font-size: var(--text-xs); font-weight: 400; line-height: var(--leading-body); overflow-wrap: break-word; }
 .description { color: var(--text-muted); }
 .error { color: var(--danger); }
 
