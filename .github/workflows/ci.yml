@@ -39,3 +39,6 @@ jobs:
 
       - name: Every component on tokens
         run: npm run check:tokens
+
+      - name: Experimental components pass their consistency check
+        run: npm run check:experimental

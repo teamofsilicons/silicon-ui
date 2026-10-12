@@ -7,6 +7,13 @@ Silicon UI ships two ways from the same source:
 - **The npm package** `@teamofsilicons/silicon-ui`: versioned, published by hand with the steps below. Components
   are installed this way.
 
+## Experimental components
+
+Experimental components ship in every release, so they can be tried in a real app, but `components.json` marks them
+and the ESLint guardrail rejects importing one unless the app opts in with `siliconUi({ allowExperimental: ["name"] })`.
+Promoting one to stable is a pull request that sets `"status": "stable"` in `registry.json`, then a normal release.
+See [new-components.md](new-components.md).
+
 ## Versioning
 
 Semantic versioning, while below 1.0:

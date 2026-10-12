@@ -5,6 +5,7 @@ import { DemoExamples, DemoPreview } from "./demo";
 
 const meta: Meta = {
   title: "Blocks/CTA section",
+  tags: ["stable"],
   component: demo.component as Meta["component"],
   args: (demo.props ?? {}) as Meta["args"],
   parameters: {

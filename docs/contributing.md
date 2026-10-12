@@ -1,5 +1,8 @@
 # Changing the library
 
+A new component or variant starts as a request: see [new-components.md](new-components.md) for when something new
+is needed at all, and the flow from request to stable. This page is how to build it.
+
 The library is the only place a component changes. When an app needs a fix, a variant or a new component, it is
 made here, released, and then used by the app. This keeps every app consistent and means a fix is made once.
 

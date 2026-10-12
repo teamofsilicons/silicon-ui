@@ -5,6 +5,7 @@ import { DemoPreview } from "./demo";
 
 const meta: Meta = {
   title: "Components/Data/Chat thread",
+  tags: ["stable"],
   component: demo.component as Meta["component"],
   args: (demo.props ?? {}) as Meta["args"],
   parameters: {

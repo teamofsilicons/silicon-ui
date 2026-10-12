@@ -4,11 +4,12 @@ import demo from "../site/demos/file-upload";
 import { DemoExamples, DemoPreview } from "./demo";
 
 const meta: Meta = {
-  title: "Blocks/File upload",
+  title: "Components/Composites/File upload",
+  tags: ["stable"],
   component: demo.component as Meta["component"],
   args: (demo.props ?? {}) as Meta["args"],
   parameters: {
-    layout: "padded",
+    layout: "centered",
     docs: { description: { component: "A complete file selection flow with constraints, progress, and error feedback. Live docs: https://ui.teamofsilicons.com/file-upload" } },
   },
 };

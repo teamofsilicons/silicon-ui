@@ -2,9 +2,12 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import demo from "../site/demos/tabs";
 import { DemoExamples, DemoPreview } from "./demo";
+import { ConsistencyReport } from "./report";
+import report from "./reports/tabs.json";
 
 const meta: Meta = {
   title: "Components/Disclosure/Tabs",
+  tags: ["stable"],
   component: demo.component as Meta["component"],
   args: (demo.props ?? {}) as Meta["args"],
   parameters: {
@@ -21,4 +24,9 @@ export const Default: StoryObj = {
 export const Examples: StoryObj = {
   parameters: { layout: "padded", controls: { disable: true } },
   render: () => <DemoExamples demo={demo as never} />,
+};
+
+export const Consistency: StoryObj = {
+  parameters: { layout: "padded", controls: { disable: true } },
+  render: () => <ConsistencyReport report={report} />,
 };

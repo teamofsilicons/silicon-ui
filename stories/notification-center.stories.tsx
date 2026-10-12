@@ -4,7 +4,8 @@ import demo from "../site/demos/notification-center";
 import { DemoExamples, DemoPreview } from "./demo";
 
 const meta: Meta = {
-  title: "Blocks/Notification center",
+  title: "Components/Composites/Notification center",
+  tags: ["stable"],
   component: demo.component as Meta["component"],
   args: (demo.props ?? {}) as Meta["args"],
   parameters: {

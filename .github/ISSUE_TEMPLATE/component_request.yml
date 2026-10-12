@@ -1,41 +1,61 @@
 name: Component request
-description: Suggest a new component or block, or a new variant of an existing one.
+description: Ask for a new component, or a new variant of an existing one. Read docs/new-components.md first.
 title: "[Request]: "
-labels: ["component request"]
+labels: ["requested"]
 body:
   - type: markdown
     attributes:
       value: |
-        New items ship regularly. Check the [full library](https://ui.teamofsilicons.com) first, the thing you need may already be there under another name.
+        Most needs do not need a new component. Before asking, check the [inventory](https://github.com/teamofsilicons/silicon-ui/blob/main/docs/inventory.md) and work through the decision steps in [new-components.md](https://github.com/teamofsilicons/silicon-ui/blob/main/docs/new-components.md#1-decide-what-the-need-really-is).
+        A request moves through: **requested → approved → in design → experimental → stable** (or declined, with the alternative).
   - type: input
     id: name
     attributes:
       label: Name
-      placeholder: Kanban column, date range presets, ...
+      description: What it would be called, or the component a variant belongs to.
+      placeholder: "Tabs (icon variant), Date picker with year view, …"
     validations:
       required: true
   - type: dropdown
     id: kind
     attributes:
-      label: Kind
+      label: What are you asking for?
       options:
-        - Component
-        - Block (a section or screen)
-        - Variant of an existing item
+        - A variant of an existing component (step 4)
+        - A new component (step 5)
+        - A new token (step 3)
+        - Not sure
     validations:
       required: true
   - type: textarea
     id: job
     attributes:
-      label: What job does it do?
-      description: Describe the problem it solves and where you would use it.
+      label: The need
+      description: What job does it do, and on which screen do you need it? Link the design or a screenshot.
     validations:
       required: true
   - type: textarea
+    id: decision
+    attributes:
+      label: Why the earlier steps do not fit
+      description: |
+        For each step that does not answer the need, one line on why.
+        1. It exists (checked the inventory for …)
+        2. Composition (cannot be arranged from … because …)
+        3. Token (not a look difference because …)
+        4. Variant (for a new component: why a prop on an existing component would not work)
+    validations:
+      required: true
+  - type: textarea
+    id: reuse
+    attributes:
+      label: Where else will it be used?
+      description: A new component needs at least two uses, or a clear case that it is general.
+  - type: textarea
     id: behavior
     attributes:
-      label: Behavior and motion
-      description: How should it look, feel and respond to mouse, touch and keyboard?
+      label: Behaviour, states and motion
+      description: How it responds to mouse, touch and keyboard; the states it needs (hover, focus, disabled, loading, error, empty).
   - type: textarea
     id: references
     attributes:
@@ -44,6 +64,6 @@ body:
   - type: checkboxes
     id: contribute
     attributes:
-      label: Contributing
+      label: Building it
       options:
-        - label: I would like to help build it.
+        - label: I would like to build it once the plan is approved.

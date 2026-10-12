@@ -5,6 +5,7 @@ import { DemoExamples, DemoPreview } from "./demo";
 
 const meta: Meta = {
   title: "Blocks/Site header",
+  tags: ["stable"],
   component: demo.component as Meta["component"],
   args: (demo.props ?? {}) as Meta["args"],
   parameters: {

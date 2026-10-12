@@ -16,6 +16,8 @@ The rest of this folder explains each part.
 | [rules.md](rules.md) | Before building any screen |
 | [guardrails.md](guardrails.md) | Setting up the checks and the Claude Code hook in an app |
 | [ai-agents.md](ai-agents.md) | Letting AI agents build screens (the `AGENTS.md` block every app adds) |
+| [inventory.md](inventory.md) | Everything the library has, with variants and status (generated) |
+| [new-components.md](new-components.md) | Needing something new: when it is a new component or a variant, and the flow from request to stable |
 | [contributing.md](contributing.md) | Fixing a component, adding a variant or a new component |
 | [releasing.md](releasing.md) | Publishing a new version to npm |
 

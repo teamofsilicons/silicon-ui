@@ -5,6 +5,7 @@ import { DemoExamples, DemoPreview } from "./demo";
 
 const meta: Meta = {
   title: "Components/Data/Metric card",
+  tags: ["stable"],
   component: demo.component as Meta["component"],
   args: (demo.props ?? {}) as Meta["args"],
   parameters: {

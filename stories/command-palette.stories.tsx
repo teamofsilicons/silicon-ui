@@ -4,11 +4,12 @@ import demo from "../site/demos/command-palette";
 import { DemoPreview } from "./demo";
 
 const meta: Meta = {
-  title: "Blocks/Command palette",
+  title: "Components/Composites/Command palette",
+  tags: ["stable"],
   component: demo.component as Meta["component"],
   args: (demo.props ?? {}) as Meta["args"],
   parameters: {
-    layout: "padded",
+    layout: "centered",
     docs: { description: { component: "A complete keyboard driven action surface with search, grouped results, and shortcuts. Live docs: https://ui.teamofsilicons.com/command-palette" } },
   },
 };

@@ -1,0 +1,2265 @@
+[
+  {
+    "name": "action-button",
+    "title": "Action button",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "A compact button for frequent toolbar actions.",
+    "variants": {},
+    "composes": [
+      "text-morph"
+    ],
+    "import": "@teamofsilicons/silicon-ui/action-button",
+    "docs": "https://ui.teamofsilicons.com/action-button",
+    "storybook": "components-actions-action-button--default"
+  },
+  {
+    "name": "button",
+    "title": "Button",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "A clear, responsive action with quiet secondary states.",
+    "variants": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/button",
+    "docs": "https://ui.teamofsilicons.com/button",
+    "storybook": "components-actions-button--default"
+  },
+  {
+    "name": "button-group",
+    "title": "Button group",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "Related actions joined into one surface with hairline dividers: a hover highlight glides between segments, the pressed one answers in place, and an attached menu can close the row.",
+    "variants": {
+      "variant": [
+        "outline",
+        "solid"
+      ],
+      "size": [
+        "sm",
+        "md"
+      ],
+      "orientation": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/button-group",
+    "docs": "https://ui.teamofsilicons.com/button-group",
+    "storybook": "components-actions-button-group--default"
+  },
+  {
+    "name": "button-link",
+    "title": "Button link",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "A link that looks exactly like a button, for actions that go somewhere.",
+    "variants": {},
+    "composes": [
+      "button"
+    ],
+    "import": "@teamofsilicons/silicon-ui/button-link",
+    "docs": "https://ui.teamofsilicons.com/button-link",
+    "storybook": "components-actions-button-link--default"
+  },
+  {
+    "name": "confirm-morph",
+    "title": "Confirm morph",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "A destructive button that morphs into an inline confirmation, a spinner, and a result with undo.",
+    "variants": {
+      "tone": [
+        "danger",
+        "neutral"
+      ],
+      "confirmMode": [
+        "press",
+        "hold",
+        "countdown"
+      ],
+      "state": [
+        "idle",
+        "confirming",
+        "pending",
+        "done",
+        "error"
+      ],
+      "defaultState": [
+        "idle",
+        "confirming",
+        "pending",
+        "done",
+        "error"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/confirm-morph",
+    "docs": "https://ui.teamofsilicons.com/confirm-morph",
+    "storybook": "components-actions-confirm-morph--default"
+  },
+  {
+    "name": "context-menu",
+    "title": "Context menu",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "Secondary actions kept close to the selected object.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/context-menu",
+    "docs": "https://ui.teamofsilicons.com/context-menu",
+    "storybook": "components-actions-context-menu--default"
+  },
+  {
+    "name": "copy-button",
+    "title": "Copy button",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "Copy a value with immediate confirmation.",
+    "variants": {
+      "variant": [
+        "outline",
+        "plain"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/copy-button",
+    "docs": "https://ui.teamofsilicons.com/copy-button",
+    "storybook": "components-actions-copy-button--default"
+  },
+  {
+    "name": "dropdown-menu",
+    "title": "Dropdown menu",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "A focused list of actions anchored to a trigger.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/dropdown-menu",
+    "docs": "https://ui.teamofsilicons.com/dropdown-menu",
+    "storybook": "components-actions-dropdown-menu--default"
+  },
+  {
+    "name": "theme-switch-eclipse",
+    "title": "Eclipse",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "The next appearance crosses the page like an eclipse.",
+    "variants": {
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "variant": [
+        "reveal",
+        "eclipse",
+        "split",
+        "rise"
+      ]
+    },
+    "composes": [
+      "button"
+    ],
+    "import": "@teamofsilicons/silicon-ui/theme-switch-eclipse",
+    "docs": "https://ui.teamofsilicons.com/theme-switch-eclipse",
+    "storybook": "components-actions-eclipse--default"
+  },
+  {
+    "name": "expanding-button-group",
+    "title": "Expanding button group",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "Icon buttons in a compact group: the one you point at or focus grows to reveal its label while its neighbours slide aside, and an action confirms in place.",
+    "variants": {
+      "size": [
+        "sm",
+        "md"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/expanding-button-group",
+    "docs": "https://ui.teamofsilicons.com/expanding-button-group",
+    "storybook": "components-actions-expanding-button-group--default"
+  },
+  {
+    "name": "floating-button-group",
+    "title": "Floating button group",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "Separate soft buttons in a quiet tray, with one shared highlight that morphs from button to button as you move, and a pressed state that settles in place.",
+    "variants": {
+      "variant": [
+        "muted",
+        "floating"
+      ],
+      "size": [
+        "sm",
+        "md"
+      ],
+      "orientation": [
+        "horizontal",
+        "vertical"
+      ],
+      "tooltipSide": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ]
+    },
+    "composes": [
+      "tooltip"
+    ],
+    "import": "@teamofsilicons/silicon-ui/floating-button-group",
+    "docs": "https://ui.teamofsilicons.com/floating-button-group",
+    "storybook": "components-actions-floating-button-group--default"
+  },
+  {
+    "name": "hold-to-confirm",
+    "title": "Hold to confirm",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "Confirm a destructive action by holding, not tapping.",
+    "variants": {
+      "tone": [
+        "accent",
+        "danger",
+        "neutral"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/hold-to-confirm",
+    "docs": "https://ui.teamofsilicons.com/hold-to-confirm",
+    "storybook": "components-actions-hold-to-confirm--default"
+  },
+  {
+    "name": "theme-switch-rise",
+    "title": "Rise",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "The next appearance rises into place.",
+    "variants": {
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "variant": [
+        "reveal",
+        "eclipse",
+        "split",
+        "rise"
+      ]
+    },
+    "composes": [
+      "button"
+    ],
+    "import": "@teamofsilicons/silicon-ui/theme-switch-rise",
+    "docs": "https://ui.teamofsilicons.com/theme-switch-rise",
+    "storybook": "components-actions-rise--default"
+  },
+  {
+    "name": "theme-switch-split",
+    "title": "Split",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "The next appearance opens from a slim center seam.",
+    "variants": {
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "variant": [
+        "reveal",
+        "eclipse",
+        "split",
+        "rise"
+      ]
+    },
+    "composes": [
+      "button"
+    ],
+    "import": "@teamofsilicons/silicon-ui/theme-switch-split",
+    "docs": "https://ui.teamofsilicons.com/theme-switch-split",
+    "storybook": "components-actions-split--default"
+  },
+  {
+    "name": "split-button",
+    "title": "Split button",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "A primary action with a menu of nearby alternatives.",
+    "variants": {
+      "variant": [
+        "primary",
+        "secondary"
+      ]
+    },
+    "composes": [
+      "text-morph"
+    ],
+    "import": "@teamofsilicons/silicon-ui/split-button",
+    "docs": "https://ui.teamofsilicons.com/split-button",
+    "storybook": "components-actions-split-button--default"
+  },
+  {
+    "name": "swipe-actions",
+    "title": "Swipe actions",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "Reveal row actions with a swipe, or from the same actions in a menu.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/swipe-actions",
+    "docs": "https://ui.teamofsilicons.com/swipe-actions",
+    "storybook": "components-actions-swipe-actions--default"
+  },
+  {
+    "name": "theme-switch",
+    "title": "Theme switcher",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "Four smooth ways to move between light and dark appearance.",
+    "variants": {
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "variant": [
+        "reveal",
+        "eclipse",
+        "split",
+        "rise"
+      ]
+    },
+    "composes": [
+      "button"
+    ],
+    "import": "@teamofsilicons/silicon-ui/theme-switch",
+    "docs": "https://ui.teamofsilicons.com/theme-switch",
+    "storybook": "components-actions-theme-switcher--default"
+  },
+  {
+    "name": "user-menu",
+    "title": "User menu",
+    "kind": "component",
+    "category": "Actions",
+    "status": "stable",
+    "description": "Your account, settings, theme, and sign out behind the avatar. Opens as a bottom sheet on phones.",
+    "variants": {
+      "status": [
+        "available",
+        "busy",
+        "away"
+      ],
+      "defaultStatus": [
+        "available",
+        "busy",
+        "away"
+      ],
+      "theme": [
+        "light",
+        "dark",
+        "system"
+      ],
+      "defaultTheme": [
+        "light",
+        "dark",
+        "system"
+      ],
+      "align": [
+        "start",
+        "center",
+        "end"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/user-menu",
+    "docs": "https://ui.teamofsilicons.com/user-menu",
+    "storybook": "components-actions-user-menu--default"
+  },
+  {
+    "name": "command-palette",
+    "title": "Command palette",
+    "kind": "component",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A complete keyboard driven action surface with search, grouped results, and shortcuts.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/command-palette",
+    "docs": "https://ui.teamofsilicons.com/command-palette",
+    "storybook": "components-composites-command-palette--default"
+  },
+  {
+    "name": "file-upload",
+    "title": "File upload",
+    "kind": "component",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A complete file selection flow with constraints, progress, and error feedback.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/file-upload",
+    "docs": "https://ui.teamofsilicons.com/file-upload",
+    "storybook": "components-composites-file-upload--default"
+  },
+  {
+    "name": "notification-center",
+    "title": "Notification center",
+    "kind": "component",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A home for updates with read state, grouped information, and animated disclosure.",
+    "variants": {},
+    "composes": [
+      "avatar"
+    ],
+    "import": "@teamofsilicons/silicon-ui/notification-center",
+    "docs": "https://ui.teamofsilicons.com/notification-center",
+    "storybook": "components-composites-notification-center--default"
+  },
+  {
+    "name": "otp-input",
+    "title": "OTP input",
+    "kind": "component",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A six digit verification flow with paste support and keyboard navigation.",
+    "variants": {
+      "inputMode": [
+        "numeric",
+        "text"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/otp-input",
+    "docs": "https://ui.teamofsilicons.com/otp-input",
+    "storybook": "components-composites-otp-input--default"
+  },
+  {
+    "name": "activity-heatmap",
+    "title": "Activity heatmap",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "See a year of activity at a glance, one square per day.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/activity-heatmap",
+    "docs": "https://ui.teamofsilicons.com/activity-heatmap",
+    "storybook": "components-data-activity-heatmap--default"
+  },
+  {
+    "name": "animated-counter",
+    "title": "Animated counter",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Give changing totals a clear sense of movement.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/animated-counter",
+    "docs": "https://ui.teamofsilicons.com/animated-counter",
+    "storybook": "components-data-animated-counter--default"
+  },
+  {
+    "name": "avatar",
+    "title": "Avatar",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A compact identity marker for people and accounts.",
+    "variants": {
+      "size": [
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "status": [
+        "online",
+        "offline"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/avatar",
+    "docs": "https://ui.teamofsilicons.com/avatar",
+    "storybook": "components-data-avatar--default"
+  },
+  {
+    "name": "avatar-group",
+    "title": "Avatar group",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Show a team or set of contributors in a small space.",
+    "variants": {
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "composes": [
+      "avatar"
+    ],
+    "import": "@teamofsilicons/silicon-ui/avatar-group",
+    "docs": "https://ui.teamofsilicons.com/avatar-group",
+    "storybook": "components-data-avatar-group--default"
+  },
+  {
+    "name": "badge",
+    "title": "Badge",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A small label for status, category, or metadata.",
+    "variants": {
+      "tone": [
+        "neutral",
+        "success",
+        "info",
+        "warning",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/badge",
+    "docs": "https://ui.teamofsilicons.com/badge",
+    "storybook": "components-data-badge--default"
+  },
+  {
+    "name": "bar-chart",
+    "title": "Bar chart",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Compare one measure across days and scrub any bar for its value.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/bar-chart",
+    "docs": "https://ui.teamofsilicons.com/bar-chart",
+    "storybook": "components-data-bar-chart--default"
+  },
+  {
+    "name": "brush-chart",
+    "title": "Brush chart",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A dense time series with an overview strip: drag a window to zoom, resize it by its handles, and read events in place.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/brush-chart",
+    "docs": "https://ui.teamofsilicons.com/brush-chart",
+    "storybook": "components-data-brush-chart--default"
+  },
+  {
+    "name": "card",
+    "title": "Card",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A contained group of related content and actions.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/card",
+    "docs": "https://ui.teamofsilicons.com/card",
+    "storybook": "components-data-card--default"
+  },
+  {
+    "name": "card-stack",
+    "title": "Card stack",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Review a deck one card at a time, with a throw and an undo.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/card-stack",
+    "docs": "https://ui.teamofsilicons.com/card-stack",
+    "storybook": "components-data-card-stack--default"
+  },
+  {
+    "name": "carousel",
+    "title": "Carousel",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Browse a row of slides by dragging, flicking, or arrowing through them.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/carousel",
+    "docs": "https://ui.teamofsilicons.com/carousel",
+    "storybook": "components-data-carousel--default"
+  },
+  {
+    "name": "chat-thread",
+    "title": "Chat thread",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A chat thread with grouped messages, reactions, read receipts, typing, and a composer with attachments.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/chat-thread",
+    "docs": "https://ui.teamofsilicons.com/chat-thread",
+    "storybook": "components-data-chat-thread--default"
+  },
+  {
+    "name": "code-block",
+    "title": "Code block",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Present code with legible hierarchy and copy access.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/code-block",
+    "docs": "https://ui.teamofsilicons.com/code-block",
+    "storybook": "components-data-code-block--default"
+  },
+  {
+    "name": "comment-thread",
+    "title": "Comment thread",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Threaded comments with replies, reactions, mentions, inline edit, and resolve.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/comment-thread",
+    "docs": "https://ui.teamofsilicons.com/comment-thread",
+    "storybook": "components-data-comment-thread--default"
+  },
+  {
+    "name": "donut-chart",
+    "title": "Donut chart",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A donut whose arcs morph between datasets, with the active value rolling into the center.",
+    "variants": {
+      "legendAction": [
+        "toggle",
+        "select"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/donut-chart",
+    "docs": "https://ui.teamofsilicons.com/donut-chart",
+    "storybook": "components-data-donut-chart--default"
+  },
+  {
+    "name": "empty-state",
+    "title": "Empty state",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A useful next step when there is nothing to show yet.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/empty-state",
+    "docs": "https://ui.teamofsilicons.com/empty-state",
+    "storybook": "components-data-empty-state--default"
+  },
+  {
+    "name": "filter-toolbar",
+    "title": "Filter toolbar",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Keep collection filters close and easy to reset.",
+    "variants": {
+      "align": [
+        "start",
+        "end"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/filter-toolbar",
+    "docs": "https://ui.teamofsilicons.com/filter-toolbar",
+    "storybook": "components-data-filter-toolbar--default"
+  },
+  {
+    "name": "gauge",
+    "title": "Gauge",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Show a value against a known range.",
+    "variants": {
+      "tone": [
+        "accent",
+        "success",
+        "warning",
+        "danger"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/gauge",
+    "docs": "https://ui.teamofsilicons.com/gauge",
+    "storybook": "components-data-gauge--default"
+  },
+  {
+    "name": "image-compare",
+    "title": "Image compare",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Drag a divider across two images to see what changed.",
+    "variants": {
+      "orientation": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/image-compare",
+    "docs": "https://ui.teamofsilicons.com/image-compare",
+    "storybook": "components-data-image-compare--default"
+  },
+  {
+    "name": "json-viewer",
+    "title": "JSON viewer",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A collapsible JSON tree with search, paging for long arrays, and copy value or path.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/json-viewer",
+    "docs": "https://ui.teamofsilicons.com/json-viewer",
+    "storybook": "components-data-json-viewer--default"
+  },
+  {
+    "name": "line-chart",
+    "title": "Line chart",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A multi-series line chart with a gliding crosshair, legend toggles, and paths that morph between ranges.",
+    "variants": {
+      "curve": [
+        "smooth",
+        "linear"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/line-chart",
+    "docs": "https://ui.teamofsilicons.com/line-chart",
+    "storybook": "components-data-line-chart--default"
+  },
+  {
+    "name": "metric-card",
+    "title": "Metric card",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A compact summary for a number that needs context.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/metric-card",
+    "docs": "https://ui.teamofsilicons.com/metric-card",
+    "storybook": "components-data-metric-card--default"
+  },
+  {
+    "name": "pagination",
+    "title": "Pagination",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Move through a long collection with clear bounds.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/pagination",
+    "docs": "https://ui.teamofsilicons.com/pagination",
+    "storybook": "components-data-pagination--default"
+  },
+  {
+    "name": "ridgeline",
+    "title": "Ridgeline",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Overlapping distributions, one ridge per group: hover to lift a ridge and read its quartiles, switch datasets and every curve morphs.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/ridgeline",
+    "docs": "https://ui.teamofsilicons.com/ridgeline",
+    "storybook": "components-data-ridgeline--default"
+  },
+  {
+    "name": "slope-chart",
+    "title": "Slope chart",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Before and after on two axes: lines draw in, rank moves sit beside each value, and switching datasets slides every line to its new slope.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/slope-chart",
+    "docs": "https://ui.teamofsilicons.com/slope-chart",
+    "storybook": "components-data-slope-chart--default"
+  },
+  {
+    "name": "sortable-data-table",
+    "title": "Sortable data table",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Compare structured records with sortable columns.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/sortable-data-table",
+    "docs": "https://ui.teamofsilicons.com/sortable-data-table",
+    "storybook": "components-data-sortable-data-table--default"
+  },
+  {
+    "name": "sparkline",
+    "title": "Sparkline",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Show a compact trend beside a value.",
+    "variants": {
+      "tone": [
+        "accent",
+        "success",
+        "warning",
+        "danger"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/sparkline",
+    "docs": "https://ui.teamofsilicons.com/sparkline",
+    "storybook": "components-data-sparkline--default"
+  },
+  {
+    "name": "streamgraph",
+    "title": "Streamgraph",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Layered streams on a wiggle baseline that morph between ranges, with a layer you can isolate and read week by week.",
+    "variants": {
+      "offset": [
+        "wiggle",
+        "silhouette",
+        "zero"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/streamgraph",
+    "docs": "https://ui.teamofsilicons.com/streamgraph",
+    "storybook": "components-data-streamgraph--default"
+  },
+  {
+    "name": "timeline",
+    "title": "Timeline",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Follow what happened, newest first, grouped by day.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/timeline",
+    "docs": "https://ui.teamofsilicons.com/timeline",
+    "storybook": "components-data-timeline--default"
+  },
+  {
+    "name": "tree-view",
+    "title": "Tree view",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "Navigate nested folders and structured content.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/tree-view",
+    "docs": "https://ui.teamofsilicons.com/tree-view",
+    "storybook": "components-data-tree-view--default"
+  },
+  {
+    "name": "treemap",
+    "title": "Treemap",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A squarified treemap: click to drill and the tiles grow to fill the view, with a breadcrumb back and metrics that morph every tile.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/treemap",
+    "docs": "https://ui.teamofsilicons.com/treemap",
+    "storybook": "components-data-treemap--default"
+  },
+  {
+    "name": "waffle-chart",
+    "title": "Waffle chart",
+    "kind": "component",
+    "category": "Data",
+    "status": "stable",
+    "description": "A ten by ten unit chart where every cell is one percent, and cells fly to their new group when the data changes.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/waffle-chart",
+    "docs": "https://ui.teamofsilicons.com/waffle-chart",
+    "storybook": "components-data-waffle-chart--default"
+  },
+  {
+    "name": "accordion",
+    "title": "Accordion",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "Progressively reveal supporting information in place.",
+    "variants": {
+      "size": [
+        "md",
+        "lg"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/accordion",
+    "docs": "https://ui.teamofsilicons.com/accordion",
+    "storybook": "components-disclosure-accordion--default"
+  },
+  {
+    "name": "bottom-sheet",
+    "title": "Bottom sheet",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "A sheet that rests at a peek or full height and follows your finger.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/bottom-sheet",
+    "docs": "https://ui.teamofsilicons.com/bottom-sheet",
+    "storybook": "components-disclosure-bottom-sheet--default"
+  },
+  {
+    "name": "breadcrumb",
+    "title": "Breadcrumb",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "Show where a page sits in a hierarchy.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/breadcrumb",
+    "docs": "https://ui.teamofsilicons.com/breadcrumb",
+    "storybook": "components-disclosure-breadcrumb--default"
+  },
+  {
+    "name": "dialog",
+    "title": "Dialog",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "A focused surface for decisions that need attention.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/dialog",
+    "docs": "https://ui.teamofsilicons.com/dialog",
+    "storybook": "components-disclosure-dialog--default"
+  },
+  {
+    "name": "drawer",
+    "title": "Drawer",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "A temporary side surface for focused work.",
+    "variants": {
+      "side": [
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/drawer",
+    "docs": "https://ui.teamofsilicons.com/drawer",
+    "storybook": "components-disclosure-drawer--default"
+  },
+  {
+    "name": "expandable-card",
+    "title": "Expandable card",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "Give a dense card more room when requested.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/expandable-card",
+    "docs": "https://ui.teamofsilicons.com/expandable-card",
+    "storybook": "components-disclosure-expandable-card--default"
+  },
+  {
+    "name": "hover-card",
+    "title": "Hover card",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "Preview a person or link on hover or focus without leaving the page.",
+    "variants": {
+      "side": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ],
+      "align": [
+        "start",
+        "center",
+        "end"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/hover-card",
+    "docs": "https://ui.teamofsilicons.com/hover-card",
+    "storybook": "components-disclosure-hover-card--default"
+  },
+  {
+    "name": "popover",
+    "title": "Popover",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "A small anchored surface for contextual information.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/popover",
+    "docs": "https://ui.teamofsilicons.com/popover",
+    "storybook": "components-disclosure-popover--default"
+  },
+  {
+    "name": "resizable-panels",
+    "title": "Resizable panels",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "Trade space between panes by dragging the divider between them.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/resizable-panels",
+    "docs": "https://ui.teamofsilicons.com/resizable-panels",
+    "storybook": "components-disclosure-resizable-panels--default"
+  },
+  {
+    "name": "scroll-area",
+    "title": "Scroll area",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "A native scroll container with thin overlay scrollbars and edge fades that appear only when content overflows.",
+    "variants": {
+      "orientation": [
+        "vertical",
+        "horizontal",
+        "both"
+      ],
+      "scrollbars": [
+        "auto",
+        "always"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/scroll-area",
+    "docs": "https://ui.teamofsilicons.com/scroll-area",
+    "storybook": "components-disclosure-scroll-area--default"
+  },
+  {
+    "name": "tabs",
+    "title": "Tabs",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "Switch between related content in the same context.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/tabs",
+    "docs": "https://ui.teamofsilicons.com/tabs",
+    "storybook": "components-disclosure-tabs--default"
+  },
+  {
+    "name": "tooltip",
+    "title": "Tooltip",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "stable",
+    "description": "Short supporting text for unfamiliar controls.",
+    "variants": {
+      "side": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/tooltip",
+    "docs": "https://ui.teamofsilicons.com/tooltip",
+    "storybook": "components-disclosure-tooltip--default"
+  },
+  {
+    "name": "alert",
+    "title": "Alert",
+    "kind": "component",
+    "category": "Feedback",
+    "status": "stable",
+    "description": "A persistent message that helps people recover or continue.",
+    "variants": {
+      "tone": [
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/alert",
+    "docs": "https://ui.teamofsilicons.com/alert",
+    "storybook": "components-feedback-alert--default"
+  },
+  {
+    "name": "announcement-bar",
+    "title": "Announcement bar",
+    "kind": "component",
+    "category": "Feedback",
+    "status": "stable",
+    "description": "A top banner that rotates messages, counts down, and collapses smoothly when dismissed.",
+    "variants": {
+      "tone": [
+        "neutral",
+        "inverted"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/announcement-bar",
+    "docs": "https://ui.teamofsilicons.com/announcement-bar",
+    "storybook": "components-feedback-announcement-bar--default"
+  },
+  {
+    "name": "countdown",
+    "title": "Countdown",
+    "kind": "component",
+    "category": "Feedback",
+    "status": "stable",
+    "description": "A launch countdown with rolling digits that morphs into a live state at zero.",
+    "variants": {
+      "variant": [
+        "large",
+        "compact"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/countdown",
+    "docs": "https://ui.teamofsilicons.com/countdown",
+    "storybook": "components-feedback-countdown--default"
+  },
+  {
+    "name": "progress",
+    "title": "Progress",
+    "kind": "component",
+    "category": "Feedback",
+    "status": "stable",
+    "description": "Show how much of a known task is complete.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/progress",
+    "docs": "https://ui.teamofsilicons.com/progress",
+    "storybook": "components-feedback-progress--default"
+  },
+  {
+    "name": "skeleton",
+    "title": "Skeleton",
+    "kind": "component",
+    "category": "Feedback",
+    "status": "stable",
+    "description": "Reserve space while content is still loading.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/skeleton",
+    "docs": "https://ui.teamofsilicons.com/skeleton",
+    "storybook": "components-feedback-skeleton--default"
+  },
+  {
+    "name": "stepper",
+    "title": "Stepper",
+    "kind": "component",
+    "category": "Feedback",
+    "status": "stable",
+    "description": "Show where a person is in a multi-step flow and what is done.",
+    "variants": {
+      "orientation": [
+        "horizontal",
+        "vertical"
+      ],
+      "details": [
+        "all",
+        "current"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/stepper",
+    "docs": "https://ui.teamofsilicons.com/stepper",
+    "storybook": "components-feedback-stepper--default"
+  },
+  {
+    "name": "toast",
+    "title": "Toast",
+    "kind": "component",
+    "category": "Feedback",
+    "status": "stable",
+    "description": "Brief confirmation for a completed background action.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/toast",
+    "docs": "https://ui.teamofsilicons.com/toast",
+    "storybook": "components-feedback-toast--default"
+  },
+  {
+    "name": "toast-stack",
+    "title": "Toast stack",
+    "kind": "component",
+    "category": "Feedback",
+    "status": "stable",
+    "description": "Stack short results at the edge until you reach for them.",
+    "variants": {
+      "position": [
+        "bottom-right",
+        "bottom-center",
+        "bottom-left"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/toast-stack",
+    "docs": "https://ui.teamofsilicons.com/toast-stack",
+    "storybook": "components-feedback-toast-stack--default"
+  },
+  {
+    "name": "usage-meter",
+    "title": "Usage meter",
+    "kind": "component",
+    "category": "Feedback",
+    "status": "stable",
+    "description": "Show what fills an allowance and how close it is to the limit.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/usage-meter",
+    "docs": "https://ui.teamofsilicons.com/usage-meter",
+    "storybook": "components-feedback-usage-meter--default"
+  },
+  {
+    "name": "billing-toggle",
+    "title": "Billing toggle",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A monthly and yearly switch with a savings badge and prices that roll to the new amount.",
+    "variants": {
+      "size": [
+        "md",
+        "lg"
+      ]
+    },
+    "composes": [
+      "animated-counter"
+    ],
+    "import": "@teamofsilicons/silicon-ui/billing-toggle",
+    "docs": "https://ui.teamofsilicons.com/billing-toggle",
+    "storybook": "components-inputs-billing-toggle--default"
+  },
+  {
+    "name": "calendar",
+    "title": "Calendar",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Browse dates in a clear, compact month view.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/calendar",
+    "docs": "https://ui.teamofsilicons.com/calendar",
+    "storybook": "components-inputs-calendar--default"
+  },
+  {
+    "name": "checkbox",
+    "title": "Checkbox",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A binary choice with a precise, legible state.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/checkbox",
+    "docs": "https://ui.teamofsilicons.com/checkbox",
+    "storybook": "components-inputs-checkbox--default"
+  },
+  {
+    "name": "chip-group",
+    "title": "Chip group",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Filter by a few facets with chips that morph as you pick them.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/chip-group",
+    "docs": "https://ui.teamofsilicons.com/chip-group",
+    "storybook": "components-inputs-chip-group--default"
+  },
+  {
+    "name": "color-picker",
+    "title": "Color picker",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A swatch that grows into a picker with format morphing, eyedropper, saved swatches, and contrast readout.",
+    "variants": {
+      "defaultFormat": [
+        "hex",
+        "rgb",
+        "hsl",
+        "oklch"
+      ]
+    },
+    "composes": [
+      "text-morph"
+    ],
+    "import": "@teamofsilicons/silicon-ui/color-picker",
+    "docs": "https://ui.teamofsilicons.com/color-picker",
+    "storybook": "components-inputs-color-picker--default"
+  },
+  {
+    "name": "combobox",
+    "title": "Combobox",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Search and select from a list without leaving the field.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/combobox",
+    "docs": "https://ui.teamofsilicons.com/combobox",
+    "storybook": "components-inputs-combobox--default"
+  },
+  {
+    "name": "date-picker",
+    "title": "Date picker",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Choose a date without losing context.",
+    "variants": {},
+    "composes": [
+      "calendar"
+    ],
+    "import": "@teamofsilicons/silicon-ui/date-picker",
+    "docs": "https://ui.teamofsilicons.com/date-picker",
+    "storybook": "components-inputs-date-picker--default"
+  },
+  {
+    "name": "date-range-picker",
+    "title": "Date range picker",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A range picker that grows from its trigger into two months with presets and a stretching range highlight.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/date-range-picker",
+    "docs": "https://ui.teamofsilicons.com/date-range-picker",
+    "storybook": "components-inputs-date-range-picker--default"
+  },
+  {
+    "name": "elastic-slider",
+    "title": "Elastic slider",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A slider that stretches like rubber past its ends, with a swaying value tag and detents the thumb clicks into.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/elastic-slider",
+    "docs": "https://ui.teamofsilicons.com/elastic-slider",
+    "storybook": "components-inputs-elastic-slider--default"
+  },
+  {
+    "name": "expanding-search",
+    "title": "Expanding search",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "An icon that morphs into a search field with results beneath it.",
+    "variants": {
+      "anchor": [
+        "start",
+        "end"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/expanding-search",
+    "docs": "https://ui.teamofsilicons.com/expanding-search",
+    "storybook": "components-inputs-expanding-search--default"
+  },
+  {
+    "name": "file-dropzone",
+    "title": "File dropzone",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A generous target for dropping one or more files.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/file-dropzone",
+    "docs": "https://ui.teamofsilicons.com/file-dropzone",
+    "storybook": "components-inputs-file-dropzone--default"
+  },
+  {
+    "name": "inline-edit",
+    "title": "Inline edit",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Rename in place: the text becomes a field without moving.",
+    "variants": {
+      "variant": [
+        "title",
+        "body"
+      ],
+      "as": [
+        "span",
+        "p",
+        "h1",
+        "h2",
+        "h3"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/inline-edit",
+    "docs": "https://ui.teamofsilicons.com/inline-edit",
+    "storybook": "components-inputs-inline-edit--default"
+  },
+  {
+    "name": "input",
+    "title": "Input",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A single line field with clear labels and useful states.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/input",
+    "docs": "https://ui.teamofsilicons.com/input",
+    "storybook": "components-inputs-input--default"
+  },
+  {
+    "name": "mention-input",
+    "title": "Mention input",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A textarea with @people and #channel mentions that act as single tokens, with suggestions at the caret.",
+    "variants": {
+      "placement": [
+        "auto",
+        "top",
+        "bottom"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/mention-input",
+    "docs": "https://ui.teamofsilicons.com/mention-input",
+    "storybook": "components-inputs-mention-input--default"
+  },
+  {
+    "name": "money-input",
+    "title": "Money input",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A currency field with live grouping, stable width, rolling digits, and minor-unit output.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/money-input",
+    "docs": "https://ui.teamofsilicons.com/money-input",
+    "storybook": "components-inputs-money-input--default"
+  },
+  {
+    "name": "morph-select",
+    "title": "Morph select",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A select whose trigger grows into the list, with a gliding highlight and type-ahead.",
+    "variants": {
+      "align": [
+        "start",
+        "end"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/morph-select",
+    "docs": "https://ui.teamofsilicons.com/morph-select",
+    "storybook": "components-inputs-morph-select--default"
+  },
+  {
+    "name": "multi-select",
+    "title": "Multi-select",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Select several values while keeping the field readable.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/multi-select",
+    "docs": "https://ui.teamofsilicons.com/multi-select",
+    "storybook": "components-inputs-multi-select--default"
+  },
+  {
+    "name": "number-field",
+    "title": "Number field",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Enter a bounded number with clear increment controls.",
+    "variants": {
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/number-field",
+    "docs": "https://ui.teamofsilicons.com/number-field",
+    "storybook": "components-inputs-number-field--default"
+  },
+  {
+    "name": "password-field",
+    "title": "Password field",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Capture sensitive text with a visible reveal control.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/password-field",
+    "docs": "https://ui.teamofsilicons.com/password-field",
+    "storybook": "components-inputs-password-field--default"
+  },
+  {
+    "name": "password-strength",
+    "title": "Password strength",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Show how strong a new password is while it is typed.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/password-strength",
+    "docs": "https://ui.teamofsilicons.com/password-strength",
+    "storybook": "components-inputs-password-strength--default"
+  },
+  {
+    "name": "phone-input",
+    "title": "Phone input",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A phone field with a country picker, formatting as you type, and E.164 output.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/phone-input",
+    "docs": "https://ui.teamofsilicons.com/phone-input",
+    "storybook": "components-inputs-phone-input--default"
+  },
+  {
+    "name": "radio-cards",
+    "title": "Radio cards",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Selectable option cards with a sliding selection ring, price and description slots, and radio keyboard behavior.",
+    "variants": {
+      "layout": [
+        "grid",
+        "list"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/radio-cards",
+    "docs": "https://ui.teamofsilicons.com/radio-cards",
+    "storybook": "components-inputs-radio-cards--default"
+  },
+  {
+    "name": "radio-group",
+    "title": "Radio group",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Choose one option from a visible set.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/radio-group",
+    "docs": "https://ui.teamofsilicons.com/radio-group",
+    "storybook": "components-inputs-radio-group--default"
+  },
+  {
+    "name": "rich-text-editor",
+    "title": "Rich text editor",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A lightweight editor with markdown shortcuts, a floating toolbar, a slash menu, and HTML and markdown output.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/rich-text-editor",
+    "docs": "https://ui.teamofsilicons.com/rich-text-editor",
+    "storybook": "components-inputs-rich-text-editor--default"
+  },
+  {
+    "name": "search-field",
+    "title": "Search field",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A recognizable search entry point with clear affordances.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/search-field",
+    "docs": "https://ui.teamofsilicons.com/search-field",
+    "storybook": "components-inputs-search-field--default"
+  },
+  {
+    "name": "segmented-control",
+    "title": "Segmented control",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Switch between a small set of related views.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/segmented-control",
+    "docs": "https://ui.teamofsilicons.com/segmented-control",
+    "storybook": "components-inputs-segmented-control--default"
+  },
+  {
+    "name": "select",
+    "title": "Select",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A compact choice field with a keyboard friendly menu.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/select",
+    "docs": "https://ui.teamofsilicons.com/select",
+    "storybook": "components-inputs-select--default"
+  },
+  {
+    "name": "shortcut-recorder",
+    "title": "Shortcut recorder",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Record key combinations into key caps, with conflict warnings, Kbd, and a searchable cheatsheet.",
+    "variants": {
+      "size": [
+        "sm",
+        "md"
+      ],
+      "platform": [
+        "mac",
+        "other"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/shortcut-recorder",
+    "docs": "https://ui.teamofsilicons.com/shortcut-recorder",
+    "storybook": "components-inputs-shortcut-recorder--default"
+  },
+  {
+    "name": "signature-pad",
+    "title": "Signature pad",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Smooth ink that thins with speed, with undo, replay, and PNG or SVG export.",
+    "variants": {
+      "defaultColor": [
+        "black",
+        "blue",
+        "violet"
+      ],
+      "defaultWidth": [
+        "fine",
+        "medium",
+        "bold"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/signature-pad",
+    "docs": "https://ui.teamofsilicons.com/signature-pad",
+    "storybook": "components-inputs-signature-pad--default"
+  },
+  {
+    "name": "slider",
+    "title": "Slider",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Pick a value or a range on a track that follows your finger.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/slider",
+    "docs": "https://ui.teamofsilicons.com/slider",
+    "storybook": "components-inputs-slider--default"
+  },
+  {
+    "name": "switch",
+    "title": "Switch",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A tactile toggle for settings that take effect immediately.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/switch",
+    "docs": "https://ui.teamofsilicons.com/switch",
+    "storybook": "components-inputs-switch--default"
+  },
+  {
+    "name": "tag-input",
+    "title": "Tag input",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Turn short text values into removable tags.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/tag-input",
+    "docs": "https://ui.teamofsilicons.com/tag-input",
+    "storybook": "components-inputs-tag-input--default"
+  },
+  {
+    "name": "textarea",
+    "title": "Textarea",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "A multiline field for notes, descriptions, and longer text.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/textarea",
+    "docs": "https://ui.teamofsilicons.com/textarea",
+    "storybook": "components-inputs-textarea--default"
+  },
+  {
+    "name": "time-picker",
+    "title": "Time picker",
+    "kind": "component",
+    "category": "Inputs",
+    "status": "stable",
+    "description": "Choose a time with sensible keyboard behavior.",
+    "variants": {
+      "format": [
+        "12h",
+        "24h"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/time-picker",
+    "docs": "https://ui.teamofsilicons.com/time-picker",
+    "storybook": "components-inputs-time-picker--default"
+  },
+  {
+    "name": "slot-text",
+    "title": "Slot text",
+    "kind": "component",
+    "category": "Special",
+    "status": "stable",
+    "description": "Text and numbers that spin into their new value on staggered slot machine reels.",
+    "variants": {
+      "align": [
+        "start",
+        "end"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/slot-text",
+    "docs": "https://ui.teamofsilicons.com/slot-text",
+    "storybook": "components-special-slot-text--default"
+  },
+  {
+    "name": "in-view-title",
+    "title": "In-view title",
+    "kind": "component",
+    "category": "Text",
+    "status": "stable",
+    "description": "Bring a section title in as it scrolls into view.",
+    "variants": {
+      "variant": [
+        "word",
+        "line",
+        "blur",
+        "tracking",
+        "wipe"
+      ],
+      "as": [
+        "h1",
+        "h2",
+        "h3"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/in-view-title",
+    "docs": "https://ui.teamofsilicons.com/in-view-title",
+    "storybook": "components-text-in-view-title--default"
+  },
+  {
+    "name": "text-morph",
+    "title": "Text morph",
+    "kind": "component",
+    "category": "Text",
+    "status": "stable",
+    "description": "Morph a label into its next state, letter by letter.",
+    "variants": {
+      "as": [
+        "span",
+        "div",
+        "p",
+        "strong",
+        "h1",
+        "h2",
+        "h3"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/text-morph",
+    "docs": "https://ui.teamofsilicons.com/text-morph",
+    "storybook": "components-text-text-morph--default"
+  },
+  {
+    "name": "text-reveal",
+    "title": "Text reveal",
+    "kind": "component",
+    "category": "Text",
+    "status": "stable",
+    "description": "Reveal a short piece of content with restrained motion.",
+    "variants": {
+      "as": [
+        "h1",
+        "h2",
+        "h3",
+        "p"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/text-reveal",
+    "docs": "https://ui.teamofsilicons.com/text-reveal",
+    "storybook": "components-text-text-reveal--default"
+  },
+  {
+    "name": "text-shimmer",
+    "title": "Text shimmer",
+    "kind": "component",
+    "category": "Text",
+    "status": "stable",
+    "description": "Show ongoing work with a calm light across the words.",
+    "variants": {
+      "as": [
+        "span",
+        "p",
+        "div",
+        "h2",
+        "h3",
+        "h4"
+      ]
+    },
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/text-shimmer",
+    "docs": "https://ui.teamofsilicons.com/text-shimmer",
+    "storybook": "components-text-text-shimmer--default"
+  },
+  {
+    "name": "blog-grid",
+    "title": "Blog grid",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A blog index with a featured post, category filter, post cards, pagination and an in-place reader.",
+    "variants": {},
+    "composes": [],
+    "import": "npx shadcn@latest add @silicon-ui/blog-grid",
+    "docs": "https://ui.teamofsilicons.com/blog-grid",
+    "storybook": "blocks-blog-grid--default"
+  },
+  {
+    "name": "login-centered",
+    "title": "Centered login",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A passkey-first login card on a quiet ring backdrop that morphs through email and code.",
+    "variants": {},
+    "composes": [
+      "button",
+      "input",
+      "otp-input"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/login-centered",
+    "docs": "https://ui.teamofsilicons.com/login-centered",
+    "storybook": "blocks-centered-login--default"
+  },
+  {
+    "name": "changelog-feed",
+    "title": "Changelog feed",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "Release notes you can filter, open in place, and scroll through month by month.",
+    "variants": {},
+    "composes": [
+      "copy-button"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/changelog-feed",
+    "docs": "https://ui.teamofsilicons.com/changelog-feed",
+    "storybook": "blocks-changelog-feed--default"
+  },
+  {
+    "name": "comparison-table",
+    "title": "Comparison table",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "An us versus them table with a sticky header, a highlighted column, and a stacked phone view.",
+    "variants": {},
+    "composes": [],
+    "import": "npx shadcn@latest add @silicon-ui/comparison-table",
+    "docs": "https://ui.teamofsilicons.com/comparison-table",
+    "storybook": "blocks-comparison-table--default"
+  },
+  {
+    "name": "contact-section",
+    "title": "Contact section",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A validated contact form that morphs into a confirmation, support channels, and office cards with local times.",
+    "variants": {
+      "variant": [
+        "form",
+        "channels",
+        "offices"
+      ]
+    },
+    "composes": [
+      "avatar",
+      "button",
+      "copy-button",
+      "input",
+      "segmented-control",
+      "textarea"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/contact-section",
+    "docs": "https://ui.teamofsilicons.com/contact-section",
+    "storybook": "blocks-contact-section--default"
+  },
+  {
+    "name": "cta-section",
+    "title": "CTA section",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A call to action as a centered closing section, a split beside a setup card that completes itself, or a dismissible banner.",
+    "variants": {
+      "variant": [
+        "centered",
+        "split",
+        "banner"
+      ]
+    },
+    "composes": [
+      "button",
+      "segmented-control"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/cta-section",
+    "docs": "https://ui.teamofsilicons.com/cta-section",
+    "storybook": "blocks-cta-section--default"
+  },
+  {
+    "name": "empty-states",
+    "title": "Empty states",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "Four empty states in one illustration whose shapes morph between scenes as you switch tabs.",
+    "variants": {},
+    "composes": [
+      "button"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/empty-states",
+    "docs": "https://ui.teamofsilicons.com/empty-states",
+    "storybook": "blocks-empty-states--default"
+  },
+  {
+    "name": "faq-section",
+    "title": "FAQ section",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "FAQs as an accordion, a topic rail, or a searchable list that highlights matches.",
+    "variants": {
+      "variant": [
+        "accordion",
+        "columns",
+        "search"
+      ]
+    },
+    "composes": [
+      "search-field",
+      "segmented-control"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/faq-section",
+    "docs": "https://ui.teamofsilicons.com/faq-section",
+    "storybook": "blocks-faq-section--default"
+  },
+  {
+    "name": "hero-section",
+    "title": "Hero section",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "Three full screen SaaS heroes: a live dashboard rising from the bottom edge over a drifting mesh, a workflow graph that routes sample events node by node, and editorial type over a mesh gradient.",
+    "variants": {
+      "variant": [
+        "centered",
+        "split",
+        "minimal"
+      ]
+    },
+    "composes": [
+      "segmented-control"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/hero-section",
+    "docs": "https://ui.teamofsilicons.com/hero-section",
+    "storybook": "blocks-hero-section--default"
+  },
+  {
+    "name": "logo-marquee",
+    "title": "Logo marquee",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A quiet, continuously moving row of brand marks with a pause control.",
+    "variants": {
+      "tone": [
+        "color",
+        "mono"
+      ]
+    },
+    "composes": [
+      "button"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/logo-marquee",
+    "docs": "https://ui.teamofsilicons.com/logo-marquee",
+    "storybook": "blocks-logo-marquee--default"
+  },
+  {
+    "name": "newsletter-signup",
+    "title": "Newsletter signup",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "An email signup framed by a stack of past issues; subscribing drops the next issue, addressed to you, onto the front.",
+    "variants": {
+      "variant": [
+        "inline",
+        "card"
+      ]
+    },
+    "composes": [
+      "animated-counter",
+      "segmented-control",
+      "switch"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/newsletter-signup",
+    "docs": "https://ui.teamofsilicons.com/newsletter-signup",
+    "storybook": "blocks-newsletter-signup--default"
+  },
+  {
+    "name": "page-header",
+    "title": "Page header",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A project page header that folds into a compact bar as you scroll, with tabs whose counts roll.",
+    "variants": {},
+    "composes": [
+      "animated-counter",
+      "avatar",
+      "avatar-group",
+      "badge",
+      "button",
+      "progress"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/page-header",
+    "docs": "https://ui.teamofsilicons.com/page-header",
+    "storybook": "blocks-page-header--default"
+  },
+  {
+    "name": "plan-comparison",
+    "title": "Plan comparison",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "Compare meaningful differences between plans and billing periods.",
+    "variants": {},
+    "composes": [
+      "button",
+      "segmented-control",
+      "switch"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/plan-comparison",
+    "docs": "https://ui.teamofsilicons.com/plan-comparison",
+    "storybook": "blocks-plan-comparison--default"
+  },
+  {
+    "name": "sign-in",
+    "title": "Sign in",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A sign in card that morphs from email to a six digit code to your account.",
+    "variants": {},
+    "composes": [
+      "avatar",
+      "button",
+      "input",
+      "otp-input"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/sign-in",
+    "docs": "https://ui.teamofsilicons.com/sign-in",
+    "storybook": "blocks-sign-in--default"
+  },
+  {
+    "name": "signup-form",
+    "title": "Sign up form",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "An account creation flow with field validation, password strength, and a clear completion state.",
+    "variants": {},
+    "composes": [
+      "button",
+      "checkbox",
+      "input",
+      "password-field"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/signup-form",
+    "docs": "https://ui.teamofsilicons.com/signup-form",
+    "storybook": "blocks-sign-up-form--default"
+  },
+  {
+    "name": "site-footer",
+    "title": "Site footer",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A website footer with link columns and newsletter, a minimal layout, and a large fading Silicon mark.",
+    "variants": {
+      "variant": [
+        "columns",
+        "minimal",
+        "logo"
+      ]
+    },
+    "composes": [
+      "button",
+      "segmented-control"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/site-footer",
+    "docs": "https://ui.teamofsilicons.com/site-footer",
+    "storybook": "blocks-site-footer--default"
+  },
+  {
+    "name": "site-header",
+    "title": "Site header",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "A sticky website header that turns solid on scroll, with a gliding active link, mega menu panels, and a mobile sheet.",
+    "variants": {
+      "variant": [
+        "simple",
+        "centered",
+        "mega"
+      ]
+    },
+    "composes": [
+      "segmented-control"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/site-header",
+    "docs": "https://ui.teamofsilicons.com/site-header",
+    "storybook": "blocks-site-header--default"
+  },
+  {
+    "name": "stats-band",
+    "title": "Stats band",
+    "kind": "block",
+    "category": "Composites",
+    "status": "stable",
+    "description": "Headline numbers that count up in view, each with a tiny visual that proves it and a context line on hover, plain or in a hairline grid.",
+    "variants": {
+      "layout": [
+        "plain",
+        "divided"
+      ]
+    },
+    "composes": [
+      "segmented-control"
+    ],
+    "import": "npx shadcn@latest add @silicon-ui/stats-band",
+    "docs": "https://ui.teamofsilicons.com/stats-band",
+    "storybook": "blocks-stats-band--default"
+  }
+]

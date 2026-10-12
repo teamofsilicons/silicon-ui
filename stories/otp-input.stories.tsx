@@ -4,11 +4,12 @@ import demo from "../site/demos/otp-input";
 import { DemoExamples, DemoPreview } from "./demo";
 
 const meta: Meta = {
-  title: "Blocks/OTP input",
+  title: "Components/Composites/OTP input",
+  tags: ["stable"],
   component: demo.component as Meta["component"],
   args: (demo.props ?? {}) as Meta["args"],
   parameters: {
-    layout: "padded",
+    layout: "centered",
     docs: { description: { component: "A six digit verification flow with paste support and keyboard navigation. Live docs: https://ui.teamofsilicons.com/otp-input" } },
   },
 };
