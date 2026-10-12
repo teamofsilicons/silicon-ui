@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noUncheckedIndexedAccess": false },
+  "include": ["types/**/*.d.ts", "registry/**/*.ts", "registry/**/*.tsx", "lib/**/*.ts", "lib/**/*.tsx", "site/demos/**/*.tsx", "site/lib/**/*.ts", "stories/**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"]
+}

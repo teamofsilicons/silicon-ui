@@ -56,3 +56,12 @@ Silicon Accounts round was done):
 | `npm run check:registry` | every registry file exists, installs where it belongs, and `public/r` is current |
 | `npm run check` | all three |
 | `npm run site:dev` | the docs site locally, to look at the change |
+| `npm run storybook` | Storybook on port 6006: every component and block, with controls and a theme, accent and corner switch |
+
+## Storybook
+
+`npm run storybook` regenerates `stories/` from the docs site's demos (`scripts/build-stories.mjs`) and starts
+Storybook. There is nothing to write for it: give a component a demo in `site/demos/<name>.tsx` (its `props` become
+the Default story's controls, its `examples` the Examples story) and it appears under its registry category. Do not
+edit `stories/*.stories.tsx`; they are regenerated. `npm run build-storybook` writes a static Storybook to
+`dist/storybook` for hosting.

@@ -43,6 +43,7 @@ shadcn CLI; it is still built only from package components and tokens.
 | --- | --- |
 | Library source | `registry/components/<name>/`, shared helpers in `lib/`, tokens in `registry/foundation.css` |
 | Live previews and props | [ui.teamofsilicons.com](https://ui.teamofsilicons.com) (`site/`, one demo per item in `site/demos/`) |
+| Storybook | `npm run storybook`: the same demos as stories, with controls and theme, accent and corner switches |
 | npm package | `@teamofsilicons/silicon-ui`, built by `npm run build:package` from `packaging/` |
 | Component catalog | `@teamofsilicons/silicon-ui/components.json`: every component, its import path and exports |
 | Guardrails | `@teamofsilicons/silicon-ui/eslint` and the `silicon-ui-check` command, both in the package |

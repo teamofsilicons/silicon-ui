@@ -26,7 +26,10 @@
     "site:extract": "node site/scripts/extract.mjs",
     "site:dev": "npm run site:extract && next dev site",
     "site:build": "npm run build:registry && npm run site:extract && next build site && node site/scripts/postbuild.mjs",
-    "build:package": "node scripts/build-package.mjs"
+    "build:package": "node scripts/build-package.mjs",
+    "build:stories": "node scripts/build-stories.mjs",
+    "storybook": "npm run build:stories && storybook dev -p 6006",
+    "build-storybook": "npm run build:stories && storybook build -o dist/storybook"
   },
   "devDependencies": {
     "@radix-ui/react-accordion": "^1.2.20",
@@ -38,6 +41,7 @@
     "@radix-ui/react-switch": "^1.3.7",
     "@radix-ui/react-tabs": "^1.1.21",
     "@radix-ui/react-tooltip": "^1.2.16",
+    "@storybook/nextjs-vite": "^10.6.1",
     "@types/node": "^26.6.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -48,6 +52,8 @@
     "next": "^16.3.5",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "typescript": "^6.0.3"
+    "storybook": "^10.6.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.4"
   }
 }
