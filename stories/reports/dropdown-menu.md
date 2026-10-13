@@ -1,6 +1,6 @@
 # Consistency report: Dropdown menu
 
-Passed · status stable · changes since npm-package · 2026-10-13
+Passed · status stable · whole component · 2026-10-13
 
 - ✓ Spacing, radius, colour and type use tokens
 - ✓ Motion uses --duration-*, --ease-* and motionTokens
@@ -10,4 +10,4 @@ Passed · status stable · changes since npm-package · 2026-10-13
 - ✓ Has a demo (and so a Storybook story)
 - ✓ Named in CHANGELOG.md
 - ✓ Every prop has a doc comment (warning)
-- ✓ Its 2 stories render without errors
+- ✓ Its 3 stories render without errors

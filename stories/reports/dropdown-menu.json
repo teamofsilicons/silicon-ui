@@ -2,8 +2,8 @@
   "name": "dropdown-menu",
   "title": "Dropdown menu",
   "status": "stable",
-  "checkedAt": "2026-10-13T06:21:59.169Z",
-  "scope": "changes since npm-package",
+  "checkedAt": "2026-10-13T08:29:59.348Z",
+  "scope": "whole component",
   "passed": true,
   "checks": [
     {
@@ -64,7 +64,7 @@
     },
     {
       "id": "renders",
-      "title": "Its 2 stories render without errors",
+      "title": "Its 3 stories render without errors",
       "required": true,
       "ok": true,
       "detail": []
