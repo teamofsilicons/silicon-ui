@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 
 const registry = JSON.parse(fs.readFileSync(new URL("../registry.json", import.meta.url), "utf8"));
-const names = registry.items.filter(item => item.meta?.status === "experimental").map(item => item.name);
+const names = registry.items.filter(item => item.meta?.status === "experimental" || item.meta?.experimental?.length).map(item => item.name);
 let failed = 0;
 for (const name of names) {
   try { execFileSync(process.execPath, [new URL("./check-component.mjs", import.meta.url).pathname, name], { stdio: "inherit" }); }

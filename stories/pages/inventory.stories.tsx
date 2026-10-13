@@ -10,10 +10,10 @@ import SegmentedControl from "@/registry/components/segmented-control/segmented-
 import inventory from "../inventory.json";
 
 interface Row {
-  name: string; title: string; kind: "component" | "block"; category: string; status: string; description: string;
+  name: string; title: string; kind: "component" | "block"; category: string; status: string; experimentalParts: string[]; description: string;
   variants: Record<string, string[]>; composes: string[]; import: string; docs: string; storybook: string;
 }
-const rows = inventory as Row[];
+const rows = inventory as unknown as Row[];
 
 const page: CSSProperties = { display: "grid", gap: "var(--space-section)", maxWidth: 1120, margin: "0 auto", padding: "var(--space-block) var(--space-section)" };
 const head: CSSProperties = { display: "grid", gap: "var(--space-related)" };
@@ -34,7 +34,7 @@ function Inventory() {
   const [status, setStatus] = useState("all");
   const shown = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return rows.filter(row => (status === "all" || row.status === status)
+    return rows.filter(row => (status === "all" || row.status === status || (status === "experimental" && row.experimentalParts.length > 0))
       && (!q || [row.name, row.title, row.description, row.category, ...Object.keys(row.variants), ...Object.values(row.variants).flat()].join(" ").toLowerCase().includes(q)));
   }, [query, status]);
   const groups = useMemo(() => {
@@ -72,7 +72,10 @@ function Inventory() {
                     <a style={{ ...link, fontWeight: 600 }} href={`/?path=/story/${row.storybook}`} target="_top">{row.title}</a>
                     <div style={muted}>{row.description}</div>
                   </td>
-                  <td style={cell}><Badge size="sm" tone={row.status === "stable" ? "success" : "warning"}>{row.status}</Badge></td>
+                  <td style={cell}>
+                    <Badge size="sm" tone={row.status === "stable" ? "success" : "warning"}>{row.status}</Badge>
+                    {row.experimentalParts.length ? <div style={{ marginTop: "var(--space-tight)" }}><Badge size="sm" tone="warning">new parts experimental</Badge></div> : null}
+                  </td>
                   <td style={cell}>
                     {Object.keys(row.variants).length ? Object.entries(row.variants).map(([prop, values]) => (
                       <div key={prop}><span style={code}>{prop}</span> {values.join(" · ")}</div>

@@ -124,7 +124,6 @@ if (storybookAt) {
 }
 
 const failed = checks.filter(check => check.required && !check.ok);
-const warnings = checks.filter(check => !check.required && !check.ok);
 const report = { name, title: item?.title ?? name, status: item?.meta?.status ?? "unregistered", checkedAt: new Date().toISOString(), scope: base ? `changes since ${base}` : "whole component", passed: failed.length === 0, checks };
 const reports = path.join(root, "stories", "reports");
 fs.mkdirSync(reports, { recursive: true });

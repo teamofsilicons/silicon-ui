@@ -5,6 +5,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A compact button for frequent toolbar actions.",
     "variants": {},
     "composes": [
@@ -20,6 +21,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A clear, responsive action with quiet secondary states.",
     "variants": {
       "variant": [
@@ -45,6 +47,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Related actions joined into one surface with hairline dividers: a hover highlight glides between segments, the pressed one answers in place, and an attached menu can close the row.",
     "variants": {
       "variant": [
@@ -71,6 +74,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A link that looks exactly like a button, for actions that go somewhere.",
     "variants": {},
     "composes": [
@@ -86,6 +90,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A destructive button that morphs into an inline confirmation, a spinner, and a result with undo.",
     "variants": {
       "tone": [
@@ -123,6 +128,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Secondary actions kept close to the selected object.",
     "variants": {},
     "composes": [],
@@ -136,6 +142,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Copy a value with immediate confirmation.",
     "variants": {
       "variant": [
@@ -154,8 +161,35 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [
+      "DropdownMenuRoot",
+      "DropdownMenuTrigger",
+      "DropdownMenuContent",
+      "DropdownMenuItem",
+      "DropdownMenuCheckboxItem",
+      "DropdownMenuRadioGroup",
+      "DropdownMenuRadioItem",
+      "DropdownMenuLabel",
+      "DropdownMenuSeparator",
+      "DropdownMenuGroup",
+      "DropdownMenuSub",
+      "DropdownMenuSubTrigger",
+      "DropdownMenuSubContent"
+    ],
     "description": "A focused list of actions anchored to a trigger.",
-    "variants": {},
+    "variants": {
+      "side": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "align": [
+        "start",
+        "center",
+        "end"
+      ]
+    },
     "composes": [],
     "import": "@teamofsilicons/silicon-ui/dropdown-menu",
     "docs": "https://ui.teamofsilicons.com/dropdown-menu",
@@ -167,6 +201,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "The next appearance crosses the page like an eclipse.",
     "variants": {
       "theme": [
@@ -193,6 +228,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Icon buttons in a compact group: the one you point at or focus grows to reveal its label while its neighbours slide aside, and an action confirms in place.",
     "variants": {
       "size": [
@@ -211,6 +247,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Separate soft buttons in a quiet tray, with one shared highlight that morphs from button to button as you move, and a pressed state that settles in place.",
     "variants": {
       "variant": [
@@ -245,6 +282,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Confirm a destructive action by holding, not tapping.",
     "variants": {
       "tone": [
@@ -264,6 +302,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "The next appearance rises into place.",
     "variants": {
       "theme": [
@@ -290,6 +329,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "The next appearance opens from a slim center seam.",
     "variants": {
       "theme": [
@@ -316,6 +356,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A primary action with a menu of nearby alternatives.",
     "variants": {
       "variant": [
@@ -336,6 +377,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Reveal row actions with a swipe, or from the same actions in a menu.",
     "variants": {},
     "composes": [],
@@ -349,6 +391,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Four smooth ways to move between light and dark appearance.",
     "variants": {
       "theme": [
@@ -375,6 +418,7 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Your account, settings, theme, and sign out behind the avatar. Opens as a bottom sheet on phones.",
     "variants": {
       "status": [
@@ -414,6 +458,7 @@
     "kind": "component",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A complete keyboard driven action surface with search, grouped results, and shortcuts.",
     "variants": {},
     "composes": [],
@@ -427,6 +472,7 @@
     "kind": "component",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A complete file selection flow with constraints, progress, and error feedback.",
     "variants": {},
     "composes": [],
@@ -440,6 +486,7 @@
     "kind": "component",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A home for updates with read state, grouped information, and animated disclosure.",
     "variants": {},
     "composes": [
@@ -455,6 +502,7 @@
     "kind": "component",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A six digit verification flow with paste support and keyboard navigation.",
     "variants": {
       "inputMode": [
@@ -473,6 +521,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "See a year of activity at a glance, one square per day.",
     "variants": {},
     "composes": [],
@@ -486,6 +535,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Give changing totals a clear sense of movement.",
     "variants": {},
     "composes": [],
@@ -499,6 +549,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A compact identity marker for people and accounts.",
     "variants": {
       "size": [
@@ -523,6 +574,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Show a team or set of contributors in a small space.",
     "variants": {
       "size": [
@@ -544,6 +596,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A small label for status, category, or metadata.",
     "variants": {
       "tone": [
@@ -569,6 +622,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Compare one measure across days and scrub any bar for its value.",
     "variants": {},
     "composes": [],
@@ -582,6 +636,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A dense time series with an overview strip: drag a window to zoom, resize it by its handles, and read events in place.",
     "variants": {},
     "composes": [],
@@ -595,6 +650,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A contained group of related content and actions.",
     "variants": {},
     "composes": [],
@@ -608,6 +664,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Review a deck one card at a time, with a throw and an undo.",
     "variants": {},
     "composes": [],
@@ -621,6 +678,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Browse a row of slides by dragging, flicking, or arrowing through them.",
     "variants": {},
     "composes": [],
@@ -634,6 +692,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A chat thread with grouped messages, reactions, read receipts, typing, and a composer with attachments.",
     "variants": {},
     "composes": [],
@@ -647,6 +706,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Present code with legible hierarchy and copy access.",
     "variants": {},
     "composes": [],
@@ -660,6 +720,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Threaded comments with replies, reactions, mentions, inline edit, and resolve.",
     "variants": {},
     "composes": [],
@@ -673,6 +734,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A donut whose arcs morph between datasets, with the active value rolling into the center.",
     "variants": {
       "legendAction": [
@@ -691,6 +753,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A useful next step when there is nothing to show yet.",
     "variants": {},
     "composes": [],
@@ -704,6 +767,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Keep collection filters close and easy to reset.",
     "variants": {
       "align": [
@@ -722,6 +786,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Show a value against a known range.",
     "variants": {
       "tone": [
@@ -742,6 +807,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Drag a divider across two images to see what changed.",
     "variants": {
       "orientation": [
@@ -760,6 +826,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A collapsible JSON tree with search, paging for long arrays, and copy value or path.",
     "variants": {},
     "composes": [],
@@ -773,6 +840,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A multi-series line chart with a gliding crosshair, legend toggles, and paths that morph between ranges.",
     "variants": {
       "curve": [
@@ -791,6 +859,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A compact summary for a number that needs context.",
     "variants": {},
     "composes": [],
@@ -804,6 +873,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Move through a long collection with clear bounds.",
     "variants": {},
     "composes": [],
@@ -817,6 +887,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Overlapping distributions, one ridge per group: hover to lift a ridge and read its quartiles, switch datasets and every curve morphs.",
     "variants": {},
     "composes": [],
@@ -830,6 +901,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Before and after on two axes: lines draw in, rank moves sit beside each value, and switching datasets slides every line to its new slope.",
     "variants": {},
     "composes": [],
@@ -843,6 +915,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Compare structured records with sortable columns.",
     "variants": {},
     "composes": [],
@@ -856,6 +929,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Show a compact trend beside a value.",
     "variants": {
       "tone": [
@@ -876,6 +950,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Layered streams on a wiggle baseline that morph between ranges, with a layer you can isolate and read week by week.",
     "variants": {
       "offset": [
@@ -895,6 +970,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Follow what happened, newest first, grouped by day.",
     "variants": {},
     "composes": [],
@@ -908,6 +984,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Navigate nested folders and structured content.",
     "variants": {},
     "composes": [],
@@ -921,6 +998,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A squarified treemap: click to drill and the tiles grow to fill the view, with a breadcrumb back and metrics that morph every tile.",
     "variants": {},
     "composes": [],
@@ -934,6 +1012,7 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A ten by ten unit chart where every cell is one percent, and cells fly to their new group when the data changes.",
     "variants": {},
     "composes": [],
@@ -947,6 +1026,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Progressively reveal supporting information in place.",
     "variants": {
       "size": [
@@ -965,6 +1045,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A sheet that rests at a peek or full height and follows your finger.",
     "variants": {},
     "composes": [],
@@ -978,6 +1059,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Show where a page sits in a hierarchy.",
     "variants": {},
     "composes": [],
@@ -991,6 +1073,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A focused surface for decisions that need attention.",
     "variants": {},
     "composes": [],
@@ -1004,6 +1087,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A temporary side surface for focused work.",
     "variants": {
       "side": [
@@ -1024,6 +1108,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Give a dense card more room when requested.",
     "variants": {},
     "composes": [],
@@ -1037,6 +1122,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Preview a person or link on hover or focus without leaving the page.",
     "variants": {
       "side": [
@@ -1062,6 +1148,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A small anchored surface for contextual information.",
     "variants": {},
     "composes": [],
@@ -1075,6 +1162,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Trade space between panes by dragging the divider between them.",
     "variants": {},
     "composes": [],
@@ -1088,6 +1176,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A native scroll container with thin overlay scrollbars and edge fades that appear only when content overflows.",
     "variants": {
       "orientation": [
@@ -1111,6 +1200,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Switch between related content in the same context.",
     "variants": {},
     "composes": [],
@@ -1124,6 +1214,7 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Short supporting text for unfamiliar controls.",
     "variants": {
       "side": [
@@ -1144,6 +1235,7 @@
     "kind": "component",
     "category": "Feedback",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A persistent message that helps people recover or continue.",
     "variants": {
       "tone": [
@@ -1164,6 +1256,7 @@
     "kind": "component",
     "category": "Feedback",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A top banner that rotates messages, counts down, and collapses smoothly when dismissed.",
     "variants": {
       "tone": [
@@ -1182,6 +1275,7 @@
     "kind": "component",
     "category": "Feedback",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A launch countdown with rolling digits that morphs into a live state at zero.",
     "variants": {
       "variant": [
@@ -1200,6 +1294,7 @@
     "kind": "component",
     "category": "Feedback",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Show how much of a known task is complete.",
     "variants": {},
     "composes": [],
@@ -1213,6 +1308,7 @@
     "kind": "component",
     "category": "Feedback",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Reserve space while content is still loading.",
     "variants": {},
     "composes": [],
@@ -1226,6 +1322,7 @@
     "kind": "component",
     "category": "Feedback",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Show where a person is in a multi-step flow and what is done.",
     "variants": {
       "orientation": [
@@ -1248,6 +1345,7 @@
     "kind": "component",
     "category": "Feedback",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Brief confirmation for a completed background action.",
     "variants": {},
     "composes": [],
@@ -1261,6 +1359,7 @@
     "kind": "component",
     "category": "Feedback",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Stack short results at the edge until you reach for them.",
     "variants": {
       "position": [
@@ -1280,6 +1379,7 @@
     "kind": "component",
     "category": "Feedback",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Show what fills an allowance and how close it is to the limit.",
     "variants": {},
     "composes": [],
@@ -1293,6 +1393,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A monthly and yearly switch with a savings badge and prices that roll to the new amount.",
     "variants": {
       "size": [
@@ -1313,6 +1414,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Browse dates in a clear, compact month view.",
     "variants": {},
     "composes": [],
@@ -1326,6 +1428,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A binary choice with a precise, legible state.",
     "variants": {},
     "composes": [],
@@ -1339,6 +1442,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Filter by a few facets with chips that morph as you pick them.",
     "variants": {},
     "composes": [],
@@ -1352,6 +1456,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A swatch that grows into a picker with format morphing, eyedropper, saved swatches, and contrast readout.",
     "variants": {
       "defaultFormat": [
@@ -1374,6 +1479,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Search and select from a list without leaving the field.",
     "variants": {},
     "composes": [],
@@ -1387,6 +1493,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Choose a date without losing context.",
     "variants": {},
     "composes": [
@@ -1402,6 +1509,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A range picker that grows from its trigger into two months with presets and a stretching range highlight.",
     "variants": {},
     "composes": [],
@@ -1415,6 +1523,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A slider that stretches like rubber past its ends, with a swaying value tag and detents the thumb clicks into.",
     "variants": {},
     "composes": [],
@@ -1428,6 +1537,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "An icon that morphs into a search field with results beneath it.",
     "variants": {
       "anchor": [
@@ -1446,6 +1556,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A generous target for dropping one or more files.",
     "variants": {},
     "composes": [],
@@ -1459,6 +1570,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Rename in place: the text becomes a field without moving.",
     "variants": {
       "variant": [
@@ -1484,6 +1596,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A single line field with clear labels and useful states.",
     "variants": {},
     "composes": [],
@@ -1497,6 +1610,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A textarea with @people and #channel mentions that act as single tokens, with suggestions at the caret.",
     "variants": {
       "placement": [
@@ -1516,6 +1630,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A currency field with live grouping, stable width, rolling digits, and minor-unit output.",
     "variants": {},
     "composes": [],
@@ -1529,6 +1644,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A select whose trigger grows into the list, with a gliding highlight and type-ahead.",
     "variants": {
       "align": [
@@ -1547,6 +1663,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Select several values while keeping the field readable.",
     "variants": {},
     "composes": [],
@@ -1560,6 +1677,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Enter a bounded number with clear increment controls.",
     "variants": {
       "size": [
@@ -1579,6 +1697,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Capture sensitive text with a visible reveal control.",
     "variants": {},
     "composes": [],
@@ -1592,6 +1711,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Show how strong a new password is while it is typed.",
     "variants": {},
     "composes": [],
@@ -1605,6 +1725,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A phone field with a country picker, formatting as you type, and E.164 output.",
     "variants": {},
     "composes": [],
@@ -1618,6 +1739,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Selectable option cards with a sliding selection ring, price and description slots, and radio keyboard behavior.",
     "variants": {
       "layout": [
@@ -1636,6 +1758,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Choose one option from a visible set.",
     "variants": {},
     "composes": [],
@@ -1649,6 +1772,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A lightweight editor with markdown shortcuts, a floating toolbar, a slash menu, and HTML and markdown output.",
     "variants": {},
     "composes": [],
@@ -1662,6 +1786,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A recognizable search entry point with clear affordances.",
     "variants": {},
     "composes": [],
@@ -1675,6 +1800,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Switch between a small set of related views.",
     "variants": {},
     "composes": [],
@@ -1688,6 +1814,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A compact choice field with a keyboard friendly menu.",
     "variants": {},
     "composes": [],
@@ -1701,6 +1828,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Record key combinations into key caps, with conflict warnings, Kbd, and a searchable cheatsheet.",
     "variants": {
       "size": [
@@ -1723,6 +1851,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Smooth ink that thins with speed, with undo, replay, and PNG or SVG export.",
     "variants": {
       "defaultColor": [
@@ -1747,6 +1876,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Pick a value or a range on a track that follows your finger.",
     "variants": {},
     "composes": [],
@@ -1760,6 +1890,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A tactile toggle for settings that take effect immediately.",
     "variants": {},
     "composes": [],
@@ -1773,6 +1904,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Turn short text values into removable tags.",
     "variants": {},
     "composes": [],
@@ -1786,6 +1918,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A multiline field for notes, descriptions, and longer text.",
     "variants": {},
     "composes": [],
@@ -1799,6 +1932,7 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Choose a time with sensible keyboard behavior.",
     "variants": {
       "format": [
@@ -1817,6 +1951,7 @@
     "kind": "component",
     "category": "Special",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Text and numbers that spin into their new value on staggered slot machine reels.",
     "variants": {
       "align": [
@@ -1835,6 +1970,7 @@
     "kind": "component",
     "category": "Text",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Bring a section title in as it scrolls into view.",
     "variants": {
       "variant": [
@@ -1861,6 +1997,7 @@
     "kind": "component",
     "category": "Text",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Morph a label into its next state, letter by letter.",
     "variants": {
       "as": [
@@ -1884,6 +2021,7 @@
     "kind": "component",
     "category": "Text",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Reveal a short piece of content with restrained motion.",
     "variants": {
       "as": [
@@ -1904,6 +2042,7 @@
     "kind": "component",
     "category": "Text",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Show ongoing work with a calm light across the words.",
     "variants": {
       "as": [
@@ -1926,6 +2065,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A blog index with a featured post, category filter, post cards, pagination and an in-place reader.",
     "variants": {},
     "composes": [],
@@ -1939,6 +2079,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A passkey-first login card on a quiet ring backdrop that morphs through email and code.",
     "variants": {},
     "composes": [
@@ -1956,6 +2097,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Release notes you can filter, open in place, and scroll through month by month.",
     "variants": {},
     "composes": [
@@ -1971,6 +2113,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "An us versus them table with a sticky header, a highlighted column, and a stacked phone view.",
     "variants": {},
     "composes": [],
@@ -1984,6 +2127,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A validated contact form that morphs into a confirmation, support channels, and office cards with local times.",
     "variants": {
       "variant": [
@@ -2010,6 +2154,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A call to action as a centered closing section, a split beside a setup card that completes itself, or a dismissible banner.",
     "variants": {
       "variant": [
@@ -2032,6 +2177,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Four empty states in one illustration whose shapes morph between scenes as you switch tabs.",
     "variants": {},
     "composes": [
@@ -2047,6 +2193,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "FAQs as an accordion, a topic rail, or a searchable list that highlights matches.",
     "variants": {
       "variant": [
@@ -2069,6 +2216,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Three full screen SaaS heroes: a live dashboard rising from the bottom edge over a drifting mesh, a workflow graph that routes sample events node by node, and editorial type over a mesh gradient.",
     "variants": {
       "variant": [
@@ -2090,6 +2238,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A quiet, continuously moving row of brand marks with a pause control.",
     "variants": {
       "tone": [
@@ -2110,6 +2259,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "An email signup framed by a stack of past issues; subscribing drops the next issue, addressed to you, onto the front.",
     "variants": {
       "variant": [
@@ -2132,6 +2282,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A project page header that folds into a compact bar as you scroll, with tabs whose counts roll.",
     "variants": {},
     "composes": [
@@ -2152,6 +2303,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Compare meaningful differences between plans and billing periods.",
     "variants": {},
     "composes": [
@@ -2169,6 +2321,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A sign in card that morphs from email to a six digit code to your account.",
     "variants": {},
     "composes": [
@@ -2187,6 +2340,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "An account creation flow with field validation, password strength, and a clear completion state.",
     "variants": {},
     "composes": [
@@ -2205,6 +2359,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A website footer with link columns and newsletter, a minimal layout, and a large fading Silicon mark.",
     "variants": {
       "variant": [
@@ -2227,6 +2382,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "A sticky website header that turns solid on scroll, with a gliding active link, mega menu panels, and a mobile sheet.",
     "variants": {
       "variant": [
@@ -2248,6 +2404,7 @@
     "kind": "block",
     "category": "Composites",
     "status": "stable",
+    "experimentalParts": [],
     "description": "Headline numbers that count up in view, each with a tiny visual that proves it and a context line on hover, plain or in a hairline grid.",
     "variants": {
       "layout": [

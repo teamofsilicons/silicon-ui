@@ -105,7 +105,7 @@ const catalog = fs.readdirSync(path.join(root, "registry", "components")).sort()
   const exports = [...source.matchAll(/^export\s+(?:declare\s+)?(?:function|const|class|interface|type|enum)\s+(\w+)/gm)].map((m) => m[1]);
   for (const m of source.matchAll(/^export\s*\{([^}]+)\}/gm)) exports.push(...m[1].split(",").map((s) => s.trim().split(/\s+as\s+/).pop()).filter(Boolean));
   const item = described.get(name);
-  return { name, import: `${manifest.name}/${name}`, title: item?.title ?? name, description: item?.description ?? "", status: item?.meta?.status ?? "stable", exports };
+  return { name, import: `${manifest.name}/${name}`, title: item?.title ?? name, description: item?.description ?? "", status: item?.meta?.status ?? "stable", experimentalExports: item?.meta?.experimental ?? [], exports };
 });
 fs.writeFileSync(path.join(out, "components.json"), `${JSON.stringify(catalog, null, 2)}\n`);
 
