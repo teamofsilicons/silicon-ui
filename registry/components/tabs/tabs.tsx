@@ -2,7 +2,7 @@
 
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { createContext, useCallback, useContext, useId, useLayoutEffect, useRef, useState } from "react";
-import type { ComponentPropsWithoutRef, RefObject } from "react";
+import type { ComponentPropsWithoutRef, ReactNode, RefObject } from "react";
 import { ChevronLeft as NavArrowLeft, ChevronRight as NavArrowRight } from "lucide-react";
 import { AnimatePresence, LayoutGroup, animate, motion, useReducedMotion } from "motion/react";
 import type { AnimationPlaybackControls, Variants } from "motion/react";
@@ -82,13 +82,26 @@ export function TabsList({ className, ...props }: ComponentPropsWithoutRef<typeo
   </div>;
 }
 
-export function TabsTrigger({ className, children, value, ...props }: ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>) {
+export interface TabsTriggerProps extends ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> {
+  /**
+   * An icon before the label, such as a 16px Lucide icon. It is sized, coloured with the label (muted, then the active
+   * colour when selected) and hidden from screen readers. For an icon-only tab, leave out the label and pass `aria-label`.
+   */
+  icon?: ReactNode;
+}
+
+export function TabsTrigger({ className, children, value, icon, ...props }: TabsTriggerProps) {
   const { active } = useContext(TabsContext);
   const reduced = useReducedMotion();
   // The LayoutGroup in Tabs scopes the highlight to this instance, so it glides between triggers but never flies in from another tab set.
-  return <TabsPrimitive.Trigger {...props} value={value} data-value={value} className={[styles.trigger, className].filter(Boolean).join(" ")}>
+  // An icon with no label is a square tab instead of a text tab's minimum width.
+  const iconOnly = !!icon && (children === undefined || children === null || children === false);
+  return <TabsPrimitive.Trigger {...props} value={value} data-value={value} data-icon-only={iconOnly || undefined} className={[styles.trigger, className].filter(Boolean).join(" ")}>
     {active === value && <motion.span className={styles.selection} layoutId="selection" layoutDependency={active} transition={reduced ? { duration: 0 } : motionTokens.spring.morph} aria-hidden="true"/>}
-    <span className={styles.triggerLabel}>{children}</span>
+    <span className={styles.triggerLabel}>
+      {icon ? <span className={styles.icon} aria-hidden="true">{icon}</span> : null}
+      {children}
+    </span>
   </TabsPrimitive.Trigger>;
 }
 

@@ -2,6 +2,45 @@
 
 Changes ship continuously from `main`. Every item links to its live preview on [ui.teamofsilicons.com](https://ui.teamofsilicons.com).
 
+## 2026-10-14
+
+### Added
+
+- **Compact density (experimental).** Request #11. A new control-height step, `--control-height-xs` (24px, the smallest target WCAG 2.5.8 allows), for dense UI such as tree rows and toolbars: [Button](https://ui.teamofsilicons.com/button) `size="xs"` (square when icon-only), [Segmented control](https://ui.teamofsilicons.com/segmented-control) `size="xs"` (`sm` remains the default), and [Avatar](https://ui.teamofsilicons.com/avatar) `size="xs"` (20px). The new sizes are experimental prop values: `meta.experimentalProps` in `registry.json`, and the ESLint gate flags them until an app opts in.
+
+## 2026-10-13
+
+### Added
+
+- **[Dropdown menu](https://ui.teamofsilicons.com/dropdown-menu), composable (experimental).** Request #9. Alongside the `label` + `items` shorthand (unchanged, stable), the menu is now built from parts: `DropdownMenuRoot`, `DropdownMenuTrigger` (any trigger with `asChild`, such as an icon-only Button), `DropdownMenuContent` (`side`, `align`), `DropdownMenuItem` (icon, shortcut, destructive), `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup` and `DropdownMenuRadioItem`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuGroup` and `DropdownMenuSub` with `DropdownMenuSubTrigger` and `DropdownMenuSubContent`. The shorthand is now built from the same parts. The new parts are experimental: the guardrail gates those named imports until an app opts in.
+- **`--stagger-item`** (35ms), the CSS twin of `motionTokens.stagger.item`. Dropdown menu uses it and `--duration-instant` for its close, so it has no raw motion values left.
+- **Experimental parts of a stable component.** `meta.experimental` in `registry.json` lists exports still experimental; `components.json`, the inventory, CI and the ESLint gate read it.
+
+## 2026-10-12
+
+### Added
+
+- **Storybook** for every component and block (`npm run storybook`), generated from the docs site's demos, with controls and a toolbar for theme, accent and corner shape.
+- **[Tabs](https://ui.teamofsilicons.com/tabs) with icons (npm 0.3.0).** `TabsTrigger` takes an `icon`: it sits before the label at 16px, follows the label's colour (muted, then the active colour when selected) and is hidden from screen readers, so apps no longer wrap the label in their own span. Leave out the label and pass `aria-label` for an icon-only tab, which is square.
+- **Guardrails (npm 0.2.0).** `@teamofsilicons/silicon-ui/eslint` makes raw `<button>`, `<input>`, `<select>`, `<textarea>` and `<dialog>`, borrowed component CSS and local component copies lint errors. `silicon-ui-check` fails raw spacing, radius, colour and font-size values in CSS modules, with a baseline so existing apps only fail on new drift, and a `--hook` mode for Claude Code. See [docs/guardrails.md](./docs/guardrails.md).
+- **Design system docs** in [`docs/`](./docs/README.md): using Silicon UI in an app, the rules, the guardrails, building with AI agents, changing the library and releasing.
+- **npm package.** `npm install @teamofsilicons/silicon-ui`, load `@teamofsilicons/silicon-ui/styles.css` once, and import each component from its own path (`@teamofsilicons/silicon-ui/button`). Components ship compiled with their CSS modules, so apps load only the CSS they use. `@teamofsilicons/silicon-ui/components.json` lists every component and its exports. The shadcn registry stays for blocks and for copying code.
+- **[Button link](https://ui.teamofsilicons.com/button-link).** A link that looks exactly like a Button, for actions that go somewhere. It renders on the server as a plain `<a>` (no client code), and `as={Link}` renders a router link instead. Apps had been rebuilding this from Button's CSS.
+- **Brand and avatar tokens.** `--primary` and `--primary-foreground` fill primary buttons and action buttons (neutral by default, so nothing changes until an app sets its brand colour). `--avatar-radius` and `--avatar-corner-shape` shape profile pictures in Avatar, Avatar group and User menu (circles by default). Button and Action button expose `data-variant` for app theming.
+
+### Fixed
+
+These come from Silicon Accounts, which had fixed them in its own copy.
+
+- **Focus returns to what opened a layer.** Dialog, Drawer and Bottom sheet put focus back on the element that opened them, also when they open from state rather than a Trigger (WCAG 2.4.3). Shared helper: `lib/return-focus.ts`.
+- **Escape closes the innermost thing first.** Inside a Dialog, Drawer, Bottom sheet or Popover, Escape first closes an open Combobox list, DatePicker calendar, InlineEdit or ConfirmMorph question, and only the next Escape closes the layer. Shared helper: `lib/escape.ts`.
+- **Combobox follows the WAI-ARIA pattern.** Focus alone no longer opens the list (typing, the arrow keys or a click do), leaving the field closes it, and the list is not a Tab stop.
+- **Phone input takes a whole number after "+".** Typing "+1 202 555 0142" into the country search moves it into the number field under its country.
+- **Timeline announces only news.** Older rows loaded below ("Show older") join quietly instead of sliding in and being announced.
+- **Confirm morph confirms from the keyboard at once.** The short re-arming delay now only guards against the opening pointer press.
+- **User menu** names the initials it shows, and hides the initials text from screen readers.
+- **Command palette** "No matching actions" is styled again (a broken selector).
+
 ## 2026-10-11
 
 ### Fixed

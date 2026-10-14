@@ -10,7 +10,7 @@
 .trigger:active { background: var(--surface-muted); }
 .copy { min-width: 0; }
 .copy strong { display: block; font-size: var(--text-sm); font-weight: 500; }
-.description { display: block; margin-top: 4px; color: var(--text-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
+.description { display: block; margin-top: var(--space-tight); color: var(--text-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
 .roll { position: relative; display: block; }
 .word { display: inline-block; white-space: pre; }
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

@@ -6,7 +6,9 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { Transition } from "motion/react";
 import { X } from "lucide-react";
+import { ESCAPE_LAYER_ATTRIBUTE, layerEscape } from "@/lib/escape";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useReturnFocus } from "@/lib/return-focus";
 import styles from "./dialog.module.css";
 
 /** Mirrors the open state so the content can stay mounted while it animates out, and retarget mid-flight if it is reopened or closed early. */
@@ -39,8 +41,12 @@ function SwapText({ text }: { text: string }) {
   </AnimatePresence>;
 }
 
-export function DialogContent({ title, description, children, className, onPointerDownOutside, ...props }: DialogContentProps) {
+export function DialogContent({ title, description, children, className, onPointerDownOutside, onEscapeKeyDown, onOpenAutoFocus, onCloseAutoFocus, ...props }: DialogContentProps) {
   const open = useContext(OpenContext);
+  // Closing puts focus back on what opened the dialog, Trigger or not (lib/return-focus.ts).
+  const returnFocus = useReturnFocus(open, onOpenAutoFocus, onCloseAutoFocus);
+  // Escape inside belongs to an open list, calendar or question first (lib/escape.ts); the next one closes the dialog.
+  const escape = { [ESCAPE_LAYER_ATTRIBUTE]: "", onEscapeKeyDown: layerEscape(onEscapeKeyDown), ...returnFocus };
   const reduced = useReducedMotion();
   // When the open state last changed. Radix waits for the click before treating a press as outside, and a press on the trigger
   // while the dialog leaves reopens it first, so that press must not close it again.
@@ -58,13 +64,13 @@ export function DialogContent({ title, description, children, className, onPoint
   // Under a bare Radix root the open state is unknown here, so CSS keyframes keyed off data-state animate the layers instead.
   if (open === null) return <DialogPrimitive.Portal>
     <DialogPrimitive.Overlay className={`${styles.overlay} ${styles.keyframes}`}/>
-    <DialogPrimitive.Content {...props} onPointerDownOutside={pressOutside} className={`${classes} ${styles.keyframes}`}>{inner}</DialogPrimitive.Content>
+    <DialogPrimitive.Content {...props} {...escape} onPointerDownOutside={pressOutside} className={`${classes} ${styles.keyframes}`}>{inner}</DialogPrimitive.Content>
   </DialogPrimitive.Portal>;
   // The overlay fades while the dialog rises 8px and scales up on a spring. Closing is shorter and quieter, and starts from wherever the entrance is.
   return <AnimatePresence>
     {open && <DialogPrimitive.Portal key="dialog" forceMount>
       <DialogPrimitive.Overlay asChild forceMount><motion.div className={styles.overlay} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: reduced ? fade : leave }} transition={reduced ? fade : { duration: motionTokens.duration.standard, ease: [...motionTokens.ease.enter] }}/></DialogPrimitive.Overlay>
-      <DialogPrimitive.Content {...props} onPointerDownOutside={pressOutside} asChild forceMount>
+      <DialogPrimitive.Content {...props} {...escape} onPointerDownOutside={pressOutside} asChild forceMount>
         <motion.div className={classes} initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8, scale: .96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduced ? { opacity: 0, transition: fade } : { opacity: 0, y: 4, scale: .98, transition: leave }} transition={reduced ? fade : { default: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.fast, ease: [...motionTokens.ease.enter] } }}>{inner}</motion.div>
       </DialogPrimitive.Content>
     </DialogPrimitive.Portal>}

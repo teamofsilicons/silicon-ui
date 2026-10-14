@@ -15,11 +15,11 @@
 @media (hover: hover) and (pointer: fine) { .clear:hover { background: var(--surface-muted); color: var(--foreground); } }
 .clear:focus-visible { --focus-outline-offset: 1px; }
 .hint { color: var(--text-muted); font-size: var(--text-xs); }
-.popover { position: absolute; z-index: 80; top: calc(100% + 8px); right: 0; left: 0; overflow: hidden; transform-origin: top center; border: 1px solid var(--border); border-radius: var(--radius-container); padding: 5px; background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-floating); will-change: transform, opacity; }
+.popover { position: absolute; z-index: 80; top: calc(100% + var(--space-related)); right: 0; left: 0; overflow: hidden; transform-origin: top center; border: 1px solid var(--border); border-radius: var(--radius-container); padding: var(--space-tight); background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-floating); will-change: transform, opacity; }
 .autoHeight { overflow: hidden; }
 .listbox { max-height: min(300px, 40vh); overflow-y: auto; overscroll-behavior: contain; }
 /* Arrow keys move the highlight often, so it changes almost instantly. */
-.option { display: flex; min-height: 36px; align-items: center; justify-content: space-between; gap: var(--space-group); border-radius: calc(var(--radius-container) - 5px); padding: 0 12px; color: var(--foreground); font-size: var(--text-sm); cursor: pointer; outline: none; user-select: none; transition: background-color 80ms var(--ease-standard), color 80ms var(--ease-standard); }
+.option { display: flex; min-height: 36px; align-items: center; justify-content: space-between; gap: var(--space-group); border-radius: calc(var(--radius-container) - var(--space-tight)); padding: 0 var(--space-group); color: var(--foreground); font-size: var(--text-sm); cursor: pointer; outline: none; user-select: none; transition: background-color 80ms var(--ease-standard), color 80ms var(--ease-standard); }
 .option > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .option[data-active="true"] { background: var(--surface-muted); }
 .option[data-disabled="true"] { opacity: .42; cursor: not-allowed; }

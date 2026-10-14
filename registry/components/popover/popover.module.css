@@ -6,7 +6,7 @@
   z-index: 80;
   min-width: 12rem;
   max-width: min(22rem, calc(100vw - 20px));
-  padding: 1rem;
+  padding: var(--space-inset);
   border: 1px solid var(--border);
   border-radius: var(--radius-container);
   background: var(--surface-raised);

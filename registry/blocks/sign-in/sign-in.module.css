@@ -31,7 +31,7 @@
 .identity > button { flex: none; }
 .avatarMover { position: relative; z-index: 1; display: inline-flex; flex: none; }
 .avatarSmall { width: 32px; height: 32px; font-size: var(--text-xs); }
-.avatarLarge { position: absolute; inset: 4px; font-size: var(--text-2xl); }
+.avatarLarge { position: absolute; inset: var(--space-tight); font-size: var(--text-2xl); }
 /* Both steps render the large photo and size it here, so the morph never waits on a second image. */
 .avatarMover .avatarFill { width: 100%; height: 100%; font-size: inherit; }
 
@@ -42,9 +42,9 @@
 .timeColumn { position: relative; display: inline-flex; justify-content: center; }
 .timeColumn > span { display: inline-block; }
 
-.avatarStage { position: relative; width: 96px; height: 96px; margin: 0 0 var(--space-section) -4px; }
+.avatarStage { position: relative; width: 96px; height: 96px; margin: 0 0 var(--space-section) calc(var(--space-tight) * -1); }
 .ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; color: var(--success); transform: rotate(-90deg); }
-.badge { position: absolute; right: 2px; bottom: 4px; z-index: 2; display: grid; width: 26px; height: 26px; place-items: center; border: 2px solid var(--surface); border-radius: var(--radius-full); corner-shape: round; background: var(--success); color: var(--surface); }
+.badge { position: absolute; right: var(--space-hair); bottom: var(--space-tight); z-index: 2; display: grid; width: 26px; height: 26px; place-items: center; border: 2px solid var(--surface); border-radius: var(--radius-full); corner-shape: round; background: var(--success); color: var(--surface); }
 .details { display: grid; margin: 0 0 var(--space-section); border-top: 1px solid var(--border); padding: 0; }
 .details div { display: flex; justify-content: space-between; gap: var(--space-inset); border-bottom: 1px solid var(--border); padding: var(--space-group) 0; font-size: var(--text-sm); line-height: var(--leading-body); }
 .details dt { color: var(--text-secondary); }
@@ -66,7 +66,7 @@
   .step { padding: var(--space-section) var(--space-comfort); }
   .heading h2 { font-size: var(--text-2xl); }
   .identity { gap: var(--space-related); padding-left: var(--space-related); }
-  .sso .ssoButton { gap: 6px; font-size: var(--text-xs); }
+  .sso .ssoButton { gap: var(--space-related); font-size: var(--text-xs); }
   .footer { padding-inline: var(--space-comfort); }
 }
 @media (max-width: 480px) { .signIn { border-radius: var(--radius-container); corner-shape: var(--corner-shape); } }

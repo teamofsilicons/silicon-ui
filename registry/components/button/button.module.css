@@ -11,7 +11,7 @@
 .labelContent { display: inline-flex; flex: none; align-items: center; }
 .labelPhase { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-related); white-space: nowrap; }
 .labelPhase svg { flex: none; }
-.primary { color: var(--background); background: var(--foreground); border-color: var(--foreground); }
+.primary { color: var(--primary-foreground); background: var(--primary); border-color: var(--primary); }
 .secondary { color: var(--foreground); background: var(--surface); border-color: var(--border); }
 .ghost { color: var(--text-secondary); background: transparent; border-color: transparent; }
 .danger { color: var(--danger); background: var(--surface); border-color: var(--border); }
@@ -29,6 +29,10 @@
 .primary:active:not(:disabled) { opacity: .84; }
 .secondary:active:not(:disabled), .ghost:active:not(:disabled) { color: var(--foreground); background: var(--surface-muted); }
 .danger:active:not(:disabled) { border-color: var(--danger); background: var(--surface-muted); }
+.xs { min-height: var(--control-height-xs); gap: var(--space-tight); padding-inline: var(--space-related); font-size: var(--text-xs); }
+/* A compact icon-only button is a square, with the icon at its usual 16px. */
+.xs[data-icon-only] { min-width: var(--control-height-xs); padding-inline: 0; }
+.xs svg { width: 16px; height: 16px; }
 .sm { min-height: var(--control-height-sm); padding-inline: var(--space-group); font-size: var(--text-sm); }
 .md { min-height: var(--control-height-md); }
 .lg { min-height: var(--control-height-lg); padding-inline: var(--space-comfort); font-size: var(--text-sm); }

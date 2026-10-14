@@ -20,6 +20,9 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
+        with:
+          # The full history, so a variant's consistency check can compare against the pull request's base branch.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v7
         with:
@@ -36,3 +39,12 @@ jobs:
 
       - name: Validate the registry
         run: npm run check:registry
+
+      - name: Every component on tokens
+        run: npm run check:tokens
+
+      - name: Experimental components pass their consistency check
+        run: npm run check:experimental
+        env:
+          # Variants are judged on their own changes: against the pull request's base, or the commit before a push.
+          CHECK_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}

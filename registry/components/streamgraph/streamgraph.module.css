@@ -3,8 +3,8 @@
 /* Series colors (--series-1 to --series-4) come from registry/foundation.css. */
 
 /* Layer toggles: a rect swatch mirrors the area it names. Hover or focus previews that layer in the plot. */
-.legend { display: flex; flex-wrap: wrap; gap: 2px 4px; min-width: 0; margin-inline: -8px; }
-.toggle { display: inline-flex; min-height: 32px; align-items: center; gap: 8px; padding: 0 10px 0 8px; border: 0; border-radius: var(--radius-full); corner-shape: round; background: transparent; color: var(--text-secondary); cursor: pointer; font: inherit; font-size: var(--text-sm); line-height: var(--leading-body); -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
+.legend { display: flex; flex-wrap: wrap; gap: var(--space-hair) var(--space-tight); min-width: 0; margin-inline: calc(var(--space-related) * -1); }
+.toggle { display: inline-flex; min-height: 32px; align-items: center; gap: var(--space-related); padding: 0 var(--space-group) 0 var(--space-related); border: 0; border-radius: var(--radius-full); corner-shape: round; background: transparent; color: var(--text-secondary); cursor: pointer; font: inherit; font-size: var(--text-sm); line-height: var(--leading-body); -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
 .toggle:active { transform: scale(.97); }
 .toggle[data-active] { color: var(--foreground); background: color-mix(in oklab, var(--foreground) 5%, transparent); }
 .toggle[data-dim] { opacity: .56; }
@@ -31,20 +31,20 @@
 .label[data-hidden] { opacity: 0 !important; }
 .chart[data-layer] .label[data-dim] { opacity: 0 !important; }
 
-.tooltip { position: absolute; top: 0; left: 0; z-index: 1; display: grid; min-width: 156px; max-width: min(256px, 100%); gap: 4px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
+.tooltip { position: absolute; top: 0; left: 0; z-index: 1; display: grid; min-width: 156px; max-width: min(256px, 100%); gap: var(--space-tight); padding: var(--space-group) var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
 .chart[data-active] .tooltip { opacity: 1; scale: 1; }
-.tipTitle { margin: 0 0 2px; color: var(--text-secondary); font-size: var(--text-xs); line-height: var(--leading-body); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.tipRow { display: flex; min-width: 0; align-items: center; gap: 8px; margin: 0; font-size: var(--text-sm); line-height: var(--leading-body); transition: opacity var(--duration-fast) var(--ease-standard); }
+.tipTitle { margin: 0 0 var(--space-hair); color: var(--text-secondary); font-size: var(--text-xs); line-height: var(--leading-body); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tipRow { display: flex; min-width: 0; align-items: center; gap: var(--space-related); margin: 0; font-size: var(--text-sm); line-height: var(--leading-body); transition: opacity var(--duration-fast) var(--ease-standard); }
 .tipRow[data-dim] { opacity: .5; }
 .tipSwatch { width: 10px; height: 2.5px; flex: none; border-radius: var(--radius-full); corner-shape: round; background: var(--series); }
 .tipName { min-width: 0; flex: 1; overflow: hidden; color: var(--text-secondary); text-overflow: ellipsis; white-space: nowrap; }
 .tipRow[data-active] .tipName { color: var(--foreground); }
-.tipValue { flex: none; margin-left: 8px; color: var(--foreground); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tipValue { flex: none; margin-left: var(--space-related); color: var(--foreground); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .message { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--text-muted); font-size: var(--text-sm); pointer-events: none; }
 
 .axis { position: relative; min-width: 0; }
-.axisLabel { position: absolute; top: 8px; color: var(--text-muted); font-size: var(--text-xs); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; transition: opacity var(--duration-standard) var(--ease-standard); }
+.axisLabel { position: absolute; top: var(--space-related); color: var(--text-muted); font-size: var(--text-xs); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; transition: opacity var(--duration-standard) var(--ease-standard); }
 /* New labels fade in while the stream morphs to a new range instead of popping in a single frame. */
 @starting-style { .axisLabel { opacity: 0; } }
 

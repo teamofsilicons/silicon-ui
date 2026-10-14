@@ -1,6 +1,5 @@
 /* The dim follows the sheet's position in JS; only its color lives here. */
-.overlay { position: fixed; inset: 0; z-index: 50; background: oklch(16% 0 0 / .34); }
-:global(:root[data-theme="dark"]) .overlay { background: oklch(0% 0 0 / .52); }
+.overlay { position: fixed; inset: 0; z-index: 50; background: var(--scrim); }
 /* While it leaves, nothing underneath is blocked and the sheet cannot be grabbed again.
    Radix sets pointer-events: auto inline on the overlay, so only !important lets a click reach the trigger and reverse the exit. */
 .overlay[data-state="closed"], .sheet[data-state="closed"] { pointer-events: none !important; }
@@ -47,9 +46,9 @@
 .headRow { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-inset); }
 .headText { min-width: 0; }
 .title { margin: 0; font-family: var(--font-body); font-size: var(--text-lg); font-weight: 500; letter-spacing: var(--tracking-body); line-height: var(--leading-body); }
-.description { margin: 2px 0 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-body); }
+.description { margin: var(--space-hair) 0 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-body); }
 
-.close { display: grid; flex: none; width: 2rem; height: 2rem; place-items: center; margin-top: -2px; padding: 0; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface-muted); color: var(--text-secondary); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard); }
+.close { display: grid; flex: none; width: 2rem; height: 2rem; place-items: center; margin-top: calc(var(--space-hair) * -1); padding: 0; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface-muted); color: var(--text-secondary); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .close:hover { color: var(--foreground); border-color: var(--border-strong); } }
 .close:active { color: var(--foreground); }
 

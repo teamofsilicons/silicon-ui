@@ -3,8 +3,8 @@
   width: min(100%, 26rem);
   min-width: 0;
   align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.875rem 0.875rem 0.875rem 1rem;
+  gap: var(--space-group);
+  padding: var(--space-inset) var(--space-inset) var(--space-inset) var(--space-inset);
   border: 1px solid var(--border);
   border-radius: var(--radius-container); corner-shape: var(--corner-shape);
   background: color-mix(in oklab, var(--surface) 94%, var(--background));
@@ -35,9 +35,9 @@
   position: relative;
   display: grid;
   min-width: 0;
-  gap: 0.125rem;
+  gap: var(--space-hair);
   /* Centers the title's first line on the 30px status icon. */
-  padding-top: 0.3125rem;
+  padding-top: var(--space-tight);
 }
 
 .title {
@@ -69,7 +69,7 @@
   height: 2rem;
   flex: 0 0 auto;
   place-items: center;
-  margin: -0.0625rem -0.125rem 0 0;
+  margin: calc(var(--space-hair) * -1) calc(var(--space-hair) * -1) 0 0;
   border: 0;
   border-radius: var(--radius-full); corner-shape: round;
   background: transparent;

@@ -3,7 +3,7 @@
 .label { justify-self: start; margin-bottom: var(--space-related); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); }
 
 /* One tall shell: the amount on the left, the currency on the right. Set --money-input-height to resize it. */
-.control { position: relative; display: flex; min-width: 0; height: var(--money-input-height, 76px); box-sizing: border-box; align-items: center; gap: var(--space-related); padding: 0 8px 0 18px; border: 1px solid var(--border-strong); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard); }
+.control { position: relative; display: flex; min-width: 0; height: var(--money-input-height, 76px); box-sizing: border-box; align-items: center; gap: var(--space-related); padding: 0 var(--space-related) 0 var(--space-comfort); border: 1px solid var(--border-strong); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .control:hover:not([data-invalid]) { border-color: var(--foreground); } }
 .control[data-focused] { border-color: var(--foreground); }
 .control[data-invalid] { border-color: var(--danger); }
@@ -35,19 +35,19 @@
 
 /* Currency switch: plain text on the shell, a quiet fill on hover and while open. It answers a press with color, since it anchors a menu. */
 .menuAnchor { position: relative; flex: none; }
-.currencyButton { display: inline-flex; height: 36px; align-items: center; gap: 4px; padding: 0 8px 0 12px; border: 0; border-radius: var(--radius-full); corner-shape: round; background: transparent; color: var(--foreground); cursor: pointer; font: inherit; font-size: var(--text-sm); font-weight: 500; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard); }
+.currencyButton { display: inline-flex; height: 36px; align-items: center; gap: var(--space-tight); padding: 0 var(--space-related) 0 var(--space-group); border: 0; border-radius: var(--radius-full); corner-shape: round; background: transparent; color: var(--foreground); cursor: pointer; font: inherit; font-size: var(--text-sm); font-weight: 500; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .currencyButton:hover:not(:disabled) { background: var(--surface-muted); } }
 .currencyButton:active:not(:disabled), .currencyButton[data-open] { background: var(--surface-muted); }
 .currencyButton:disabled { cursor: not-allowed; }
 .code { font-variant-numeric: tabular-nums; }
-.codeStatic { flex: none; padding: 0 10px; color: var(--text-secondary); font-size: var(--text-sm); font-weight: 500; }
+.codeStatic { flex: none; padding: 0 var(--space-group); color: var(--text-secondary); font-size: var(--text-sm); font-weight: 500; }
 .chevron { display: grid; width: 16px; height: 16px; place-items: center; color: var(--text-muted); }
 
 /* The menu grows out of the currency button's corner and opens 8px below the shell, whatever its height. */
-.menu { --drop: calc((var(--money-input-height, 76px) - 36px) / 2 + var(--space-related)); position: absolute; z-index: 30; top: calc(100% + var(--drop)); right: -8px; width: min(256px, calc(100vw - 2rem)); box-sizing: border-box; padding: 6px; border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-floating); transform-origin: calc(100% - 44px) calc(var(--drop) * -1 - 18px); }
-.list { position: relative; display: grid; max-height: 288px; gap: 2px; overflow-y: auto; overscroll-behavior: contain; outline: none; scrollbar-width: thin; }
+.menu { --drop: calc((var(--money-input-height, 76px) - 36px) / 2 + var(--space-related)); position: absolute; z-index: 30; top: calc(100% + var(--drop)); right: calc(var(--space-related) * -1); width: min(256px, calc(100vw - 2rem)); box-sizing: border-box; padding: var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-floating); transform-origin: calc(100% - 44px) calc(var(--drop) * -1 - 18px); }
+.list { position: relative; display: grid; max-height: 288px; gap: var(--space-hair); overflow-y: auto; overscroll-behavior: contain; outline: none; scrollbar-width: thin; }
 .highlight { position: absolute; top: 0; right: 0; left: 0; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
-.option { position: relative; display: flex; min-height: 36px; box-sizing: border-box; align-items: center; gap: 10px; padding: 0 10px; border-radius: var(--radius-control); corner-shape: var(--corner-shape); color: var(--text-secondary); cursor: pointer; font-size: var(--text-sm); user-select: none; -webkit-user-select: none; transition: color var(--duration-fast) var(--ease-standard); }
+.option { position: relative; display: flex; min-height: 36px; box-sizing: border-box; align-items: center; gap: var(--space-group); padding: 0 var(--space-group); border-radius: var(--radius-control); corner-shape: var(--corner-shape); color: var(--text-secondary); cursor: pointer; font-size: var(--text-sm); user-select: none; -webkit-user-select: none; transition: color var(--duration-fast) var(--ease-standard); }
 .option[data-active], .option[aria-selected="true"] { color: var(--foreground); }
 .optionSymbol { width: 22px; flex: none; color: var(--text-muted); text-align: center; }
 .optionCode { flex: none; font-weight: 500; font-variant-numeric: tabular-nums; }
@@ -57,8 +57,8 @@
 
 /* Quick add chips and the allowed range share one row under the shell. */
 .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-related) var(--space-group); padding-top: var(--space-group); }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { height: 30px; padding: 0 12px; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface); color: var(--text-secondary); cursor: pointer; font: inherit; font-size: var(--text-xs); font-weight: 500; font-variant-numeric: tabular-nums; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), transform var(--duration-spring) var(--ease-spring); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-related); }
+.chip { height: 30px; padding: 0 var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface); color: var(--text-secondary); cursor: pointer; font: inherit; font-size: var(--text-xs); font-weight: 500; font-variant-numeric: tabular-nums; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), transform var(--duration-spring) var(--ease-spring); }
 @media (hover: hover) and (pointer: fine) { .chip:hover:not(:disabled) { background: var(--surface-muted); color: var(--foreground); } }
 .chip:active:not(:disabled) { transform: scale(.96); transition-duration: var(--duration-fast), var(--duration-fast), var(--duration-fast), 100ms; }
 .chip[aria-disabled="true"] { opacity: .45; }
@@ -73,5 +73,5 @@
 
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 
-@media (max-width: 420px) { .control { padding-left: 14px; } .group { font-size: var(--text-2xl); } }
+@media (max-width: 420px) { .control { padding-left: var(--space-inset); } .group { font-size: var(--text-2xl); } }
 @media (prefers-reduced-motion: reduce) { .control, .column, .check, .chip, .range { transition-duration: 0ms; } .chip:active:not(:disabled) { transform: none; } }

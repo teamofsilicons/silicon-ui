@@ -12,10 +12,9 @@
 .card::before { position: absolute; inset: 0; border-radius: inherit; corner-shape: inherit; box-shadow: var(--shadow-floating); content: ""; opacity: 0; pointer-events: none; transition: opacity var(--duration-fast) var(--ease-standard); }
 .card[data-dragging]::before, .card[data-flying]::before { opacity: 1; }
 .face { position: relative; height: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: inherit; corner-shape: inherit; background: var(--surface); color: var(--foreground); }
-.shade { position: absolute; inset: 0; background: oklch(0% 0 0 / .035); pointer-events: none; }
-:global(:root[data-theme="dark"]) .shade { background: oklch(0% 0 0 / .22); }
+.shade { position: absolute; inset: 0; background: var(--shade); pointer-events: none; }
 
-.stamp { position: absolute; top: var(--space-inset); display: inline-flex; height: 2rem; align-items: center; gap: 6px; padding: 0 var(--space-group) 0 10px; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface-raised); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; white-space: nowrap; pointer-events: none; }
+.stamp { position: absolute; top: var(--space-inset); display: inline-flex; height: 2rem; align-items: center; gap: var(--space-related); padding: 0 var(--space-group) 0 var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface-raised); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; white-space: nowrap; pointer-events: none; }
 .stamp[data-side="right"] { left: var(--space-inset); border-color: color-mix(in oklab, var(--success) 32%, var(--border)); background: color-mix(in oklab, var(--success) 9%, var(--surface-raised)); }
 .stamp[data-side="right"] svg { color: var(--success); }
 .stamp[data-side="left"] { right: var(--space-inset); }

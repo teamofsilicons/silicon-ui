@@ -3,10 +3,10 @@
 .index { display: grid; gap: var(--space-block); }
 
 .header { display: grid; gap: var(--space-group); max-width: 600px; }
-.title { margin: 0; font-family: var(--font-display); font-size: clamp(1.75rem, 1rem + 3cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); }
+.title { margin: 0; font-family: var(--font-display); font-size: clamp(var(--text-2xl), var(--text-base) + 3cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); }
 .description { margin: 0; color: var(--text-secondary); font-size: var(--text-base); line-height: var(--leading-body); text-wrap: pretty; }
 
-.filters { display: flex; gap: 2px; margin: 0 calc(var(--space-section) * -1); overflow-x: auto; padding: 0 var(--space-section); scrollbar-width: none; }
+.filters { display: flex; gap: var(--space-hair); margin: 0 calc(var(--space-section) * -1); overflow-x: auto; padding: 0 var(--space-section); scrollbar-width: none; }
 .filters::-webkit-scrollbar { display: none; }
 .filter { position: relative; isolation: isolate; flex: none; height: 36px; border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-inset); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard); }
 .filter[aria-pressed="true"] { color: var(--background); }
@@ -27,10 +27,10 @@
 .image { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--duration-considered) var(--ease-standard); }
 .cardBody { display: grid; align-content: start; gap: var(--space-related); }
 .featured .cardBody { gap: var(--space-group); }
-.meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; color: var(--text-muted); font-size: var(--text-xs); }
+.meta { display: flex; flex-wrap: wrap; gap: var(--space-related); margin: 0; color: var(--text-muted); font-size: var(--text-xs); }
 .meta span:first-child { color: var(--foreground); font-weight: 500; }
 .cardTitle { margin: 0; font-size: var(--text-lg); font-weight: 500; line-height: 1.3; text-wrap: balance; transition: color var(--duration-fast) var(--ease-standard); }
-.featuredTitle { margin: 0; font-family: var(--font-display); font-size: clamp(var(--text-2xl), 1rem + 2.2cqi, var(--text-3xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
+.featuredTitle { margin: 0; font-family: var(--font-display); font-size: clamp(var(--text-2xl), var(--text-base) + 2.2cqi, var(--text-3xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
 .excerpt { display: -webkit-box; margin: 0; overflow: hidden; color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.5; text-wrap: pretty; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .featured .excerpt { font-size: var(--text-base); -webkit-line-clamp: 3; }
 .byline { display: flex; min-width: 0; align-items: center; gap: var(--space-related); margin-top: var(--space-related); font-size: var(--text-sm); }
@@ -48,8 +48,8 @@
 
 .pagination { position: relative; display: flex; align-items: center; justify-content: space-between; gap: var(--space-group); padding-top: var(--space-section); }
 .pagination::before { content: ""; position: absolute; top: 0; right: 0; left: 0; height: 1px; background: var(--border); }
-.pageNumbers { display: flex; gap: 2px; }
-.pageNumber, .pageStep { position: relative; isolation: isolate; display: inline-flex; height: 36px; min-width: 36px; align-items: center; justify-content: center; gap: 6px; border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; font-variant-numeric: tabular-nums; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
+.pageNumbers { display: flex; gap: var(--space-hair); }
+.pageNumber, .pageStep { position: relative; isolation: isolate; display: inline-flex; height: 36px; min-width: 36px; align-items: center; justify-content: center; gap: var(--space-related); border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; font-variant-numeric: tabular-nums; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
 .pageNumber { padding: 0; }
 .pageNumber[aria-current="page"] { color: var(--foreground); }
 .pageHighlight { position: absolute; z-index: -1; inset: 0; border-radius: inherit; corner-shape: inherit; background: var(--surface-muted); }
@@ -58,10 +58,10 @@
 @media (hover: hover) and (pointer: fine) { .pageNumber:hover, .pageStep:not(:disabled):hover { color: var(--foreground); } }
 
 .reader { display: grid; max-width: 760px; gap: var(--space-block); margin: 0 auto; }
-.back { display: inline-flex; width: fit-content; height: 36px; align-items: center; gap: 6px; border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group) 0 var(--space-related); margin-left: calc(var(--space-related) * -1); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
+.back { display: inline-flex; width: fit-content; height: 36px; align-items: center; gap: var(--space-related); border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group) 0 var(--space-related); margin-left: calc(var(--space-related) * -1); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .back:hover { background: var(--surface-muted); color: var(--foreground); } }
 .readerHead { display: grid; gap: var(--space-group); }
-.readerTitle { margin: 0; font-family: var(--font-display); font-size: clamp(var(--text-2xl), 1rem + 3.4cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
+.readerTitle { margin: 0; font-family: var(--font-display); font-size: clamp(var(--text-2xl), var(--text-base) + 3.4cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
 .readerImage { overflow: hidden; aspect-ratio: 16 / 9; border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-muted); }
 .readerBody { display: grid; gap: var(--space-comfort); }
 .readerBody p { margin: 0; color: var(--text-secondary); font-size: var(--text-lg); line-height: 1.65; text-wrap: pretty; }

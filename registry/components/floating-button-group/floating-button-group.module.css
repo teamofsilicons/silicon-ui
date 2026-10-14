@@ -33,7 +33,7 @@
 /* Buttons are not positioned, so the highlight measures them against the tray and stacks above their background. */
 .item { display: inline-flex; min-width: var(--fbg-h); height: var(--fbg-h); flex: none; align-items: center; justify-content: center; margin: 0; padding: 0 var(--fbg-pad-x); border: 0; border-radius: var(--fbg-radius); background: transparent; color: inherit; font: inherit; font-size: var(--text-sm); font-weight: 500; line-height: 1; white-space: nowrap; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
 .sm .item { font-size: var(--text-xs); }
-.item[data-icon]:not([data-icon-only]) { padding-left: calc(var(--fbg-pad-x) - 2px); }
+.item[data-icon]:not([data-icon-only]) { padding-left: calc(var(--fbg-pad-x) - var(--space-hair)); }
 .item[data-icon-only] { width: var(--fbg-h); padding: 0; }
 .item[data-active], .item[aria-pressed="true"] { color: var(--foreground); }
 .item[aria-pressed="true"] { background: var(--fbg-on); }
@@ -45,15 +45,15 @@
 .slot { position: relative; z-index: 2; display: inline-grid; align-items: center; justify-items: center; }
 .slot > * { grid-area: 1 / 1; }
 .vertical .slot { justify-items: start; }
-.ghost { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; visibility: hidden; pointer-events: none; }
+.ghost { display: inline-flex; align-items: center; gap: var(--space-related); white-space: nowrap; visibility: hidden; pointer-events: none; }
 .iconSpace { display: block; width: 16px; height: 16px; flex: none; }
-.phase { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.phase { display: inline-flex; align-items: center; gap: var(--space-related); white-space: nowrap; }
 .icon { display: inline-flex; flex: none; }
 .icon svg { width: 16px; height: 16px; stroke-width: 1.75; }
 .text { display: block; }
 
-.separator { flex: none; align-self: center; width: 1px; height: calc(var(--fbg-h) * .5); margin-inline: 2px; border-radius: var(--radius-full); corner-shape: round; background: var(--fbg-rule); }
-.vertical .separator { width: calc(var(--fbg-h) * .5); height: 1px; margin: 2px 0; }
+.separator { flex: none; align-self: center; width: 1px; height: calc(var(--fbg-h) * .5); margin-inline: var(--space-hair); border-radius: var(--radius-full); corner-shape: round; background: var(--fbg-rule); }
+.vertical .separator { width: calc(var(--fbg-h) * .5); height: 1px; margin: var(--space-hair) 0; }
 
 .tip { display: inline-flex; align-items: baseline; gap: var(--space-group); white-space: nowrap; }
 .kbd { font: inherit; color: color-mix(in oklab, var(--background) 58%, var(--foreground)); font-variant-numeric: tabular-nums; }

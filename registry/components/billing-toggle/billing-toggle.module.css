@@ -26,14 +26,14 @@
   z-index: -1;
   border-radius: var(--radius-full); corner-shape: round;
   background: var(--surface-raised);
-  box-shadow: 0 0 0 1px var(--border-subtle), 0 1px 2px oklch(0% 0 0 / .06), 0 2px 6px oklch(0% 0 0 / .04);
+  box-shadow: 0 0 0 1px var(--border-subtle), var(--shadow-thumb);
   pointer-events: none;
 }
 .thumb { top: var(--_pad); bottom: var(--_pad); left: 0; will-change: transform, width; }
 .thumbStatic { inset: 0; }
 :global(:root[data-theme="dark"]) .thumb,
 :global(:root[data-theme="dark"]) .thumbStatic {
-  box-shadow: 0 0 0 1px var(--border), inset 0 1px 0 oklch(100% 0 0 / .05), 0 1px 2px oklch(0% 0 0 / .3);
+  box-shadow: 0 0 0 1px var(--border), var(--shadow-thumb);
 }
 
 .option {
@@ -42,7 +42,7 @@
   min-width: 0;
   height: var(--_h);
   align-items: center;
-  padding: 0 14px;
+  padding: 0 var(--space-inset);
   border: 0;
   border-radius: var(--radius-full); corner-shape: round;
   background: transparent;
@@ -55,9 +55,9 @@
   -webkit-tap-highlight-color: transparent;
 }
 .option[data-selected] { color: var(--foreground); cursor: default; }
-.option:has(.badge) { padding-right: 5px; }
-.root[data-size="lg"] .option { padding-inline: 18px; }
-.root[data-size="lg"] .option:has(.badge) { padding-right: 6px; }
+.option:has(.badge) { padding-right: var(--space-tight); }
+.root[data-size="lg"] .option { padding-inline: var(--space-comfort); }
+.root[data-size="lg"] .option:has(.badge) { padding-right: var(--space-related); }
 
 @media (hover: hover) and (pointer: fine) {
   .option:not([data-selected]):hover { color: var(--text-secondary); }
@@ -67,7 +67,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-related);
   transition: transform var(--duration-fast) var(--ease-standard);
 }
 .option:not([data-selected]):active .content { transform: scale(.97); }
@@ -79,7 +79,7 @@
   display: inline-flex;
   height: calc(var(--_h) - 10px);
   align-items: center;
-  padding: 0 8px;
+  padding: 0 var(--space-related);
   border-radius: var(--radius-full); corner-shape: round;
   background: color-mix(in oklab, var(--foreground) 6%, transparent);
   color: var(--text-secondary);
@@ -108,7 +108,7 @@
 
 /* ------------------------------------------------------------------------ Price */
 
-.price { display: inline-flex; min-width: 0; flex-wrap: wrap; align-items: flex-end; gap: 4px 10px; }
+.price { display: inline-flex; min-width: 0; flex-wrap: wrap; align-items: flex-end; gap: var(--space-tight) var(--space-group); }
 .amount {
   display: inline-flex;
   align-items: flex-start;
@@ -133,7 +133,7 @@
   white-space: nowrap;
 }
 .wasSlot { display: inline-block; overflow-x: clip; }
-.was { display: inline-block; padding-right: 6px; color: var(--text-muted); font-variant-numeric: tabular-nums; text-decoration-thickness: 1px; }
+.was { display: inline-block; padding-right: var(--space-related); color: var(--text-muted); font-variant-numeric: tabular-nums; text-decoration-thickness: 1px; }
 .period { position: relative; display: inline-block; overflow-x: clip; overflow-clip-margin: 2px; }
 .periodSizer { display: inline-block; visibility: hidden; }
 .periodText { position: absolute; top: 0; left: 0; display: inline-block; }

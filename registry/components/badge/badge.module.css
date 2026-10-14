@@ -4,7 +4,7 @@
   align-items: center;
   border: 1px solid var(--badge-border, var(--border));
   border-radius: var(--radius-full); corner-shape: round;
-  padding: 0 10px;
+  padding: 0 var(--space-group);
   color: var(--badge-foreground, var(--foreground));
   background: var(--badge-background, var(--surface));
   font-size: var(--text-xs);
@@ -20,12 +20,12 @@
 @media (hover: hover) and (pointer: fine) {
   .badge:hover { border-color: color-mix(in oklab, var(--badge-color, var(--foreground)) 32%, var(--border)); background: color-mix(in oklab, var(--badge-color, var(--foreground)) 10%, var(--surface)); }
 }
-.sm { min-height: 22px; padding: 0 8px; font-size: 11px; }
+.sm { min-height: 22px; padding: 0 var(--space-related); font-size: var(--text-xs); }
 .md { font-size: var(--text-xs); }
 
 .body { display: block; }
-.content { position: relative; display: inline-flex; width: max-content; align-items: center; gap: 5px; }
-.sm .content { gap: 4px; }
+.content { position: relative; display: inline-flex; width: max-content; align-items: center; gap: var(--space-tight); }
+.sm .content { gap: var(--space-tight); }
 .label, .glyph { position: relative; display: inline-flex; align-items: center; }
 .text { display: block; }
 

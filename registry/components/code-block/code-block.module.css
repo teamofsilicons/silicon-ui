@@ -23,21 +23,14 @@
 .chevron { display: grid; flex: none; place-items: center; color: var(--text-muted); }
 /* Each role has contrast in both themes; color supports, but never replaces, source text. */
 .comment { color: var(--text-muted); font-style: italic; }
-.string { color: oklch(46% .13 150); }
-.number { color: oklch(50% .14 55); }
-.keyword { color: oklch(48% .15 285); }
-.type { color: oklch(46% .13 230); }
-.function { color: oklch(43% .12 25); }
-.property { color: oklch(44% .12 85); }
-.tag { color: oklch(46% .13 230); }
+.string { color: var(--syntax-string); }
+.number { color: var(--syntax-number); }
+.keyword { color: var(--syntax-keyword); }
+.type { color: var(--syntax-type); }
+.function { color: var(--syntax-function); }
+.property { color: var(--syntax-property); }
+.tag { color: var(--syntax-type); }
 .punctuation { color: var(--text-secondary); }
-:global(:root[data-theme="dark"]) .string { color: oklch(77% .15 150); }
-:global(:root[data-theme="dark"]) .number { color: oklch(80% .14 75); }
-:global(:root[data-theme="dark"]) .keyword { color: oklch(78% .16 285); }
-:global(:root[data-theme="dark"]) .type { color: oklch(79% .13 230); }
-:global(:root[data-theme="dark"]) .function { color: oklch(80% .13 25); }
-:global(:root[data-theme="dark"]) .property { color: oklch(79% .12 85); }
-:global(:root[data-theme="dark"]) .tag { color: oklch(79% .13 230); }
 @media (hover: hover) and (pointer: fine) { .expand:hover { background: var(--surface-muted); color: var(--foreground); } .expand:hover .chevron { color: var(--foreground); } }
 @media (max-width: 420px) { .header { padding-left: var(--space-group); } .header :global(button) { width: var(--control-height-sm); padding-inline: 0; } .header :global(button) > span:last-of-type { display: none; } .viewport { --code-collapsed: calc(var(--code-lines, 0) * var(--text-xs) * 1.7 + var(--space-inset) * 2); } .pre { padding: var(--space-inset); font-size: var(--text-xs); } }
 @media (prefers-reduced-motion: reduce) { .expand { transition: none; } }

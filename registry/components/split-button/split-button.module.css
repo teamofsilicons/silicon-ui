@@ -2,13 +2,13 @@
 .group { display: inline-flex; align-items: stretch; border: 1px solid var(--foreground); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--foreground); transition: transform var(--duration-spring) var(--ease-spring); }
 .group:has(> .primary:active:not(:disabled)) { transform: scale(.97); transition-duration: var(--duration-instant); transition-timing-function: var(--ease-standard); }
 .primary, .trigger { border: 0; background: var(--foreground); color: var(--background); font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
-.primary { position: relative; display: inline-grid; min-height: var(--control-height-md); place-items: center; padding: 0 var(--space-inset); border-radius: calc(var(--radius-control) - 1px) 0 0 calc(var(--radius-control) - 1px); corner-shape: var(--corner-shape); font-size: var(--text-sm); font-weight: 500; }
+.primary { position: relative; display: inline-grid; min-height: var(--control-height-md); place-items: center; padding: 0 var(--space-inset); border-radius: calc(var(--radius-control) - var(--space-hair)) 0 0 calc(var(--radius-control) - var(--space-hair)); corner-shape: var(--corner-shape); font-size: var(--text-sm); font-weight: 500; }
 /* TextMorph springs the label's width, so the main half grows and shrinks with its text. */
 .primarySlot { display: inline-flex; min-width: 0; align-items: center; }
 .primaryContent { display: inline-flex; flex: none; align-items: center; gap: var(--space-related); white-space: nowrap; }
 .mainIcon { display: inline-grid; flex: none; place-items: center; }
 .iconPhase { grid-area: 1 / 1; display: inline-flex; align-items: center; justify-content: center; }
-.trigger { display: grid; width: 38px; min-height: var(--control-height-md); place-items: center; border-left: 1px solid color-mix(in oklab, var(--background) 18%, var(--foreground)); border-radius: 0 calc(var(--radius-control) - 1px) calc(var(--radius-control) - 1px) 0; corner-shape: var(--corner-shape); }
+.trigger { display: grid; width: 38px; min-height: var(--control-height-md); place-items: center; border-left: 1px solid color-mix(in oklab, var(--background) 18%, var(--foreground)); border-radius: 0 calc(var(--radius-control) - var(--space-hair)) calc(var(--radius-control) - var(--space-hair)) 0; corner-shape: var(--corner-shape); }
 .chevron { transition: transform var(--duration-spring) var(--ease-spring); }
 .trigger[data-state="open"] .chevron { transform: rotate(180deg); }
 @media (hover: hover) and (pointer: fine) {
@@ -26,7 +26,7 @@
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* The menu grows from the trigger edge: offset toward the trigger, scale from the Radix origin, fade quickly; it leaves faster than it arrives.
    Transitions instead of keyframes, so a close that interrupts the open reverses from where the menu is instead of snapping to rest first. */
-.menu { --menu-x: 0px; --menu-y: -5px; position: relative; z-index: 60; min-width: min(12rem, var(--radix-dropdown-menu-content-available-width)); max-width: var(--radix-dropdown-menu-content-available-width); padding: 5px; border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-floating); transform-origin: var(--radix-dropdown-menu-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-spring) var(--ease-spring); }
+.menu { --menu-x: 0px; --menu-y: -5px; position: relative; z-index: 60; min-width: min(12rem, var(--radix-dropdown-menu-content-available-width)); max-width: var(--radix-dropdown-menu-content-available-width); padding: var(--space-tight); border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-floating); transform-origin: var(--radix-dropdown-menu-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-spring) var(--ease-spring); }
 .menu[data-side="top"] { --menu-y: 5px; }
 .menu[data-side="left"] { --menu-x: 5px; --menu-y: 0px; }
 .menu[data-side="right"] { --menu-x: -5px; --menu-y: 0px; }
@@ -36,10 +36,10 @@
 }
 /* Radix unmounts when the exit animation ends, so a no-op keyframe times the exit while the transition does the visual work. */
 .menu[data-state="closed"] { opacity: 0; transform: translate(calc(var(--menu-x) * .5), calc(var(--menu-y) * .5)) scale(.985); transition: opacity 130ms var(--ease-standard), transform 130ms var(--ease-standard); animation: menu-exit 130ms linear both; pointer-events: none; }
-.highlight { position: absolute; top: 0; right: 5px; left: 5px; border-radius: calc(var(--radius-container) - 6px); background: var(--surface-muted); opacity: 0; pointer-events: none; transition: background-color var(--duration-fast) var(--ease-standard); }
+.highlight { position: absolute; top: 0; right: var(--space-tight); left: var(--space-tight); border-radius: calc(var(--radius-container) - var(--space-related)); background: var(--surface-muted); opacity: 0; pointer-events: none; transition: background-color var(--duration-fast) var(--ease-standard); }
 .highlight[data-tone="danger"] { background: color-mix(in oklab, var(--danger) 8%, var(--surface)); }
 /* One highlight glides between items for the pointer and jumps instantly for the keyboard (lib/menu-highlight). */
-.item { position: relative; display: flex; min-height: var(--control-height-sm); align-items: center; gap: 10px; padding: 0 11px; border-radius: calc(var(--radius-container) - 6px); corner-shape: var(--corner-shape); font-size: var(--text-sm); cursor: pointer; outline: none; transition: opacity var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms), transform var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms); }
+.item { position: relative; display: flex; min-height: var(--control-height-sm); align-items: center; gap: var(--space-group); padding: 0 var(--space-group); border-radius: calc(var(--radius-container) - var(--space-related)); corner-shape: var(--corner-shape); font-size: var(--text-sm); cursor: pointer; outline: none; transition: opacity var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms), transform var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms); }
 .item[data-disabled] { cursor: default; opacity: .45; }
 .destructive { color: var(--danger); }
 @keyframes menu-exit { to { --menu-exit: 1; } }

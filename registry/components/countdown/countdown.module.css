@@ -11,21 +11,21 @@
 
 .units { display: inline-flex; align-items: flex-start; white-space: nowrap; }
 .unit { display: inline-flex; align-items: flex-start; }
-.group { display: inline-grid; justify-items: center; gap: 6px; }
+.group { display: inline-grid; justify-items: center; gap: var(--space-related); }
 .number { display: inline-flex; font-variant-numeric: tabular-nums; transition: opacity var(--duration-considered) var(--ease-standard); }
 .countdown[data-pending] .number { opacity: .3; }
 .name { color: var(--text-muted); font-size: var(--text-xs); line-height: 1; }
 .colon { color: var(--text-muted); opacity: .6; }
 
 /* Large: display digits sized to the container, so four groups fit at 320px and breathe on a wide card. */
-.countdown[data-variant="large"] .units { gap: 0; font-family: var(--font-display); font-size: clamp(1.75rem, 12.5cqi, var(--text-5xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: 1; }
+.countdown[data-variant="large"] .units { gap: 0; font-family: var(--font-display); font-size: clamp(var(--text-2xl), 12.5cqi, var(--text-5xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: 1; }
 .countdown[data-variant="large"] .colon { padding-inline: .12em; line-height: 1; transform: translateY(-.06em); }
 /* On a narrow card the unit names outgrow the digits; an even column floor keeps the colons evenly spaced instead of following each name's width. */
 .countdown[data-variant="large"] .group { min-width: min(calc((100cqi - 1.6em) / 4), calc(var(--text-xs) * 4.2)); }
 .countdown[data-variant="large"] .name { font-family: var(--font-body); letter-spacing: var(--tracking-body); }
 
 /* Compact: one line, digits then a quiet unit letter. */
-.countdown[data-variant="compact"] .units { gap: 6px; font-size: var(--text-sm); font-weight: 500; line-height: 1.3; }
+.countdown[data-variant="compact"] .units { gap: var(--space-related); font-size: var(--text-sm); font-weight: 500; line-height: 1.3; }
 .countdown[data-variant="compact"] .group { display: inline-flex; align-items: baseline; gap: 1px; }
 .countdown[data-variant="compact"] .name { font-size: var(--text-sm); font-weight: 400; line-height: 1.3; }
 
@@ -36,7 +36,7 @@
 
 /* Finished: the digits give way to the label and a live mark. */
 .done { display: inline-flex; align-items: center; gap: .4em; white-space: nowrap; }
-.countdown[data-variant="large"] .done { font-family: var(--font-display); font-size: clamp(1.75rem, 11cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: 1.1; }
+.countdown[data-variant="large"] .done { font-family: var(--font-display); font-size: clamp(var(--text-2xl), 11cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: 1.1; }
 .countdown[data-variant="compact"] .done { color: var(--success); font-size: var(--text-sm); font-weight: 500; line-height: 1.3; }
 .pulse { position: relative; width: .3em; height: .3em; min-width: 8px; min-height: 8px; flex: none; border-radius: 50%; corner-shape: round; background: var(--success); }
 .pulse::after { position: absolute; inset: 0; border-radius: inherit; corner-shape: inherit; background: var(--success); content: ""; animation: pulse 2s var(--ease-standard) infinite; }
