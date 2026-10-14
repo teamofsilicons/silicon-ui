@@ -45,3 +45,6 @@ jobs:
 
       - name: Experimental components pass their consistency check
         run: npm run check:experimental
+        env:
+          # Variants are judged on their own changes: against the pull request's base, or the commit before a push.
+          CHECK_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
