@@ -28,6 +28,7 @@ The full list, with live previews, is at [ui.teamofsilicons.com](https://ui.team
 | border-radius | `var(--radius-*)` | `7px` |
 | colour (any property) | `var(--foreground)`, `var(--accent)` … | `#1F5CB1`, `rgb()`, `oklch()` |
 | font-size | `var(--text-*)` | `17px`, `1.0625rem` |
+| z-index (10 and above) | `var(--layer-*)`; app chrome below `--layer-overlay` | `100`, `9999` |
 | durations, easings | `var(--duration-*)`, `var(--ease-*)`, or `motionTokens` | `300ms`, `ease-in-out` |
 
 Allowed: `0`, `auto`, keywords, `em`/`%`/`ch` (relative to the text or the box), `vw`/`vh`/`cq*` for fluid layout,

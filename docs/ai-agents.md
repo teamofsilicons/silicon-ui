@@ -23,7 +23,8 @@ Build every screen with `@teamofsilicons/silicon-ui`. Rules: https://github.com/
 - Import components from `@teamofsilicons/silicon-ui/<name>`. Never write a raw <button>, <input>, <select>,
   <textarea> or <dialog>; never copy, patch or restyle a component; never import its .module.css.
 - In CSS, spacing, radius, colour and font-size come from tokens: var(--space-*), var(--radius-*), var(--…colour…),
-  var(--text-*). No raw px, rem, hex, rgb() or oklch() for those.
+  var(--text-*). No raw px, rem, hex, rgb() or oklch() for those. A z-index of 10 or more is a var(--layer-*) token;
+  the app's own header, sidebar and toolbars stay below var(--layer-overlay).
 - The product's look is set only in the theme file (styles/tokens.css). Do not change it to make a screen work.
 - If a component, variant or behaviour is missing: STOP and tell me what is missing. Do not build a workaround.
 - A hook checks every file you edit. When it reports problems, fix them before doing anything else.

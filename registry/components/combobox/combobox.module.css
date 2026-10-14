@@ -15,7 +15,7 @@
 @media (hover: hover) and (pointer: fine) { .clear:hover { background: var(--surface-muted); color: var(--foreground); } }
 .clear:focus-visible { --focus-outline-offset: 1px; }
 .hint { color: var(--text-muted); font-size: var(--text-xs); }
-.popover { position: absolute; z-index: 80; top: calc(100% + var(--space-related)); right: 0; left: 0; overflow: hidden; transform-origin: top center; border: 1px solid var(--border); border-radius: var(--radius-container); padding: var(--space-tight); background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-floating); will-change: transform, opacity; }
+.popover { position: absolute; z-index: var(--layer-dropdown); top: calc(100% + var(--space-related)); right: 0; left: 0; overflow: hidden; transform-origin: top center; border: 1px solid var(--border); border-radius: var(--radius-container); padding: var(--space-tight); background: var(--surface-raised); color: var(--foreground); box-shadow: var(--shadow-floating); will-change: transform, opacity; }
 .autoHeight { overflow: hidden; }
 .listbox { max-height: min(300px, 40vh); overflow-y: auto; overscroll-behavior: contain; }
 /* Arrow keys move the highlight often, so it changes almost instantly. */

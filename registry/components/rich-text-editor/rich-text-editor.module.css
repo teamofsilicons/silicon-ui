@@ -91,7 +91,7 @@
 /* Floating toolbar. One surface whose size springs between its two faces. */
 .toolbar {
   position: absolute;
-  z-index: 40;
+  z-index: var(--layer-popover);
   translate: -50% -100%;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -163,7 +163,7 @@
 /* Slash menu. */
 .slash {
   position: absolute;
-  z-index: 40;
+  z-index: var(--layer-dropdown);
   width: 240px;
   max-width: calc(100% - 8px);
   overflow-x: hidden;

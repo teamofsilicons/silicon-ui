@@ -112,3 +112,28 @@ Use these in your own CSS too (`silicon-ui-check` enforces it):
 
 Under squircle corners the radii are compensated automatically (4 / 11 / 14 / 21), so both corner shapes feel
 equally round.
+
+## Stacking: where your app's chrome goes
+
+Every layer component stacks on a `--layer-*` token, in this order:
+
+| Token | Value | Used by |
+| --- | --- | --- |
+| `--layer-raised` | 10 | a part lifted above its neighbours in the page (a hero's switcher, a swiped row) |
+| `--layer-sticky` | 20 | sticky headers and bars (Site header) |
+| `--layer-overlay` | 50 | the dim behind a modal (Dialog, Drawer, Bottom sheet, User menu on phones) |
+| `--layer-dialog` | 51 | Dialog, Drawer, Bottom sheet, an expanded Card |
+| `--layer-popover` | 60 | Popover, Hover card, Date picker, Color picker, Notification center |
+| `--layer-dropdown` | 70 | Dropdown menu, Select, Combobox, Context menu and every other menu or listbox |
+| `--layer-toast` | 80 | Toast stack |
+| `--layer-tooltip` | 90 | Tooltip |
+
+Menus sit above popovers and dialogs because they open from inside them.
+
+**Keep your app's own chrome (sticky header, sidebar, toolbar) below `--layer-overlay`**, so a modal's dim covers it
+and every menu, popover and tooltip opens above it. Use `var(--layer-sticky)`, or `calc(var(--layer-overlay) - 1)` at
+most. `silicon-ui-check` fails a raw `z-index` of 10 or more, so a stray `z-index: 100` cannot hide the library's
+layers again; -9 to 9 stays free for order inside your own component.
+
+If you use another UI kit alongside (for example Mantine's AppShell), set its chrome's z-index to these tokens in your
+theme file.

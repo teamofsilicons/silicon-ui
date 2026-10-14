@@ -71,7 +71,7 @@ export default [...yourConfig, ...siliconUi()];
 ```
 
 ```sh
-npx silicon-ui-check                    # raw spacing, radius, colour or font size in CSS modules fails
+npx silicon-ui-check                    # raw spacing, radius, colour, font size or z-index in CSS modules fails
 npx silicon-ui-check --update-baseline  # tolerate today's legacy values; only new drift fails
 ```
 

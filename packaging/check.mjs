@@ -2,16 +2,18 @@
 /**
  * silicon-ui-check: keeps an app's CSS on Silicon UI's tokens.
  *
- * Fails a CSS file that sets spacing, a corner radius, a colour or a font size with a raw value instead of a token:
+ * Fails a CSS file that sets spacing, a corner radius, a colour, a font size or a stacking layer with a raw value
+ * instead of a token:
  *
  *   spacing    padding, margin, gap, inset, top/right/bottom/left, scroll-margin/padding → var(--space-*)
  *   radius     border-radius and its corners                                           → var(--radius-*)
  *   color      hex, rgb(), hsl(), oklch(), oklab(), lab(), lch(), color()              → var(--…)
  *   font-size  px or rem                                                                → var(--text-*)
+ *   z-index    10 and above (or -10 and below)                                          → var(--layer-*)
  *
  * Allowed everywhere: 0, auto, inherit and other keywords, anything inside var() (including fallbacks), and
  * font-relative or layout-relative units (em, %, ch, vw, vh, cq*). 1px and -1px are allowed in spacing: they are
- * hairline alignments against a border, not space. Mask properties are not colours (only their alpha is used). Custom property definitions (--x: …) are not
+ * hairline alignments against a border, not space. z-index from -9 to 9 is a local order inside a component. Mask properties are not colours (only their alpha is used). Custom property definitions (--x: …) are not
  * checked: tokens are defined that way, in the files you list under `ignore`. The visually hidden block (.srOnly,
  * .visuallyHidden, .sr-only) and @keyframes are skipped.
  *
@@ -48,6 +50,7 @@ const FIX = {
   radius: "use a radius token: var(--radius-detail|control|container|overlay|full)",
   color: "use a colour token: var(--foreground), var(--text-secondary), var(--border), var(--accent) …",
   "font-size": "use a type token: var(--text-xs|sm|base|lg|xl|2xl|3xl|4xl|5xl)",
+  layer: "use a layer token: var(--layer-raised|sticky|overlay|dialog|popover|dropdown|toast|tooltip); -9 to 9 is fine for order inside a component",
 };
 
 /** Removes every var(...) (with nested parentheses), so tokens and their fallbacks are never flagged. */
@@ -106,6 +109,10 @@ export function checkCss(css) {
       const hairline = match => rule === "spacing" && match[2] === "px" && Math.abs(Number(match[1])) === 1;
       const raw = [...bare.matchAll(LENGTH)].filter(match => Number(match[1]) !== 0 && !hairline(match)).map(match => match[0]);
       if (raw.length) problems.push({ rule, line, property, value, raw: raw.join(", ") });
+    }
+    if (property === "z-index") {
+      const raw = [...bare.matchAll(/(?<![\w.-])-?\d+(?![\w.])/g)].map(match => match[0]).filter(number => Math.abs(Number(number)) >= 10);
+      if (raw.length) problems.push({ rule: "layer", line, property, value, raw: raw.join(", ") });
     }
     const color = /^(?:-webkit-)?mask/.test(property) ? null : bare.match(COLOR);
     if (color) problems.push({ rule: "color", line, property, value, raw: color[0] });

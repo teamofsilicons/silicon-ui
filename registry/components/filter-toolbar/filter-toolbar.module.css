@@ -24,7 +24,7 @@
 /* Add filter: the trigger is transparent and the surface behind it is the button's rounded rectangle.
    Opening springs that same surface to the panel size, so the button itself becomes the menu. */
 .menu { position: relative; display: inline-flex; flex: none; isolation: isolate; }
-.menu:not([data-state="closed"]) { z-index: 30; }
+.menu:not([data-state="closed"]) { z-index: var(--layer-dropdown); }
 .trigger { position: relative; z-index: 1; display: inline-flex; min-height: var(--control-height-sm); align-items: center; padding: 0 var(--space-group); border: 1px solid transparent; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: transparent; color: var(--foreground); font: inherit; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); letter-spacing: var(--tracking-body); white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .menu[data-state="open"] .trigger { pointer-events: none; }
 .face { display: inline-flex; align-items: center; gap: var(--space-related); }

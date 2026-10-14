@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: var(--layer-overlay);
   background: var(--scrim);
   backdrop-filter: blur(4px);
 }
@@ -12,7 +12,7 @@
   --ease-drawer: cubic-bezier(.32,.72,0,1);
   --drawer-from: translateX(100%);
   position: fixed;
-  z-index: 51;
+  z-index: var(--layer-dialog);
   display: flex;
   flex-direction: column;
   width: var(--drawer-size);
