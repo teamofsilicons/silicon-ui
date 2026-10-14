@@ -16,6 +16,8 @@
   --surface: var(--neutral-0);
   --surface-raised: var(--neutral-0);
   --surface-muted: var(--neutral-2);
+  /* One step stronger than --surface-muted: the hover and press of a muted fill (a soft button). */
+  --surface-pressed: var(--neutral-3);
   --foreground: var(--neutral-11);
   --text-secondary: var(--neutral-8);
   --text-muted: var(--neutral-7);
@@ -127,6 +129,7 @@
   --surface-raised: oklch(24% 0 0);
   /* Keep muted surfaces and hover states distinct from the base surface in dark mode. */
   --surface-muted: oklch(26% 0 0);
+  --surface-pressed: oklch(30% 0 0);
   --foreground: oklch(96% 0 0);
   --text-secondary: oklch(77% 0 0);
   --text-muted: oklch(64% 0 0);

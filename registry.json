@@ -86,6 +86,9 @@
           "Button": {
             "size": [
               "xs"
+            ],
+            "variant": [
+              "soft"
             ]
           }
         }
@@ -126,7 +129,14 @@
           "link",
           "navigation"
         ],
-        "status": "stable"
+        "status": "stable",
+        "experimentalProps": {
+          "ButtonLink": {
+            "variant": [
+              "soft"
+            ]
+          }
+        }
       }
     },
     {

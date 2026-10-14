@@ -7,13 +7,17 @@ import type { TargetAndTransition, Variants } from "motion/react";
 import { motionTokens } from "@/lib/motion-tokens";
 import styles from "./button.module.css";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+/** `soft` is filled and borderless, for controls in a bar (experimental). */
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "soft";
 /** `xs` (24px) is for dense UI such as tree rows and toolbars, usually icon-only with an aria-label. */
 export type ButtonSize = "xs" | "sm" | "md" | "lg";
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onDrag" | "onDragEnd" | "onDragStart" | "onAnimationStart"> {
+  /** The look: `primary` (default) for the main action, `secondary` bordered, `ghost` quiet, `danger` destructive, `soft` filled for bars. */
   variant?: ButtonVariant;
+  /** Height: `xs` 24px, `sm` 36px, `md` 44px (default), `lg` 50px. */
   size?: ButtonSize;
+  /** Shows a spinner in place of the label and sets aria-busy, keeping the button's width. */
   loading?: boolean;
 }
 

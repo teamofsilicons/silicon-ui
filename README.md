@@ -162,7 +162,7 @@ Components read semantic tokens, never raw colors. Change a token in `foundation
 | Token | Used for |
 | --- | --- |
 | `--background` | The page behind everything |
-| `--surface`, `--surface-raised`, `--surface-muted` | Cards and inputs, floating layers, quiet fills |
+| `--surface`, `--surface-raised`, `--surface-muted`, `--surface-pressed` | Cards and inputs, floating layers, quiet fills, the hover of a quiet fill |
 | `--foreground`, `--text-secondary`, `--text-muted` | Primary, supporting and hint text |
 | `--border`, `--border-subtle`, `--border-strong` | Separators and edges |
 | `--accent`, `--accent-strong`, `--accent-subtle` | Selection, progress and helpful context |

@@ -11,9 +11,9 @@ that does (see [new-components.md](new-components.md)).
 | Component | Status | Variants | Built from | |
 | --- | --- | --- | --- | --- |
 | **Action button** `action-button`<br>A compact button for frequent toolbar actions. | stable | — | text-morph | [docs](https://ui.teamofsilicons.com/action-button) |
-| **Button** `button`<br>A clear, responsive action with quiet secondary states. | stable; experimental: `Button size="xs"` | `variant`: primary, secondary, ghost, danger<br>`size`: xs, sm, md, lg | — | [docs](https://ui.teamofsilicons.com/button) |
+| **Button** `button`<br>A clear, responsive action with quiet secondary states. | stable; experimental: `Button size="xs"`, `Button variant="soft"` | `variant`: primary, secondary, ghost, danger, soft<br>`size`: xs, sm, md, lg | — | [docs](https://ui.teamofsilicons.com/button) |
 | **Button group** `button-group`<br>Related actions joined into one surface with hairline dividers: a hover highlight glides between segments, the pressed one answers in place, and an attached menu can close the row. | stable | `variant`: outline, solid<br>`size`: sm, md<br>`orientation`: horizontal, vertical | — | [docs](https://ui.teamofsilicons.com/button-group) |
-| **Button link** `button-link`<br>A link that looks exactly like a button, for actions that go somewhere. | stable | — | button | [docs](https://ui.teamofsilicons.com/button-link) |
+| **Button link** `button-link`<br>A link that looks exactly like a button, for actions that go somewhere. | stable; experimental: `ButtonLink variant="soft"` | — | button | [docs](https://ui.teamofsilicons.com/button-link) |
 | **Confirm morph** `confirm-morph`<br>A destructive button that morphs into an inline confirmation, a spinner, and a result with undo. | stable | `tone`: danger, neutral<br>`confirmMode`: press, hold, countdown<br>`state`: idle, confirming, pending, done, error<br>`defaultState`: idle, confirming, pending, done, error | — | [docs](https://ui.teamofsilicons.com/confirm-morph) |
 | **Context menu** `context-menu`<br>Secondary actions kept close to the selected object. | stable | — | — | [docs](https://ui.teamofsilicons.com/context-menu) |
 | **Copy button** `copy-button`<br>Copy a value with immediate confirmation. | stable | `variant`: outline, plain | — | [docs](https://ui.teamofsilicons.com/copy-button) |
