@@ -11,7 +11,7 @@ that does (see [new-components.md](new-components.md)).
 | Component | Status | Variants | Built from | |
 | --- | --- | --- | --- | --- |
 | **Action button** `action-button`<br>A compact button for frequent toolbar actions. | stable | — | text-morph | [docs](https://ui.teamofsilicons.com/action-button) |
-| **Button** `button`<br>A clear, responsive action with quiet secondary states. | stable | `variant`: primary, secondary, ghost, danger<br>`size`: sm, md, lg | — | [docs](https://ui.teamofsilicons.com/button) |
+| **Button** `button`<br>A clear, responsive action with quiet secondary states. | stable; experimental: `Button size="xs"` | `variant`: primary, secondary, ghost, danger<br>`size`: xs, sm, md, lg | — | [docs](https://ui.teamofsilicons.com/button) |
 | **Button group** `button-group`<br>Related actions joined into one surface with hairline dividers: a hover highlight glides between segments, the pressed one answers in place, and an attached menu can close the row. | stable | `variant`: outline, solid<br>`size`: sm, md<br>`orientation`: horizontal, vertical | — | [docs](https://ui.teamofsilicons.com/button-group) |
 | **Button link** `button-link`<br>A link that looks exactly like a button, for actions that go somewhere. | stable | — | button | [docs](https://ui.teamofsilicons.com/button-link) |
 | **Confirm morph** `confirm-morph`<br>A destructive button that morphs into an inline confirmation, a spinner, and a result with undo. | stable | `tone`: danger, neutral<br>`confirmMode`: press, hold, countdown<br>`state`: idle, confirming, pending, done, error<br>`defaultState`: idle, confirming, pending, done, error | — | [docs](https://ui.teamofsilicons.com/confirm-morph) |
@@ -44,7 +44,7 @@ that does (see [new-components.md](new-components.md)).
 | --- | --- | --- | --- | --- |
 | **Activity heatmap** `activity-heatmap`<br>See a year of activity at a glance, one square per day. | stable | — | — | [docs](https://ui.teamofsilicons.com/activity-heatmap) |
 | **Animated counter** `animated-counter`<br>Give changing totals a clear sense of movement. | stable | — | — | [docs](https://ui.teamofsilicons.com/animated-counter) |
-| **Avatar** `avatar`<br>A compact identity marker for people and accounts. | stable | `size`: sm, md, lg, xl<br>`status`: online, offline | — | [docs](https://ui.teamofsilicons.com/avatar) |
+| **Avatar** `avatar`<br>A compact identity marker for people and accounts. | stable; experimental: `Avatar size="xs"` | `size`: xs, sm, md, lg, xl<br>`status`: online, offline | — | [docs](https://ui.teamofsilicons.com/avatar) |
 | **Avatar group** `avatar-group`<br>Show a team or set of contributors in a small space. | stable | `size`: sm, md, lg | avatar | [docs](https://ui.teamofsilicons.com/avatar-group) |
 | **Badge** `badge`<br>A small label for status, category, or metadata. | stable | `tone`: neutral, success, info, warning, danger<br>`size`: sm, md | — | [docs](https://ui.teamofsilicons.com/badge) |
 | **Bar chart** `bar-chart`<br>Compare one measure across days and scrub any bar for its value. | stable | — | — | [docs](https://ui.teamofsilicons.com/bar-chart) |
@@ -134,7 +134,7 @@ that does (see [new-components.md](new-components.md)).
 | **Radio group** `radio-group`<br>Choose one option from a visible set. | stable | — | — | [docs](https://ui.teamofsilicons.com/radio-group) |
 | **Rich text editor** `rich-text-editor`<br>A lightweight editor with markdown shortcuts, a floating toolbar, a slash menu, and HTML and markdown output. | stable | — | — | [docs](https://ui.teamofsilicons.com/rich-text-editor) |
 | **Search field** `search-field`<br>A recognizable search entry point with clear affordances. | stable | — | — | [docs](https://ui.teamofsilicons.com/search-field) |
-| **Segmented control** `segmented-control`<br>Switch between a small set of related views. | stable | — | — | [docs](https://ui.teamofsilicons.com/segmented-control) |
+| **Segmented control** `segmented-control`<br>Switch between a small set of related views. | stable; experimental: `SegmentedControl size="xs"` | `size`: sm, xs | — | [docs](https://ui.teamofsilicons.com/segmented-control) |
 | **Select** `select`<br>A compact choice field with a keyboard friendly menu. | stable | — | — | [docs](https://ui.teamofsilicons.com/select) |
 | **Shortcut recorder** `shortcut-recorder`<br>Record key combinations into key caps, with conflict warnings, Kbd, and a searchable cheatsheet. | stable | `size`: sm, md<br>`platform`: mac, other | — | [docs](https://ui.teamofsilicons.com/shortcut-recorder) |
 | **Signature pad** `signature-pad`<br>Smooth ink that thins with speed, with undo, replay, and PNG or SVG export. | stable | `defaultColor`: black, blue, violet<br>`defaultWidth`: fine, medium, bold | — | [docs](https://ui.teamofsilicons.com/signature-pad) |

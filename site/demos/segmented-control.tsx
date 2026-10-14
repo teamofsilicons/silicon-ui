@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+function CompactExample() {
+  const [mode, setMode] = useState("edit");
+  return <SegmentedControl size="xs" label="Mode" value={mode} onValueChange={setMode} options={[{ value: "edit", label: "Edit" }, { value: "read", label: "Read" }]} />;
+}
+
 import SegmentedControl, { type SegmentedControlProps } from "@/registry/components/segmented-control/segmented-control";
 import { defineDemo } from "../lib/demo";
 
@@ -12,6 +17,13 @@ export default defineDemo<SegmentedControlProps>({
     const [value, setValue] = useState("week");
     return <SegmentedControl {...props} value={value} onValueChange={next => { setValue(next); props.onValueChange?.(next); }} />;
   },
+  examples: [
+    {
+      title: "Compact (experimental)",
+      description: "size=\"xs\": 24px segments for a toolbar, such as an Edit/Read toggle.",
+      render: () => <CompactExample />,
+    },
+  ],
   usage: `const [range, setRange] = useState("week");
 
 <SegmentedControl

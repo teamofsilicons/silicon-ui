@@ -2,6 +2,12 @@
 
 Changes ship continuously from `main`. Every item links to its live preview on [ui.teamofsilicons.com](https://ui.teamofsilicons.com).
 
+## 2026-10-14
+
+### Added
+
+- **Compact density (experimental).** Request #11. A new control-height step, `--control-height-xs` (24px, the smallest target WCAG 2.5.8 allows), for dense UI such as tree rows and toolbars: [Button](https://ui.teamofsilicons.com/button) `size="xs"` (square when icon-only), [Segmented control](https://ui.teamofsilicons.com/segmented-control) `size="xs"` (`sm` remains the default), and [Avatar](https://ui.teamofsilicons.com/avatar) `size="xs"` (20px). The new sizes are experimental prop values: `meta.experimentalProps` in `registry.json`, and the ESLint gate flags them until an app opts in.
+
 ## 2026-10-12
 
 ### Added

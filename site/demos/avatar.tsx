@@ -9,6 +9,14 @@ export default defineDemo({
   props: { name: person("sofia-ramirez").name, src: avatar("sofia-ramirez"), size: "lg", status: "online" },
   examples: [
     {
+      title: "Sizes",
+      description: "xs (20px, experimental) for dense lists such as space icons in a tree; sm 28, md 36, lg 48, xl 88.",
+      render: () => <div style={row}>
+        {(["xs", "sm", "md", "lg", "xl"] as const).map(size => <Avatar key={size} name={person("sofia-ramirez").name} src={avatar("sofia-ramirez")} size={size} />)}
+        <Avatar name="Design" size="xs" />
+      </div>,
+    },
+    {
       title: "Initials fallback",
       description: "Without a photo, or when it fails to load, the first two initials show instead.",
       render: () => <div style={row}>

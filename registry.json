@@ -81,7 +81,14 @@
           "action",
           "control"
         ],
-        "status": "stable"
+        "status": "stable",
+        "experimentalProps": {
+          "Button": {
+            "size": [
+              "xs"
+            ]
+          }
+        }
       }
     },
     {
@@ -798,7 +805,14 @@
           "identity",
           "people"
         ],
-        "status": "stable"
+        "status": "stable",
+        "experimentalProps": {
+          "Avatar": {
+            "size": [
+              "xs"
+            ]
+          }
+        }
       }
     },
     {
@@ -1414,7 +1428,14 @@
           "control",
           "choice"
         ],
-        "status": "stable"
+        "status": "stable",
+        "experimentalProps": {
+          "SegmentedControl": {
+            "size": [
+              "xs"
+            ]
+          }
+        }
       }
     },
     {

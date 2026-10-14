@@ -7,7 +7,7 @@
  *
  * Options:
  *   files     globs the rules apply to (default: every .tsx and .jsx file)
- *   allowExperimental   experimental components this app may import (each one is a deliberate, reviewable opt-in)
+ *   allowExperimental   components whose experimental parts or prop values this app may use (a deliberate, reviewable opt-in)
  *   ignores   globs they skip (for example a vendored exception)
  *   elements  override the element → component table below
  *
@@ -17,11 +17,10 @@
 
 import fs from "node:fs";
 
-/** Components still experimental in this release (components.json next to this file). */
-function experimental() {
+/** This release's catalog (components.json next to this file): which components, parts or prop values are experimental. */
+function catalog() {
   try {
-    const catalog = JSON.parse(fs.readFileSync(new URL("./components.json", import.meta.url), "utf8"));
-    return catalog.filter(entry => entry.status === "experimental").map(entry => entry.name);
+    return JSON.parse(fs.readFileSync(new URL("./components.json", import.meta.url), "utf8"));
   } catch {
     return [];
   }
@@ -48,10 +47,25 @@ const IMPORTS = [
 ];
 
 export default function siliconUi({ files = ["**/*.{tsx,jsx}"], ignores = [], elements = ELEMENTS, extraSyntax = [], extraImports = [], allowExperimental = [] } = {}) {
-  const gated = experimental().filter(name => !allowExperimental.includes(name)).map(name => ({
-    regex: `^@teamofsilicons/silicon-ui/${name}$`,
-    message: `${name} is experimental: it may still change and is not for production. To try it, add "${name}" to siliconUi({ allowExperimental }) in your ESLint config.`,
+  const entries = catalog().filter(entry => !allowExperimental.includes(entry.name));
+  const optIn = name => `To try it, add "${name}" to siliconUi({ allowExperimental }) in your ESLint config.`;
+  // A whole experimental component: any import of it.
+  const gated = entries.filter(entry => entry.status === "experimental").map(entry => ({
+    regex: `^@teamofsilicons/silicon-ui/${entry.name}$`,
+    message: `${entry.name} is experimental: it may still change and is not for production. ${optIn(entry.name)}`,
   }));
+  // Experimental parts of a stable component: only those named imports.
+  const gatedParts = entries.filter(entry => entry.status !== "experimental" && entry.experimentalExports?.length).map(entry => ({
+    name: `@teamofsilicons/silicon-ui/${entry.name}`,
+    importNames: entry.experimentalExports,
+    message: `These parts of ${entry.name} are experimental: they may still change and are not for production. ${optIn(entry.name)}`,
+  }));
+  // Experimental values of a stable component's prop, such as <Button size="xs">.
+  const gatedProps = entries.flatMap(entry => Object.entries(entry.experimentalProps ?? {}).flatMap(([component, props]) =>
+    Object.entries(props).flatMap(([prop, values]) => values.map(value => ({
+      selector: `JSXOpeningElement[name.name="${component}"] > JSXAttribute[name.name="${prop}"][value.value="${value}"]`,
+      message: `${component} ${prop}="${value}" is experimental: it may still change and is not for production. ${optIn(entry.name)}`,
+    })))));
   const syntax = Object.entries(elements).map(([name, message]) => ({
     selector: `JSXOpeningElement[name.type="JSXIdentifier"][name.name="${name}"]`,
     message: `<${name}> is not allowed here. ${message}`,
@@ -62,8 +76,8 @@ export default function siliconUi({ files = ["**/*.{tsx,jsx}"], ignores = [], el
       files,
       ignores,
       rules: {
-        "no-restricted-syntax": ["error", ...syntax, ...extraSyntax],
-        "no-restricted-imports": ["error", { patterns: [...IMPORTS, ...gated, ...extraImports] }],
+        "no-restricted-syntax": ["error", ...syntax, ...gatedProps, ...extraSyntax],
+        "no-restricted-imports": ["error", { paths: gatedParts, patterns: [...IMPORTS, ...gated, ...extraImports] }],
       },
     },
   ];
