@@ -1905,6 +1905,56 @@
       }
     },
     {
+      "name": "nav-list",
+      "type": "registry:ui",
+      "title": "Nav list",
+      "description": "A sidebar's list of destinations, with sections, the current page and locked rows that say why.",
+      "categories": [
+        "disclosure"
+      ],
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://ui.teamofsilicons.com/r/silicon-motion-tokens.json",
+        "https://ui.teamofsilicons.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/components/nav-list/nav-list.tsx",
+          "type": "registry:component",
+          "target": "@components/silicon-ui/nav-list/nav-list.tsx"
+        },
+        {
+          "path": "registry/components/nav-list/nav-list.module.css",
+          "type": "registry:component",
+          "target": "@components/silicon-ui/nav-list/nav-list.module.css"
+        },
+        {
+          "path": "lib/menu-highlight.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/menu-highlight.tsx"
+        },
+        {
+          "path": "lib/silicon-provider.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/silicon-provider.tsx"
+        }
+      ],
+      "docs": "Docs and live preview: https://ui.teamofsilicons.com/nav-list",
+      "meta": {
+        "tier": "free",
+        "kind": "component",
+        "docs": "https://ui.teamofsilicons.com/nav-list",
+        "markdown": "https://ui.teamofsilicons.com/nav-list.md",
+        "tags": [
+          "navigation",
+          "sidebar"
+        ],
+        "status": "experimental"
+      }
+    },
+    {
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
