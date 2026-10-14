@@ -8,6 +8,14 @@ Changes ship continuously from `main`. Every item links to its live preview on [
 
 - **Compact density (experimental).** Request #11. A new control-height step, `--control-height-xs` (24px, the smallest target WCAG 2.5.8 allows), for dense UI such as tree rows and toolbars: [Button](https://ui.teamofsilicons.com/button) `size="xs"` (square when icon-only), [Segmented control](https://ui.teamofsilicons.com/segmented-control) `size="xs"` (`sm` remains the default), and [Avatar](https://ui.teamofsilicons.com/avatar) `size="xs"` (20px). The new sizes are experimental prop values: `meta.experimentalProps` in `registry.json`, and the ESLint gate flags them until an app opts in.
 
+## 2026-10-13
+
+### Added
+
+- **[Dropdown menu](https://ui.teamofsilicons.com/dropdown-menu), composable (experimental).** Request #9. Alongside the `label` + `items` shorthand (unchanged, stable), the menu is now built from parts: `DropdownMenuRoot`, `DropdownMenuTrigger` (any trigger with `asChild`, such as an icon-only Button), `DropdownMenuContent` (`side`, `align`), `DropdownMenuItem` (icon, shortcut, destructive), `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup` and `DropdownMenuRadioItem`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuGroup` and `DropdownMenuSub` with `DropdownMenuSubTrigger` and `DropdownMenuSubContent`. The shorthand is now built from the same parts. The new parts are experimental: the guardrail gates those named imports until an app opts in.
+- **`--stagger-item`** (35ms), the CSS twin of `motionTokens.stagger.item`. Dropdown menu uses it and `--duration-instant` for its close, so it has no raw motion values left.
+- **Experimental parts of a stable component.** `meta.experimental` in `registry.json` lists exports still experimental; `components.json`, the inventory, CI and the ESLint gate read it.
+
 ## 2026-10-12
 
 ### Added

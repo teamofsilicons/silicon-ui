@@ -417,7 +417,22 @@
           "menu",
           "action"
         ],
-        "status": "stable"
+        "status": "stable",
+        "experimental": [
+          "DropdownMenuRoot",
+          "DropdownMenuTrigger",
+          "DropdownMenuContent",
+          "DropdownMenuItem",
+          "DropdownMenuCheckboxItem",
+          "DropdownMenuRadioGroup",
+          "DropdownMenuRadioItem",
+          "DropdownMenuLabel",
+          "DropdownMenuSeparator",
+          "DropdownMenuGroup",
+          "DropdownMenuSub",
+          "DropdownMenuSubTrigger",
+          "DropdownMenuSubContent"
+        ]
       }
     },
     {

@@ -164,9 +164,35 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
-    "experimentalParts": [],
+    "experimentalParts": [
+      "DropdownMenuRoot",
+      "DropdownMenuTrigger",
+      "DropdownMenuContent",
+      "DropdownMenuItem",
+      "DropdownMenuCheckboxItem",
+      "DropdownMenuRadioGroup",
+      "DropdownMenuRadioItem",
+      "DropdownMenuLabel",
+      "DropdownMenuSeparator",
+      "DropdownMenuGroup",
+      "DropdownMenuSub",
+      "DropdownMenuSubTrigger",
+      "DropdownMenuSubContent"
+    ],
     "description": "A focused list of actions anchored to a trigger.",
-    "variants": {},
+    "variants": {
+      "side": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "align": [
+        "start",
+        "center",
+        "end"
+      ]
+    },
     "composes": [],
     "import": "@teamofsilicons/silicon-ui/dropdown-menu",
     "docs": "https://ui.teamofsilicons.com/dropdown-menu",
