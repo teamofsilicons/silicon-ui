@@ -21,11 +21,20 @@
   .menu[data-state="open"] .item { opacity: 0; transform: translate(calc(var(--menu-x) * .4), calc(var(--menu-y) * .4)); }
 }
 /* Radix unmounts when the exit animation ends, so a no-op keyframe times the exit while the transition does the visual work. */
-.menu[data-state="closed"] { opacity: 0; transform: translate(calc(var(--menu-x) * .5), calc(var(--menu-y) * .5)) scale(.985); transition: opacity 130ms var(--ease-standard), transform 130ms var(--ease-standard); animation: menu-exit 130ms linear both; pointer-events: none; }
+.menu[data-state="closed"] { opacity: 0; transform: translate(calc(var(--menu-x) * .5), calc(var(--menu-y) * .5)) scale(.985); transition: opacity var(--duration-instant) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); animation: menu-exit var(--duration-instant) linear both; pointer-events: none; }
 .highlight { position: absolute; top: 0; right: var(--space-tight); left: var(--space-tight); border-radius: calc(var(--radius-container) - var(--space-related)); background: var(--surface-muted); opacity: 0; pointer-events: none; transition: background-color var(--duration-fast) var(--ease-standard); }
 .highlight[data-tone="danger"] { background: color-mix(in oklab, var(--danger) 8%, var(--surface)); }
-.item { position: relative; display: flex; min-height: 36px; align-items: center; gap: var(--space-group); padding: 0 var(--space-group); border-radius: calc(var(--radius-container) - var(--space-related)); color: var(--foreground); font-size: var(--text-sm); cursor: pointer; outline: none; transition: color var(--duration-fast) var(--ease-standard), opacity var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms), transform var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms); }
-.icon { display: inline-flex; width: 17px; color: var(--text-secondary); }
+.item { position: relative; display: flex; min-height: 36px; align-items: center; gap: var(--space-group); padding: 0 var(--space-group); border-radius: calc(var(--radius-container) - var(--space-related)); color: var(--foreground); font-size: var(--text-sm); cursor: pointer; outline: none; transition: color var(--duration-fast) var(--ease-standard), opacity var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * var(--stagger-item)), transform var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * var(--stagger-item)); }
+/* At least the 16px icon's column; wider content (an avatar) takes the room it needs. */
+.icon { display: inline-flex; min-width: 17px; flex: none; color: var(--text-secondary); }
+/* The composable parts. The label takes the free width, so a shortcut or check sits at the end of the row. */
+.itemLabel { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.shortcut { flex: none; padding-left: var(--space-group); color: var(--text-muted); font: inherit; font-size: var(--text-xs); letter-spacing: var(--tracking-body); }
+.indicator { display: inline-flex; flex: none; color: var(--foreground); }
+.sectionLabel { padding: var(--space-related) var(--space-group) var(--space-tight); color: var(--text-muted); font-size: var(--text-xs); font-weight: 500; }
+.subChevron { flex: none; color: var(--text-muted); }
+/* While its submenu is open, the item that opened it keeps a quiet fill, so the path stays visible. */
+.subTrigger[data-state="open"] { background: var(--surface-muted); }
 .separator { height: 1px; margin: var(--space-tight) calc(var(--space-tight) * -1); background: var(--border-subtle); }
 .destructive { color: var(--danger); }
 .destructive .icon { color: var(--danger); }

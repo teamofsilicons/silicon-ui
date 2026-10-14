@@ -65,7 +65,8 @@ const cssMotion = [...css.matchAll(/(?:transition|animation)(?:-duration|-timing
   .filter(value => !/^\s*none\s*$/.test(value))
   .flatMap(value => [...value.replace(/var\([^)]*\)/g, "").matchAll(/(?<![\w.-])((?:\d*\.)?\d+m?s)\b|cubic-bezier\([^)]*\)|\b(?:ease|ease-in|ease-out|ease-in-out)\b/g)].map(m => m[0]))
   .filter(token => !/^0m?s$/.test(token) && !/^\.01ms$/.test(token));
-const tsMotion = [...tsx.matchAll(/\b(duration|delay)\s*:\s*((?:\d*\.)?\d+)\b|\bease\s*:\s*\[\s*[\d.]/g)]
+// An easing array typed by hand starts with a number; `ease: [...motionTokens.ease.x]` is the token, spread.
+const tsMotion = [...tsx.matchAll(/\b(duration|delay)\s*:\s*((?:\d*\.)?\d+)\b|\bease\s*:\s*\[\s*(?:\d|\.\d)/g)]
   .map(match => match[0]).filter(text => !/:\s*0\b/.test(text));
 add("motion", "Motion uses --duration-*, --ease-* and motionTokens", true, cssMotion.length + tsMotion.length === 0, [...new Set([...cssMotion, ...tsMotion])].map(value => `raw value: ${value}`));
 
@@ -124,7 +125,6 @@ if (storybookAt) {
 }
 
 const failed = checks.filter(check => check.required && !check.ok);
-const warnings = checks.filter(check => !check.required && !check.ok);
 const report = { name, title: item?.title ?? name, status: item?.meta?.status ?? "unregistered", checkedAt: new Date().toISOString(), scope: base ? `changes since ${base}` : "whole component", passed: failed.length === 0, checks };
 const reports = path.join(root, "stories", "reports");
 fs.mkdirSync(reports, { recursive: true });

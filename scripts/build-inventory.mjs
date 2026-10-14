@@ -57,6 +57,7 @@ for (const item of registry.items) {
     kind: block ? "block" : "component",
     category,
     status: item.meta?.status ?? "stable",
+    experimentalParts: item.meta?.experimental ?? [],
     description: item.description,
     variants: variantsOf(mainPath),
     composes,
@@ -90,7 +91,8 @@ for (const row of rows) {
   }
   const variants = Object.entries(row.variants).map(([prop, values]) => `\`${prop}\`: ${values.join(", ")}`).join("<br>") || "—";
   const composes = row.composes.join(", ") || "—";
-  lines.push(`| **${row.title}** \`${row.name}\`<br>${row.description} | ${row.status} | ${variants} | ${composes} | [docs](${row.docs}) |`);
+  const status = row.experimentalParts.length ? `${row.status}; new parts experimental: ${row.experimentalParts.map(name => `\`${name}\``).join(", ")}` : row.status;
+  lines.push(`| **${row.title}** \`${row.name}\`<br>${row.description} | ${status} | ${variants} | ${composes} | [docs](${row.docs}) |`);
   const next = rows[rows.indexOf(row) + 1];
   if (!next || (next.kind === "block" ? "Blocks" : next.category) !== section) lines.push("");
 }
