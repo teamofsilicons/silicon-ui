@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { FocusEvent, MouseEvent, PointerEvent, ReactNode, Ref } from "react";
 import { MenuHighlight } from "@/lib/menu-highlight";
 import { SiliconLink } from "@/lib/silicon-provider";
@@ -11,8 +11,11 @@ type Box = { top: number; height: number; danger: boolean; glide: boolean };
 const ITEM = "[data-nav-item]";
 const boxOf = (item: HTMLElement): Omit<Box, "glide"> => ({ top: item.offsetTop, height: item.offsetHeight, danger: false });
 
-/** Lets NavItem reach its list without prop drilling; only used for the active marker's position. */
-const NavContext = createContext<{ activeChanged: () => void } | null>(null);
+/** What NavList's onNavigate receives: the chosen row's href, or none for an action row. */
+export interface NavChoice { href?: string }
+
+/** Lets NavItem reach its list without prop drilling: the active marker's position, and reporting a choice. */
+const NavContext = createContext<{ activeChanged: () => void; navigate: (choice: NavChoice) => void } | null>(null);
 
 export interface NavListProps {
   /** Names the navigation for screen readers, such as "Main" or "Settings". */
@@ -23,17 +26,25 @@ export interface NavListProps {
   className?: string;
   /** The `<nav>` element. */
   ref?: Ref<HTMLElement>;
+  /**
+   * Called when any row is chosen (click, Enter or Space; link and action rows), before it navigates or acts. A notification,
+   * such as closing a phone sheet: it cannot cancel. Locked rows and modified clicks (a new tab or window) do not call it.
+   */
+  onNavigate?: (choice: NavChoice) => void;
 }
 
 /**
  * A sidebar's list of destinations: a `<nav>` with a list of NavItem rows, optionally grouped by NavSection. One hover highlight
  * glides between rows for the pointer, and the current page's marker glides when the page changes.
  */
-export function NavList({ label, children, className, ref }: NavListProps) {
+export function NavList({ label, children, className, ref, onNavigate }: NavListProps) {
   const root = useRef<HTMLElement | null>(null);
   const [hover, setHover] = useState<Box | null>(null);
   const [active, setActive] = useState<Box | null>(null);
   const pointer = useRef(false);
+  // The latest handler, read at choice time, so a new function each render never changes the context.
+  const navigateHandler = useRef(onNavigate);
+  useEffect(() => { navigateHandler.current = onNavigate; });
 
   const setRoot = useCallback((node: HTMLElement | null) => {
     root.current = node;
@@ -73,7 +84,7 @@ export function NavList({ label, children, className, ref }: NavListProps) {
     setHover(current => ({ ...boxOf(item), glide: glide && current !== null }));
   }
 
-  const context = useMemo(() => ({ activeChanged: measureActive }), [measureActive]);
+  const context = useMemo(() => ({ activeChanged: measureActive, navigate: (choice: NavChoice) => navigateHandler.current?.(choice) }), [measureActive]);
   return (
     <NavContext.Provider value={context}>
       <nav ref={setRoot} aria-label={label} className={[styles.list, className].filter(Boolean).join(" ")}
@@ -122,6 +133,12 @@ interface NavItemBase {
   reason?: string;
   /** Content at the row's end, such as a count or an avatar. Hidden while a reason shows. */
   trailing?: ReactNode;
+  /**
+   * Called each time the pointer enters the row or it receives focus, before it is chosen: start loading the destination
+   * (prefetch). It can fire more than once, so keep it idempotent. Not called while disabled.
+   */
+  onIntent?: () => void;
+  /** Placement only; the row's look comes from the component. */
   className?: string;
 }
 
@@ -131,7 +148,7 @@ export type NavItemProps = NavItemBase & (
 );
 
 /** One row of a NavList: a link by `href`, or an action by `onSelect`. */
-export function NavItem({ children, icon, active = false, disabled = false, reason, trailing, className, href, onSelect }: NavItemProps) {
+export function NavItem({ children, icon, active = false, disabled = false, reason, trailing, onIntent, className, href, onSelect }: NavItemProps) {
   const nav = useContext(NavContext);
   const reasonId = useId();
   const showReason = disabled && reason;
@@ -156,8 +173,13 @@ export function NavItem({ children, icon, active = false, disabled = false, reas
     // No href and no action: it can be focused and read, but not followed.
     return <li><span {...shared} role={href ? "link" : "button"} tabIndex={0} onClick={(event: MouseEvent<HTMLElement>) => event.preventDefault()}>{content}</span></li>;
   }
-  if (href !== undefined) return <li><SiliconLink {...shared} href={href}>{content}</SiliconLink></li>;
-  return <li><button {...shared} type="button" onClick={onSelect}>{content}</button></li>;
+  const intent = onIntent ? { onPointerEnter: onIntent, onFocus: onIntent } : {};
+  if (href !== undefined) {
+    // A modified click opens a new tab or window, so this page stays where it is: no choice to report.
+    const onClick = (event: MouseEvent<HTMLAnchorElement>) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) nav?.navigate({ href }); };
+    return <li><SiliconLink {...shared} {...intent} href={href} onClick={onClick}>{content}</SiliconLink></li>;
+  }
+  return <li><button {...shared} {...intent} type="button" onClick={() => { nav?.navigate({}); onSelect?.(); }}>{content}</button></li>;
 }
 
 export default NavList;

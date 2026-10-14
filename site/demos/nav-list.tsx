@@ -27,6 +27,19 @@ function Sidebar({ label }: Partial<NavListProps>) {
   </div>;
 }
 
+function IntentExample() {
+  const [log, setLog] = useState<string[]>([]);
+  const note = (line: string) => setLog(current => [line, ...current].slice(0, 4));
+  return <div style={{ display: "grid", gap: "var(--space-group)", width: 240 }}>
+    <NavList label="Settings" onNavigate={({ href }) => note(`navigate ${href ?? "(action)"}: close the sheet`)}>
+      <NavItem href="#profile" icon={<Users />} onIntent={() => note("intent: prefetch profile")}>Profile</NavItem>
+      <NavItem href="#billing" icon={<CreditCard />} onIntent={() => note("intent: prefetch billing")}>Billing</NavItem>
+      <NavItem icon={<Search />} onSelect={() => {}}>Search</NavItem>
+    </NavList>
+    <div aria-live="polite" style={{ minHeight: "5lh", color: "var(--text-secondary)", fontSize: "var(--text-xs)", fontFamily: "ui-monospace, monospace" }}>{log.map((line, index) => <div key={index}>{line}</div>)}</div>
+  </div>;
+}
+
 export default defineDemo<NavListProps>({
   Preview: ({ props }) => <Sidebar label={props.label} />,
   examples: [
@@ -41,12 +54,17 @@ export default defineDemo<NavListProps>({
         </NavList>
       </div>,
     },
+    {
+      title: "Prefetch on intent, close on navigate",
+      description: "onIntent on a row fires when the pointer or focus reaches it, to start loading its page. onNavigate on the list fires for any row chosen, to close a phone sheet.",
+      render: () => <IntentExample />,
+    },
   ],
-  usage: `<NavList label="Main">
+  usage: `<NavList label="Main" onNavigate={() => setSheetOpen(false)}>
   <NavItem icon={<Search />} onSelect={openSearch}>Search</NavItem>
   <NavSection label="Workspace">
     <NavItem href="/" icon={<Home />} active={pathname === "/"}>Home</NavItem>
-    <NavItem href="/docs" icon={<FileText />} trailing="12">Docs</NavItem>
+    <NavItem href="/docs" icon={<FileText />} trailing="12" onIntent={() => router.prefetch("/docs")}>Docs</NavItem>
     <NavItem href="/analytics" icon={<BarChart3 />} disabled reason="Pro">Analytics</NavItem>
   </NavSection>
 </NavList>`,
