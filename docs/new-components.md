@@ -90,7 +90,13 @@ copy, and whether it really is one thing.
 
 - `npm run build:package` ships every component, experimental ones included, and records each component's status in
   `components.json`.
-- The ESLint guardrail (`@teamofsilicons/silicon-ui/eslint`) warns when an app imports an experimental component, so
-  it can be tried in a branch but is visible in review before it reaches production.
+- The ESLint guardrail (`@teamofsilicons/silicon-ui/eslint`) rejects experimental work until an app opts in with
+  `siliconUi({ allowExperimental: ["<component>"] })`, so it can be tried in a branch but is visible in review. It
+  works at three levels, all recorded in `registry.json` `meta`:
+  - a whole new component: `"status": "experimental"` (any import of it);
+  - new parts of a stable component: `"experimental": ["DropdownMenuContent", …]` (those named imports);
+  - new values of a stable component's prop: `"experimentalProps": { "Button": { "size": ["xs"] } }` (`<Button size="xs">`).
+- In CI, a variant of a stable component is judged on its own changes (against the pull request's base, or the commit
+  before a push), so its older code does not fail the change.
 - Promoting to stable is the status change plus a release ([releasing.md](releasing.md)). A component that changes
   shape while experimental does not need a breaking version bump; once stable, it does.

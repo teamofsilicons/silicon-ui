@@ -7,7 +7,7 @@
  *
  * Options:
  *   files     globs the rules apply to (default: every .tsx and .jsx file)
- *   allowExperimental   experimental components this app may import (each one is a deliberate, reviewable opt-in)
+ *   allowExperimental   components whose experimental parts or prop values this app may use (a deliberate, reviewable opt-in)
  *   ignores   globs they skip (for example a vendored exception)
  *   elements  override the element → component table below
  *
@@ -17,7 +17,7 @@
 
 import fs from "node:fs";
 
-/** This release's catalog (components.json next to this file): which components, or parts of them, are experimental. */
+/** This release's catalog (components.json next to this file): which components, parts or prop values are experimental. */
 function catalog() {
   try {
     return JSON.parse(fs.readFileSync(new URL("./components.json", import.meta.url), "utf8"));
@@ -60,6 +60,12 @@ export default function siliconUi({ files = ["**/*.{tsx,jsx}"], ignores = [], el
     importNames: entry.experimentalExports,
     message: `These parts of ${entry.name} are experimental: they may still change and are not for production. ${optIn(entry.name)}`,
   }));
+  // Experimental values of a stable component's prop, such as <Button size="xs">.
+  const gatedProps = entries.flatMap(entry => Object.entries(entry.experimentalProps ?? {}).flatMap(([component, props]) =>
+    Object.entries(props).flatMap(([prop, values]) => values.map(value => ({
+      selector: `JSXOpeningElement[name.name="${component}"] > JSXAttribute[name.name="${prop}"][value.value="${value}"]`,
+      message: `${component} ${prop}="${value}" is experimental: it may still change and is not for production. ${optIn(entry.name)}`,
+    })))));
   const syntax = Object.entries(elements).map(([name, message]) => ({
     selector: `JSXOpeningElement[name.type="JSXIdentifier"][name.name="${name}"]`,
     message: `<${name}> is not allowed here. ${message}`,
@@ -70,7 +76,7 @@ export default function siliconUi({ files = ["**/*.{tsx,jsx}"], ignores = [], el
       files,
       ignores,
       rules: {
-        "no-restricted-syntax": ["error", ...syntax, ...extraSyntax],
+        "no-restricted-syntax": ["error", ...syntax, ...gatedProps, ...extraSyntax],
         "no-restricted-imports": ["error", { paths: gatedParts, patterns: [...IMPORTS, ...gated, ...extraImports] }],
       },
     },

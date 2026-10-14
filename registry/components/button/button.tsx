@@ -8,7 +8,8 @@ import { motionTokens } from "@/lib/motion-tokens";
 import styles from "./button.module.css";
 
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
-export type ButtonSize = "sm" | "md" | "lg";
+/** `xs` (24px) is for dense UI such as tree rows and toolbars, usually icon-only with an aria-label. */
+export type ButtonSize = "xs" | "sm" | "md" | "lg";
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onDrag" | "onDragEnd" | "onDragStart" | "onAnimationStart"> {
   variant?: ButtonVariant;
@@ -96,6 +97,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   const anchorsLayer = (popup !== undefined && popup !== false && popup !== "false") || props.role === "combobox" || (props as Record<string, unknown>)["data-state"] !== undefined;
   const inert = disabled || loading || props["aria-disabled"] === true || props["aria-disabled"] === "true";
   const classes = [styles.button, styles[variant], styles[size], className].filter(Boolean).join(" ");
+  // An icon with no text: square at the compact size.
+  const iconOnly = !/\S/.test(key.replace(/<[^>]*>/g, ""));
 
   return (
     <motion.button
@@ -103,6 +106,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       tabIndex={props.tabIndex ?? 0}
       className={classes}
       data-variant={variant}
+      data-icon-only={iconOnly || undefined}
       disabled={disabled}
       aria-busy={loading || undefined}
       custom={buttonRef}

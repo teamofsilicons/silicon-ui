@@ -21,7 +21,9 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
-    "experimentalParts": [],
+    "experimentalParts": [
+      "Button size=\"xs\""
+    ],
     "description": "A clear, responsive action with quiet secondary states.",
     "variants": {
       "variant": [
@@ -31,6 +33,7 @@
         "danger"
       ],
       "size": [
+        "xs",
         "sm",
         "md",
         "lg"
@@ -549,10 +552,13 @@
     "kind": "component",
     "category": "Data",
     "status": "stable",
-    "experimentalParts": [],
+    "experimentalParts": [
+      "Avatar size=\"xs\""
+    ],
     "description": "A compact identity marker for people and accounts.",
     "variants": {
       "size": [
+        "xs",
         "sm",
         "md",
         "lg",
@@ -1800,9 +1806,16 @@
     "kind": "component",
     "category": "Inputs",
     "status": "stable",
-    "experimentalParts": [],
+    "experimentalParts": [
+      "SegmentedControl size=\"xs\""
+    ],
     "description": "Switch between a small set of related views.",
-    "variants": {},
+    "variants": {
+      "size": [
+        "sm",
+        "xs"
+      ]
+    },
     "composes": [],
     "import": "@teamofsilicons/silicon-ui/segmented-control",
     "docs": "https://ui.teamofsilicons.com/segmented-control",

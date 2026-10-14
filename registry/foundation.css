@@ -95,7 +95,8 @@
   --radius-detail: 2px; --radius-control: 6px; --radius-container: 8px; --radius-overlay: 12px; --radius-full: 999px;
   /* Corner shape. Squircle by default; see the corner rule after the dark theme. */
   --corner-shape: squircle;
-  --control-height-sm: 2.25rem; --control-height-md: 2.75rem; --control-height-lg: 3.125rem;
+  /* xs is for dense UI (tree rows, toolbars); 24px is the smallest target WCAG 2.5.8 allows, so the scale stops there. */
+  --control-height-xs: 1.5rem; --control-height-sm: 2.25rem; --control-height-md: 2.75rem; --control-height-lg: 3.125rem;
   --font-display: var(--font-geist, "Geist Variable"), sans-serif;
   --font-body: var(--font-inter, "Inter Variable"), sans-serif;
   --text-xs: .75rem; --text-sm: .875rem; --text-base: 1rem; --text-lg: 1.125rem;
