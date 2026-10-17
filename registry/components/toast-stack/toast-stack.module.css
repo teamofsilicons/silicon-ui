@@ -1,5 +1,5 @@
 /* The region only holds the list; it never blocks clicks outside the toasts themselves. */
-.viewport { position: fixed; z-index: 60; bottom: var(--space-section); width: min(22.5rem, calc(100% - var(--space-block))); pointer-events: none; }
+.viewport { position: fixed; z-index: var(--layer-toast); bottom: var(--space-section); width: min(22.5rem, calc(100% - var(--space-block))); pointer-events: none; }
 .bottom-right { right: var(--space-section); }
 .bottom-left { left: var(--space-section); }
 .bottom-center { right: 0; left: 0; margin-inline: auto; }

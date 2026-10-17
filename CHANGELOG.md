@@ -6,7 +6,12 @@ Changes ship continuously from `main`. Every item links to its live preview on [
 
 ### Added
 
+- **Layer tokens** (`--layer-raised`, `--layer-sticky`, `--layer-overlay`, `--layer-dialog`, `--layer-popover`, `--layer-dropdown`, `--layer-toast`, `--layer-tooltip`). Request #15. Every layer component now stacks on one ordered set instead of 11 unrelated numbers (30 to 1000), and [using-in-an-app.md](./docs/using-in-an-app.md#stacking-where-your-apps-chrome-goes) gives the rule for an app's own chrome: below `--layer-overlay`. `silicon-ui-check` now fails a raw `z-index` of 10 or more; apps that adopt this release may need `--update-baseline` once.
 - **Compact density (experimental).** Request #11. A new control-height step, `--control-height-xs` (24px, the smallest target WCAG 2.5.8 allows), for dense UI such as tree rows and toolbars: [Button](https://ui.teamofsilicons.com/button) `size="xs"` (square when icon-only), [Segmented control](https://ui.teamofsilicons.com/segmented-control) `size="xs"` (`sm` remains the default), and [Avatar](https://ui.teamofsilicons.com/avatar) `size="xs"` (20px). The new sizes are experimental prop values: `meta.experimentalProps` in `registry.json`, and the ESLint gate flags them until an app opts in.
+
+### Changed
+
+- **Stacking order fixed where layers meet.** Menus now always open above popovers (a Dropdown menu inside a [Popover](https://ui.teamofsilicons.com/popover) used to open behind it), toasts sit above open menus, and [Treemap](https://ui.teamofsilicons.com/treemap)'s tooltip sits with the other tooltips. Dims and dialogs keep their values (50 and 51).
 
 ## 2026-10-13
 

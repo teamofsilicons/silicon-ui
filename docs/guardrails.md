@@ -6,7 +6,7 @@ that re-creates a component or uses a raw value fails, with a message that says 
 | Check | Catches |
 | --- | --- |
 | ESLint config `@teamofsilicons/silicon-ui/eslint` | raw `<button>`, `<input>`, `<select>`, `<textarea>`, `<dialog>`; importing a component's CSS module; importing a local copy of a component |
-| `silicon-ui-check` | raw spacing, radius, colour or font-size values in CSS modules |
+| `silicon-ui-check` | raw spacing, radius, colour, font-size or z-index values in CSS modules |
 
 They run in three places: in the editor and CI (lint), and after every AI edit (the Claude Code hook).
 
@@ -71,7 +71,8 @@ components/landing/landing.module.css
 
 What it checks: `padding*`, `margin*`, `gap`, `inset*`, `top/right/bottom/left`, `scroll-margin/padding*` (space),
 `border-*radius` (radius), any colour literal (`#hex`, `rgb()`, `hsl()`, `oklch()`, `oklab()`, `lab()`, `lch()`,
-`color()`), and `font-size`. Anything inside `var()` passes, fallbacks included. `em`, `%`, `ch`, `vw`/`vh`/`cq*`
+`color()`), `font-size`, and `z-index` of 10 or more, or -10 or less (layer; -9 to 9 is a local order inside a
+component). Anything inside `var()` passes, fallbacks included. `em`, `%`, `ch`, `vw`/`vh`/`cq*`
 pass. It skips custom property definitions (`--x: …`), `@keyframes`, and the visually hidden block (`.srOnly`).
 
 ### The baseline (adopting it in an existing app)

@@ -78,7 +78,7 @@
 
 .popover {
   position: absolute;
-  z-index: 30;
+  z-index: var(--layer-dropdown);
   width: 272px;
   max-width: 100%;
   overflow: hidden;

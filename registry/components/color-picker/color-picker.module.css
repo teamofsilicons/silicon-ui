@@ -25,7 +25,7 @@
 .chip > span { position: absolute; inset: 0; border-radius: inherit; corner-shape: inherit; box-shadow: var(--edge-inset); }
 
 /* The floating layer. Its drop shadow follows the clipped shape, so the shadow grows with the panel. */
-.float { position: absolute; z-index: 20; top: -1px; left: -1px; filter: var(--shadow-drop); pointer-events: none; }
+.float { position: absolute; z-index: var(--layer-popover); top: -1px; left: -1px; filter: var(--shadow-drop); pointer-events: none; }
 .float[data-open] { pointer-events: auto; }
 .panel { width: var(--picker-width); padding-bottom: var(--space-inset); border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--picker-fill); will-change: clip-path; }
 .head { gap: var(--space-group); padding-right: var(--space-related); }

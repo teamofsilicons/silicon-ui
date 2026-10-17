@@ -24,7 +24,7 @@
 .clear { position: absolute; z-index: 1; top: calc(50% - var(--space-inset)); right: var(--space-related); display: grid; width: 28px; height: 28px; place-items: center; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full); corner-shape: round; background: transparent; color: var(--text-muted); cursor: pointer; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard); -webkit-tap-highlight-color: transparent; }
 
 /* A floating layer: its width is the field's, so it unfolds from the field on first open; its content keeps the final width and rides the leading edge. */
-.panel { position: absolute; z-index: 40; top: calc(100% + var(--space-related)); right: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-floating); pointer-events: auto; }
+.panel { position: absolute; z-index: var(--layer-dropdown); top: calc(100% + var(--space-related)); right: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-floating); pointer-events: auto; }
 .root[data-anchor="start"] .panel { right: auto; left: 0; }
 .body { position: relative; width: calc(var(--es-width, 360px) - 2px); max-height: min(22rem, 60vh); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; padding: var(--space-related); scrollbar-width: thin; }
 .view { position: relative; }

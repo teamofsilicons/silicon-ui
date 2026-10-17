@@ -1,7 +1,7 @@
 /* The root lays out the label and the anchor. The anchor holds the closed trigger's place; the shape floats over it and grows past it when open. */
 .root { --ms-h: var(--control-height-md); --ms-trigger-w: 0px; position: relative; display: inline-grid; justify-items: start; gap: var(--space-related); min-width: 0; color: var(--foreground); font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: var(--tracking-body); line-height: var(--leading-body); }
 .root[data-align="end"] { justify-items: end; }
-.root[data-open] { z-index: 30; }
+.root[data-open] { z-index: var(--layer-dropdown); }
 .label { color: var(--text-secondary); font-size: var(--text-sm); font-weight: 500; }
 
 .anchor { position: relative; height: var(--ms-h); max-width: 100%; }

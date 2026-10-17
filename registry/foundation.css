@@ -113,6 +113,11 @@
   --duration-instant: 120ms; --duration-fast: 160ms; --duration-standard: 240ms; --duration-considered: 480ms; --duration-spring: 580ms;
   /* Stagger steps (the same values as motionTokens.stagger). Keep total stagger under roughly 400ms. */
   --stagger-item: 35ms;
+  /* Stacking order, by role. Menus and listboxes sit above popovers and dialogs because they open from inside them.
+     An app's own chrome (sticky header, sidebar, toolbar) stays below --layer-overlay, so dims and every floating
+     layer cover it: use --layer-sticky, or calc(var(--layer-overlay) - 1) at most. */
+  --layer-raised: 10; --layer-sticky: 20; --layer-overlay: 50; --layer-dialog: 51;
+  --layer-popover: 60; --layer-dropdown: 70; --layer-toast: 80; --layer-tooltip: 90;
 }
 
 :root[data-theme="dark"] {
