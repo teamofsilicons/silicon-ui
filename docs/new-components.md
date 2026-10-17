@@ -95,7 +95,8 @@ copy, and whether it really is one thing.
   works at three levels, all recorded in `registry.json` `meta`:
   - a whole new component: `"status": "experimental"` (any import of it);
   - new parts of a stable component: `"experimental": ["DropdownMenuContent", …]` (those named imports);
-  - new values of a stable component's prop: `"experimentalProps": { "Button": { "size": ["xs"] } }` (`<Button size="xs">`).
+  - new values of a stable component's prop: `"experimentalProps": { "Button": { "size": ["xs"] } }` (`<Button size="xs">`),
+    or a new prop whatever its value with `"*"`: `{ "Breadcrumb": { "maxItems": ["*"] } }` (`<Breadcrumb maxItems={3}>`).
 - In CI, a variant of a stable component is judged on its own changes (against the pull request's base, or the commit
   before a push), so its older code does not fail the change.
 - Promoting to stable is the status change plus a release ([releasing.md](releasing.md)). A component that changes

@@ -1,6 +1,6 @@
 # Consistency report: Dropdown menu
 
-Passed · status stable · whole component · 2026-10-13
+Passed · status stable · whole component · 2026-10-17
 
 - ✓ Spacing, radius, colour and type use tokens
 - ✓ Motion uses --duration-*, --ease-* and motionTokens

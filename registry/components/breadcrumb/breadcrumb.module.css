@@ -8,5 +8,9 @@
 .list li > button { border: 0; margin: 0; background: none; font: inherit; line-height: inherit; text-align: start; cursor: pointer; }
 .list a, .list li > button { color: var(--text-secondary); text-decoration: underline 1px; text-decoration-color: transparent; text-underline-offset: 4px; transition: color var(--duration-fast) var(--ease-standard), text-decoration-color var(--duration-fast) var(--ease-standard); }
 .list [aria-current="page"] { color: var(--accent-strong); font-weight: 500; transition: color var(--duration-fast) var(--ease-standard); }
+/* The "…" of a collapsed path: a 24px square target, accented while its menu of hidden levels is open. */
+.list .more { padding: var(--space-tight); }
+.list .more svg { width: 16px; height: 16px; stroke-width: 1.75; }
+.list .more[data-state="open"] { color: var(--accent-strong); }
 @media (hover: hover) and (pointer: fine) { .list a:hover, .list li > button:hover { color: var(--accent-strong); text-decoration-color: color-mix(in oklab, currentColor 45%, transparent); } }
 @media (prefers-reduced-motion: reduce) { .list a, .list li > button, .list [aria-current="page"] { transition: none; } }

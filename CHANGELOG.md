@@ -2,6 +2,12 @@
 
 Changes ship continuously from `main`. Every item links to its live preview on [ui.teamofsilicons.com](https://ui.teamofsilicons.com).
 
+## 2026-10-17
+
+### Added
+
+- **[Breadcrumb](https://ui.teamofsilicons.com/breadcrumb) collapses long paths (experimental).** Request #12. `maxItems` (at least 2; by default the path never collapses): a longer path shows the first crumb, a "…" button named "Show N more levels", and the last `maxItems - 1` crumbs. The "…" opens a Dropdown menu of the hidden levels, which stay links (or run their `onClick`). For it, `DropdownMenuItem` takes `asChild`, so a link can be the item. `maxItems` is an experimental prop: `"experimentalProps": { "Breadcrumb": { "maxItems": ["*"] } }`, where the new value `"*"` makes the ESLint gate flag the prop whatever its value.
+
 ## 2026-10-14
 
 ### Added

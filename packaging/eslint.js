@@ -60,11 +60,12 @@ export default function siliconUi({ files = ["**/*.{tsx,jsx}"], ignores = [], el
     importNames: entry.experimentalExports,
     message: `These parts of ${entry.name} are experimental: they may still change and are not for production. ${optIn(entry.name)}`,
   }));
-  // Experimental values of a stable component's prop, such as <Button size="xs">.
+  // Experimental values of a stable component's prop, such as <Button size="xs">. The value "*" gates a new prop
+  // whatever its value, such as <Breadcrumb maxItems={3}>.
   const gatedProps = entries.flatMap(entry => Object.entries(entry.experimentalProps ?? {}).flatMap(([component, props]) =>
     Object.entries(props).flatMap(([prop, values]) => values.map(value => ({
-      selector: `JSXOpeningElement[name.name="${component}"] > JSXAttribute[name.name="${prop}"][value.value="${value}"]`,
-      message: `${component} ${prop}="${value}" is experimental: it may still change and is not for production. ${optIn(entry.name)}`,
+      selector: `JSXOpeningElement[name.name="${component}"] > JSXAttribute[name.name="${prop}"]${value === "*" ? "" : `[value.value="${value}"]`}`,
+      message: `${component} ${value === "*" ? prop : `${prop}="${value}"`} is experimental: it may still change and is not for production. ${optIn(entry.name)}`,
     })))));
   const syntax = Object.entries(elements).map(([name, message]) => ({
     selector: `JSXOpeningElement[name.type="JSXIdentifier"][name.name="${name}"]`,
