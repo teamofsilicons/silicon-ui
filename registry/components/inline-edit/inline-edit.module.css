@@ -4,7 +4,7 @@
 .root[data-variant="title"] { --size: var(--text-xl); --leading: round(var(--size) * 1.3, 2px); --weight: 500; --ink: var(--foreground); }
 .root[data-variant="body"] { --pad-y: 5px; --size: var(--text-sm); --leading: round(var(--size) * 1.5, 1px); --weight: 400; --ink: var(--text-secondary); }
 /* Room for the actions is reserved in every state, so the text never rewraps when editing starts. */
-/* Inter at every size here: a heading host keeps its semantics but not the display face. */
+/* The body face at every size here: a heading host keeps its semantics but not the display face. */
 .line { display: block; min-width: 0; margin: 0; padding-inline-end: var(--space-stage); color: var(--ink); font-family: var(--font-body); font-size: var(--size); font-weight: var(--weight); line-height: var(--leading); letter-spacing: var(--tracking-body); }
 .root[data-multiline] .line { padding-inline-end: var(--space-block); }
 .box { position: relative; display: inline-block; max-width: 100%; vertical-align: top; }

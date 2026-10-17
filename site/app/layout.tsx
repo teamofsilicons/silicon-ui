@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Geist, Inter } from "next/font/google";
+import { Geist, Hanken_Grotesk } from "next/font/google";
 
 import "../../registry/foundation.css";
 import "./site.css";
@@ -8,7 +8,7 @@ import { Sidebar } from "../components/sidebar";
 import { catalog } from "../lib/catalog";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const hanken = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-hanken-grotesk" });
 
 export const metadata: Metadata = {
   title: { default: "Silicon UI", template: "%s · Silicon UI" },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const appearance = `try{var s=JSON.parse(localStorage.getItem("site-appearance")||"{}");var d=document.documentElement;d.dataset.theme=s.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.dataset.accent=s.accent||"neutral";d.dataset.corners=s.corners||"squircle"}catch(e){}`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en" className={`${geist.variable} ${inter.variable}`} data-theme="light" data-accent="neutral" data-corners="squircle" suppressHydrationWarning>
+  return <html lang="en" className={`${geist.variable} ${hanken.variable}`} data-theme="light" data-accent="neutral" data-corners="squircle" suppressHydrationWarning>
     <head><script dangerouslySetInnerHTML={{ __html: appearance }} /></head>
     <body>
       <div className="shell">
