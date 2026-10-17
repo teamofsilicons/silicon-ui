@@ -40,8 +40,9 @@ components you use. Theme, accent and corners are set on `<html>`:
 `data-theme` is `light` or `dark`. `data-accent` is `neutral`, `violet`, `blue`, `green`, `amber`, `orange`,
 `coral` or `rose`. `data-corners` is `squircle` or `round`.
 
-Fonts: the tokens use `--font-geist` and `--font-inter` when set (for example by `next/font`), and fall back to
-Geist Variable, Inter Variable, then sans-serif.
+Fonts: the tokens use `--font-geist` and `--font-hanken-grotesk` when set (for example by `next/font`), and fall back
+to Geist Variable, Hanken Grotesk Variable (the names `@fontsource-variable/geist` and
+`@fontsource-variable/hanken-grotesk` register), then sans-serif. Load the fonts in the app.
 
 ## Links and images
 

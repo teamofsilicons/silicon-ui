@@ -2,6 +2,12 @@
 
 Changes ship continuously from `main`. Every item links to its live preview on [ui.teamofsilicons.com](https://ui.teamofsilicons.com).
 
+## 2026-10-17
+
+### Changed
+
+- **Body font is Hanken Grotesk.** `--font-body` now reads `--font-hanken-grotesk` (set by `next/font`) and falls back to `"Hanken Grotesk Variable"` (the name `@fontsource-variable/hanken-grotesk` registers), replacing Inter. Headings stay on Geist (`--font-display`). Hanken has a smaller x-height than Inter and sets about 5% narrower, so body text reads a touch smaller and lines fit more; its figures are tabular by default. To upgrade, load Hanken Grotesk in the app, and if it set `--font-inter`, set `--font-hanken-grotesk` instead. An app that keeps Inter sets `--font-body` in its theme file. Changes how existing screens look: a minor release on npm.
+
 ## 2026-10-14
 
 ### Added
