@@ -38,7 +38,7 @@
 
 .message { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--text-muted); font-size: var(--text-sm); pointer-events: none; }
 
-.tooltip { position: absolute; top: 0; left: 0; z-index: 50; display: grid; min-width: 160px; max-width: min(240px, 100%); grid-template-columns: minmax(0, 1fr); gap: var(--space-hair); padding: var(--space-group) var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
+.tooltip { position: absolute; top: 0; left: 0; z-index: var(--layer-tooltip); display: grid; min-width: 160px; max-width: min(240px, 100%); grid-template-columns: minmax(0, 1fr); gap: var(--space-hair); padding: var(--space-group) var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
 .stage[data-active] .tooltip { opacity: 1; scale: 1; }
 .tipTitle { margin: 0; overflow: hidden; color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); text-overflow: ellipsis; white-space: nowrap; }
 .tipValue { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-group); margin: 0; font-size: var(--text-sm); line-height: 1.35; }

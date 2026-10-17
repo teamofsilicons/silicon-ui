@@ -1,5 +1,5 @@
 /* The header is its own size container, so the layout folds by the space it has rather than the viewport. */
-.header { position: relative; z-index: 20; container: site-header / inline-size; border-bottom: 1px solid transparent; background: transparent; color: var(--foreground); font-family: var(--font-body); letter-spacing: var(--tracking-body); transition: background-color var(--duration-standard) var(--ease-standard), border-color var(--duration-standard) var(--ease-standard), box-shadow var(--duration-standard) var(--ease-standard); }
+.header { position: relative; z-index: var(--layer-sticky); container: site-header / inline-size; border-bottom: 1px solid transparent; background: transparent; color: var(--foreground); font-family: var(--font-body); letter-spacing: var(--tracking-body); transition: background-color var(--duration-standard) var(--ease-standard), border-color var(--duration-standard) var(--ease-standard), box-shadow var(--duration-standard) var(--ease-standard); }
 .sticky { position: sticky; top: 0; }
 .header[data-scrolled] { border-bottom-color: var(--border); background: var(--background); box-shadow: var(--shadow-resting); }
 

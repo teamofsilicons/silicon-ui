@@ -8,11 +8,22 @@ Changes ship continuously from `main`. Every item links to its live preview on [
 
 - **[Breadcrumb](https://ui.teamofsilicons.com/breadcrumb) collapses long paths (experimental).** Request #12. `maxItems` (at least 2; by default the path never collapses): a longer path shows the first crumb, a "…" button named "Show N more levels", and the last `maxItems - 1` crumbs. The "…" opens a Dropdown menu of the hidden levels, which stay links (or run their `onClick`). For it, `DropdownMenuItem` takes `asChild`, so a link can be the item. `maxItems` is an experimental prop: `"experimentalProps": { "Breadcrumb": { "maxItems": ["*"] } }`, where the new value `"*"` makes the ESLint gate flag the prop whatever its value.
 
+### Changed
+
+- **Body font is Hanken Grotesk.** `--font-body` now reads `--font-hanken-grotesk` (set by `next/font`) and falls back to `"Hanken Grotesk Variable"` (the name `@fontsource-variable/hanken-grotesk` registers), replacing Inter. Headings stay on Geist (`--font-display`). Hanken has a smaller x-height than Inter and sets about 5% narrower, so body text reads a touch smaller and lines fit more; its figures are tabular by default. To upgrade, load Hanken Grotesk in the app, and if it set `--font-inter`, set `--font-hanken-grotesk` instead. An app that keeps Inter sets `--font-body` in its theme file. Changes how existing screens look: a minor release on npm.
+
 ## 2026-10-14
 
 ### Added
 
+- **[Nav list](https://ui.teamofsilicons.com/nav-list) (experimental).** Request #16. `NavList`, `NavSection` and `NavItem` for app sidebars: a `<nav>` of rows with a 16px icon, a label and an optional trailing count. A row is a link (`href`, through SiliconProvider's link) or an action (`onSelect`). The current page (`active`) sets `aria-current="page"` and its marker glides when the page changes; the hover fill glides between rows. A locked row (`disabled` with a `reason`) stays focusable with `aria-disabled` and shows its reason as a badge, read as its description. `onIntent` on a row fires when the pointer or focus reaches it (prefetch); `onNavigate` on the list fires when any row is chosen (close a phone sheet), request #21. Replaces sidebars built from ghost buttons restyled with `className`.
+- **[Button](https://ui.teamofsilicons.com/button) `variant="soft"` (experimental).** Request #14. Filled with `--surface-muted` and borderless, for controls in a bar: a search trigger, toolbar buttons, a switcher. Works at every size, icon-only included, and on [Button link](https://ui.teamofsilicons.com/button-link). Its hover and press use the new **`--surface-pressed`** token, one step stronger than `--surface-muted`. An experimental prop value: the ESLint gate flags it until an app opts in.
+- **Layer tokens** (`--layer-raised`, `--layer-sticky`, `--layer-overlay`, `--layer-dialog`, `--layer-popover`, `--layer-dropdown`, `--layer-toast`, `--layer-tooltip`). Request #15. Every layer component now stacks on one ordered set instead of 11 unrelated numbers (30 to 1000), and [using-in-an-app.md](./docs/using-in-an-app.md#stacking-where-your-apps-chrome-goes) gives the rule for an app's own chrome: below `--layer-overlay`. `silicon-ui-check` now fails a raw `z-index` of 10 or more; apps that adopt this release may need `--update-baseline` once.
 - **Compact density (experimental).** Request #11. A new control-height step, `--control-height-xs` (24px, the smallest target WCAG 2.5.8 allows), for dense UI such as tree rows and toolbars: [Button](https://ui.teamofsilicons.com/button) `size="xs"` (square when icon-only), [Segmented control](https://ui.teamofsilicons.com/segmented-control) `size="xs"` (`sm` remains the default), and [Avatar](https://ui.teamofsilicons.com/avatar) `size="xs"` (20px). The new sizes are experimental prop values: `meta.experimentalProps` in `registry.json`, and the ESLint gate flags them until an app opts in.
+
+### Changed
+
+- **Stacking order fixed where layers meet.** Menus now always open above popovers (a Dropdown menu inside a [Popover](https://ui.teamofsilicons.com/popover) used to open behind it), toasts sit above open menus, and [Treemap](https://ui.teamofsilicons.com/treemap)'s tooltip sits with the other tooltips. Dims and dialogs keep their values (50 and 51).
 
 ## 2026-10-13
 

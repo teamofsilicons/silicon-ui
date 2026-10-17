@@ -16,7 +16,7 @@
 .preview { position: relative; display: grid; width: 100%; min-height: 100vh; min-height: 100svh; }
 .preview > .hero { min-height: inherit; }
 .switcher {
-  position: absolute; z-index: 20; top: var(--space-inset); left: 50%; translate: -50% 0;
+  position: absolute; z-index: var(--layer-raised); top: var(--space-inset); left: 50%; translate: -50% 0;
   display: flex; max-width: calc(100% - 2 * var(--space-inset));
   border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent); border-radius: var(--radius-full); corner-shape: round;
   background: color-mix(in oklab, var(--surface) 64%, transparent);

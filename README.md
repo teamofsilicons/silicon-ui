@@ -162,14 +162,14 @@ Components read semantic tokens, never raw colors. Change a token in `foundation
 | Token | Used for |
 | --- | --- |
 | `--background` | The page behind everything |
-| `--surface`, `--surface-raised`, `--surface-muted` | Cards and inputs, floating layers, quiet fills |
+| `--surface`, `--surface-raised`, `--surface-muted`, `--surface-pressed` | Cards and inputs, floating layers, quiet fills, the hover of a quiet fill |
 | `--foreground`, `--text-secondary`, `--text-muted` | Primary, supporting and hint text |
 | `--border`, `--border-subtle`, `--border-strong` | Separators and edges |
 | `--accent`, `--accent-strong`, `--accent-subtle` | Selection, progress and helpful context |
 | `--success`, `--warning`, `--danger` | Status, always paired with a label |
 | `--radius-detail`, `--radius-control`, `--radius-container`, `--radius-overlay`, `--radius-full` | Marks, controls, cards and menus, dialogs and sheets, pills and dots. Squircle radii are 4 / 11 / 14 / 21, which feel like round 2 / 6 / 8 / 12 |
 | `--space-tight` … `--space-screen` | Spacing by role: tight 4, related 8, group 12, inset 16, comfort 20, section 24, block 32, page 48, stage 64, screen 80 |
-| `--font-display`, `--font-body` | Geist for headings, Inter for everything else |
+| `--font-display`, `--font-body` | Geist for headings, Hanken Grotesk for everything else |
 
 - **Dark mode:** set `data-theme="dark"` on `<html>`. Dark values are tuned separately, not inverted.
 - **Corners:** squircles by default. Every rounded corner is drawn with `corner-shape: squircle` where the browser supports it, and as a round corner elsewhere. A squircle reads about half as round as a circular corner at the same radius, so squircle mode uses larger radii (about 1.8×) to feel the same. Circles and capsules (spinners, dots, avatars, pills) always stay round. Set `data-corners="round"` on `<html>` (or any element) for round corners at 2 / 6 / 8 / 12.

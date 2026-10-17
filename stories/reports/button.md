@@ -1,6 +1,6 @@
 # Consistency report: Button
 
-Passed · status stable · changes since npm-package · 2026-10-14
+Passed · status stable · changes since layer-tokens · 2026-10-14
 
 - ✓ Spacing, radius, colour and type use tokens
 - ✓ Motion uses --duration-*, --ease-* and motionTokens
@@ -11,4 +11,4 @@ Passed · status stable · changes since npm-package · 2026-10-14
 - ✓ Named in CHANGELOG.md
 - ! Every prop has a doc comment (warning)
   - Undocumented: ButtonProps.variant, ButtonProps.size, ButtonProps.loading
-- ✓ Its 2 stories render without errors
+- ✓ Its 3 stories render without errors

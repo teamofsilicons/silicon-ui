@@ -59,7 +59,7 @@
 .kbd { font: inherit; color: color-mix(in oklab, var(--background) 58%, var(--foreground)); font-variant-numeric: tabular-nums; }
 
 /* Side tooltips for a column match the library tooltip, rising a few pixels away from the rail instead of up. */
-.sideTip { --tip-x: -3px; z-index: 90; max-width: 15rem; padding: var(--space-group) var(--space-inset); border: 1px solid color-mix(in oklab, var(--background) 14%, var(--foreground)); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--foreground); color: var(--background); box-shadow: var(--shadow-raised); font-family: var(--font-body); font-size: var(--text-sm); font-weight: 400; letter-spacing: var(--tracking-body); line-height: var(--leading-body); transform-origin: var(--radix-tooltip-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-fast) var(--ease-enter); }
+.sideTip { --tip-x: -3px; z-index: var(--layer-tooltip); max-width: 15rem; padding: var(--space-group) var(--space-inset); border: 1px solid color-mix(in oklab, var(--background) 14%, var(--foreground)); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--foreground); color: var(--background); box-shadow: var(--shadow-raised); font-family: var(--font-body); font-size: var(--text-sm); font-weight: 400; letter-spacing: var(--tracking-body); line-height: var(--leading-body); transform-origin: var(--radix-tooltip-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-fast) var(--ease-enter); }
 .sideTip[data-side="left"] { --tip-x: 3px; }
 @starting-style {
   .sideTip[data-state$="-open"] { opacity: 0; transform: translateX(var(--tip-x)) scale(.97); }

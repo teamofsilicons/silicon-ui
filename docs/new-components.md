@@ -73,7 +73,7 @@ shown on the component's Storybook page (the *Consistency* story) and fails if a
 
 | Check | Required | What it looks at |
 | --- | --- | --- |
-| Tokens only | Yes | The component's CSS has no raw spacing, radius, colour or font size (`silicon-ui-check`, no baseline). |
+| Tokens only | Yes | The component's CSS has no raw spacing, radius, colour, font size or z-index (`silicon-ui-check`, no baseline). |
 | Motion from tokens | Yes | CSS transitions and animations use `--duration-*` and `--ease-*`; Motion code uses `motionTokens`, not typed numbers. |
 | Reduced motion | Yes, if it moves | A `prefers-reduced-motion` rule or `useReducedMotion()`. |
 | Built from the library | Warning | Raw `<button>`, `<input>`, `<select>`, `<textarea>`, `<dialog>` where a Silicon UI component exists. Some primitives legitimately need them; the report lists them for the reviewer. |
