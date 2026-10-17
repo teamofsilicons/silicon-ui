@@ -4,6 +4,10 @@ Changes ship continuously from `main`. Every item links to its live preview on [
 
 ## 2026-10-17
 
+### Added
+
+- **[Breadcrumb](https://ui.teamofsilicons.com/breadcrumb) collapses long paths (experimental).** Request #12. `maxItems` (at least 2; by default the path never collapses): a longer path shows the first crumb, a "…" button named "Show N more levels", and the last `maxItems - 1` crumbs. The "…" opens a Dropdown menu of the hidden levels, which stay links (or run their `onClick`). For it, `DropdownMenuItem` takes `asChild`, so a link can be the item. `maxItems` is an experimental prop: `"experimentalProps": { "Breadcrumb": { "maxItems": ["*"] } }`, where the new value `"*"` makes the ESLint gate flag the prop whatever its value.
+
 ### Changed
 
 - **Body font is Hanken Grotesk.** `--font-body` now reads `--font-hanken-grotesk` (set by `next/font`) and falls back to `"Hanken Grotesk Variable"` (the name `@fontsource-variable/hanken-grotesk` registers), replacing Inter. Headings stay on Geist (`--font-display`). Hanken has a smaller x-height than Inter and sets about 5% narrower, so body text reads a touch smaller and lines fit more; its figures are tabular by default. To upgrade, load Hanken Grotesk in the app, and if it set `--font-inter`, set `--font-hanken-grotesk` instead. An app that keeps Inter sets `--font-body` in its theme file. Changes how existing screens look: a minor release on npm.

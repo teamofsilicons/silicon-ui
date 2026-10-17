@@ -1,0 +1,75 @@
+{
+  "name": "breadcrumb",
+  "title": "Breadcrumb",
+  "status": "stable",
+  "checkedAt": "2026-10-17T03:48:42.993Z",
+  "scope": "changes since main",
+  "passed": true,
+  "checks": [
+    {
+      "id": "tokens",
+      "title": "Spacing, radius, colour and type use tokens",
+      "required": true,
+      "ok": true,
+      "detail": []
+    },
+    {
+      "id": "motion",
+      "title": "Motion uses --duration-*, --ease-* and motionTokens",
+      "required": true,
+      "ok": true,
+      "detail": []
+    },
+    {
+      "id": "reduced-motion",
+      "title": "Respects reduced motion",
+      "required": true,
+      "ok": true,
+      "detail": []
+    },
+    {
+      "id": "composition",
+      "title": "Built from Silicon UI components where they exist",
+      "required": false,
+      "ok": false,
+      "detail": [
+        "Raw <button> (2). Reviewer: is a Silicon UI component the better choice here?"
+      ]
+    },
+    {
+      "id": "registry",
+      "title": "Registered with title, description, category and status",
+      "required": true,
+      "ok": true,
+      "detail": []
+    },
+    {
+      "id": "demo",
+      "title": "Has a demo (and so a Storybook story)",
+      "required": true,
+      "ok": true,
+      "detail": []
+    },
+    {
+      "id": "changelog",
+      "title": "Named in CHANGELOG.md",
+      "required": true,
+      "ok": true,
+      "detail": []
+    },
+    {
+      "id": "docs",
+      "title": "Every prop has a doc comment",
+      "required": false,
+      "ok": true,
+      "detail": []
+    },
+    {
+      "id": "renders",
+      "title": "Its 3 stories render without errors",
+      "required": true,
+      "ok": true,
+      "detail": []
+    }
+  ]
+}

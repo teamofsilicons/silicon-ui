@@ -80,7 +80,7 @@ that does (see [new-components.md](new-components.md)).
 | --- | --- | --- | --- | --- |
 | **Accordion** `accordion`<br>Progressively reveal supporting information in place. | stable | `size`: md, lg | — | [docs](https://ui.teamofsilicons.com/accordion) |
 | **Bottom sheet** `bottom-sheet`<br>A sheet that rests at a peek or full height and follows your finger. | stable | — | — | [docs](https://ui.teamofsilicons.com/bottom-sheet) |
-| **Breadcrumb** `breadcrumb`<br>Show where a page sits in a hierarchy. | stable | — | — | [docs](https://ui.teamofsilicons.com/breadcrumb) |
+| **Breadcrumb** `breadcrumb`<br>Show where a page sits in a hierarchy. | stable; experimental: `Breadcrumb maxItems` | — | dropdown-menu | [docs](https://ui.teamofsilicons.com/breadcrumb) |
 | **Dialog** `dialog`<br>A focused surface for decisions that need attention. | stable | — | — | [docs](https://ui.teamofsilicons.com/dialog) |
 | **Drawer** `drawer`<br>A temporary side surface for focused work. | stable | `side`: left, right, top, bottom | — | [docs](https://ui.teamofsilicons.com/drawer) |
 | **Expandable card** `expandable-card`<br>Give a dense card more room when requested. | stable | — | — | [docs](https://ui.teamofsilicons.com/expandable-card) |

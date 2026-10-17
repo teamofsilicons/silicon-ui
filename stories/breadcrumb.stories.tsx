@@ -2,6 +2,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import demo from "../site/demos/breadcrumb";
 import { DemoExamples, DemoPreview } from "./demo";
+import { ConsistencyReport } from "./report";
+import report from "./reports/breadcrumb.json";
 
 const meta: Meta = {
   title: "Components/Disclosure/Breadcrumb",
@@ -22,4 +24,9 @@ export const Default: StoryObj = {
 export const Examples: StoryObj = {
   parameters: { layout: "padded", controls: { disable: true } },
   render: () => <DemoExamples demo={demo as never} />,
+};
+
+export const Consistency: StoryObj = {
+  parameters: { layout: "padded", controls: { disable: true } },
+  render: () => <ConsistencyReport report={report} />,
 };

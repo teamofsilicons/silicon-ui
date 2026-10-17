@@ -26,7 +26,7 @@
  *
  * Every part shares one look: the same surface, the gliding highlight, the entrance that grows from the trigger.
  */
-import { Fragment, forwardRef, useImperativeHandle, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, cloneElement, forwardRef, isValidElement, useImperativeHandle, useLayoutEffect, useRef, useState } from "react";
 import type { ComponentPropsWithoutRef, ReactNode, Ref } from "react";
 import * as DropdownPrimitive from "@radix-ui/react-dropdown-menu";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -102,15 +102,22 @@ export interface DropdownMenuItemProps extends ComponentPropsWithoutRef<typeof D
   shortcut?: string;
   /** A destructive action (delete, remove): shown in the danger colour. */
   destructive?: boolean;
+  /** Make your own element the item, such as a link: `<DropdownMenuItem asChild><a href="/q3">Q3 2026</a></DropdownMenuItem>`.
+   *  Its children become the label, and Enter follows the link. */
+  asChild?: boolean;
 }
 
-/** One action. */
-export const DropdownMenuItem = forwardRef<HTMLDivElement, DropdownMenuItemProps>(function DropdownMenuItem({ icon, shortcut, destructive, className, children, ...props }, ref) {
+/** One action, or with `asChild` one link. */
+export const DropdownMenuItem = forwardRef<HTMLDivElement, DropdownMenuItemProps>(function DropdownMenuItem({ icon, shortcut, destructive, asChild, className, children, ...props }, ref) {
+  const content = (label: ReactNode) => <>
+    {icon ? <span className={styles.icon} aria-hidden="true">{icon}</span> : null}
+    <span className={styles.itemLabel}>{label}</span>
+    {shortcut ? <kbd className={styles.shortcut}>{shortcut}</kbd> : null}
+  </>;
+  const own = asChild && isValidElement<{ children?: ReactNode }>(children) ? children : null;
   return (
-    <DropdownPrimitive.Item {...props} ref={ref} className={cx(styles.item, destructive && styles.destructive, className)} data-tone={destructive ? "danger" : undefined}>
-      {icon ? <span className={styles.icon} aria-hidden="true">{icon}</span> : null}
-      <span className={styles.itemLabel}>{children}</span>
-      {shortcut ? <kbd className={styles.shortcut}>{shortcut}</kbd> : null}
+    <DropdownPrimitive.Item {...props} ref={ref} asChild={!!own} className={cx(styles.item, destructive && styles.destructive, className)} data-tone={destructive ? "danger" : undefined}>
+      {own ? cloneElement(own, undefined, content(own.props.children)) : content(children)}
     </DropdownPrimitive.Item>
   );
 });

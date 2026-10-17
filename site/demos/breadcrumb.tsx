@@ -16,12 +16,20 @@ function FolderPath(props: Partial<BreadcrumbProps>) {
 }
 
 export default defineDemo<BreadcrumbProps>({
-  Preview: ({ props }) => <FolderPath ariaLabel={props.ariaLabel} />,
+  Preview: ({ props }) => <FolderPath ariaLabel={props.ariaLabel} maxItems={props.maxItems} />,
   examples: [
     {
       title: "Links",
       description: "Crumbs with an href render as links. The last crumb is the current page.",
       render: () => <Breadcrumb items={[{ label: "Silicons", href: "#silicons" }, { label: "Support", href: "#support" }, { label: "Ticket routing" }]} />,
+    },
+    {
+      title: "Long paths collapse (experimental)",
+      description: "maxItems={3} shows the first crumb and the last two. \"…\" opens a menu of the levels between, which stay links.",
+      render: () => <Breadcrumb maxItems={3} items={[
+        { label: "Team of Silicons", href: "#team" }, { label: "Engineering", href: "#engineering" }, { label: "Handbook", href: "#handbook" },
+        { label: "Releases", href: "#releases" }, { label: "Release checklist" },
+      ]} />,
     },
   ],
   usage: `const [depth, setDepth] = useState(3);

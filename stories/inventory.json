@@ -1069,10 +1069,14 @@
     "kind": "component",
     "category": "Disclosure",
     "status": "stable",
-    "experimentalParts": [],
+    "experimentalParts": [
+      "Breadcrumb maxItems"
+    ],
     "description": "Show where a page sits in a hierarchy.",
     "variants": {},
-    "composes": [],
+    "composes": [
+      "dropdown-menu"
+    ],
     "import": "@teamofsilicons/silicon-ui/breadcrumb",
     "docs": "https://ui.teamofsilicons.com/breadcrumb",
     "storybook": "components-disclosure-breadcrumb--default"
