@@ -1153,6 +1153,20 @@
     "storybook": "components-disclosure-hover-card--default"
   },
   {
+    "name": "nav-list",
+    "title": "Nav list",
+    "kind": "component",
+    "category": "Disclosure",
+    "status": "experimental",
+    "experimentalParts": [],
+    "description": "A sidebar's list of destinations, with sections, the current page and locked rows that say why.",
+    "variants": {},
+    "composes": [],
+    "import": "@teamofsilicons/silicon-ui/nav-list",
+    "docs": "https://ui.teamofsilicons.com/nav-list",
+    "storybook": "components-disclosure-nav-list--default"
+  },
+  {
     "name": "popover",
     "title": "Popover",
     "kind": "component",
