@@ -22,7 +22,8 @@
     "category": "Actions",
     "status": "stable",
     "experimentalParts": [
-      "Button size=\"xs\""
+      "Button size=\"xs\"",
+      "Button variant=\"soft\""
     ],
     "description": "A clear, responsive action with quiet secondary states.",
     "variants": {
@@ -30,7 +31,8 @@
         "primary",
         "secondary",
         "ghost",
-        "danger"
+        "danger",
+        "soft"
       ],
       "size": [
         "xs",
@@ -77,7 +79,9 @@
     "kind": "component",
     "category": "Actions",
     "status": "stable",
-    "experimentalParts": [],
+    "experimentalParts": [
+      "ButtonLink variant=\"soft\""
+    ],
     "description": "A link that looks exactly like a button, for actions that go somewhere.",
     "variants": {},
     "composes": [

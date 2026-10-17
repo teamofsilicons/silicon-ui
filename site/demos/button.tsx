@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronRight, Copy, Ellipsis, FileText, Plus, Upload } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Copy, Ellipsis, FileText, Plus, Search, Upload } from "lucide-react";
 
 import { Button } from "@/registry/components/button/button";
 import { defineDemo } from "../lib/demo";
@@ -7,6 +7,18 @@ export default defineDemo({
   component: Button,
   props: { children: "Save changes" },
   examples: [
+    {
+      title: "Soft, for controls in a bar (experimental)",
+      description: "variant=\"soft\" is filled and borderless: a search trigger, toolbar buttons, a switcher. Use it on the page or a surface, not on a muted panel.",
+      render: () => <div style={{ display: "flex", alignItems: "center", gap: "var(--space-related)", flexWrap: "wrap", justifyContent: "center", padding: "var(--space-related)", borderRadius: "var(--radius-container)", background: "var(--surface)", border: "1px solid var(--border)" }}>
+        <Button variant="soft" size="sm">Team of Silicons <ChevronDown size={14} aria-hidden="true" /></Button>
+        <Button variant="soft" size="sm"><Search size={16} aria-hidden="true" /> Search</Button>
+        <Button variant="soft" size="sm" aria-label="Previous"><ChevronLeft size={16} aria-hidden="true" /></Button>
+        <Button variant="soft" size="sm" aria-label="Next"><ChevronRight size={16} aria-hidden="true" /></Button>
+        <Button variant="soft" size="xs" aria-label="Add a page"><Plus aria-hidden="true" /></Button>
+        <Button variant="soft" size="sm" disabled>Disabled</Button>
+      </div>,
+    },
     {
       title: "Compact, for dense rows (experimental)",
       description: "size=\"xs\" is 24px: the smallest target WCAG allows. Icon-only compact buttons are square and need an aria-label.",
