@@ -174,7 +174,7 @@ Components read semantic tokens, never raw colors. Change a token in `foundation
 - **Dark mode:** set `data-theme="dark"` on `<html>`. Dark values are tuned separately, not inverted.
 - **Corners:** squircles by default. Every rounded corner is drawn with `corner-shape: squircle` where the browser supports it, and as a round corner elsewhere. A squircle reads about half as round as a circular corner at the same radius, so squircle mode uses larger radii (about 1.8×) to feel the same. Circles and capsules (spinners, dots, avatars, pills) always stay round. Set `data-corners="round"` on `<html>` (or any element) for round corners at 2 / 6 / 8 / 12.
 - **Accent:** set `data-accent` on `<html>` to `neutral`, `violet`, `blue`, `green`, `amber`, `orange`, `coral` or `rose`.
-- **Motion:** springs and durations live in `lib/motion-tokens.ts` (`components/silicon-ui/lib/motion-tokens.ts` after a CLI install). Every animation respects `prefers-reduced-motion`.
+- **Motion:** three spring tiers (`fast`, `moderate`, `slow`, each with a quicker `.exit`) and matching `--duration-*` steps live in `lib/motion-tokens.ts` (`components/silicon-ui/lib/motion-tokens.ts` after a CLI install). Menus, lists and navigation use fluid hover (`lib/fluid-hover.tsx`): the item nearest the pointer is lit and a click in a gap picks it. Both are adapted from [Fluid Functionalism](https://github.com/mickadesign/fluid-functionalism) (MIT). Every animation respects `prefers-reduced-motion`.
 
 Every token is shown live on the [Foundation page](https://ui.teamofsilicons.com/foundation).
 

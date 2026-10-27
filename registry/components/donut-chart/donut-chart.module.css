@@ -10,7 +10,7 @@
 .svg { display: block; width: 100%; height: 100%; overflow: visible; cursor: default; }
 .svg[data-hovering] { cursor: pointer; }
 /* The track shows only before the first sweep and when there is nothing to draw, so the gaps between segments stay the page colour. */
-.track { fill: none; stroke: var(--surface-muted); transition: opacity var(--duration-considered, .48s) var(--ease-standard); opacity: 0; }
+.track { fill: none; stroke: var(--surface-muted); transition: opacity var(--duration-expressive, .48s) var(--ease-standard); opacity: 0; }
 .track[data-idle] { opacity: 1; }
 /* Shapes are written every frame from script; only colour and dimming ease here, on the compositor. */
 .segment { fill: var(--slice); shape-rendering: geometricPrecision; transition: fill var(--duration-standard) var(--ease-standard), opacity var(--duration-standard) var(--ease-standard); }

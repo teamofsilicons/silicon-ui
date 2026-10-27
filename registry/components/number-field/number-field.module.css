@@ -26,7 +26,7 @@
 @media (hover: hover) and (pointer: fine) { .step:hover:not(:disabled, [aria-disabled="true"]) { background: var(--surface-muted); color: var(--foreground); } }
 /* Quick press, spring release: the fill deepens and the glyph sinks. A held button stays pressed for as long as it repeats. */
 .step:is(:active, [data-pressed]):not(:disabled, [aria-disabled="true"]) { background: color-mix(in oklab, var(--foreground) 10%, var(--surface)); color: var(--foreground); transition: background-color 60ms linear, color 60ms linear; }
-.step:is(:active, [data-pressed]):not(:disabled, [aria-disabled="true"]) svg { transform: scale(.82); transition: transform 90ms var(--ease-standard); }
+.step:is(:active, [data-pressed]):not(:disabled, [aria-disabled="true"]) svg { transform: scale(.82); transition: transform var(--duration-fast) var(--ease-standard); }
 .step:focus-visible { outline: none; background: var(--surface-muted); color: var(--foreground); }
 /* At a limit the button dims and refuses, but stays in the tab order; pressing it strains the value toward the limit and it shakes once. */
 .step[aria-disabled="true"] { opacity: .32; cursor: not-allowed; }

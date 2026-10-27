@@ -114,7 +114,7 @@ const panelMotion: Variants = {
 const panelFade: Variants = {
   enter: { opacity: 0, x: 0 },
   center: { opacity: 1, x: 0, transition: { duration: motionTokens.duration.instant } },
-  exit: { opacity: 0, x: 0, transition: { duration: .1 } },
+  exit: { opacity: 0, x: 0, transition: { duration: motionTokens.duration.instant } },
 };
 
 export function TabsContent({ className, value, forceMount, children, ...props }: ComponentPropsWithoutRef<typeof TabsPrimitive.Content>) {

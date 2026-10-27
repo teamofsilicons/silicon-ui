@@ -140,7 +140,7 @@ export function ElasticSlider({ label, value, defaultValue, onValueChange, onVal
   /** A detent answers with a small pop of its tick and, where the device supports it, a short tap of vibration. */
   function pulse(mark: number, haptic: boolean) {
     const node = tickRefs.current.get(mark);
-    if (node && !reduced) animate(node, { scale: [1, 2.1, 1] }, { duration: .34, ease: enterEase });
+    if (node && !reduced) animate(node, { scale: [1, 2.1, 1] }, { duration: motionTokens.duration.standard, ease: enterEase });
     if (haptic && typeof navigator !== "undefined" && "vibrate" in navigator) navigator.vibrate?.(6);
   }
   /** Moves the thumb to a new resting spot through a spring on the catch-up offset, so the jump reads as travel. */
@@ -272,7 +272,7 @@ export function ElasticSlider({ label, value, defaultValue, onValueChange, onVal
         <div className={styles.thumbs}>
           <motion.div className={styles.layer} style={{ x: bubbleX }}>
             <motion.span className={styles.bubbleAnchor} style={{ x: over, "--at": bubbleAt } as MotionStyle}>
-              <AnimatePresence>{bubble && <motion.span key="bubble" className={styles.bubble} aria-hidden="true" style={{ rotate }} initial={reduced ? { opacity: 0 } : bubbleIn} animate={bubbleRest} exit={reduced ? { opacity: 0, transition: { duration: duration.instant } } : bubbleOut} transition={reduced ? { duration: .15 } : bubbleEnter}>{text}</motion.span>}</AnimatePresence>
+              <AnimatePresence>{bubble && <motion.span key="bubble" className={styles.bubble} aria-hidden="true" style={{ rotate }} initial={reduced ? { opacity: 0 } : bubbleIn} animate={bubbleRest} exit={reduced ? { opacity: 0, transition: { duration: duration.instant } } : bubbleOut} transition={reduced ? { duration: motionTokens.duration.fast } : bubbleEnter}>{text}</motion.span>}</AnimatePresence>
             </motion.span>
           </motion.div>
           <motion.div className={styles.layer} style={{ x: thumbX }}>

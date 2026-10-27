@@ -110,9 +110,12 @@
   --ease-standard: cubic-bezier(.22,1,.36,1);
   --ease-exit: cubic-bezier(.7,0,.84,0);
   --ease-in-out: cubic-bezier(.65,0,.35,1);
-  /* Spring with a gentle settle (bounce .15). Pair with --duration-spring for transform transitions. */
-  --ease-spring: linear(0, 0.0258, 0.09, 0.1763, 0.2732, 0.3724, 0.4683, 0.5573, 0.6376, 0.7082, 0.7689, 0.8202, 0.8628, 0.8976, 0.9256, 0.9476, 0.9648, 0.9778, 0.9875, 0.9945, 0.9994, 1.0026, 1.0047, 1.0058, 1.0062, 1.0062, 1.0059, 1.0055, 1.0049, 1.0043, 1.0036, 1.0031, 1.0025, 1.002, 1.0016, 1.0013, 1);
-  --duration-instant: 120ms; --duration-fast: 160ms; --duration-standard: 240ms; --duration-considered: 480ms; --duration-spring: 580ms;
+  /* The slow spring tier (bounce .12, settles in 240ms), sampled for CSS. Pair with --duration-spring for transforms. */
+  --ease-spring: linear(0, 0.0515, 0.1675, 0.3072, 0.4464, 0.5725, 0.6797, 0.7668, 0.8352, 0.887, 0.9253, 0.9527, 0.9717, 0.9846, 0.9928, 0.9979, 1.0008, 1.0023, 1.0029, 1.0029, 1.0027, 1.0023, 1.0019, 1.0015, 1);
+  /* The same steps as motionTokens.duration: fast is a hover or press, standard a menu or panel, considered a dialog. */
+  --duration-instant: 60ms; --duration-fast: 80ms; --duration-standard: 160ms; --duration-considered: 240ms; --duration-spring: 240ms;
+  /* Motion that tells a story (a chart drawing in, a slow image zoom), never a hover, press or panel. */
+  --duration-expressive: 480ms;
   /* Stagger steps (the same values as motionTokens.stagger). Keep total stagger under roughly 400ms. */
   --stagger-item: 35ms;
   /* Stacking order, by role. Menus and listboxes sit above popovers and dialogs because they open from inside them.

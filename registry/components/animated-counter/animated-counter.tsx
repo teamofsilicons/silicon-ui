@@ -18,7 +18,7 @@ type Part = { key: string; digit: number; order: number } | { key: string; text:
 const DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const rise: Variants = { hidden: { opacity: 0, y: "0.3em", filter: `blur(${motionTokens.blur.soft}px)` }, shown: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: motionTokens.duration.standard, ease: [...motionTokens.ease.enter] } }, gone: { opacity: 0, y: "-0.3em", filter: `blur(${motionTokens.blur.subtle}px)`, transition: { duration: motionTokens.duration.fast, ease: [...motionTokens.ease.standard] } } };
 const fade: Variants = { hidden: { opacity: 0, y: 0, filter: "blur(0px)" }, shown: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: motionTokens.duration.instant } }, gone: { opacity: 0, y: 0, filter: "blur(0px)", transition: { duration: motionTokens.duration.instant } } };
-const reveal = { ...motionTokens.spring.smooth, visualDuration: motionTokens.duration.considered };
+const reveal = { ...motionTokens.spring.smooth, visualDuration: motionTokens.duration.expressive };
 
 /** Split a formatted number into columns keyed by place value, so 999 → 1,000 keeps the ones column the ones column. */
 function partsFor(value: number, decimals: number, locale: string): Part[] {

@@ -24,7 +24,7 @@
 .featured { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: center; gap: var(--space-page); }
 .imageFrame { position: relative; overflow: hidden; aspect-ratio: 3 / 2; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--surface-muted); }
 .featured .imageFrame { aspect-ratio: 16 / 10; border-radius: var(--radius-container); corner-shape: var(--corner-shape); }
-.image { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--duration-considered) var(--ease-standard); }
+.image { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--duration-expressive) var(--ease-standard); }
 .cardBody { display: grid; align-content: start; gap: var(--space-related); }
 .featured .cardBody { gap: var(--space-group); }
 .meta { display: flex; flex-wrap: wrap; gap: var(--space-related); margin: 0; color: var(--text-muted); font-size: var(--text-xs); }

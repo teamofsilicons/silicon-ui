@@ -10,7 +10,7 @@ import styles from "./text-reveal.module.css";
  */
 export interface TextRevealProps { text: string; as?: "h1" | "h2" | "h3" | "p"; className?: string; id?: string; /** Seconds to wait before the first word rises. Defaults to 0. */ delay?: number }
 /** Total stagger stays under this many seconds, however long the text is. */
-const MAX_STAGGER = motionTokens.duration.considered;
+const MAX_STAGGER = motionTokens.duration.expressive;
 
 export function TextReveal({ text, as = "h2", className, id, delay = 0 }: TextRevealProps) {
   const Tag = as;

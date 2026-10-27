@@ -332,7 +332,7 @@ function ToastItem({ toast, target, expanded, front, hidden, paused, reduce, sto
     const offset = x.get();
     if (!cancelled && offset > 0 && velocity > -200 && offset + project(velocity) > width * .4) {
       swiped.current = true;
-      if (!reduce) animate(x, width + 40, { type: "spring", visualDuration: .32, bounce: 0, velocity: Math.max(velocity, 0) });
+      if (!reduce) animate(x, width + 40, { type: "spring", visualDuration: motionTokens.spring.moderate.visualDuration, bounce: 0, velocity: Math.max(velocity, 0) });
       store.dismiss(id);
       return;
     }

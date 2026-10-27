@@ -26,7 +26,7 @@
 .status > span { grid-area: 1 / 1; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .footer button { border: 0; border-radius: var(--radius-control); padding: var(--space-tight) var(--space-related); background: transparent; color: var(--text-secondary); font: inherit; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), transform var(--duration-spring) var(--ease-spring); }
 @media (hover: hover) and (pointer: fine) { .footer button:hover:not(:disabled) { background: var(--surface-muted); color: var(--foreground); } }
-.footer button:active:not(:disabled) { transform: scale(.97); transition-duration: var(--duration-fast), var(--duration-fast), 100ms; transition-timing-function: var(--ease-standard); }
+.footer button:active:not(:disabled) { transform: scale(.97); transition-duration: var(--duration-fast), var(--duration-fast), var(--duration-fast); transition-timing-function: var(--ease-standard); }
 .footer button:disabled { cursor: not-allowed; opacity: .4; }
 .description { color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); transition: opacity var(--duration-fast) var(--ease-standard); }
 /* The open calendar covers the hint; fading it keeps its first letters from peeking past the popover's rounded corner. */

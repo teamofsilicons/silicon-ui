@@ -29,7 +29,7 @@ const fade: Variants = { hidden: { opacity: 0, y: 0, filter: "blur(0px)" }, show
 const amountIn = (text: string) => Number(text.replace(/,/g, "").replace(/−/g, "-").match(/-?\d+(?:\.\d+)?/)?.[0] ?? NaN);
 const grouped = new Intl.NumberFormat("en-US");
 /** The first draw: one smooth stroke, slow at both ends like a pen. */
-const draw = { duration: motionTokens.duration.considered * 1.75, ease: [...motionTokens.ease.inOut] } as const;
+const draw = { duration: motionTokens.duration.expressive * 1.75, ease: [...motionTokens.ease.inOut] } as const;
 const quick = { duration: motionTokens.duration.fast, ease: [...motionTokens.ease.standard] } as const;
 
 type Chunk = { slot: string; key: string; text: string };

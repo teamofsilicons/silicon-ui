@@ -81,7 +81,7 @@ function partsOf(value: number, format: Intl.NumberFormat): Part[] {
    Scale and opacity ride the same spring as width, so a digit grows with its slot instead of landing on its neighbours. */
 const slot: Variants = {
   enter: (direction: number) => ({ width: 0, scale: .6, opacity: 0, y: `${direction * .3}em`, filter: `blur(${blur.soft}px)` }),
-  center: { width: "auto", scale: 1, opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" }, transition: { width: spring.morph, scale: spring.morph, opacity: spring.morph, y: spring.snappy, filter: { duration: .3, ease: exitEase } } },
+  center: { width: "auto", scale: 1, opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" }, transition: { width: spring.morph, scale: spring.morph, opacity: spring.morph, y: spring.snappy, filter: { duration: motionTokens.duration.standard, ease: exitEase } } },
   exit: (direction: number) => ({ width: 0, scale: .6, opacity: 0, y: `${direction * -.3}em`, filter: `blur(${blur.subtle}px)`, transition: { width: spring.smooth, scale: spring.smooth, y: { duration: duration.fast, ease: exitEase }, opacity: { duration: duration.instant }, filter: { duration: duration.instant } } }),
 };
 /* Reduced motion keeps a short fade and no travel. While typing, columns follow the draft at once so they never lag the caret.
@@ -142,8 +142,8 @@ const directionsBetween = (from: string, to: string) => { const before = from.sp
 const wordRise: Variants = {
   enter: (direction: number) => ({ opacity: 0, y: `${direction * .3}em`, filter: `blur(${blur.soft}px)` }),
   // Opacity follows the slot's width spring, so a longer word never shows before its room has opened.
-  center: { opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" }, transition: { duration: .22, ease: enterEase, opacity: spring.morph } },
-  exit: (direction: number) => ({ opacity: 0, y: `${direction * -.3}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: .14, ease: exitEase } }),
+  center: { opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" }, transition: { duration: motionTokens.duration.exit, ease: enterEase, opacity: spring.morph } },
+  exit: (direction: number) => ({ opacity: 0, y: `${direction * -.3}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: motionTokens.duration.fast, ease: exitEase } }),
 };
 const wordFade: Variants = { enter: { opacity: 0, y: 0, filter: "none" }, center: { opacity: 1, y: 0, filter: "none", transition: { duration: duration.instant } }, exit: { opacity: 0, transition: { duration: 0 } } };
 

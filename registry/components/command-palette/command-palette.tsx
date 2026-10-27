@@ -90,7 +90,7 @@ export function CommandPalette({ items, placeholder = "Search commands", onSelec
       animate(highlightOpacity, 0, { duration: reduced ? 0 : .1 });
       return;
     }
-    const move: ValueAnimationTransition<number> = !highlightShown.current || reduced ? { duration: 0 } : pointer.current ? motionTokens.spring.snappy : { duration: .07, ease: [...motionTokens.ease.enter] };
+    const move: ValueAnimationTransition<number> = !highlightShown.current || reduced ? { duration: 0 } : pointer.current ? motionTokens.spring.snappy : { duration: motionTokens.duration.instant, ease: [...motionTokens.ease.enter] };
     // Rows sit inside positioned groups, so their offset is summed up to the list (layout transforms stay out of it).
     let top = 0;
     for (let element: HTMLElement | null = node; element && element !== listRef.current; element = element.offsetParent as HTMLElement | null) top += element.offsetTop + (element === node ? 0 : element.clientTop);

@@ -70,7 +70,7 @@ const blurSoft = `blur(${motionTokens.blur.soft}px)`;
 const blurSubtle = `blur(${motionTokens.blur.subtle}px)`;
 const none = "blur(0px)";
 const instant: Transition = { duration: 0 };
-const exitSpring: Transition = { type: "spring", visualDuration: 0.28, bounce: 0 };
+const exitSpring: Transition = { type: "spring", visualDuration: motionTokens.spring.moderate.visualDuration, bounce: 0 };
 
 /** Values rise when they grow and fall when they shrink; the outgoing value leaves the opposite way. */
 const roll: Variants = {
@@ -131,7 +131,7 @@ function SubscribeControl({ reduce }: { reduce: boolean }) {
     event.preventDefault();
     if (!emailPattern.test(email.trim())) {
       setError(true);
-      if (!reduce && shakeScope.current) animate(shakeScope.current, { x: [0, -6, 5, -3, 2, 0] }, { duration: motionTokens.duration.considered, ease: [...motionTokens.ease.standard] });
+      if (!reduce && shakeScope.current) animate(shakeScope.current, { x: [0, -6, 5, -3, 2, 0] }, { duration: motionTokens.duration.expressive, ease: [...motionTokens.ease.standard] });
       inputRef.current?.focus();
       return;
     }

@@ -103,21 +103,21 @@ const TRIGGER_RADIUS = 18, PANEL_RADIUS = 26, WIDE_CELL = 36, WIDE_MIN = 712, ED
 
 const roll: Variants = {
   enter: (direction: number) => ({ opacity: 0, y: `${direction * .45}em`, filter: `blur(${blur.subtle}px)` }),
-  center: { opacity: 1, y: "0em", filter: "blur(0px)", transition: { duration: .26, ease: enterEase } },
-  exit: (direction: number) => ({ opacity: 0, y: `${direction * -.45}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: .14, ease: standardEase } }),
+  center: { opacity: 1, y: "0em", filter: "blur(0px)", transition: { duration: motionTokens.duration.exit, ease: enterEase } },
+  exit: (direction: number) => ({ opacity: 0, y: `${direction * -.45}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: motionTokens.duration.fast, ease: standardEase } }),
 };
-const fade: Variants = { enter: { opacity: 0 }, center: { opacity: 1, y: "0em", filter: "blur(0px)", transition: { duration: .12 } }, exit: { opacity: 0, transition: { duration: .08 } } };
+const fade: Variants = { enter: { opacity: 0 }, center: { opacity: 1, y: "0em", filter: "blur(0px)", transition: { duration: motionTokens.duration.instant } }, exit: { opacity: 0, transition: { duration: motionTokens.duration.instant } } };
 /** Panel content arrives just behind the growing surface and leaves ahead of it. */
 const faceIn: Variants = {
   hidden: { opacity: 0, y: -4, filter: `blur(${blur.soft}px)` },
-  shown: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: .26, ease: enterEase, delay: .07 } },
-  gone: { opacity: 0, y: -2, filter: `blur(${blur.soft}px)`, transition: { duration: .12, ease: standardEase } },
+  shown: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: motionTokens.duration.exit, ease: enterEase, delay: motionTokens.duration.instant } },
+  gone: { opacity: 0, y: -2, filter: `blur(${blur.soft}px)`, transition: { duration: motionTokens.duration.instant, ease: standardEase } },
 };
-const faceFade: Variants = { hidden: { opacity: 0 }, shown: { opacity: 1, transition: { duration: .12 } }, gone: { opacity: 0, transition: { duration: .08 } } };
+const faceFade: Variants = { hidden: { opacity: 0 }, shown: { opacity: 1, transition: { duration: motionTokens.duration.instant } }, gone: { opacity: 0, transition: { duration: motionTokens.duration.instant } } };
 const slide: Variants = {
   enter: (direction: number) => ({ opacity: 0, x: direction * 48, filter: `blur(${blur.soft}px)` }),
-  center: { opacity: 1, x: 0, filter: "blur(0px)", transition: { x: SLIDE, opacity: { duration: .22, ease: enterEase }, filter: { duration: .24, ease: enterEase } } },
-  exit: (direction: number) => ({ opacity: 0, x: direction * -36, filter: `blur(${blur.soft}px)`, transition: { x: SLIDE, opacity: { duration: .14, ease: standardEase }, filter: { duration: .14, ease: standardEase } } }),
+  center: { opacity: 1, x: 0, filter: "blur(0px)", transition: { x: SLIDE, opacity: { duration: motionTokens.duration.exit, ease: enterEase }, filter: { duration: motionTokens.duration.exit, ease: enterEase } } },
+  exit: (direction: number) => ({ opacity: 0, x: direction * -36, filter: `blur(${blur.soft}px)`, transition: { x: SLIDE, opacity: { duration: motionTokens.duration.fast, ease: standardEase }, filter: { duration: motionTokens.duration.fast, ease: standardEase } } }),
 };
 
 /** Words roll one by one: a later date rises from below, an earlier one drops from above; words that stay the same hold still. */
@@ -568,7 +568,7 @@ export function DateRangePicker({ value, defaultValue = null, onChange, label = 
   const cellSize = compact && panelWidth ? Math.max(32, Math.min(42, Math.floor((panelWidth - 24) / 7))) : WIDE_CELL;
 
   const quiet = open ? (reduced ? { opacity: 0 } : { opacity: 0, filter: `blur(${blur.subtle}px)` }) : { opacity: 1, filter: "blur(0px)" };
-  const quietTransition = open ? { duration: .12, ease: standardEase } : { duration: .22, ease: enterEase, delay: reduced ? 0 : .1 };
+  const quietTransition = open ? { duration: motionTokens.duration.instant, ease: standardEase } : { duration: motionTokens.duration.exit, ease: enterEase, delay: reduced ? 0 : .1 };
 
   return <motion.div ref={rootRef} className={[styles.root, className].filter(Boolean).join(" ")} style={{ width: rootWidth }} data-open={open || undefined} onKeyDown={onRootKey} onBlur={onRootBlur}>
     {/* The trigger stays in place under the panel. Its icons fade, while the value itself flies to the panel footer and back. */}
@@ -588,7 +588,7 @@ export function DateRangePicker({ value, defaultValue = null, onChange, label = 
     <motion.div className={styles.surface} style={{ width, height, borderRadius: radius, x }}>
       <AnimatePresence>
         {open && today && <motion.div key="panel" ref={panelRef} id={`${uid}-panel`} className={styles.panel} role="dialog" aria-label={label} data-compact={compact || undefined}
-          style={{ "--cell": `${cellSize}px`, width: compact && panelWidth ? panelWidth : undefined } as CSSProperties} exit={{ opacity: 1, transition: { duration: .14 } }}>
+          style={{ "--cell": `${cellSize}px`, width: compact && panelWidth ? panelWidth : undefined } as CSSProperties} exit={{ opacity: 1, transition: { duration: motionTokens.duration.fast } }}>
           <motion.div className={styles.body} variants={reduced ? faceFade : faceIn} initial="hidden" animate="shown" exit="gone">
             <div ref={railRef} className={styles.rail} role="group" aria-label="Presets" onKeyDown={onRailKey}>
               <motion.span className={styles.railHighlight} style={{ x: gx, y: gy, width: gw, height: gh, opacity: go }} aria-hidden="true" />

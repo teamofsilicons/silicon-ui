@@ -15,7 +15,7 @@
 .navButton { width: 32px; }
 .todayButton { padding: 0 var(--space-group); font-size: var(--text-sm); font-weight: 500; line-height: 1; }
 @media (hover: hover) and (pointer: fine) { .navButton:hover:not([aria-disabled]), .todayButton:hover:not([aria-disabled]) { background: var(--surface-muted); color: var(--foreground); } }
-.navButton:active:not([aria-disabled]), .todayButton:active:not([aria-disabled]) { scale: .96; transition-duration: var(--duration-fast), var(--duration-fast), var(--duration-fast), 100ms; transition-timing-function: var(--ease-standard); }
+.navButton:active:not([aria-disabled]), .todayButton:active:not([aria-disabled]) { scale: .96; transition-duration: var(--duration-fast), var(--duration-fast), var(--duration-fast), var(--duration-fast); transition-timing-function: var(--ease-standard); }
 .navButton[aria-disabled], .todayButton[aria-disabled] { cursor: default; opacity: .36; }
 .weekdays, .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); column-gap: var(--space-tight); }
 .weekdays { margin-bottom: var(--space-related); color: var(--text-muted); font-size: var(--text-xs); font-weight: 500; line-height: 24px; text-align: center; }
@@ -34,7 +34,7 @@
 .highlight { position: absolute; top: 0; left: 0; width: calc((100% - 24px) / 7); aspect-ratio: 1; pointer-events: none; will-change: transform; }
 .highlightFill { position: absolute; inset: 0; border-radius: 50%; corner-shape: round; background: var(--accent); transition: background-color var(--duration-fast) var(--ease-standard), scale var(--duration-spring) var(--ease-spring); }
 @media (hover: hover) and (pointer: fine) { .day:hover:not(:disabled):not(.selected)::before { background: var(--surface-muted); } .monthBody:has(.day.selected:hover) .highlightFill { background: var(--accent-strong); } }
-.day:active:not(:disabled)::before, .day:active:not(:disabled) .dayNumber, .monthBody:has(.day.selected:active:not(:disabled)) .highlightFill { scale: .94; transition-duration: var(--duration-fast), 100ms; transition-timing-function: var(--ease-standard); }
+.day:active:not(:disabled)::before, .day:active:not(:disabled) .dayNumber, .monthBody:has(.day.selected:active:not(:disabled)) .highlightFill { scale: .94; transition-duration: var(--duration-fast), var(--duration-fast); transition-timing-function: var(--ease-standard); }
 /* Outside days dim their number, not the button, so a disc gliding onto one keeps its full strength. */
 .day.outside { color: var(--text-muted); }
 .day.outside:not(.selected) .dayNumber { opacity: .8; }

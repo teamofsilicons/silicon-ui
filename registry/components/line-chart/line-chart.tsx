@@ -72,7 +72,7 @@ const physical = ({ visualDuration, bounce }: { visualDuration: number; bounce: 
 const settle = physical(spring.smooth);
 const glide = physical(spring.snappy, .0001);
 const follow = { stiffness: glide.stiffness, damping: glide.damping, restDelta: .01 };
-const draw = { duration: duration.considered * 1.75, ease: [...ease.inOut] } as const;
+const draw = { duration: duration.expressive * 1.75, ease: [...ease.inOut] } as const;
 const fadeFast = { duration: duration.instant, ease: [...ease.standard] } as const;
 
 /** Room above the top gridline, and the gap between the crosshair and its tooltip. */

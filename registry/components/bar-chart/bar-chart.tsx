@@ -41,7 +41,7 @@ const { spring, duration, ease, blur, stagger } = motionTokens;
 /** Motion drops inherited velocity on time-defined springs, so values that retarget mid-flight run the same springs written as stiffness and damping. */
 const physical = ({ visualDuration, bounce }: { visualDuration: number; bounce: number }, restDelta = .01) => { const root = (2 * Math.PI) / (visualDuration * 1.2); return { type: "spring" as const, stiffness: root * root, damping: 2 * (1 - bounce) * root, restDelta, restSpeed: restDelta * 2 }; };
 const settle = physical(spring.smooth);
-const grow = physical(spring.morph);
+const grow = physical(spring.expressive);
 const glide = physical(spring.snappy);
 /** The zoom runs in fractions of the plot, so it rests far below a pixel. */
 const zoom = physical(spring.smooth, .00001);

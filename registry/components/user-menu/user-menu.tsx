@@ -77,16 +77,16 @@ const exitEase = [0.4, 0, 1, 1] as [number, number, number, number];
 /** The panel grows out of the trigger on a critically damped spring; rows follow a beat later. Closing is a short fade. */
 const panelMotion: Variants = {
   closed: { opacity: 0, scale: .94 },
-  open: { opacity: 1, scale: 1, transition: { type: "spring", visualDuration: .3, bounce: 0, opacity: { duration: motionTokens.duration.fast, ease: enter }, delayChildren: .03, staggerChildren: .016 } },
+  open: { opacity: 1, scale: 1, transition: { type: "spring", visualDuration: motionTokens.spring.moderate.visualDuration, bounce: 0, opacity: { duration: motionTokens.duration.fast, ease: enter }, delayChildren: .03, staggerChildren: .016 } },
   exit: { opacity: 0, scale: .97, transition: { duration: motionTokens.duration.instant, ease: exitEase } },
 };
 const sheetMotion: Variants = {
   closed: { y: "100%" },
-  open: { y: 0, transition: { ...motionTokens.spring.smooth, visualDuration: .36, delayChildren: .06, staggerChildren: .02 } },
-  exit: { y: "100%", transition: { duration: .22, ease: exitEase } },
+  open: { y: 0, transition: { ...motionTokens.spring.smooth, visualDuration: motionTokens.spring.slow.visualDuration, delayChildren: .06, staggerChildren: .02 } },
+  exit: { y: "100%", transition: { duration: motionTokens.duration.exit, ease: exitEase } },
 };
 const stillMotion: Variants = { closed: { opacity: 0 }, open: { opacity: 1, transition: { duration: motionTokens.duration.instant } }, exit: { opacity: 0, transition: { duration: motionTokens.duration.instant } } };
-const rowMotion: Variants = { closed: { opacity: 0, y: 3 }, open: { opacity: 1, y: 0, transition: { duration: .2, ease: enter } } };
+const rowMotion: Variants = { closed: { opacity: 0, y: 3 }, open: { opacity: 1, y: 0, transition: { duration: motionTokens.duration.exit, ease: enter } } };
 
 /** A presence mark that morphs between statuses: the color crossfades while a hole opens for away and a bar slides in for busy. */
 export function PresenceDot({ status, className }: { status: UserStatus | "offline"; className?: string }) {

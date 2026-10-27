@@ -58,7 +58,7 @@ function Mark({ value, own, index, reduced }: { value: ComparisonValue | undefin
   if (v === true) return <span className={styles.markWrap}>
     <svg className={styles.check} data-own={own || undefined} width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
       <circle cx="11" cy="11" r="10" />
-      <motion.path d="M6.6 11.3l3 3 5.9-6.4" initial={reduced ? false : { pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true, amount: 1 }} transition={{ duration: motionTokens.duration.considered, ease: [...motionTokens.ease.enter], delay: own ? .06 + Math.min(index, 12) * .035 : 0 }} />
+      <motion.path d="M6.6 11.3l3 3 5.9-6.4" initial={reduced ? false : { pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true, amount: 1 }} transition={{ duration: motionTokens.duration.expressive, ease: [...motionTokens.ease.enter], delay: own ? .06 + Math.min(index, 12) * .035 : 0 }} />
     </svg>
     <span className={styles.srOnly}>Included</span>
   </span>;

@@ -50,7 +50,7 @@ export { useToday } from "@/lib/use-today";
 
 const { spring, duration, ease } = motionTokens;
 /** Months sit side by side on one strip. Rapid clicks retarget the same spring, so the strip never queues or stacks panes. */
-const stripSpring = { type: "spring", visualDuration: 0.36, bounce: 0, restDelta: 0.002 } as const;
+const stripSpring = { type: "spring", visualDuration: motionTokens.spring.moderate.visualDuration, bounce: 0, restDelta: 0.002 } as const;
 const monthIndex = (date: Date) => date.getFullYear() * 12 + date.getMonth();
 const fromIndex = (index: number) => new Date(Math.floor(index / 12), ((index % 12) + 12) % 12, 1);
 
@@ -58,7 +58,7 @@ const fromIndex = (index: number) => new Date(Math.floor(index / 12), ((index % 
 const titleSlide: Variants = {
   enter: (direction: number) => ({ opacity: 0, x: direction * 12 }),
   center: { opacity: 1, x: 0, transition: { duration: duration.standard, ease: ease.enter } },
-  exit: (direction: number) => ({ opacity: 0, x: direction * -12, transition: { duration: 0.14, ease: ease.standard } }),
+  exit: (direction: number) => ({ opacity: 0, x: direction * -12, transition: { duration: motionTokens.duration.fast, ease: ease.standard } }),
 };
 /** Reduced motion swaps the title in place, with no travel and no blank frame. */
 const titleFade: Variants = { enter: { opacity: 1, x: 0 }, center: { opacity: 1, x: 0, transition: { duration: 0 } }, exit: { opacity: 0, transition: { duration: 0 } } };
@@ -80,7 +80,7 @@ function SelectionDisc({ cell, reduced }: { cell: number; reduced: boolean }) {
   useLayoutEffect(() => {
     if (!visible) {
       hidden.current = true;
-      const fade = reduced ? { duration: 0 } : { duration: 0.14, ease: ease.standard };
+      const fade = reduced ? { duration: 0 } : { duration: motionTokens.duration.fast, ease: ease.standard };
       const controls = [animate(opacity, 0, fade), animate(scale, 0.6, fade)];
       return () => controls.forEach((control) => control.stop());
     }

@@ -69,7 +69,7 @@
   .menu[data-state="open"] .item { opacity: 0; transform: translate(calc(var(--menu-x) * .4), calc(var(--menu-y) * .4)); }
 }
 /* Radix unmounts when the exit animation ends, so a no-op keyframe times the exit while the transition does the visual work. */
-.menu[data-state="closed"] { opacity: 0; transform: translate(calc(var(--menu-x) * .5), calc(var(--menu-y) * .5)) scale(.985); transition: opacity 130ms var(--ease-standard), transform 130ms var(--ease-standard); animation: menu-exit 130ms linear both; pointer-events: none; }
+.menu[data-state="closed"] { opacity: 0; transform: translate(calc(var(--menu-x) * .5), calc(var(--menu-y) * .5)) scale(.985); transition: opacity var(--duration-instant) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); animation: menu-exit var(--duration-instant) linear both; pointer-events: none; }
 .item { display: flex; min-height: 36px; align-items: center; gap: var(--space-group); padding: 0 var(--space-group); border-radius: calc(var(--radius-container) - var(--space-related)); corner-shape: var(--corner-shape); color: inherit; font-size: var(--text-sm); text-decoration: none; cursor: pointer; outline: none; transition: opacity var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms), transform var(--duration-standard) var(--ease-enter) calc(min(var(--i, 0), 4) * 35ms); }
 .item[data-highlighted] { background: var(--surface-muted); }
 .item[data-disabled] { cursor: default; opacity: .45; }

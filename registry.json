@@ -224,6 +224,11 @@
           "target": "@components/silicon-ui/lib/menu-highlight.tsx"
         },
         {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
+        },
+        {
           "path": "registry/components/text-morph/text-morph.tsx",
           "type": "registry:component",
           "target": "@components/silicon-ui/text-morph/text-morph.tsx"
@@ -415,6 +420,11 @@
           "path": "lib/menu-highlight.tsx",
           "type": "registry:lib",
           "target": "@components/silicon-ui/lib/menu-highlight.tsx"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/dropdown-menu",
@@ -1004,6 +1014,11 @@
           "path": "lib/menu-highlight.tsx",
           "type": "registry:lib",
           "target": "@components/silicon-ui/lib/menu-highlight.tsx"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/select",
@@ -1906,6 +1921,11 @@
           "path": "lib/menu-highlight.tsx",
           "type": "registry:lib",
           "target": "@components/silicon-ui/lib/menu-highlight.tsx"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/breadcrumb",
@@ -1958,6 +1978,11 @@
           "path": "lib/menu-highlight.tsx",
           "type": "registry:lib",
           "target": "@components/silicon-ui/lib/menu-highlight.tsx"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         },
         {
           "path": "lib/silicon-provider.tsx",
@@ -4729,7 +4754,9 @@
       "dependencies": [
         "motion"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://ui.teamofsilicons.com/r/silicon-motion-tokens.json"
+      ],
       "files": [
         {
           "path": "registry/components/slot-text/slot-text.tsx",

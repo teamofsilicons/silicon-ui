@@ -70,5 +70,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .item, .highlight { transition: color var(--duration-instant) linear, background-color var(--duration-instant) linear, opacity var(--duration-instant) linear; }
-  .sideTip, .sideTip[data-state="closed"] { transform: none; transition: opacity 90ms linear; }
+  .sideTip, .sideTip[data-state="closed"] { transform: none; transition: opacity var(--duration-fast) linear; }
 }

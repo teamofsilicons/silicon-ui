@@ -20,7 +20,7 @@
 .mark::after { content: ""; opacity: 0; transition: opacity var(--duration-instant) var(--ease-standard); }
 .option:active:not(:has(input:checked)) .mark::after { opacity: .22; }
 /* The mark alone answers a press: a quick dip, then a spring back. */
-.option:active .mark { transform: scale(.88); transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), transform 100ms var(--ease-standard); }
+.option:active .mark { transform: scale(.88); transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard); }
 .option:has(input:checked) .mark { border-color: var(--control-on); background: var(--control-on); }
 .option:has(input:checked) .dot { background: var(--control-glyph); }
 .option strong, .option small { display: block; }
