@@ -6,6 +6,7 @@ import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } fr
 import type { Transition, Variants } from "motion/react";
 import { Check, ChevronDown, Search, X } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./phone-input.module.css";
 
 /* ------------------------------------------------------------------------------------------------
@@ -419,6 +420,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string | null>(null);
+  // Fluid hover: the mouse makes the nearest option active, group labels and padding included, and a click there picks it.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[role="option"]', onPick: item => setActive(item.dataset.key ?? null) });
   const [roll, setRoll] = useState(1);
   const needle = query.trim().toLowerCase();
 
@@ -664,15 +667,14 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
             animate={open ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: reduced ? 0 : -6, filter: reduced ? "blur(0px)" : `blur(${blur.subtle}px)` }}
             transition={open ? { y: GROW, opacity: { duration: motionTokens.duration.exit, ease: enterEase, delay: reduced ? 0 : motionTokens.stagger.word }, filter: { duration: motionTokens.duration.exit, ease: enterEase, delay: motionTokens.stagger.word } } : { duration: motionTokens.duration.instant, ease: standardEase }}>
             <div ref={scrollRef} className={styles.scroll}>
-              <div id={listId} className={styles.options} role="listbox" aria-label="Countries">
+              <div id={listId} className={styles.options} role="listbox" aria-label="Countries" onPointerDown={event => event.preventDefault()} {...nearest}>
                 <motion.span className={styles.highlight} style={{ y: hy, height: hh, opacity: ho }} aria-hidden="true" />
                 {sections.map(section => {
                   const body = section.rows.map(row => {
                     const selected = row.entry.iso === current.iso;
                     return <div key={row.key} id={optionId(row.key)} role="option" aria-selected={selected} className={styles.option} data-active={row.key === activeKey || undefined}
                       ref={node => { if (node) rowRefs.current.set(row.key, node); else rowRefs.current.delete(row.key); }}
-                      onPointerMove={event => { if (event.pointerType === "mouse" && row.key !== activeKey) setActive(row.key); }}
-                      onPointerDown={event => event.preventDefault()} onClick={() => pick(row.entry)}>
+                      data-key={row.key} onPointerDown={event => event.preventDefault()} onClick={() => pick(row.entry)}>
                       <span className={styles.flag} aria-hidden="true">{flagOf(row.entry.iso)}</span>
                       <span className={styles.name}>{row.entry.name}</span>
                       <span className={styles.meta}>+{row.entry.dial}</span>

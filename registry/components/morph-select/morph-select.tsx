@@ -6,6 +6,7 @@ import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } fr
 import type { Transition, Variants } from "motion/react";
 import { Check, ChevronDown, Search, X } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./morph-select.module.css";
 
 export interface MorphSelectOption {
@@ -145,6 +146,8 @@ export function MorphSelect({ label, hideLabel = false, items, value, defaultVal
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string | null>(null);
+  // Fluid hover: the mouse makes the nearest option active, group labels and padding included, and a click there picks it.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[role="option"]', onPick: item => setActive(item.dataset.value ?? null) });
   const [change, setChange] = useState<Change>({ key: 0, value: null, dir: 1, fly: null });
 
   const needle = query.trim().toLowerCase();
@@ -424,7 +427,7 @@ export function MorphSelect({ label, hideLabel = false, items, value, defaultVal
           animate={open ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: reduced ? 0 : -6, filter: reduced ? "blur(0px)" : `blur(${blur.subtle}px)` }}
           transition={open ? { y: GROW, opacity: { duration: motionTokens.duration.exit, ease: enter, delay: reduced ? 0 : motionTokens.stagger.word }, filter: { duration: motionTokens.duration.exit, ease: enter, delay: motionTokens.stagger.word } } : { duration: motionTokens.duration.instant, ease: standard }}>
           <div ref={scrollRef} className={styles.scroll}>
-            <div id={listId} className={styles.options} role="listbox" aria-labelledby={labelId}>
+            <div id={listId} className={styles.options} role="listbox" aria-labelledby={labelId} onPointerDown={event => event.preventDefault()} {...nearest}>
               <motion.span className={styles.highlight} style={{ y: hy, height: hh, opacity: ho }} aria-hidden="true" />
               {visibleSections.map(section => {
                 const rows = section.options.map(option => {
@@ -433,7 +436,7 @@ export function MorphSelect({ label, hideLabel = false, items, value, defaultVal
                   return <div key={option.value} id={optionId(index)} role="option" aria-selected={isSelected} aria-disabled={option.disabled || undefined}
                     className={styles.option} data-active={isActive || undefined}
                     ref={node => { if (node) optionRefs.current.set(option.value, node); else optionRefs.current.delete(option.value); }}
-                    onPointerMove={event => { if (event.pointerType === "mouse" && !option.disabled && option.value !== current) setActive(option.value); }}
+                    data-value={option.value}
                     onPointerDown={event => event.preventDefault()}
                     onClick={event => commit(option, event.currentTarget)}>
                     <span className={styles.optionValue} data-part="value">{option.icon && <span className={styles.icon} aria-hidden="true">{option.icon}</span>}<span className={styles.valueText}>{option.label}</span></span>

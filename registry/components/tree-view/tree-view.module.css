@@ -1,9 +1,11 @@
-.tree { display: block; width: 100%; min-width: 0; box-sizing: border-box; padding: var(--space-related) var(--space-related) var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface); color: var(--foreground); overflow: hidden; }
+.tree { position: relative; display: block; width: 100%; min-width: 0; box-sizing: border-box; padding: var(--space-related) var(--space-related) var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface); color: var(--foreground); overflow: hidden; }
 /* Rows clip only while their height animates (Motion sets overflow), so the selection can glide between them unclipped. */
 .row { position: relative; display: flow-root; min-width: 0; height: 38px; }
 .item { position: relative; display: flex; width: 100%; min-width: 0; height: 36px; margin-top: var(--space-hair); align-items: center; gap: var(--space-related); padding: 0 var(--space-group); padding-left: calc(var(--space-group) + (var(--tree-depth) - 1) * var(--space-comfort)); border: 0; border-radius: var(--radius-detail); background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); line-height: 1; text-align: left; cursor: pointer; outline: none; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
 /* Selection changes color only; a heavier weight would reflow the label. */
 .item[aria-selected="true"] { color: var(--foreground); }
+/* One hover fill glides between rows, under the selection and the row content. */
+.hover { border-radius: var(--radius-detail); background: var(--surface-muted); }
 .selection { position: absolute; inset: 0; z-index: 0; border-radius: var(--radius-detail); background: var(--surface-muted); }
 .branch { position: absolute; top: var(--space-tight); bottom: var(--space-tight); left: calc(var(--space-inset) + (var(--tree-depth) - 2) * var(--space-comfort)); z-index: 1; width: 1px; background: var(--border); transform-origin: top; pointer-events: none; }
 .disclosure, .icon, .label { position: relative; z-index: 1; }
@@ -18,5 +20,5 @@
 .json { color: color-mix(in oklab, var(--file-json) 78%, var(--foreground)); }
 /* Its own line height: the row sets 1, and the clipped box (needed for the ellipsis) would cut descenders like g. */
 .label { min-width: 0; overflow: hidden; line-height: 1.45; text-overflow: ellipsis; white-space: nowrap; }
-@media (hover: hover) and (pointer: fine) { .item:hover { background: var(--surface-muted); color: var(--foreground); } }
+@media (hover: hover) and (pointer: fine) { .item:hover { color: var(--foreground); } }
 @media (prefers-reduced-motion: reduce) { .item, .icon { transition: none; } }

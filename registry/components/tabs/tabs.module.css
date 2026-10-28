@@ -7,7 +7,7 @@
 .listShell[data-right="true"] .viewport { mask-image: linear-gradient(to right, black, black calc(100% - 35px), transparent); }
 .listShell[data-left="true"][data-right="true"] .viewport { mask-image: linear-gradient(to right, transparent, black 35px, black calc(100% - 35px), transparent); }
 /* The list owns the stacking context so the gliding highlight passes under every label, not over earlier ones. */
-.list { isolation: isolate; display: inline-flex; width: max-content; align-items: center; gap: var(--space-tight); padding: var(--space-tight); }
+.list { position: relative; isolation: isolate; display: inline-flex; width: max-content; align-items: center; gap: var(--space-tight); padding: var(--space-tight); }
 .scrollButton { position: absolute; z-index: 2; top: 0; bottom: 0; display: grid; width: 33px; place-items: center; border: 0; background: var(--surface-muted); color: var(--foreground); }
 .scrollLeft { left: 0; border-radius: var(--radius-control) 0 0 var(--radius-control); }
 .scrollRight { right: 0; border-radius: 0 var(--radius-control) var(--radius-control) 0; }
@@ -16,6 +16,8 @@
 .trigger { position: relative; -webkit-tap-highlight-color: transparent; display: inline-grid; min-width: 5.5rem; place-items: center; flex: 0 0 auto; min-height: var(--control-height-sm); border: 0; border-radius: calc(var(--radius-control) - var(--space-tight)); padding: 0 var(--space-group); background: transparent; color: var(--text-muted); font: inherit; font-size: var(--text-sm); font-weight: 500; white-space: nowrap; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .trigger:hover { color: var(--foreground); } }
 .trigger:active { color: var(--foreground); }.trigger[data-state="active"] { color: var(--accent-strong); }
+/* The hover fill glides under the tabs and under the selection, so the selected tab never changes on hover. */
+.hover { z-index: -1; border-radius: calc(var(--radius-control) - var(--space-tight)); corner-shape: var(--corner-shape); background: color-mix(in oklab, var(--foreground) 5%, transparent); }
 .selection { position: absolute; z-index: -1; inset: 0; border: 1px solid var(--border); border-radius: inherit; corner-shape: inherit; background: var(--surface); box-shadow: var(--shadow-resting); will-change: transform; }
 .triggerLabel { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: var(--space-related); }
 /* An icon before the label: one size for every tab set, coloured with the label so it follows hover and selection. */

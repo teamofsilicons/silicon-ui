@@ -6,6 +6,7 @@ import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } fr
 import type { Transition, Variants } from "motion/react";
 import { Check, ChevronDown } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./money-input.module.css";
 
 export interface MoneyInputDetails {
@@ -404,6 +405,8 @@ export const MoneyInput = forwardRef<HTMLInputElement, MoneyInputProps>(function
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeCode, setActiveCode] = useState(code);
+  // Fluid hover: the mouse makes the nearest option active, gaps and padding included, and a click there picks it.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[role="option"]', onPick: item => { if (item.dataset.code) setActiveCode(item.dataset.code); } });
   const menuRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -512,12 +515,11 @@ export const MoneyInput = forwardRef<HTMLInputElement, MoneyInputProps>(function
             initial={reduced ? { opacity: 0 } : { opacity: 0, scale: .96, y: -4, filter: `blur(${blur.subtle}px)` }} animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
             exit={reduced ? { opacity: 0, transition: { duration: duration.instant } } : { opacity: 0, scale: .97, y: -2, filter: `blur(${blur.subtle}px)`, transition: { duration: duration.instant, ease: standardEase } }}
             transition={reduced ? { duration: duration.instant } : { ...spring.snappy, opacity: { duration: duration.fast, ease: enterEase }, filter: { duration: duration.fast, ease: enterEase } }}>
-            <div ref={listRef} id={`${uid}-currencies`} className={styles.list} role="listbox" tabIndex={-1} aria-label="Currency" aria-activedescendant={`${uid}-cur-${activeCode}`} onKeyDown={onMenuKeyDown}>
+            <div ref={listRef} id={`${uid}-currencies`} className={styles.list} role="listbox" tabIndex={-1} aria-label="Currency" aria-activedescendant={`${uid}-cur-${activeCode}`} onKeyDown={onMenuKeyDown} onPointerDown={event => event.preventDefault()} {...nearest}>
               <motion.span className={styles.highlight} style={{ y: hy, height: hh, opacity: ho }} aria-hidden="true" />
               {options.map(option => <div key={option.code} id={`${uid}-cur-${option.code}`} role="option" aria-selected={option.code === code} className={styles.option}
                 data-active={option.code === activeCode || undefined} ref={node => { if (node) optionRefs.current.set(option.code, node); else optionRefs.current.delete(option.code); }}
-                onPointerMove={event => { if (event.pointerType === "mouse" && option.code !== activeCode) setActiveCode(option.code); }}
-                onPointerDown={event => event.preventDefault()} onClick={() => chooseCurrency(option)}>
+                data-code={option.code} onPointerDown={event => event.preventDefault()} onClick={() => chooseCurrency(option)}>
                 <span className={styles.optionSymbol} aria-hidden="true">{option.symbol}</span>
                 <span className={styles.optionCode}>{option.code}</span>
                 <span className={styles.optionName}>{option.name}</span>

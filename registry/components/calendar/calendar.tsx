@@ -7,6 +7,7 @@ import { animate, AnimatePresence, motion, useMotionValue, useMotionValueEvent, 
 import type { AnimationPlaybackControls, MotionValue, Variants } from "motion/react";
 import { motionTokens } from "@/lib/motion-tokens";
 import { useToday } from "@/lib/use-today";
+import { FluidHoverHighlight, useFluidHover } from "@/lib/fluid-hover";
 import styles from "./calendar.module.css";
 
 export type CalendarDateMatcher = (date: Date) => boolean;
@@ -93,6 +94,19 @@ function SelectionDisc({ cell, reduced }: { cell: number; reduced: boolean }) {
     return () => controls.forEach((control) => control.stop());
   }, [cell, visible, reduced, col, row, opacity, scale]);
   return <motion.span className={styles.highlight} style={{ transform, opacity }} aria-hidden="true"><span className={styles.highlightFill} /></motion.span>;
+}
+
+/**
+ * Fluid hover for one month's days: one fill glides to the day nearest the pointer, under the selected disc. Unavailable
+ * days light nothing, a gap between days stays inert, and focus keeps its own ring.
+ */
+function MonthDays({ children }: { children: ReactNode }) {
+  const box = useRef<HTMLDivElement>(null);
+  const hover = useFluidHover(box, { items: `.${styles.day}`, axis: "xy", disabled: "clear", gapClick: false, followFocus: false });
+  return <div ref={box} className={styles.days} {...hover.handlers}>
+    <FluidHoverHighlight hover={hover} className={styles.dayHover} />
+    {children}
+  </div>;
 }
 
 /** One month on the strip. Only the month being navigated to is focusable and exposed; the one sliding past is inert. */
@@ -256,7 +270,7 @@ export function Calendar({
     return index >= 0 && index < 42 ? index : -1;
   };
 
-  const renderMonth = (paneMonth: Date, present: boolean) => <>
+  const renderMonth = (paneMonth: Date, present: boolean) => <MonthDays>
     <SelectionDisc cell={cellOf(paneMonth)} reduced={reducedMotion} />
     <div className={styles.grid} role="grid" aria-label={formatter.format(paneMonth)}>
     {makeWeeks(paneMonth).map((week) => <div key={dateKey(week[0]!)} className={styles.week} role="row">
@@ -283,7 +297,7 @@ export function Calendar({
       })}
     </div>)}
     </div>
-  </>;
+  </MonthDays>;
 
   return <section className={cx(styles.calendar, className)} aria-labelledby={titleId}>
       <div className={styles.header}>

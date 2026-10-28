@@ -2,6 +2,7 @@
 import { useEffect, useId, useLayoutEffect, useRef } from "react";
 import { animate, motion, useReducedMotion } from "motion/react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { FluidHoverHighlight, useFluidHover } from "@/lib/fluid-hover";
 import styles from "./radio-group.module.css";
 export interface RadioGroupProps { label: string; options: { value: string; label: string; description?: string }[]; value: string; onValueChange: (value: string) => void; name?: string }
 
@@ -28,6 +29,8 @@ export function RadioGroup({ label, options, value, onValueChange, name }: Radio
   const rows = useRef<(HTMLLabelElement | null)[]>([]);
   const shown = useRef<number | null>(null);
   const at = useRef("");
+  // Fluid hover: the nearest row is lit and a click in a gap chooses it. Arrow keys already move the selection, so focus leaves the fill alone.
+  const hover = useFluidHover(listRef, { items: `.${styles.option}`, followFocus: false });
   const selected = options.findIndex(option => option.value === value);
   useLayoutEffect(() => {
     place(highlightRef.current, rows.current[selected], at, shown.current !== null && shown.current !== selected && !reduced);
@@ -41,7 +44,8 @@ export function RadioGroup({ label, options, value, onValueChange, name }: Radio
     observer.observe(list); rows.current.forEach(row => row && observer.observe(row));
     return () => observer.disconnect();
   }, [options.length]);
-  return <fieldset className={styles.group}><legend>{label}</legend><div ref={listRef} className={styles.options}>
+  return <fieldset className={styles.group}><legend>{label}</legend><div ref={listRef} className={styles.options} {...hover.handlers}>
+    <FluidHoverHighlight hover={hover} className={styles.hover} />
     <span ref={highlightRef} className={styles.highlight} aria-hidden="true" />
     {options.map((option, index) => { const checked = value === option.value; return <label className={styles.option} key={option.value} ref={node => { rows.current[index] = node; }}>
       <input type="radio" name={name ?? id} value={option.value} checked={checked} onChange={() => onValueChange(option.value)}/>

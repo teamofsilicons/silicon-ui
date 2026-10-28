@@ -19,7 +19,7 @@
  * so a component adopts it without changing its items.
  */
 import { useEffect, useEffectEvent, useRef, useState } from "react";
-import type { FocusEvent, MouseEvent, RefObject } from "react";
+import type { FocusEvent, MouseEvent, PointerEvent, RefObject } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { motionTokens } from "./motion-tokens";
 
@@ -44,6 +44,8 @@ export interface FluidHoverOptions {
   axis?: "x" | "y" | "xy";
   /** Items the highlight skips (and a gap click never activates). Defaults to disabled or aria-disabled items. */
   isItemDisabled?: (item: HTMLElement) => boolean;
+  /** "skip" (default) lights the nearest enabled item even over a disabled one; "clear" lights nothing over a disabled item (a calendar's unavailable days). */
+  disabled?: "skip" | "clear";
   /** Route a click in a gap to the lit item. On by default; turn it off where empty space should stay inert. */
   gapClick?: boolean;
   /** Light the item that receives keyboard focus. On by default. */
@@ -68,18 +70,27 @@ export function rectOf(item: HTMLElement, container: HTMLElement): FluidRect {
   return { top, left, width: item.offsetWidth, height: item.offsetHeight };
 }
 
-/** The item the pointer is inside, or else the one whose centre is nearest along the axis (both axes for a grid). */
+/**
+ * The item the pointer is inside, or else the one whose edge is nearest along the axis (both axes for a grid). Edges, not
+ * centres, so a gap next to a wide item still lights the item the pointer is closer to.
+ */
 export function pickNearest(items: HTMLElement[], x: number, y: number, axis: "x" | "y" | "xy"): HTMLElement | null {
   let nearest: HTMLElement | null = null, best = Infinity;
   for (const item of items) {
     const r = item.getBoundingClientRect();
     if (!r.width && !r.height) continue;
     if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return item;
-    const dx = x - (r.left + r.width / 2), dy = y - (r.top + r.height / 2);
-    const distance = axis === "x" ? Math.abs(dx) : axis === "y" ? Math.abs(dy) : Math.hypot(dx, dy);
+    const dx = Math.max(r.left - x, 0, x - r.right), dy = Math.max(r.top - y, 0, y - r.bottom);
+    const distance = axis === "x" ? dx : axis === "y" ? dy : Math.hypot(dx, dy);
     if (distance < best) { best = distance; nearest = item; }
   }
   return nearest;
+}
+
+/** Hands a gap click to the item as a real mouse click (detail, modifiers and coordinates kept), so the item reads it as a pointer press, not a keyboard one. */
+function forwardClick(item: HTMLElement, event: MouseEvent<HTMLElement>) {
+  const { detail, clientX, clientY, screenX, screenY, ctrlKey, shiftKey, altKey, metaKey, button, buttons } = event;
+  item.dispatchEvent(new globalThis.MouseEvent("click", { bubbles: true, cancelable: true, composed: true, view: window, detail, clientX, clientY, screenX, screenY, ctrlKey, shiftKey, altKey, metaKey, button, buttons }));
 }
 
 /** Whether an event happened inside the element whose handler hears it, not in a portalled child (a submenu, a tooltip). */
@@ -87,7 +98,7 @@ const isOwn = (event: { currentTarget: EventTarget; target: EventTarget }) =>
   !(event.currentTarget instanceof Node) || !(event.target instanceof Node) || event.currentTarget.contains(event.target);
 
 export function useFluidHover<T extends HTMLElement>(container: RefObject<T | null>, options: FluidHoverOptions) {
-  const { items: selector, axis = "y", isItemDisabled = defaultDisabled, gapClick = true, followFocus = true } = options;
+  const { items: selector, axis = "y", isItemDisabled = defaultDisabled, disabled = "skip", gapClick = true, followFocus = true } = options;
   const [state, setState] = useState<FluidHoverState>({ rect: null, item: null, glide: false, session: 0 });
   const current = useRef(state);
   const pointer = useRef(false);
@@ -132,7 +143,10 @@ export function useFluidHover<T extends HTMLElement>(container: RefObject<T | nu
       pointer.current = true;
       const { clientX, clientY } = event;
       cancelAnimationFrame(frame.current);
-      frame.current = requestAnimationFrame(() => light(pickNearest(enabledItems(), clientX, clientY, axis), true));
+      frame.current = requestAnimationFrame(() => {
+        const over = disabled === "clear" ? document.elementFromPoint(clientX, clientY)?.closest<HTMLElement>(selector) : null;
+        light(over && isItemDisabled(over) ? null : pickNearest(enabledItems(), clientX, clientY, axis), true);
+      });
     },
     onMouseLeave: () => { cancelAnimationFrame(frame.current); entering.current = false; light(null, false); },
     onKeyDownCapture: () => { pointer.current = false; },
@@ -149,7 +163,7 @@ export function useFluidHover<T extends HTMLElement>(container: RefObject<T | nu
       const target = event.target as Element;
       if (!target.isConnected || target.closest(selector) || target.closest(CONTROL)) return;
       const { item } = current.current;
-      if (item?.isConnected && !isItemDisabled(item)) item.click();
+      if (item?.isConnected && !isItemDisabled(item)) forwardClick(item, event);
     },
   };
 
@@ -157,6 +171,35 @@ export function useFluidHover<T extends HTMLElement>(container: RefObject<T | nu
   const reset = () => { cancelAnimationFrame(frame.current); entering.current = true; light(null, false); };
 
   return { ...state, handlers, reset, light };
+}
+
+export interface NearestItemOptions extends Omit<FluidHoverOptions, "followFocus"> {
+  /** Called with the nearest enabled item as the mouse moves over the container. */
+  onPick: (item: HTMLElement) => void;
+}
+
+/**
+ * Fluid hover's picking without its highlight, for a list that already keeps its own active item and highlight (a listbox
+ * with aria-activedescendant, a roving list): the mouse picks the nearest enabled item, gaps and padding included, and a
+ * click in a gap goes to that item. Spread the result on the container.
+ */
+// A hook only so callbacks that touch refs can be passed during render; it keeps no state.
+export function useNearestItem<T extends HTMLElement>({ items: selector, axis = "y", isItemDisabled = defaultDisabled, gapClick = true, onPick }: NearestItemOptions) {
+  const nearest = (event: MouseEvent<T>) => {
+    if (!isOwn(event)) return null;
+    const items = [...event.currentTarget.querySelectorAll<HTMLElement>(selector)].filter(item => !isItemDisabled(item));
+    return pickNearest(items, event.clientX, event.clientY, axis);
+  };
+  return {
+    onPointerMove: (event: PointerEvent<T>) => { if (event.pointerType !== "mouse") return; const item = nearest(event); if (item) onPick(item); },
+    onClick: (event: MouseEvent<T>) => {
+      if (!gapClick) return;
+      const target = event.target as Element;
+      if (!target.isConnected || target.closest(selector) || target.closest(CONTROL)) return;
+      const item = nearest(event);
+      if (item) forwardClick(item, event);
+    },
+  };
 }
 
 const sameRect = (a: FluidRect | null, b: FluidRect | null) =>

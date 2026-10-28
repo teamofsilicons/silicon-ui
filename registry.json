@@ -480,6 +480,16 @@
           "path": "registry/components/context-menu/context-menu.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/context-menu/context-menu.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
+        },
+        {
+          "path": "lib/menu-highlight.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/menu-highlight.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/context-menu",
@@ -1059,6 +1069,11 @@
           "path": "registry/components/combobox/combobox.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/combobox/combobox.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/combobox",
@@ -1179,6 +1194,11 @@
           "path": "registry/components/multi-select/multi-select.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/multi-select/multi-select.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/multi-select",
@@ -1417,6 +1437,11 @@
           "path": "registry/components/radio-group/radio-group.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/radio-group/radio-group.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/radio-group",
@@ -1456,6 +1481,11 @@
           "path": "registry/components/segmented-control/segmented-control.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/segmented-control/segmented-control.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/segmented-control",
@@ -1508,6 +1538,11 @@
           "path": "registry/components/calendar/calendar.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/calendar/calendar.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/calendar",
@@ -1564,6 +1599,11 @@
           "path": "registry/components/calendar/calendar.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/calendar/calendar.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/date-picker",
@@ -1604,6 +1644,11 @@
           "path": "registry/components/time-picker/time-picker.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/time-picker/time-picker.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/time-picker",
@@ -1819,6 +1864,11 @@
           "path": "registry/components/tabs/tabs.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/tabs/tabs.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/tabs",
@@ -2357,6 +2407,11 @@
           "path": "registry/components/tree-view/tree-view.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/tree-view/tree-view.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/tree-view",
@@ -2437,6 +2492,11 @@
           "path": "registry/components/filter-toolbar/filter-toolbar.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/filter-toolbar/filter-toolbar.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/filter-toolbar",
@@ -3632,6 +3692,11 @@
           "path": "registry/components/user-menu/user-menu.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/user-menu/user-menu.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/user-menu",
@@ -3756,6 +3821,11 @@
           "path": "registry/components/date-range-picker/date-range-picker.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/date-range-picker/date-range-picker.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/date-range-picker",
@@ -3847,6 +3917,11 @@
           "path": "registry/components/morph-select/morph-select.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/morph-select/morph-select.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/morph-select",
@@ -4324,6 +4399,11 @@
           "path": "registry/components/phone-input/phone-input.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/phone-input/phone-input.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/phone-input",
@@ -4364,6 +4444,11 @@
           "path": "registry/components/money-input/money-input.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/money-input/money-input.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/money-input",
@@ -4484,6 +4569,11 @@
           "path": "registry/components/mention-input/mention-input.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/mention-input/mention-input.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/mention-input",
@@ -4970,6 +5060,11 @@
           "path": "registry/components/button/button.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/button/button.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/plan-comparison",
@@ -5006,6 +5101,11 @@
           "path": "registry/components/command-palette/command-palette.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/command-palette/command-palette.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/command-palette",
@@ -5558,6 +5658,11 @@
           "path": "registry/components/segmented-control/segmented-control.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/segmented-control/segmented-control.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/site-header",
@@ -5616,6 +5721,11 @@
           "path": "registry/components/button/button.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/button/button.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/site-footer",
@@ -5793,6 +5903,11 @@
           "path": "registry/components/sparkline/sparkline.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/sparkline/sparkline.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/hero-section",
@@ -5851,6 +5966,11 @@
           "path": "registry/components/search-field/search-field.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/search-field/search-field.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/faq-section",
@@ -5968,6 +6088,11 @@
           "path": "lib/silicon-provider.tsx",
           "type": "registry:lib",
           "target": "@components/silicon-ui/lib/silicon-provider.tsx"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/contact-section",
@@ -6106,6 +6231,11 @@
           "path": "registry/components/segmented-control/segmented-control.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/segmented-control/segmented-control.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/stats-band",
@@ -6174,6 +6304,11 @@
           "path": "registry/components/button/button.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/button/button.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/cta-section",
@@ -6254,6 +6389,11 @@
           "path": "registry/components/animated-counter/animated-counter.module.css",
           "type": "registry:component",
           "target": "@components/silicon-ui/animated-counter/animated-counter.module.css"
+        },
+        {
+          "path": "lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "@components/silicon-ui/lib/fluid-hover.tsx"
         }
       ],
       "docs": "Docs and live preview: https://ui.teamofsilicons.com/newsletter-signup",

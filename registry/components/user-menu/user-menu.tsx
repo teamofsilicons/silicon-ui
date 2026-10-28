@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { PanInfo, Transition, Variants } from "motion/react";
 import { ChevronDown, LoaderCircle, LogOut, Monitor, Moon, Sun, SunMoon } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./user-menu.module.css";
 
 export type UserStatus = "available" | "busy" | "away";
@@ -280,16 +281,15 @@ export function UserMenu({ user, status: statusProp, defaultStatus = "available"
     setHighlight(current => ({ top: stop.offsetTop, height: stop.offsetHeight, tone: stop.dataset.tone, glide: current !== null }));
   }
 
-  // Focus follows a mouse or pen, so the keyboard carries on from wherever the pointer left the highlight.
-  function onItemPointerMove(event: PointerEvent<HTMLElement>) {
-    if (event.pointerType === "touch") return;
-    if (document.activeElement !== event.currentTarget) event.currentTarget.focus({ preventScroll: true });
-  }
+  // Fluid hover: the mouse focuses the nearest row, separators and padding included, so the highlight (which follows focus)
+  // lights it and the keyboard carries on from there. A click in a gap picks that row.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[data-stop="item"]', onPick: item => { if (document.activeElement !== item) item.focus({ preventScroll: true }); } });
   // The inline switches are not rows, so the pointer over them releases the highlight instead of dragging it along.
-  function onListPointerMove(event: PointerEvent<HTMLElement>) {
-    if (event.pointerType === "touch" || !highlight) return;
+  function onListPointerMove(event: PointerEvent<HTMLDivElement>) {
+    if (event.pointerType === "touch") return;
     const group = event.target instanceof HTMLElement ? event.target.closest<HTMLElement>('[data-stop="group"]') : null;
-    if (!group || group.contains(document.activeElement)) return;
+    if (!group) { nearest.onPointerMove(event); return; }
+    if (!highlight || group.contains(document.activeElement)) return;
     setHighlight(null);
     surfaceRef.current?.focus({ preventScroll: true });
   }
@@ -360,14 +360,14 @@ export function UserMenu({ user, status: statusProp, defaultStatus = "available"
         <span className={styles.email} title={user.email}>{user.email}</span>
       </div>
     </motion.div>
-    <div ref={listRef} className={styles.list} onFocus={onListFocus} onPointerMove={onListPointerMove} onPointerLeave={onListPointerLeave}>
+    <div ref={listRef} className={styles.list} onFocus={onListFocus} onPointerMove={onListPointerMove} onClick={nearest.onClick} onPointerLeave={onListPointerLeave}>
       <motion.span className={styles.highlight} data-tone={highlight?.tone} aria-hidden="true" initial={false}
         animate={highlight ? { y: highlight.top, height: highlight.height, opacity: 1 } : { opacity: 0 }}
         transition={{ default: glide, opacity: { duration: reduced ? 0 : motionTokens.duration.instant } }} />
       {items.length > 0 && <>
         <div className={styles.separator} role="separator" />
         {items.map(item => <motion.button key={item.label} type="button" role="menuitem" tabIndex={-1} className={styles.item} data-stop="item" data-label={item.label} variants={row}
-          onPointerMove={onItemPointerMove} onClick={() => { close(true); item.onSelect?.(); }}>
+          onClick={() => { close(true); item.onSelect?.(); }}>
           <span className={styles.icon} aria-hidden="true">{item.icon}</span>
           <span className={styles.itemLabel}>{item.label}</span>
           {item.keys && <Keys keys={item.keys} />}
@@ -381,7 +381,7 @@ export function UserMenu({ user, status: statusProp, defaultStatus = "available"
       </>}
       <div className={styles.separator} role="separator" />
       <motion.button type="button" role="menuitem" tabIndex={-1} className={styles.item} data-stop="item" data-tone="danger" data-label="Sign out" variants={row}
-        aria-busy={signingOut || undefined} onPointerMove={onItemPointerMove} onClick={signOut}>
+        aria-busy={signingOut || undefined} onClick={signOut}>
         <span className={styles.icon} aria-hidden="true">{signingOut ? <LoaderCircle className={styles.spinner} size={16} strokeWidth={1.75} /> : <LogOut size={16} strokeWidth={1.75} />}</span>
         <span className={styles.itemLabel}><Rise text={signingOut ? "Signing out" : "Sign out"} reduced={reduced} /></span>
         {signOutKeys && <Keys keys={signOutKeys} />}

@@ -6,6 +6,7 @@ import { AnimatePresence, animate, motion, useIsPresent, useMotionValue, useRedu
 import type { Transition, Variants } from "motion/react";
 import { CalendarDays, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { FluidHoverHighlight, useFluidHover } from "@/lib/fluid-hover";
 import { useToday } from "@/lib/use-today";
 import styles from "./date-range-picker.module.css";
 
@@ -301,6 +302,8 @@ export function DateRangePicker({ value, defaultValue = null, onChange, label = 
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
+  // Fluid hover on the presets: the nearest one is lit, gaps and padding included, and a click there picks it. Focus has its own fill.
+  const presetHover = useFluidHover(railRef, { items: "[data-preset]", axis: "xy", followFocus: false });
   const pendingFocus = useRef<"trigger" | "day" | null>(null);
 
   /* ---------- One surface: the trigger's box springs to the panel's box and back ---------- */
@@ -590,7 +593,8 @@ export function DateRangePicker({ value, defaultValue = null, onChange, label = 
         {open && today && <motion.div key="panel" ref={panelRef} id={`${uid}-panel`} className={styles.panel} role="dialog" aria-label={label} data-compact={compact || undefined}
           style={{ "--cell": `${cellSize}px`, width: compact && panelWidth ? panelWidth : undefined } as CSSProperties} exit={{ opacity: 1, transition: { duration: motionTokens.duration.fast } }}>
           <motion.div className={styles.body} variants={reduced ? faceFade : faceIn} initial="hidden" animate="shown" exit="gone">
-            <div ref={railRef} className={styles.rail} role="group" aria-label="Presets" onKeyDown={onRailKey}>
+            <div ref={railRef} className={styles.rail} role="group" aria-label="Presets" onKeyDown={onRailKey} {...presetHover.handlers}>
+              <FluidHoverHighlight hover={presetHover} className={styles.railHover} />
               <motion.span className={styles.railHighlight} style={{ x: gx, y: gy, width: gw, height: gh, opacity: go }} aria-hidden="true" />
               {presets.map((preset, index) => <button key={preset.label} type="button" className={styles.preset} data-preset={index} aria-pressed={index === activePreset}
                 onClick={() => choosePreset(preset)}>{preset.label}</button>)}
