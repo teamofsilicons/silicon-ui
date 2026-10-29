@@ -28,7 +28,7 @@ export interface BillingToggleProps {
 const { duration, ease, blur } = motionTokens;
 
 /** Critically damped: the thumb glides and lands without overshoot. */
-const glide: Transition = { type: "spring", visualDuration: 0.34, bounce: 0 };
+const glide: Transition = { type: "spring", visualDuration: motionTokens.spring.moderate.visualDuration, bounce: 0 };
 
 const DEFAULT_OPTIONS: BillingToggleOption[] = [
   { value: "monthly", label: "Monthly" },
@@ -149,7 +149,7 @@ export interface BillingPriceProps {
   className?: string;
 }
 
-const clip: Transition = { type: "spring", visualDuration: 0.36, bounce: 0 };
+const clip: Transition = { type: "spring", visualDuration: motionTokens.spring.moderate.visualDuration, bounce: 0 };
 
 /** A price that rolls to its new amount. The old price and the period ease their width, so nothing beside them jumps. */
 export function BillingPrice({ amount, currency = "$", period, was, decimals = 0, className }: BillingPriceProps) {

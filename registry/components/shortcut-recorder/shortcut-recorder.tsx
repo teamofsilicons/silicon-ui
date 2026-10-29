@@ -231,10 +231,10 @@ type Pending = { shortcut: string; conflict: ShortcutBinding; reserved: boolean 
 
 const chip: Variants = {
   enter: { opacity: 0, scale: .72, y: 4, filter: `blur(${motionTokens.blur.subtle}px)` },
-  rest: (index: number) => ({ opacity: 1, scale: 1, y: 0, filter: "blur(0px)", transition: { ...motionTokens.spring.snappy, delay: index * motionTokens.stagger.item, opacity: { duration: .14, delay: index * motionTokens.stagger.item }, filter: { duration: .16, delay: index * motionTokens.stagger.item } } }),
-  exit: { opacity: 0, scale: .8, filter: `blur(${motionTokens.blur.subtle}px)`, transition: { duration: .1 } },
+  rest: (index: number) => ({ opacity: 1, scale: 1, y: 0, filter: "blur(0px)", transition: { ...motionTokens.spring.snappy, delay: index * motionTokens.stagger.item, opacity: { duration: motionTokens.duration.fast, delay: index * motionTokens.stagger.item }, filter: { duration: motionTokens.duration.fast, delay: index * motionTokens.stagger.item } } }),
+  exit: { opacity: 0, scale: .8, filter: `blur(${motionTokens.blur.subtle}px)`, transition: { duration: motionTokens.duration.instant } },
 };
-const chipFade: Variants = { enter: { opacity: 0 }, rest: { opacity: 1, scale: 1, y: 0, filter: "none", transition: { duration: .1 } }, exit: { opacity: 0, transition: { duration: .06 } } };
+const chipFade: Variants = { enter: { opacity: 0 }, rest: { opacity: 1, scale: 1, y: 0, filter: "none", transition: { duration: motionTokens.duration.instant } }, exit: { opacity: 0, transition: { duration: motionTokens.duration.instant } } };
 
 /**
  * A field that records a keyboard shortcut. Press it, then press the combination: held modifiers light up as caps while you
@@ -375,7 +375,7 @@ export function ShortcutRecorder({
             </motion.span>)}
             {tokens.length === 0 && <motion.span key={recording ? "prompt" : "placeholder"} className={styles.placeholder} data-recording={recording || undefined}
               initial={reduced ? { opacity: 0 } : { opacity: 0, y: 4, filter: `blur(${motionTokens.blur.subtle}px)` }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, transition: { duration: .08 } }} transition={reduced ? { duration: .1 } : { duration: motionTokens.duration.fast, ease: [...motionTokens.ease.enter] }}>
+              exit={{ opacity: 0, transition: { duration: motionTokens.duration.instant } }} transition={reduced ? { duration: motionTokens.duration.instant } : { duration: motionTokens.duration.fast, ease: [...motionTokens.ease.enter] }}>
               {recording ? "Press keys" : placeholder}
             </motion.span>}
           </AnimatePresence>
@@ -386,11 +386,11 @@ export function ShortcutRecorder({
         <AnimatePresence initial={false}>
           {canReset && <motion.button key="reset" type="button" className={styles.action} aria-label={`Reset to ${restoreTo ? formatShortcut(restoreTo, platform).spoken : "none"}`}
             onClick={() => { commit(restoreTo ?? null); buttonRef.current?.focus(); }}
-            initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: .1 } }} transition={reduced ? { duration: 0 } : motionTokens.spring.snappy}>
+            initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: motionTokens.duration.instant } }} transition={reduced ? { duration: 0 } : motionTokens.spring.snappy}>
             <RotateCcw size={16} strokeWidth={1.75} aria-hidden="true" />
           </motion.button>}
           {canClear && <motion.button key="clear" type="button" className={styles.action} aria-label="Clear shortcut" onClick={() => { commit(null); buttonRef.current?.focus(); }}
-            initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: .1 } }} transition={reduced ? { duration: 0 } : motionTokens.spring.snappy}>
+            initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: motionTokens.duration.instant } }} transition={reduced ? { duration: 0 } : motionTokens.spring.snappy}>
             <X size={16} strokeWidth={1.75} aria-hidden="true" />
           </motion.button>}
         </AnimatePresence>
@@ -399,13 +399,13 @@ export function ShortcutRecorder({
 
     <AnimatePresence initial={false}>
       {message && <motion.div key="slot" className={styles.messageSlot} initial={reduced ? false : { height: 0, opacity: 0 }} animate={{ height: messageHeight ?? "auto", opacity: 1 }}
-        exit={{ height: 0, opacity: 0, transition: reduced ? { duration: 0 } : { height: motionTokens.spring.smooth, opacity: { duration: .1 } } }}
+        exit={{ height: 0, opacity: 0, transition: reduced ? { duration: 0 } : { height: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.instant } } }}
         transition={reduced ? { duration: 0 } : { height: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.fast } }}>
         <div ref={measureMessage}>
           <AnimatePresence initial={false} mode="popLayout">
             <motion.div key={message.key} id={messageId} className={styles.message} data-tone={message.tone}
               initial={reduced ? { opacity: 0 } : { opacity: 0, y: "0.35em", filter: `blur(${motionTokens.blur.soft}px)` }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, transition: { duration: .08 } }} transition={{ duration: reduced ? .1 : motionTokens.duration.standard, ease: [...motionTokens.ease.enter] }}>
+              exit={{ opacity: 0, transition: { duration: motionTokens.duration.instant } }} transition={{ duration: reduced ? .1 : motionTokens.duration.standard, ease: [...motionTokens.ease.enter] }}>
               <span className={styles.messageText}>{message.body}</span>
               {pending && <span className={styles.messageActions}>
                 <button type="button" className={styles.link} onClick={() => { const taken = pending; commit(taken.shortcut, taken.reserved ? undefined : taken.conflict); buttonRef.current?.focus(); }}>Use anyway</button>
@@ -475,7 +475,7 @@ export function ShortcutList({ groups, label = "Keyboard shortcuts", searchable 
       <span className={styles.count} aria-live="polite">{query ? `${total} ${total === 1 ? "match" : "matches"}` : ""}</span>
       <AnimatePresence initial={false}>
         {query && <motion.button key="clear" type="button" className={styles.clear} aria-label="Clear search" onClick={() => { setQuery(""); searchRef.current?.focus(); }}
-          initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: .1 } }} transition={reduced ? { duration: 0 } : motionTokens.spring.snappy}>
+          initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: motionTokens.duration.instant } }} transition={reduced ? { duration: 0 } : motionTokens.spring.snappy}>
           <X size={14} strokeWidth={1.75} aria-hidden="true" />
         </motion.button>}
       </AnimatePresence>

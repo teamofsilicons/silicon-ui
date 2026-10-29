@@ -105,9 +105,9 @@ const faceVariants: Variants = {
 };
 const partVariants: Variants = {
   hidden: { opacity: 0, filter: `blur(${blur.soft}px)` },
-  shown: { opacity: 1, filter: "blur(0px)", transition: { duration: .26, ease: enter } },
+  shown: { opacity: 1, filter: "blur(0px)", transition: { duration: motionTokens.duration.exit, ease: enter } },
 };
-const reducedFace: Variants = { hidden: { opacity: 0 }, shown: { opacity: 1, transition: { duration: .14 } }, gone: { opacity: 0, transition: { duration: .1 } } };
+const reducedFace: Variants = { hidden: { opacity: 0 }, shown: { opacity: 1, transition: { duration: motionTokens.duration.fast } }, gone: { opacity: 0, transition: { duration: motionTokens.duration.instant } } };
 const reducedPart: Variants = { hidden: { opacity: 1 }, shown: { opacity: 1 } };
 
 type FaceKey = ConfirmMorphState | "counting";
@@ -138,7 +138,7 @@ function Part({ reduced, className, children }: { reduced: boolean; className?: 
 function Check({ reduced }: { reduced: boolean }) {
   return <svg className={styles.check} viewBox="0 0 18 18" fill="none" aria-hidden="true">
     <motion.circle className={styles.checkDisc} cx="9" cy="9" r="8" style={{ transformOrigin: "9px 9px" }}
-      initial={reduced ? false : { scale: .5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ scale: physical(motionTokens.spring.snappy), opacity: { duration: .12 } }} />
+      initial={reduced ? false : { scale: .5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ scale: physical(motionTokens.spring.snappy), opacity: { duration: motionTokens.duration.instant } }} />
     <motion.path className={styles.checkTick} d="M5.6 9.3 7.8 11.4 12.4 6.7" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"
       initial={reduced ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: .3, ease: enter, delay: .14 }} />
   </svg>;
@@ -160,7 +160,7 @@ function Seconds({ value, reduced }: { value: number; reduced: boolean }) {
         initial={reduced ? { opacity: 0 } : { opacity: 0, y: 6, filter: `blur(${blur.subtle}px)` }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         exit={reduced ? { opacity: 0 } : { opacity: 0, y: -6, filter: `blur(${blur.subtle}px)` }}
-        transition={{ duration: .22, ease: enter }}>{value}</motion.span>
+        transition={{ duration: motionTokens.duration.exit, ease: enter }}>{value}</motion.span>
     </AnimatePresence>
   </span>;
 }
@@ -321,7 +321,7 @@ export function ConfirmMorph({
     holding.current = null;
     control.stop();
     if (hold.get() < 1) {
-      animate(hold, 0, reduced ? { duration: 0 } : { type: "spring", visualDuration: .3, bounce: 0 });
+      animate(hold, 0, reduced ? { duration: 0 } : { type: "spring", visualDuration: motionTokens.spring.fast.visualDuration, bounce: 0 });
       setAnnouncement(`Keep holding to ${confirmLabel.toLowerCase()}`);
     }
   };

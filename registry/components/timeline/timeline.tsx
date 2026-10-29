@@ -119,7 +119,7 @@ function DaySection({ id, fresh, reduced, children }: { id: string; fresh: boole
   const [entering, setEntering] = useState(fresh);
   return <motion.section className={styles.group} aria-labelledby={id} data-entering={entering || undefined}
     initial={fresh ? { height: 0, opacity: 0 } : false} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0, transition: { duration: reduced ? motionTokens.duration.instant : motionTokens.duration.exit, ease: standard } }}
-    transition={reduced ? { duration: .15 } : { height: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.standard, ease: enter } }}
+    transition={reduced ? { duration: motionTokens.duration.fast } : { height: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.standard, ease: enter } }}
     onAnimationComplete={() => setEntering(false)}>
     {children}
   </motion.section>;
@@ -135,13 +135,13 @@ function TimelineRow({ row, last, expanded, onToggle, timeLabel, timeFull }: { r
   const [entering, setEntering] = useState(fresh);
   const shown = revealDelay !== null;
   const delay = (revealDelay ?? 0) + (fresh ? .12 : 0);
-  const pop: Transition = reduced ? { duration: 0, opacity: { duration: .15 } } : { ...motionTokens.spring.morph, visualDuration: .36, bounce: .32, delay, opacity: { duration: motionTokens.duration.fast, ease: enter, delay } };
-  const draw: Transition = reduced ? { duration: 0 } : { ...motionTokens.spring.smooth, visualDuration: .34, delay: delay + .1 };
+  const pop: Transition = reduced ? { duration: 0, opacity: { duration: motionTokens.duration.fast } } : { ...motionTokens.spring.morph, visualDuration: motionTokens.spring.slow.visualDuration, bounce: .32, delay, opacity: { duration: motionTokens.duration.fast, ease: enter, delay } };
+  const draw: Transition = reduced ? { duration: 0 } : { ...motionTokens.spring.smooth, visualDuration: motionTokens.spring.moderate.visualDuration, delay: delay + .1 };
   const tone = row.avatar ? undefined : row.tone ?? "neutral";
   const Trigger = row.detail ? "button" : "div";
 
   return <motion.li className={styles.item} data-entering={entering || undefined}
-    initial={fresh ? { height: 0 } : false} animate={{ height: "auto" }} exit={{ height: 0, opacity: 0, transition: reduced ? { duration: .1 } : { height: { ...motionTokens.spring.smooth, visualDuration: .3 }, opacity: { duration: .12 } } }}
+    initial={fresh ? { height: 0 } : false} animate={{ height: "auto" }} exit={{ height: 0, opacity: 0, transition: reduced ? { duration: motionTokens.duration.instant } : { height: { ...motionTokens.spring.smooth, visualDuration: motionTokens.spring.moderate.visualDuration }, opacity: { duration: motionTokens.duration.instant } } }}
     transition={reduced ? { duration: 0 } : motionTokens.spring.smooth} onAnimationComplete={() => setEntering(false)}
     onViewportEnter={() => setRevealDelay(current => current ?? clock.schedule())} viewport={{ once: true, amount: .2 }}>
     <motion.span className={styles.marker} data-tone={tone} aria-hidden="true" initial={{ scale: .4, opacity: 0 }} animate={shown ? { scale: 1, opacity: 1 } : undefined} transition={pop}>
@@ -150,7 +150,7 @@ function TimelineRow({ row, last, expanded, onToggle, timeLabel, timeFull }: { r
     </motion.span>
     {!last && <motion.span className={styles.segment} aria-hidden="true" initial={{ scaleY: 0 }} animate={shown ? { scaleY: 1 } : undefined} transition={draw} />}
     <motion.div className={styles.content} initial={fresh ? (reduced ? { opacity: 0 } : { opacity: 0, y: -10, filter: `blur(${motionTokens.blur.soft}px)` }) : false} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={reduced ? { duration: .15 } : { y: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.standard, ease: enter, delay: .05 }, filter: { duration: motionTokens.duration.standard, ease: enter, delay: .05 } }}>
+      transition={reduced ? { duration: motionTokens.duration.fast } : { y: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.standard, ease: enter, delay: motionTokens.duration.instant }, filter: { duration: motionTokens.duration.standard, ease: enter, delay: motionTokens.duration.instant } }}>
       <Trigger className={styles.trigger} {...(row.detail ? { type: "button" as const, "data-timeline-trigger": "", "aria-expanded": expanded, "aria-controls": expanded ? detailId : undefined, onClick: onToggle } : {})}>
         <span className={styles.text}>
           <span className={styles.title}>{row.actor && <span className={styles.actor}>{row.actor}</span>}{row.actor ? " " : ""}{row.title}</span>
@@ -161,10 +161,10 @@ function TimelineRow({ row, last, expanded, onToggle, timeLabel, timeFull }: { r
       </Trigger>
       <AnimatePresence initial={false}>
         {expanded && row.detail && <motion.div key="detail" id={detailId} className={styles.detail}
-          initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0, transition: reduced ? { duration: 0 } : { ...motionTokens.spring.smooth, visualDuration: .28 } }}
+          initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0, transition: reduced ? { duration: 0 } : { ...motionTokens.spring.smooth, visualDuration: motionTokens.spring.moderate.visualDuration } }}
           transition={reduced ? { duration: 0 } : motionTokens.spring.smooth}>
           <motion.div className={styles.detailInner} initial={reduced ? { opacity: 0 } : { opacity: 0, y: -4, filter: `blur(${motionTokens.blur.soft}px)` }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, transition: { duration: motionTokens.duration.instant, ease: standard } }} transition={reduced ? { duration: .15 } : { duration: motionTokens.duration.standard, ease: enter, delay: .06 }}>{row.detail}</motion.div>
+            exit={{ opacity: 0, transition: { duration: motionTokens.duration.instant, ease: standard } }} transition={reduced ? { duration: motionTokens.duration.fast } : { duration: motionTokens.duration.standard, ease: enter, delay: motionTokens.duration.instant }}>{row.detail}</motion.div>
         </motion.div>}
       </AnimatePresence>
     </motion.div>

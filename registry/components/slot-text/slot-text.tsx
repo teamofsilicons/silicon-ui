@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { CSSProperties } from "react";
 import { AnimatePresence, animate, motion, useMotionValue, usePresence, useReducedMotion, useTransform, useVelocity } from "motion/react";
+import { motionTokens } from "@/lib/motion-tokens";
 import styles from "./slot-text.module.css";
 
 /**
@@ -130,7 +131,7 @@ function Reel({ char, order, entering, rising, duration, stagger, spins, reduced
   useLayoutEffect(() => {
     if (isPresent) return;
     if (reduced) { safeToRemove(); return; }
-    const exit = animate(width, 0, { type: "spring", visualDuration: .35, bounce: 0, onComplete: safeToRemove });
+    const exit = animate(width, 0, { type: "spring", visualDuration: motionTokens.spring.moderate.visualDuration, bounce: 0, onComplete: safeToRemove });
     return () => exit.stop();
   }, [isPresent, safeToRemove, width, reduced]);
 

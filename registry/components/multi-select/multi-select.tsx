@@ -5,6 +5,7 @@ import type { Variants } from "motion/react";
 import { ChevronDown, X } from "lucide-react";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./multi-select.module.css";
 
 export interface MultiSelectOption {
@@ -66,6 +67,8 @@ export function MultiSelect({ label, options, value, defaultValue = [], onValueC
   const [internal, setInternal] = useState(defaultValue);
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
+  // Fluid hover: the mouse makes the nearest option active, gaps and padding included, and a click there toggles it.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[role="option"]', onPick: item => setActiveIndex(Number(item.dataset.index)) });
   const selected = value ?? internal;
   const selectedSet = useMemo(() => new Set(selected), [selected]);
   const labelFor = (item: string) => options.find((option) => option.value === item)?.label ?? item;
@@ -124,11 +127,11 @@ export function MultiSelect({ label, options, value, defaultValue = [], onValueC
       exit={{ opacity: 0, ...(reduce ? {} : { scale: 0.6, filter: `blur(${motionTokens.blur.subtle}px)` }), transition: { duration: motionTokens.duration.instant, ease: standard } }}
       whileTap={{ scale: reduce ? 1 : 0.96, transition: { duration: motionTokens.duration.instant, ease: standard } }}><X size={14} aria-hidden="true" /></motion.button>}</AnimatePresence>
     <AnimatePresence initial={false}>
-      {open && <motion.div id={`${id}-listbox`} className={styles.menu} role="listbox" aria-label={label} aria-multiselectable="true"
+      {open && <motion.div id={`${id}-listbox`} className={styles.menu} role="listbox" aria-label={label} aria-multiselectable="true" {...nearest}
         initial={reduce ? { opacity: 0 } : { opacity: 0, y: -6, scale: .97 }}
         animate={{ opacity: 1, y: 0, scale: 1, transition: reduce ? { duration: motionTokens.duration.instant } : { ...motionTokens.spring.snappy, opacity: { duration: motionTokens.duration.fast, ease: enter } } }}
         exit={{ opacity: 0, ...(reduce ? {} : { y: -4, scale: .98 }), transition: { duration: motionTokens.duration.instant, ease: standard } }}>
-        {options.map((option, index) => <button type="button" role="option" aria-selected={selectedSet.has(option.value)} aria-disabled={option.disabled || undefined} key={option.value} className={styles.option} data-active={activeIndex === index} disabled={option.disabled} onPointerMove={() => { if (activeIndex !== index) setActiveIndex(index); }} onClick={() => toggle(option)}>
+        {options.map((option, index) => <button type="button" role="option" aria-selected={selectedSet.has(option.value)} aria-disabled={option.disabled || undefined} key={option.value} className={styles.option} data-active={activeIndex === index} disabled={option.disabled} data-index={index} onClick={() => toggle(option)}>
           <span>{option.label}</span><AnimatePresence initial={false}>{selectedSet.has(option.value) && <CheckMark key="check" reduce={reduce} />}</AnimatePresence>
         </button>)}
       </motion.div>}

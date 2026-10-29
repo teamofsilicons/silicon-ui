@@ -5,6 +5,7 @@ import type { FocusEvent, KeyboardEvent, MouseEvent, ReactNode, RefObject } from
 import { Check, ChevronLeft, ChevronRight, Plus, X } from "lucide-react";
 import { AnimatePresence, animate, motion, useIsPresent, useMotionValue, useReducedMotion, useTransform, type HTMLMotionProps, type MotionValue, type Variants } from "motion/react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./filter-toolbar.module.css";
 
 export interface FilterChip { id: string; label: string; value?: string; }
@@ -144,6 +145,9 @@ function MenuList({ rows, labelledBy, onChoose, onBack, onLeave, radio }: { rows
   const typed = useRef({ text: "", at: 0 });
   const [current, setCurrent] = useState(() => Math.max(0, rows.findIndex(row => row.checked)));
   const [highlight, setHighlight] = useState<{ top: number; height: number; glide: boolean; ring: boolean; shown: boolean } | null>(null);
+  // Fluid hover: the mouse focuses the nearest row, gaps and padding included, so the highlight (which follows focus) lights
+  // it and the keyboard carries on from there. A click in a gap picks that row.
+  const nearest = useNearestItem<HTMLDivElement>({ items: "[data-row]", onPick: item => { pointer.current = true; if (document.activeElement !== item) item.focus({ preventScroll: true }); } });
   const items = () => Array.from(list.current?.querySelectorAll<HTMLElement>("[data-row]") ?? []);
   const move = (item: HTMLElement | undefined) => {
     const node = list.current;
@@ -181,13 +185,12 @@ function MenuList({ rows, labelledBy, onChoose, onBack, onLeave, radio }: { rows
     // The highlight fades where it is; it keeps its place so the fade is visible.
     if (!list.current?.contains(event.relatedTarget as Node | null)) setHighlight(previous => previous && { ...previous, glide: false, ring: false, shown: false });
   }
-  return <div ref={list} className={styles.list} role="menu" aria-labelledby={labelledBy} data-current={present ? "" : undefined} onKeyDown={onKeyDown} onFocus={onFocus} onBlur={onBlur}
+  return <div ref={list} className={styles.list} role="menu" aria-labelledby={labelledBy} data-current={present ? "" : undefined} onKeyDown={onKeyDown} onFocus={onFocus} onBlur={onBlur} {...nearest}
     onPointerLeave={() => { if (pointer.current && list.current?.contains(document.activeElement)) onLeave(); }}>
     <motion.span className={styles.highlight} data-ring={highlight?.ring || undefined} aria-hidden="true" initial={false} animate={highlight ? { y: highlight.top, height: highlight.height, opacity: highlight.shown ? 1 : 0 } : { opacity: 0 }}
       transition={{ default: highlight?.glide ? motionTokens.spring.snappy : still, opacity: { duration: reduced ? 0 : .08 } }} />
     {rows.map((row, index) => <button key={row.key} type="button" className={styles.item} role={radio ? "menuitemradio" : "menuitem"} aria-checked={radio ? !!row.checked : undefined}
       tabIndex={index === current ? 0 : -1} data-row={row.key} data-text={row.label}
-      onPointerMove={event => { pointer.current = true; if (document.activeElement !== event.currentTarget) event.currentTarget.focus({ preventScroll: true }); }}
       onClick={(event: MouseEvent<HTMLButtonElement>) => onChoose(row, event.detail === 0)}>
       {row.icon ? <span className={styles.itemIcon} aria-hidden="true">{row.icon}</span> : null}
       <span className={styles.itemLabel}>{row.label}</span>

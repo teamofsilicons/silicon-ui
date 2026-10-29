@@ -25,7 +25,7 @@
 .arrows { display: flex; flex: none; gap: var(--space-related); margin-left: auto; }
 .control { display: grid; width: var(--control-height-sm); height: var(--control-height-sm); flex: none; place-items: center; border: 1px solid var(--border); border-radius: var(--radius-full); corner-shape: round; padding: 0; background: var(--surface); color: var(--foreground); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard), transform var(--duration-spring) var(--ease-spring); }
 @media (hover: hover) and (pointer: fine) { .control:hover:not([aria-disabled="true"]) { background: var(--surface-muted); } }
-.control:active:not([aria-disabled="true"]) { transform: scale(.97); transition: transform 100ms var(--ease-standard); }
+.control:active:not([aria-disabled="true"]) { transform: scale(.97); transition: transform var(--duration-fast) var(--ease-standard); }
 .control[aria-disabled="true"] { color: var(--text-muted); cursor: default; opacity: .5; }
 .iconSlot { display: grid; width: 16px; height: 16px; place-items: center; }
 .icon { grid-area: 1 / 1; display: grid; place-items: center; }

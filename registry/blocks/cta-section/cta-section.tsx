@@ -180,7 +180,7 @@ export const CtaSection = forwardRef<HTMLElement, CtaSectionProps>(function CtaS
           initial={reduced ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: .35 }}
-          transition={{ duration: motionTokens.duration.considered, ease: enter }}
+          transition={{ duration: motionTokens.duration.expressive, ease: enter }}
         >
           {visual ?? <SetupVisual reduced={reduced} />}
         </motion.div>

@@ -5,6 +5,7 @@ import type { CSSProperties, KeyboardEvent, ReactNode } from "react";
 import { ChevronRight, File, Folder, FolderOpen } from "lucide-react";
 import { AnimatePresence, motion, useIsPresent, useReducedMotion } from "motion/react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { FluidHoverHighlight, useFluidHover } from "@/lib/fluid-hover";
 import styles from "./tree-view.module.css";
 
 export interface TreeNode {
@@ -88,6 +89,9 @@ export function TreeView({ nodes, defaultExpandedIds = [], expandedIds, onExpand
   /** The folder that opened last; its new children fade in one after another, then everything else stays still. */
   const [openedId, setOpenedId] = useState<string | null>(null);
   const refs = useRef(new Map<string, HTMLButtonElement>());
+  const tree = useRef<HTMLDivElement>(null);
+  // Fluid hover: the nearest row is lit, gaps and padding included, and keyboard focus moves the fill without travel.
+  const hover = useFluidHover(tree, { items: '[role="treeitem"]' });
   const expanded = expandedIds ? new Set(expandedIds) : internalExpanded;
   const visible = flatten(nodes, expanded);
   const focusableId = visible.some(({ node }) => node.id === focusedId) ? focusedId : (visible[0]?.node.id ?? null);
@@ -142,7 +146,8 @@ export function TreeView({ nodes, defaultExpandedIds = [], expandedIds, onExpand
     }
   }
 
-  return <div className={styles.tree} role="tree" aria-label={ariaLabel} aria-multiselectable="false">
+  return <div ref={tree} className={styles.tree} role="tree" aria-label={ariaLabel} aria-multiselectable="false" {...hover.handlers}>
+    <FluidHoverHighlight hover={hover} className={styles.hover} />
     <AnimatePresence initial={false} mode="sync">
       {visible.map((item, index) => {
         const hasChildren = Boolean(item.node.children?.length);

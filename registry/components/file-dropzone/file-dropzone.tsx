@@ -40,7 +40,7 @@ const exitFast: Transition = { duration: motionTokens.duration.fast, ease: [...m
 const instant: Transition = { duration: 0 };
 const fade: Transition = { duration: motionTokens.duration.instant };
 /** Exits are shorter than entries: the same critically damped spring, settled sooner. */
-const collapse: Transition = { ...motionTokens.spring.smooth, visualDuration: .3 };
+const collapse: Transition = { ...motionTokens.spring.smooth, visualDuration: motionTokens.spring.moderate.visualDuration };
 const textIn: TargetAndTransition = { opacity: 0, y: "0.3em", filter: `blur(${motionTokens.blur.soft}px)` };
 const textOut: TargetAndTransition = { opacity: 0, y: "-0.3em", filter: `blur(${motionTokens.blur.subtle}px)`, transition: exitFast };
 const shown: TargetAndTransition = { opacity: 1, y: "0em", filter: "blur(0px)" };
@@ -49,7 +49,7 @@ const clamp = (value: number) => Math.min(Math.max(value, 0), 100);
 const SHAKE = { x: [0, -7, 6, -4, 3, -1.5, 0] };
 const shakeTransition: Transition = { duration: .42, ease: "easeOut" };
 /** New rows drop out of the target into the list, with a touch of life as they land. */
-const land: Transition = { type: "spring", visualDuration: .42, bounce: .14 };
+const land: Transition = { type: "spring", visualDuration: motionTokens.spring.slow.visualDuration, bounce: .14 };
 
 export function formatFileSize(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
@@ -109,7 +109,7 @@ function ErrorRow({ text }: { text: string }) {
 /** The circle closes, then the tick draws through it. */
 function DrawnCheck({ reduce }: { reduce: boolean }) {
   return <svg className={styles.stateIcon} width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <motion.path d="M12 2.5a9.5 9.5 0 1 1 0 19a9.5 9.5 0 1 1 0-19" initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: motionTokens.duration.considered * .7, ease: [...motionTokens.ease.enter] }} />
+    <motion.path d="M12 2.5a9.5 9.5 0 1 1 0 19a9.5 9.5 0 1 1 0-19" initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: motionTokens.duration.expressive * .7, ease: [...motionTokens.ease.enter] }} />
     <motion.path d="m8.2 12.4 2.6 2.6 5-5.2" initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ ...enter, delay: .16 }} />
   </svg>;
 }

@@ -81,8 +81,8 @@ const Surface = forwardRef<HTMLDivElement, SurfaceProps>(function Surface({ inst
     const unsubscribe = progress.on("change", apply);
     apply(progress.get());
     const controls = isPresent
-      ? animate(progress, 1, still ? { duration: .14, ease: enter } : motionTokens.spring.smooth)
-      : animate(progress, 0, { duration: .12, ease: standard });
+      ? animate(progress, 1, still ? { duration: motionTokens.duration.fast, ease: enter } : motionTokens.spring.smooth)
+      : animate(progress, 0, { duration: motionTokens.duration.instant, ease: standard });
     // The fade leads the grow on the way in and runs alongside it on the way out; it starts from the current opacity either way.
     const fade = isPresent
       ? animate(opacity, 1, { duration: reduced ? .15 : still ? .09 : .16, ease: enter })

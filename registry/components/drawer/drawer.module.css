@@ -89,9 +89,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .keyframes.overlay[data-state="open"] { animation: overlay-in var(--duration-instant) linear both; }
-  .keyframes.overlay[data-state="closed"] { animation: overlay-out 100ms linear both; }
+  .keyframes.overlay[data-state="closed"] { animation: overlay-out var(--duration-fast) linear both; }
   .keyframes.content[data-state="open"] { animation: drawer-fade-in var(--duration-instant) linear both; }
-  .keyframes.content[data-state="closed"] { animation: drawer-fade-out 100ms linear both; }
+  .keyframes.content[data-state="closed"] { animation: drawer-fade-out var(--duration-fast) linear both; }
   .close, .close:active { transition: none; }
   .close:active { transform: none; }
 }

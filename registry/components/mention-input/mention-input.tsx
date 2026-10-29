@@ -6,6 +6,7 @@ import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } fr
 import type { Transition } from "motion/react";
 import { Hash } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./mention-input.module.css";
 
 export type MentionKind = "person" | "channel";
@@ -187,6 +188,8 @@ export const MentionInput = forwardRef<MentionInputHandle, MentionInputProps>(fu
   const [focused, setFocused] = useState(false);
   const [dismissed, setDismissed] = useState<number | null>(null);
   const [active, setActive] = useState(0);
+  // Fluid hover: the mouse makes the nearest option active, gaps and padding included, and a click there picks it.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[role="option"]', onPick: item => setActive(Number(item.dataset.index)) });
 
   const commit = useCallback((next: MentionValue) => {
     if (valueProp === undefined) setInner(next);
@@ -484,6 +487,7 @@ export const MentionInput = forwardRef<MentionInputHandle, MentionInputProps>(fu
         animate={{ opacity: 1, scale: 1, y: 0, transition: reduced ? { duration: duration.fast } : { ...spring.snappy, opacity: { duration: duration.fast, ease: enter } } }}
         exit={{ ...popIn, transition: { duration: duration.exit * .7, ease: standard } }}
         onMouseDown={event => event.preventDefault()}
+        {...nearest}
       >
         <div ref={bodyRef} className={styles.popoverBody}>
           {suggestions.length ? <ul ref={listRef} id={listId} role="listbox" aria-label={trigger?.kind === "person" ? "People" : "Channels"} className={styles.list}>
@@ -495,7 +499,6 @@ export const MentionInput = forwardRef<MentionInputHandle, MentionInputProps>(fu
               aria-selected={index === activeIndex}
               data-index={index}
               className={styles.option}
-              onPointerMove={() => { if (index !== activeIndex) setActive(index); }}
               onClick={() => choose(suggestion)}
             >
               {suggestion.kind === "person"

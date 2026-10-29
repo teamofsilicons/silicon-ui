@@ -18,7 +18,7 @@ const travel = 18;
 /** How far the thumb widens toward the other side while pressed. */
 const stretch = 5;
 /** Critically damped: the thumb lands on its end without overshooting the state it reports. */
-const glide: Transition = { type: "spring", visualDuration: 0.3, bounce: 0 };
+const glide: Transition = { type: "spring", visualDuration: motionTokens.spring.fast.visualDuration, bounce: 0 };
 
 export const Switch = forwardRef<ElementRef<typeof SwitchPrimitive.Root>, SwitchProps>(function Switch(
   { label, className, checked, defaultChecked, onCheckedChange, onPointerDown, onPointerUp, onPointerLeave, onPointerCancel, onKeyDown, onKeyUp, onBlur, ...props },
@@ -38,7 +38,7 @@ export const Switch = forwardRef<ElementRef<typeof SwitchPrimitive.Root>, Switch
     shown.current = on;
     const fromPress = performance.now() - releasedAt.current < 250;
     if (reduceMotion || fromPress) return;
-    const controls = animate(scaleX, [1, 1.16, 1], { duration: 0.34, times: [0, 0.4, 1], ease: ["easeOut", "easeInOut"] });
+    const controls = animate(scaleX, [1, 1.16, 1], { duration: motionTokens.duration.standard, times: [0, 0.4, 1], ease: ["easeOut", "easeInOut"] });
     return () => controls.stop();
   }, [on, reduceMotion, scaleX]);
   const extra = pressed && !reduceMotion && !props.disabled ? stretch : 0;

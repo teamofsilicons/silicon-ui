@@ -29,7 +29,7 @@ The full list, with live previews, is at [ui.teamofsilicons.com](https://ui.team
 | colour (any property) | `var(--foreground)`, `var(--accent)` … | `#1F5CB1`, `rgb()`, `oklch()` |
 | font-size | `var(--text-*)` | `17px`, `1.0625rem` |
 | z-index (10 and above) | `var(--layer-*)`; app chrome below `--layer-overlay` | `100`, `9999` |
-| durations, easings | `var(--duration-*)`, `var(--ease-*)`, or `motionTokens` | `300ms`, `ease-in-out` |
+| motion | a spring tier, `motionTokens.spring.fast` / `moderate` / `slow` (exits use the tier's `.exit`), or `var(--duration-*)` and `var(--ease-*)` in CSS; `duration.expressive` only for motion that tells a story (a chart drawing in) | `300ms`, `ease-in-out`, `{ duration: .2 }` |
 
 Allowed: `0`, `auto`, keywords, `em`/`%`/`ch` (relative to the text or the box), `vw`/`vh`/`cq*` for fluid layout,
 `calc()` of tokens, and 1px hairlines in `border` widths. Sizes that are not spacing (a column's `max-width`, an

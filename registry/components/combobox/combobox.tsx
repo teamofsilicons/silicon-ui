@@ -13,6 +13,7 @@ import {
 } from "react";
 import type { InputHTMLAttributes, KeyboardEvent, MouseEvent as ReactMouseEvent, ReactNode } from "react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./combobox.module.css";
 
 export interface ComboboxOption {
@@ -79,6 +80,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
+  // Fluid hover: the mouse makes the nearest option active, gaps and padding included, and a click there picks it.
+  // The listbox keeps focus in the input, so a press in its padding never closes the popover.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[role="option"]', onPick: (item) => setActiveIndex(Number(item.dataset.index)) });
   const selectedValue = controlledValue ?? uncontrolledValue;
   const selectedOption = options.find((option) => option.value === selectedValue);
 
@@ -264,7 +268,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
           >
             <AutoHeight reduceMotion={reduceMotion}>
             {/* Not a Tab stop (it scrolls, so browsers would make it one): the arrow keys move through its options. */}
-            <div id={listboxId} className={styles.listbox} role="listbox" aria-label={`${label} options`} tabIndex={-1}>
+            <div id={listboxId} className={styles.listbox} role="listbox" aria-label={`${label} options`} tabIndex={-1} onMouseDown={(event) => event.preventDefault()} {...nearest}>
               {filteredOptions.length ? filteredOptions.map((option, index) => (
                 <div
                   key={option.value}
@@ -277,7 +281,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
                   aria-selected={option.value === selectedValue}
                   aria-disabled={option.disabled || undefined}
                   onMouseDown={(event) => event.preventDefault()}
-                  onMouseEnter={() => !option.disabled && setActiveIndex(index)}
+                  data-index={index}
                   onClick={() => choose(option)}
                 >
                   <span>{option.label}</span>

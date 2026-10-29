@@ -33,14 +33,14 @@ type Landing = { top: number; left: number; width: number; height: number };
 
 const { blur, duration, ease, spring, stagger } = motionTokens;
 /** One critically damped spring carries the surface both ways, so it never overshoots and can reverse mid-flight. Closing is a touch quicker. */
-const grow: Transition = { ...spring.smooth, visualDuration: .3 };
-const settle: Transition = { ...spring.smooth, visualDuration: .26 };
+const grow: Transition = { ...spring.smooth, visualDuration: motionTokens.spring.slow.visualDuration };
+const settle: Transition = { ...spring.smooth, visualDuration: motionTokens.spring.moderate.visualDuration };
 const RETURN_MS = 300;
 const fade: Transition = { duration: duration.instant };
 /** The photo drifts in slowly while the card is pointed at, and eases back a little faster. */
 const ZOOM = 1.04;
-const zoomIn: Transition = { duration: duration.considered * 2, ease: [...ease.standard] };
-const zoomOut: Transition = { duration: duration.considered, ease: [...ease.standard] };
+const zoomIn: Transition = { duration: duration.expressive * 2, ease: [...ease.standard] };
+const zoomOut: Transition = { duration: duration.expressive, ease: [...ease.standard] };
 /** Quick look extras arrive once the surface has mostly grown, so they never ride the stretch. */
 const reveal: Transition = { delay: duration.instant, duration: duration.standard, ease: [...ease.enter] };
 const closeIn: Transition = { delay: duration.instant, duration: duration.fast, ease: [...ease.enter] };

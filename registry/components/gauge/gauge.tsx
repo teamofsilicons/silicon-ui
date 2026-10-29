@@ -15,7 +15,7 @@ const rise: Variants = { hidden: (direction: number) => ({ opacity: 0, y: `${.3 
 // Same keys as `rise` so the settled style is identical whichever branch renders on the server.
 const fade: Variants = { hidden: { opacity: 0, y: 0, filter: "blur(0px)" }, shown: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: motionTokens.duration.instant } }, gone: { opacity: 0, y: 0, filter: "blur(0px)", transition: { duration: motionTokens.duration.instant } } };
 /** The first fill is slower and never overshoots, like a ring closing when the view opens. */
-const reveal = { ...motionTokens.spring.smooth, visualDuration: motionTokens.duration.considered * 1.6 };
+const reveal = { ...motionTokens.spring.smooth, visualDuration: motionTokens.duration.expressive * 1.6 };
 
 /** New copy rises in while the old copy leaves, popped out of flow so the line never holds both. */
 function Swap({ text, direction = 1 }: { text: string; direction?: number }) {

@@ -31,7 +31,7 @@ const settleTime = 450;
 const boxTransition = (expanded: boolean, hold: boolean): Transition => expanded || !hold ? morph : { ...morph, delay: closeHold };
 const contentTransition = (expanded: boolean): Transition => expanded
   ? { duration: motionTokens.duration.standard, ease: [...motionTokens.ease.standard], delay: 0.12 }
-  : { duration: 0.1, ease: [...motionTokens.ease.standard] };
+  : { duration: motionTokens.duration.instant, ease: [...motionTokens.ease.standard] };
 const still: Transition = { duration: 0 };
 
 /** Changed words in the summary rise in; unchanged words hold still. */

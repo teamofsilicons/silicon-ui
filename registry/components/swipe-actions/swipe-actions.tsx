@@ -282,12 +282,12 @@ export function SwipeActionsRow({ label, leading = [], trailing = [], fullSwipe 
 
   const menuItems = [...leading.map((action, index) => ({ action, side: "leading" as const, index })), ...trailing.map((action, index) => ({ action, side: "trailing" as const, index }))];
   const collapse = reduced
-    ? { opacity: 0, transition: { duration: .15 } }
+    ? { opacity: 0, transition: { duration: motionTokens.duration.fast } }
     : { height: 0, opacity: 0, transition: { height: { ...motionTokens.spring.smooth, delay: .12 }, opacity: { duration: motionTokens.duration.instant, delay: .34 } } };
 
   return <motion.li ref={rowRef} className={[styles.row, className].filter(Boolean).join(" ")} style={{ "--swipe-action-width": `${ACTION}px` } as CSSProperties}
     initial={reduced ? { opacity: 0 } : { height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={collapse}
-    transition={reduced ? { duration: .15 } : { height: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.standard, ease: [...motionTokens.ease.enter] } }}>
+    transition={reduced ? { duration: motionTokens.duration.fast } : { height: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.standard, ease: [...motionTokens.ease.enter] } }}>
     {(["leading", "trailing"] as const).map(side => actionsOf(side).map((action, index) => {
       const count = actionsOf(side).length;
       const rank = side === "leading" ? count - 1 - index : index;

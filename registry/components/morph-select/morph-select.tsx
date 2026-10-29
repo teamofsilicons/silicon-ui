@@ -6,6 +6,7 @@ import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } fr
 import type { Transition, Variants } from "motion/react";
 import { Check, ChevronDown, Search, X } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./morph-select.module.css";
 
 export interface MorphSelectOption {
@@ -107,9 +108,9 @@ function matches(option: MorphSelectOption, needle: string) {
 const valueVariants: Variants = {
   enter: (change: Change) => change.fly ? { opacity: 1, x: change.fly.x, y: change.fly.y, filter: "blur(0px)" } : { opacity: 0, x: 0, y: `${change.dir * .5}em`, filter: `blur(${blur.soft}px)` },
   rest: { opacity: 1, x: 0, y: 0, filter: "blur(0px)" },
-  exit: (change: Change) => ({ opacity: 0, x: 0, y: change.fly ? "-0.3em" : `${change.dir * -.45}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: .12, ease: standard } }),
+  exit: (change: Change) => ({ opacity: 0, x: 0, y: change.fly ? "-0.3em" : `${change.dir * -.45}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: motionTokens.duration.instant, ease: standard } }),
 };
-const valueFade: Variants = { enter: { opacity: 0 }, rest: { opacity: 1, x: 0, y: 0, filter: "blur(0px)" }, exit: { opacity: 0, transition: { duration: .1 } } };
+const valueFade: Variants = { enter: { opacity: 0 }, rest: { opacity: 1, x: 0, y: 0, filter: "blur(0px)" }, exit: { opacity: 0, transition: { duration: motionTokens.duration.instant } } };
 
 /** The closed trigger's width, rounded up. offsetWidth rounds to the nearest pixel, and half a pixel short is enough to ellipsize the label. */
 const triggerWidth = (node: HTMLElement) => {
@@ -145,6 +146,8 @@ export function MorphSelect({ label, hideLabel = false, items, value, defaultVal
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string | null>(null);
+  // Fluid hover: the mouse makes the nearest option active, group labels and padding included, and a click there picks it.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[role="option"]', onPick: item => setActive(item.dataset.value ?? null) });
   const [change, setChange] = useState<Change>({ key: 0, value: null, dir: 1, fly: null });
 
   const needle = query.trim().toLowerCase();
@@ -389,7 +392,7 @@ export function MorphSelect({ label, hideLabel = false, items, value, defaultVal
             <span ref={slotRef} className={styles.slot} data-hidden={showSearch || undefined}>
               <AnimatePresence initial={false} custom={changeForLayer}>
                 <motion.span key={layerKey} className={styles.layer} custom={changeForLayer} variants={reduced ? valueFade : valueVariants} initial="enter" animate="rest" exit="exit"
-                  transition={reduced ? { duration: .12 } : changeForLayer.fly ? { x: FLY, y: FLY, opacity: { duration: 0 } } : { y: GLIDE, opacity: { duration: .2, ease: enter }, filter: { duration: .22, ease: enter } }}>
+                  transition={reduced ? { duration: motionTokens.duration.instant } : changeForLayer.fly ? { x: FLY, y: FLY, opacity: { duration: 0 } } : { y: GLIDE, opacity: { duration: motionTokens.duration.exit, ease: enter }, filter: { duration: motionTokens.duration.exit, ease: enter } }}>
                   {renderValue(selectedOption)}
                 </motion.span>
               </AnimatePresence>
@@ -398,7 +401,7 @@ export function MorphSelect({ label, hideLabel = false, items, value, defaultVal
 
           {canSearch && <motion.div className={styles.searchRow} inert={!showSearch || undefined} initial={false}
             animate={showSearch ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: reduced ? "blur(0px)" : `blur(${blur.subtle}px)` }}
-            transition={showSearch ? { duration: .18, ease: enter, delay: reduced ? 0 : .04 } : { duration: .1, ease: standard }}>
+            transition={showSearch ? { duration: motionTokens.duration.exit, ease: enter, delay: reduced ? 0 : motionTokens.stagger.word } : { duration: motionTokens.duration.instant, ease: standard }}>
             <Search className={styles.searchIcon} size={16} strokeWidth={1.75} aria-hidden="true" />
             <input ref={inputRef} className={styles.input} type="text" role="combobox" aria-label={`Search ${label.toLowerCase()}`} aria-expanded={open} aria-controls={listId} aria-autocomplete="list"
               aria-activedescendant={open && current !== null ? optionId(indexOf.get(current) ?? 0) : undefined}
@@ -407,7 +410,7 @@ export function MorphSelect({ label, hideLabel = false, items, value, defaultVal
             <AnimatePresence initial={false}>
               {query && <motion.button key="clear" type="button" className={styles.clear} aria-label="Clear search" onPointerDown={event => event.preventDefault()}
                 onClick={() => { onQuery(""); inputRef.current?.focus(); }}
-                initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: .1 } }} transition={reduced ? { duration: 0 } : GLIDE}>
+                initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: motionTokens.duration.instant } }} transition={reduced ? { duration: 0 } : GLIDE}>
                 <X size={14} strokeWidth={1.75} aria-hidden="true" />
               </motion.button>}
             </AnimatePresence>
@@ -422,9 +425,9 @@ export function MorphSelect({ label, hideLabel = false, items, value, defaultVal
         <motion.div ref={listFaceRef} className={styles.listFace}
           inert={!open || undefined} aria-hidden={!open || undefined} initial={false}
           animate={open ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: reduced ? 0 : -6, filter: reduced ? "blur(0px)" : `blur(${blur.subtle}px)` }}
-          transition={open ? { y: GROW, opacity: { duration: .2, ease: enter, delay: reduced ? 0 : .04 }, filter: { duration: .22, ease: enter, delay: .04 } } : { duration: .1, ease: standard }}>
+          transition={open ? { y: GROW, opacity: { duration: motionTokens.duration.exit, ease: enter, delay: reduced ? 0 : motionTokens.stagger.word }, filter: { duration: motionTokens.duration.exit, ease: enter, delay: motionTokens.stagger.word } } : { duration: motionTokens.duration.instant, ease: standard }}>
           <div ref={scrollRef} className={styles.scroll}>
-            <div id={listId} className={styles.options} role="listbox" aria-labelledby={labelId}>
+            <div id={listId} className={styles.options} role="listbox" aria-labelledby={labelId} onPointerDown={event => event.preventDefault()} {...nearest}>
               <motion.span className={styles.highlight} style={{ y: hy, height: hh, opacity: ho }} aria-hidden="true" />
               {visibleSections.map(section => {
                 const rows = section.options.map(option => {
@@ -433,7 +436,7 @@ export function MorphSelect({ label, hideLabel = false, items, value, defaultVal
                   return <div key={option.value} id={optionId(index)} role="option" aria-selected={isSelected} aria-disabled={option.disabled || undefined}
                     className={styles.option} data-active={isActive || undefined}
                     ref={node => { if (node) optionRefs.current.set(option.value, node); else optionRefs.current.delete(option.value); }}
-                    onPointerMove={event => { if (event.pointerType === "mouse" && !option.disabled && option.value !== current) setActive(option.value); }}
+                    data-value={option.value}
                     onPointerDown={event => event.preventDefault()}
                     onClick={event => commit(option, event.currentTarget)}>
                     <span className={styles.optionValue} data-part="value">{option.icon && <span className={styles.icon} aria-hidden="true">{option.icon}</span>}<span className={styles.valueText}>{option.label}</span></span>

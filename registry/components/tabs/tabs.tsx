@@ -7,6 +7,7 @@ import { ChevronLeft as NavArrowLeft, ChevronRight as NavArrowRight } from "luci
 import { AnimatePresence, LayoutGroup, animate, motion, useReducedMotion } from "motion/react";
 import type { AnimationPlaybackControls, Variants } from "motion/react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { FluidHoverHighlight, useFluidHover } from "@/lib/fluid-hover";
 import styles from "./tabs.module.css";
 
 type RootProps = ComponentPropsWithoutRef<typeof TabsPrimitive.Root>;
@@ -39,6 +40,9 @@ export function TabsList({ className, ...props }: ComponentPropsWithoutRef<typeo
   const viewport = useRef<HTMLDivElement>(null);
   const list = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ overflow: false, left: false, right: false });
+  // Fluid hover: the nearest tab is lit, gaps included. Radix selects on mouse-down, so a gap click stays inert, and focus
+  // already shows the selection, so the keyboard leaves the hover fill alone.
+  const hover = useFluidHover(list, { items: '[role="tab"]', axis: "x", gapClick: false, followFocus: false });
   const update = useCallback(() => {
     const frame = shell.current;
     const scroll = viewport.current;
@@ -75,8 +79,11 @@ export function TabsList({ className, ...props }: ComponentPropsWithoutRef<typeo
   const scrollTabs = (direction: number) => viewport.current?.scrollBy({ left: direction * (viewport.current?.clientWidth ?? 0) * .75, behavior: reduced ? "instant" : "smooth" });
   return <div ref={shell} className={styles.listShell} data-overflow={edges.overflow} data-left={edges.left} data-right={edges.right}>
     {edges.overflow && <button type="button" className={`${styles.scrollButton} ${styles.scrollLeft}`} aria-label="Scroll tabs left" disabled={!edges.left} onClick={() => scrollTabs(-1)}><NavArrowLeft width={17} height={17} aria-hidden="true"/></button>}
-    <motion.div ref={viewport} layoutScroll className={styles.viewport} onFocusCapture={event => { if (event.target instanceof HTMLElement && event.target.getAttribute("role") === "tab") reveal(event.target); }}>
-      <TabsPrimitive.List {...props} ref={list} className={[styles.list, className].filter(Boolean).join(" ")}/>
+    <motion.div ref={viewport} layoutScroll className={styles.viewport} {...hover.handlers} onFocusCapture={event => { if (event.target instanceof HTMLElement && event.target.getAttribute("role") === "tab") reveal(event.target); }}>
+      <TabsPrimitive.List {...props} ref={list} className={[styles.list, className].filter(Boolean).join(" ")}>
+        <FluidHoverHighlight hover={hover} className={styles.hover}/>
+        {props.children}
+      </TabsPrimitive.List>
     </motion.div>
     {edges.overflow && <button type="button" className={`${styles.scrollButton} ${styles.scrollRight}`} aria-label="Scroll tabs right" disabled={!edges.right} onClick={() => scrollTabs(1)}><NavArrowRight width={17} height={17} aria-hidden="true"/></button>}
   </div>;
@@ -114,7 +121,7 @@ const panelMotion: Variants = {
 const panelFade: Variants = {
   enter: { opacity: 0, x: 0 },
   center: { opacity: 1, x: 0, transition: { duration: motionTokens.duration.instant } },
-  exit: { opacity: 0, x: 0, transition: { duration: .1 } },
+  exit: { opacity: 0, x: 0, transition: { duration: motionTokens.duration.instant } },
 };
 
 export function TabsContent({ className, value, forceMount, children, ...props }: ComponentPropsWithoutRef<typeof TabsPrimitive.Content>) {

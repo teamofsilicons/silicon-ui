@@ -154,7 +154,7 @@ function Listbox({ id, label, groups, query, activeIndex, optionId, reduced, key
         const headingId = `${id}-${group.name || "results"}`.replace(/\s+/g, "-");
         return <motion.div key={group.name} role="group" aria-labelledby={group.name ? headingId : undefined} className={styles.group}
           layout={reduced ? false : "position"} layoutDependency={layoutKey}
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: { duration: .08 } }}
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: { duration: motionTokens.duration.instant } }}
           transition={{ opacity: { duration: motionTokens.duration.fast, ease: enter }, layout: motionTokens.spring.smooth }}>
           {group.name && <div id={headingId} className={styles.groupLabel} role="presentation">{group.name}</div>}
           <AnimatePresence mode="popLayout" initial={false}>
@@ -163,7 +163,7 @@ function Listbox({ id, label, groups, query, activeIndex, optionId, reduced, key
               const active = position === activeIndex;
               return <motion.div key={item.id} id={optionId(item)} role="option" aria-selected={active} data-active={active || undefined} className={styles.option}
                 layout={reduced ? false : "position"} layoutDependency={layoutKey}
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: { duration: .08 } }}
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: { duration: motionTokens.duration.instant } }}
                 transition={{ opacity: { duration: motionTokens.duration.fast, ease: enter }, layout: motionTokens.spring.smooth }}
                 onPointerMove={() => { if (!active) { keyboard.current = false; onHover(position); } }}
                 onMouseDown={event => event.preventDefault()}
@@ -309,7 +309,7 @@ export function ExpandingSearch({ label, items, suggestions = [], suggestionsLab
           onClick={() => { setQuery(""); setActive(-1); inputRef.current?.focus({ preventScroll: true }); }}
           initial={clearHidden} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           exit={{ ...clearHidden, transition: { duration: reduced ? .1 : motionTokens.duration.instant, ease: standard } }}
-          transition={reduced ? { duration: .15 } : { ...motionTokens.spring.snappy, opacity: { duration: motionTokens.duration.fast }, filter: { duration: motionTokens.duration.fast } }}>
+          transition={reduced ? { duration: motionTokens.duration.fast } : { ...motionTokens.spring.snappy, opacity: { duration: motionTokens.duration.fast }, filter: { duration: motionTokens.duration.fast } }}>
           <X width={16} height={16} strokeWidth={1.75} aria-hidden="true" />
         </motion.button>}
       </AnimatePresence>
@@ -320,7 +320,7 @@ export function ExpandingSearch({ label, items, suggestions = [], suggestionsLab
             <motion.div key={mode} className={styles.view}
               initial={reduced ? { opacity: 0 } : { opacity: 0, filter: `blur(${motionTokens.blur.subtle}px)` }}
               animate={{ opacity: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, transition: { duration: .1, ease: standard } }}
+              exit={{ opacity: 0, transition: { duration: motionTokens.duration.instant, ease: standard } }}
               transition={{ duration: reduced ? .15 : motionTokens.duration.fast, ease: enter }}>
               {mode === "empty"
                 ? <div className={styles.empty}><p className={styles.emptyTitle}>No results for “{trimmed}”</p><p className={styles.emptyHint}>{emptyHint}</p></div>

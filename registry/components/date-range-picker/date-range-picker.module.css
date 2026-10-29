@@ -66,6 +66,8 @@
 .body { display: flex; gap: var(--space-group); }
 
 .rail { position: relative; display: flex; width: 9.25rem; flex: none; flex-direction: column; gap: var(--space-hair); padding-right: var(--space-group); border-right: 1px solid var(--border-subtle); }
+/* The hover fill glides between presets, under the chosen preset's highlight. */
+.railHover { border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: color-mix(in oklab, var(--foreground) 4%, transparent); }
 .railHighlight { position: absolute; top: 0; left: 0; border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: color-mix(in oklab, var(--foreground) 6.5%, transparent); pointer-events: none; }
 .preset {
   position: relative;
@@ -198,7 +200,6 @@
   .root:not([data-open]):has(> .trigger:hover:not(:disabled)) .surface { background: color-mix(in oklab, var(--foreground) 3%, var(--surface-raised)); }
   .root:not([data-open]):has(> .trigger:hover:not(:disabled)) .surface::after { border-color: var(--border-strong); }
   .preset:hover { color: var(--foreground); }
-  .preset:not([aria-pressed="true"]):hover { background: color-mix(in oklab, var(--foreground) 4%, transparent); }
   .navButton:hover:not(:disabled) { background: color-mix(in oklab, var(--foreground) 6.5%, transparent); color: var(--foreground); }
   .day:hover:not(:disabled):not([data-edge]) > span { background: color-mix(in oklab, var(--foreground) 7%, transparent); }
   .ghost:hover { background: var(--surface-muted); color: var(--foreground); }

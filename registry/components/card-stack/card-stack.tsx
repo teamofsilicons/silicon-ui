@@ -70,8 +70,8 @@ const unresistY = (shown: number) => {
 };
 const clampUnit = (value: number) => Math.min(1, Math.max(0, value));
 const throwSpring = { type: "spring", visualDuration: .5, bounce: 0 } as const;
-const fadeOut = { duration: .22, delay: .12, ease: [...motionTokens.ease.standard] } as const;
-const reducedFade = { duration: .15, ease: "linear" } as const;
+const fadeOut = { duration: motionTokens.duration.exit, delay: motionTokens.duration.instant, ease: [...motionTokens.ease.standard] } as const;
+const reducedFade = { duration: motionTokens.duration.fast, ease: "linear" } as const;
 
 function velocityOf(samples: { t: number; x: number; y: number }[], now: number): Point {
   const recent = samples.filter(sample => now - sample.t <= 80);

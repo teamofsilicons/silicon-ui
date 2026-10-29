@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
-import type { KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
+import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent, ReactNode } from "react";
 import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } from "motion/react";
 import type { Transition, ValueAnimationTransition, Variants } from "motion/react";
 import { Command as CommandIcon, Search, X } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./command-palette.module.css";
 
 export interface CommandItem { id: string; label: string; description?: string; group?: string; keywords?: string[]; icon?: ReactNode; shortcut?: string; }
@@ -82,6 +83,18 @@ export function CommandPalette({ items, placeholder = "Search commands", onSelec
     return () => observer.disconnect();
   }, []);
 
+  // Fluid hover: the mouse makes the nearest result active, group headings and padding included, and a click there runs it.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[role="option"]', onPick: item => {
+    const index = Number(item.dataset.index);
+    if (index !== safeActiveIndex) { pointer.current = true; setActiveIndex(index); }
+  } });
+  function onListPointerMove(event: ReactPointerEvent<HTMLDivElement>) {
+    // Ignore the synthetic moves browsers send while the list scrolls under a still pointer.
+    if (event.clientX === lastPointer.current.x && event.clientY === lastPointer.current.y) return;
+    lastPointer.current = { x: event.clientX, y: event.clientY };
+    nearest.onPointerMove(event);
+  }
+
   // One highlight follows the active result: a spring for the pointer, a 70ms slide for arrow keys, a fade when it first appears.
   useLayoutEffect(() => {
     const node = activeId ? document.getElementById(`${inputId}-${activeId}`) : null;
@@ -90,7 +103,7 @@ export function CommandPalette({ items, placeholder = "Search commands", onSelec
       animate(highlightOpacity, 0, { duration: reduced ? 0 : .1 });
       return;
     }
-    const move: ValueAnimationTransition<number> = !highlightShown.current || reduced ? { duration: 0 } : pointer.current ? motionTokens.spring.snappy : { duration: .07, ease: [...motionTokens.ease.enter] };
+    const move: ValueAnimationTransition<number> = !highlightShown.current || reduced ? { duration: 0 } : pointer.current ? motionTokens.spring.snappy : { duration: motionTokens.duration.instant, ease: [...motionTokens.ease.enter] };
     // Rows sit inside positioned groups, so their offset is summed up to the list (layout transforms stay out of it).
     let top = 0;
     for (let element: HTMLElement | null = node; element && element !== listRef.current; element = element.offsetParent as HTMLElement | null) top += element.offsetTop + (element === node ? 0 : element.clientTop);
@@ -139,7 +152,7 @@ export function CommandPalette({ items, placeholder = "Search commands", onSelec
       <kbd className={styles.commandKey}>⌘ K</kbd>
     </div>
     <motion.div className={styles.resultsFrame} initial={false} animate={{ height: listHeight }} transition={reduced ? { duration: 0 } : motionTokens.spring.smooth}>
-      <motion.div ref={listRef} layoutScroll id={`${inputId}-results`} className={styles.results} role="listbox" aria-label="Command results">
+      <motion.div ref={listRef} layoutScroll id={`${inputId}-results`} className={styles.results} role="listbox" aria-label="Command results" onPointerMove={onListPointerMove} onClick={nearest.onClick}>
         <motion.span className={styles.highlight} style={{ y: highlightY, height: highlightHeight, opacity: highlightOpacity }} aria-hidden="true"/>
         {/* Results leave before the empty state arrives, so the frame makes one height change instead of two. */}
         <AnimatePresence mode="wait" initial={false}>
@@ -148,12 +161,7 @@ export function CommandPalette({ items, placeholder = "Search commands", onSelec
             <AnimatePresence mode="popLayout" initial={false} custom={glide}>
               {groupedItems.map(([group, entries]) => <motion.div layout={glide ? "position" : false} className={styles.group} role="group" aria-label={group} key={group} variants={rowExit} initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit="exit" transition={reduced ? { duration: 0 } : { default: enter, layout: motionTokens.spring.smooth }}>
                 <span className={styles.groupHeading} aria-hidden="true">{group}</span>
-                <AnimatePresence mode="popLayout" initial={false} custom={glide}>{entries.map(({ item, index }) => <motion.button layout={glide ? "position" : false} key={item.id} id={`${inputId}-${item.id}`} className={`${styles.result} ${index === safeActiveIndex ? styles.activeResult : ""}`} type="button" role="option" aria-selected={index === safeActiveIndex} onClick={() => choose(item)} onPointerMove={event => {
-                  // Ignore the synthetic moves browsers send while the list scrolls under a still pointer.
-                  if (event.clientX === lastPointer.current.x && event.clientY === lastPointer.current.y) return;
-                  lastPointer.current = { x: event.clientX, y: event.clientY };
-                  if (index !== safeActiveIndex) { pointer.current = true; setActiveIndex(index); }
-                }} variants={rowExit} initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit="exit" transition={reduced ? { duration: 0 } : { default: enter, layout: motionTokens.spring.smooth }}><span className={styles.itemIcon} aria-hidden="true">{item.icon ?? <CommandIcon width={16} height={16}/>}</span><span className={styles.resultCopy}><strong>{item.label}</strong>{item.description && <small>{item.description}</small>}</span>{item.shortcut && <kbd className={styles.shortcut}>{item.shortcut}</kbd>}</motion.button>)}</AnimatePresence>
+                <AnimatePresence mode="popLayout" initial={false} custom={glide}>{entries.map(({ item, index }) => <motion.button layout={glide ? "position" : false} key={item.id} id={`${inputId}-${item.id}`} className={`${styles.result} ${index === safeActiveIndex ? styles.activeResult : ""}`} type="button" role="option" aria-selected={index === safeActiveIndex} onClick={() => choose(item)} data-index={index} variants={rowExit} initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit="exit" transition={reduced ? { duration: 0 } : { default: enter, layout: motionTokens.spring.smooth }}><span className={styles.itemIcon} aria-hidden="true">{item.icon ?? <CommandIcon width={16} height={16}/>}</span><span className={styles.resultCopy}><strong>{item.label}</strong>{item.description && <small>{item.description}</small>}</span>{item.shortcut && <kbd className={styles.shortcut}>{item.shortcut}</kbd>}</motion.button>)}</AnimatePresence>
               </motion.div>)}
             </AnimatePresence>
           </motion.div> : <motion.div key="empty" className={styles.empty} initial={reduced ? false : { opacity: 0, y: 6, filter: `blur(${motionTokens.blur.subtle}px)` }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={reduced ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, y: -4, transition: leave }} transition={enter}><span><Search width={20} height={20} aria-hidden="true"/></span><strong>No matching actions</strong><small>Try a different word or clear the search.</small></motion.div>}

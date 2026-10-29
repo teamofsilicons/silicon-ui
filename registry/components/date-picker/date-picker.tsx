@@ -31,7 +31,7 @@ const instant = { duration: duration.instant };
 const valueRoll: Variants = {
   enter: (direction: number) => ({ opacity: 0, y: `${direction * 0.35}em`, filter: `blur(${blur.soft}px)` }),
   center: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: duration.standard, ease: ease.enter } },
-  exit: (direction: number) => ({ opacity: 0, y: `${direction * -0.3}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: 0.14, ease: ease.standard } }),
+  exit: (direction: number) => ({ opacity: 0, y: `${direction * -0.3}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: motionTokens.duration.fast, ease: ease.standard } }),
 };
 /** Reduced motion keeps a short crossfade; resting values match the roll so server and client markup agree. */
 const valueFade: Variants = { enter: { opacity: 0 }, center: { opacity: 1, y: 0, filter: "blur(0px)", transition: instant }, exit: { opacity: 0, transition: instant } };
@@ -39,7 +39,7 @@ const valueFade: Variants = { enter: { opacity: 0 }, center: { opacity: 1, y: 0,
 const statusRise: Variants = {
   enter: { opacity: 0, y: "0.3em", filter: `blur(${blur.soft}px)` },
   center: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: duration.standard, ease: ease.enter } },
-  exit: { opacity: 0, y: "-0.3em", filter: `blur(${blur.subtle}px)`, transition: { duration: 0.14, ease: ease.standard } },
+  exit: { opacity: 0, y: "-0.3em", filter: `blur(${blur.subtle}px)`, transition: { duration: motionTokens.duration.fast, ease: ease.standard } },
 };
 
 export function DatePicker({ label, value, onChange, description, placeholder = "Select a date", minDate, maxDate, disabledDates, locale = "en-US", format = { month: "short", day: "numeric", year: "numeric" }, showToday, id, className, disabled, ...buttonProps }: DatePickerProps) {
@@ -120,7 +120,7 @@ export function DatePicker({ label, value, onChange, description, placeholder = 
         {open && <motion.div ref={popoverRef} className={styles.popover} role="dialog" aria-label={`${label} calendar`} onKeyDown={(event) => { if (event.key === "Escape") { event.stopPropagation(); close(); } }}
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: -8, scale: .95 }}
           animate={{ opacity: 1, y: 0, scale: 1, transition: reduce ? instant : { ...spring.snappy, opacity: { duration: duration.fast, ease: ease.enter } } }}
-          exit={{ opacity: 0, ...(reduce ? {} : { y: -6, scale: .97 }), transition: { duration: 0.14, ease: ease.standard } }}>
+          exit={{ opacity: 0, ...(reduce ? {} : { y: -6, scale: .97 }), transition: { duration: motionTokens.duration.fast, ease: ease.standard } }}>
           <Calendar value={value} onChange={selectDate} month={month} onMonthChange={setMonth} minDate={minDate} maxDate={maxDate} disabledDates={disabledDates} locale={locale} showToday={showToday} />
           <div className={styles.footer}><button type="button" onClick={() => selectDate(undefined)} disabled={!value}>Clear</button><span className={styles.status}><AnimatePresence initial={false}><motion.span key={time ?? "none"} variants={reduce ? valueFade : statusRise} initial="enter" animate="center" exit="exit">{value ? `Selected ${formatter.format(value)}` : "Choose a day"}</motion.span></AnimatePresence></span></div>
         </motion.div>}

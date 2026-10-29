@@ -3,6 +3,7 @@
 import { useEffect, useId, useLayoutEffect, useRef, type KeyboardEvent, type ReactNode } from "react";
 import { LayoutGroup, motion, useReducedMotion } from "motion/react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { FluidHoverHighlight, useFluidHover } from "@/lib/fluid-hover";
 import styles from "./segmented-control.module.css";
 
 export interface Segment { value: string; label: string; /** Optional content after the label, such as a badge. */ accessory?: ReactNode; }
@@ -22,6 +23,8 @@ export default function SegmentedControl({ options, value, onValueChange, label,
   const id = useId();
   const reduced = useReducedMotion();
   const track = useRef<HTMLDivElement>(null);
+  // Fluid hover: the nearest option is lit and a click in a gap picks it. Focus already moves the selection, so it leaves the fill alone.
+  const hover = useFluidHover(track, { items: "[data-value]", axis: "x", followFocus: false });
 
   // When the options are wider than the container, the track scrolls inside itself. Edges fade only on the side with more to see.
   useLayoutEffect(() => {
@@ -65,7 +68,8 @@ export default function SegmentedControl({ options, value, onValueChange, label,
   };
 
   return <div className={`${styles.root} ${className ?? ""}`} role="group" aria-label={label} data-size={size}>
-    <LayoutGroup id={id}><motion.div ref={track} layoutScroll className={styles.track}>
+    <LayoutGroup id={id}><motion.div ref={track} layoutScroll className={styles.track} {...hover.handlers}>
+      <FluidHoverHighlight hover={hover} className={styles.hover} />
       {options.map((option, index) => <button key={option.value} id={`${id}-${option.value}`} className={styles.button} type="button" data-value={option.value} aria-pressed={value === option.value} tabIndex={index === selectedIndex ? 0 : -1} onClick={() => onValueChange(option.value)} onKeyDown={onKeyDown} onPointerEnter={onOptionIntent ? () => onOptionIntent(option.value) : undefined} onFocus={onOptionIntent ? () => onOptionIntent(option.value) : undefined}>
         {value === option.value && <motion.span className={styles.selection} layoutId="selection" layoutDependency={value} transition={reduced ? { duration: 0 } : motionTokens.spring.morph} aria-hidden="true" />}
         <span className={styles.label}>{option.label}{option.accessory}</span>

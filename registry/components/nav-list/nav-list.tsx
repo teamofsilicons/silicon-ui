@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
-import type { FocusEvent, MouseEvent, PointerEvent, ReactNode, Ref } from "react";
+import type { MouseEvent, ReactNode, Ref } from "react";
+import { FluidHoverHighlight, useFluidHover } from "@/lib/fluid-hover";
 import { MenuHighlight } from "@/lib/menu-highlight";
 import { SiliconLink } from "@/lib/silicon-provider";
 import { Badge } from "../badge/badge";
@@ -34,14 +35,14 @@ export interface NavListProps {
 }
 
 /**
- * A sidebar's list of destinations: a `<nav>` with a list of NavItem rows, optionally grouped by NavSection. One hover highlight
- * glides between rows for the pointer, and the current page's marker glides when the page changes.
+ * A sidebar's list of destinations: a `<nav>` with a list of NavItem rows, optionally grouped by NavSection. The row nearest
+ * the pointer is lit (fluid hover), and the current page's marker glides when the page changes.
  */
 export function NavList({ label, children, className, ref, onNavigate }: NavListProps) {
   const root = useRef<HTMLElement | null>(null);
-  const [hover, setHover] = useState<Box | null>(null);
   const [active, setActive] = useState<Box | null>(null);
-  const pointer = useRef(false);
+  // The row nearest the pointer is lit, gaps included, and a click in a gap follows the row (lib/fluid-hover).
+  const hover = useFluidHover(root, { items: ITEM });
   // The latest handler, read at choice time, so a new function each render never changes the context.
   const navigateHandler = useRef(onNavigate);
   useEffect(() => { navigateHandler.current = onNavigate; });
@@ -78,23 +79,12 @@ export function NavList({ label, children, className, ref, onNavigate }: NavList
     return () => observer.disconnect();
   }, [measureActive]);
 
-  function show(target: EventTarget | null, glide: boolean) {
-    const item = target instanceof HTMLElement ? target.closest<HTMLElement>(ITEM) : null;
-    if (!item || item.getAttribute("aria-disabled") === "true") return setHover(null);
-    setHover(current => ({ ...boxOf(item), glide: glide && current !== null }));
-  }
-
   const context = useMemo(() => ({ activeChanged: measureActive, navigate: (choice: NavChoice) => navigateHandler.current?.(choice) }), [measureActive]);
   return (
     <NavContext.Provider value={context}>
-      <nav ref={setRoot} aria-label={label} className={[styles.list, className].filter(Boolean).join(" ")}
-        onPointerOver={(event: PointerEvent<HTMLElement>) => { pointer.current = true; show(event.target, true); }}
-        onPointerLeave={() => setHover(null)}
-        onKeyDownCapture={() => { pointer.current = false; }}
-        onFocus={(event: FocusEvent<HTMLElement>) => { if (!pointer.current && event.target.matches(":focus-visible")) show(event.target, false); }}
-        onBlur={(event: FocusEvent<HTMLElement>) => { if (!pointer.current && !event.currentTarget.contains(event.relatedTarget as Node | null)) setHover(null); }}>
+      <nav ref={setRoot} aria-label={label} className={[styles.list, className].filter(Boolean).join(" ")} {...hover.handlers}>
         {/* The current page's marker paints over the hover fill, so hovering the current row never lightens it. */}
-        <MenuHighlight state={hover} className={styles.highlight} />
+        <FluidHoverHighlight hover={hover} className={styles.highlight} />
         <MenuHighlight state={active} className={styles.active} />
         <ul className={styles.items}>{children}</ul>
       </nav>

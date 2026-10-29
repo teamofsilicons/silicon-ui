@@ -615,10 +615,10 @@ const TRAVEL = 18;
 
 const faceVariants: Variants = {
   hidden: (direction: number) => ({ opacity: 0, x: direction * TRAVEL, filter: `blur(${blur.subtle}px)` }),
-  shown: { opacity: 1, x: 0, filter: "blur(0px)", transition: { x: MORPH, opacity: { duration: .2, ease: enter, delay: .03 }, filter: { duration: .2, ease: enter, delay: .03 } } },
-  gone: (direction: number) => ({ opacity: 0, x: direction * -TRAVEL, filter: `blur(${blur.subtle}px)`, transition: { x: MORPH, opacity: { duration: .12, ease: standard }, filter: { duration: .12, ease: standard } } }),
+  shown: { opacity: 1, x: 0, filter: "blur(0px)", transition: { x: MORPH, opacity: { duration: motionTokens.duration.exit, ease: enter, delay: motionTokens.stagger.char }, filter: { duration: motionTokens.duration.exit, ease: enter, delay: motionTokens.stagger.char } } },
+  gone: (direction: number) => ({ opacity: 0, x: direction * -TRAVEL, filter: `blur(${blur.subtle}px)`, transition: { x: MORPH, opacity: { duration: motionTokens.duration.instant, ease: standard }, filter: { duration: motionTokens.duration.instant, ease: standard } } }),
 };
-const fadeVariants: Variants = { hidden: { opacity: 0 }, shown: { opacity: 1, transition: { duration: .14 } }, gone: { opacity: 0, transition: { duration: .1 } } };
+const fadeVariants: Variants = { hidden: { opacity: 0 }, shown: { opacity: 1, transition: { duration: motionTokens.duration.fast } }, gone: { opacity: 0, transition: { duration: motionTokens.duration.instant } } };
 
 /** A toolbar face reports its natural size while current, so the shared surface can spring to it. */
 function Face({ direction, reduced, onSize, children }: { direction: number; reduced: boolean; onSize: (width: number, height: number) => void; children: ReactNode }) {

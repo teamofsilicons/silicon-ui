@@ -106,7 +106,7 @@ export default function Toast({ title, description, open = true, onOpenChange, d
     // A thrown toast keeps its release velocity; a closed one sinks back toward the edge it came from.
     // The throw settles loosely: it is invisible once the fade ends, so no long unseen tail keeps it mounted.
     exit: (to: number) => to
-      ? { x: to, opacity: 0, transition: { x: { type: "spring", visualDuration: .3, bounce: 0, velocity: releaseVelocity.current, restDelta: 2, restSpeed: 40 }, opacity: { duration: motionTokens.duration.exit } } }
+      ? { x: to, opacity: 0, transition: { x: { type: "spring", visualDuration: motionTokens.spring.moderate.visualDuration, bounce: 0, velocity: releaseVelocity.current, restDelta: 2, restSpeed: 40 }, opacity: { duration: motionTokens.duration.exit } } }
       : { opacity: 0, y: 8, scale: .97, transition: { duration: motionTokens.duration.exit, ease: [...motionTokens.ease.standard] } },
   };
   const swap: MotionProps = { initial: reduce ? { opacity: 0 } : textIn, animate: textShown, exit: reduce ? fadeOut : textOut, transition: reduce ? { duration: motionTokens.duration.instant } : enter };

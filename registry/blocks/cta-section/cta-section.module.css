@@ -42,7 +42,7 @@
 .setupStatus > span[data-shown] { opacity: 1; transform: none; filter: blur(0); }
 .setup[data-done] .setupStatus > span:last-child { color: var(--success); font-weight: 500; }
 .progress { height: 2px; margin: 0 var(--space-comfort); border-radius: var(--radius-full); corner-shape: round; background: var(--border); overflow: hidden; }
-.progress > span { display: block; height: 100%; background: var(--success); transform-origin: left; transition: transform var(--duration-considered) var(--ease-in-out); }
+.progress > span { display: block; height: 100%; background: var(--success); transform-origin: left; transition: transform var(--duration-expressive) var(--ease-in-out); }
 .steps { display: grid; gap: var(--space-hair); margin: 0; padding: var(--space-group) var(--space-related) var(--space-group); list-style: none; }
 .step { display: flex; min-height: 44px; align-items: center; gap: var(--space-group); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 0 var(--space-group); color: var(--text-muted); font-size: var(--text-sm); transition: color var(--duration-standard) var(--ease-standard), background-color var(--duration-standard) var(--ease-standard); }
 .step[data-active] { background: var(--surface-muted); color: var(--foreground); }

@@ -34,7 +34,7 @@ const { spring, duration, ease, blur } = motionTokens;
 /** Motion drops inherited velocity on time-defined springs, so values that retarget mid-flight run the same springs written as stiffness and damping. */
 const physical = ({ visualDuration, bounce }: { visualDuration: number; bounce: number }, restDelta = .001) => { const root = (2 * Math.PI) / (visualDuration * 1.2); return { type: "spring" as const, stiffness: root * root, damping: 2 * (1 - bounce) * root, restDelta, restSpeed: restDelta * 2 }; };
 const settle = physical(spring.smooth);
-const reveal = physical({ visualDuration: duration.considered + .1, bounce: 0 });
+const reveal = physical({ visualDuration: duration.expressive + .1, bounce: 0 });
 const turn = physical(spring.smooth);
 const fit = physical(spring.morph, .01);
 /** A segment stops two pixels short of the next, so neighbours read apart without an outline. */

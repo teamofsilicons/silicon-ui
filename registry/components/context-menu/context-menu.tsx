@@ -6,6 +6,7 @@ import type { CSSProperties, FocusEvent, KeyboardEvent, ReactNode } from "react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Check, Copy, MoreHorizontal, Trash2 } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { MenuHighlight, useMenuHighlight } from "@/lib/menu-highlight";
 import styles from "./context-menu.module.css";
 
 export interface ContextMenuItem {
@@ -23,8 +24,6 @@ export interface ContextMenuProps {
   items: ContextMenuItem[];
   label?: string;
 }
-
-type Highlight = { index: number; top: number; height: number; danger: boolean; glide: boolean };
 
 const MENU_WIDTH = 208;
 
@@ -44,11 +43,10 @@ export function ContextMenu({ children, items, label = "Context menu" }: Context
   // Each open gets its own key, so reopening at a new point fades the old menu out in place
   // and grows a fresh one from the pointer instead of teleporting the visible menu.
   const [point, setPoint] = useState({ x: 0, y: 0, originX: 0, originY: 0, key: 0 });
-  const [highlight, setHighlight] = useState<Highlight | null>(null);
+  // Fluid hover: the nearest row is lit, gaps and padding included, and a click in a gap picks it.
+  const { highlight, reset, contentProps } = useMenuHighlight();
   const menuRef = useRef<HTMLDivElement | null>(null);
   const targetRef = useRef<HTMLDivElement>(null);
-  const pointer = useRef(false);
-  const clearTimer = useRef(0);
   // A primary press on the target while the menu is open closes it; the click that follows must not reopen it.
   const pressedWhileOpen = useRef(false);
   // An exiting menu keeps its last props, so its handlers check this before moving focus or selecting.
@@ -64,7 +62,6 @@ export function ContextMenu({ children, items, label = "Context menu" }: Context
     const next = clampTo(anchor.current.x, anchor.current.y, node.offsetWidth, node.offsetHeight);
     setPoint(current => (current.x === next.x && current.y === next.y && current.originX === next.originX && current.originY === next.originY ? current : { ...next, key: current.key }));
   }, [open, point.key]);
-  useEffect(() => () => window.clearTimeout(clearTimer.current), []);
   useEffect(() => {
     if (!open) return;
     menuRef.current?.querySelector<HTMLElement>('[role="menuitem"]:not(:disabled)')?.focus({ preventScroll: true });
@@ -89,9 +86,7 @@ export function ContextMenu({ children, items, label = "Context menu" }: Context
     anchor.current = { x, y };
     const estimate = clampTo(x, y, MENU_WIDTH, Math.min(300, items.length * 34 + 12));
     setPoint(current => ({ ...estimate, key: current.key + 1 }));
-    window.clearTimeout(clearTimer.current);
-    pointer.current = false;
-    setHighlight(null);
+    reset();
     setPortal(true);
     setOpen(true);
   }
@@ -126,23 +121,9 @@ export function ContextMenu({ children, items, label = "Context menu" }: Context
     if (event.key === "Escape") { event.preventDefault(); setOpen(false); targetRef.current?.focus(); }
   }
 
-  function place(item: HTMLElement, glide: boolean) {
-    window.clearTimeout(clearTimer.current);
-    const next = { index: Number(item.dataset.index), top: item.offsetTop, height: item.offsetHeight, danger: item.dataset.tone === "danger" };
-    setHighlight(current => ({ ...next, glide: glide && current !== null }));
-  }
-
-  // Keyboard focus places the highlight instantly; the pointer makes it glide between rows.
+  // Keyboard focus lights its row at once. A pointer-opened menu focuses its first row without lighting it, like a native menu.
   function onMenuFocus(event: FocusEvent<HTMLDivElement>) {
-    const item = event.target instanceof HTMLElement ? event.target.closest<HTMLElement>('[role="menuitem"]') : null;
-    if (item) {
-      // A pointer-opened menu focuses its first row without showing a highlight, like a native menu.
-      if (!pointer.current && item.matches(":focus-visible")) place(item, false);
-      return;
-    }
-    // A short grace period keeps the highlight gliding across the gap between rows.
-    window.clearTimeout(clearTimer.current);
-    clearTimer.current = window.setTimeout(() => setHighlight(null), pointer.current ? 70 : 0);
+    if (event.target instanceof HTMLElement && event.target.matches(":focus-visible")) contentProps.onFocus(event);
   }
 
   return <>
@@ -150,10 +131,10 @@ export function ContextMenu({ children, items, label = "Context menu" }: Context
       {children}
     </div>
     {portal ? createPortal(<AnimatePresence>
-      {open && <motion.div key={point.key} ref={node => { if (node) menuRef.current = node; }} className={styles.menu} role="menu" aria-label={label} tabIndex={-1} style={{ left: point.x, top: point.y, transformOrigin: `${point.originX}px ${point.originY}px` }} onKeyDown={onMenuKeyDown} onFocus={onMenuFocus} onPointerMoveCapture={() => { pointer.current = true; }} onKeyDownCapture={() => { pointer.current = false; }} onPointerLeave={event => { if (live.current) event.currentTarget.focus({ preventScroll: true }); }}
+      {open && <motion.div key={point.key} ref={node => { if (node) menuRef.current = node; }} className={styles.menu} role="menu" aria-label={label} tabIndex={-1} style={{ left: point.x, top: point.y, transformOrigin: `${point.originX}px ${point.originY}px` }} onKeyDown={onMenuKeyDown} {...contentProps} onFocus={onMenuFocus} onPointerLeave={event => { if (live.current) event.currentTarget.focus({ preventScroll: true }); }}
         initial={reduced ? { opacity: 0 } : { opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} exit={reduced ? { opacity: 0, transition: { duration: motionTokens.duration.instant } } : { opacity: 0, scale: .98, transition: { duration: motionTokens.duration.instant, ease: [...motionTokens.ease.standard] } }} transition={reduced ? { duration: motionTokens.duration.instant } : { default: motionTokens.spring.snappy, opacity: { duration: motionTokens.duration.fast, ease: [...motionTokens.ease.enter] } }}>
-        <motion.span className={styles.highlight} data-tone={highlight?.danger ? "danger" : undefined} aria-hidden="true" initial={false} animate={highlight ? { y: highlight.top, height: highlight.height, opacity: 1 } : { opacity: 0 }} transition={{ default: highlight?.glide && !reduced ? motionTokens.spring.snappy : { duration: 0 }, opacity: { duration: reduced ? 0 : motionTokens.duration.instant } }}/>
-        {items.map((item, index) => <button key={item.id} type="button" role="menuitem" tabIndex={-1} data-index={index} data-tone={item.destructive ? "danger" : undefined} style={{ "--i": index } as CSSProperties} disabled={item.disabled} className={[styles.item, item.destructive ? styles.destructive : ""].filter(Boolean).join(" ")} onPointerMove={event => { if (!live.current) return; window.clearTimeout(clearTimer.current); if (document.activeElement !== event.currentTarget) event.currentTarget.focus({ preventScroll: true }); if (highlight?.index !== index) place(event.currentTarget, true); }} onPointerLeave={() => { if (live.current) menuRef.current?.focus({ preventScroll: true }); }} onClick={() => { if (!live.current) return; live.current = false; item.onSelect?.(); setOpen(false); targetRef.current?.focus(); }}>
+        <MenuHighlight state={highlight} className={styles.highlight} />
+        {items.map((item, index) => <button key={item.id} type="button" role="menuitem" tabIndex={-1} data-index={index} data-tone={item.destructive ? "danger" : undefined} style={{ "--i": index } as CSSProperties} disabled={item.disabled} className={[styles.item, item.destructive ? styles.destructive : ""].filter(Boolean).join(" ")} onPointerMove={event => { if (live.current && document.activeElement !== event.currentTarget) event.currentTarget.focus({ preventScroll: true }); }} onPointerLeave={() => { if (live.current) menuRef.current?.focus({ preventScroll: true }); }} onClick={() => { if (!live.current) return; live.current = false; item.onSelect?.(); setOpen(false); targetRef.current?.focus(); }}>
           <span className={styles.icon} aria-hidden="true">{item.icon ?? (item.checked ? <Check size={15} /> : <MoreHorizontal size={15} />)}</span><span>{item.label}</span>
         </button>)}
       </motion.div>}

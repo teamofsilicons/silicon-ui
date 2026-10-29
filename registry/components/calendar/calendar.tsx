@@ -7,6 +7,7 @@ import { animate, AnimatePresence, motion, useMotionValue, useMotionValueEvent, 
 import type { AnimationPlaybackControls, MotionValue, Variants } from "motion/react";
 import { motionTokens } from "@/lib/motion-tokens";
 import { useToday } from "@/lib/use-today";
+import { FluidHoverHighlight, useFluidHover } from "@/lib/fluid-hover";
 import styles from "./calendar.module.css";
 
 export type CalendarDateMatcher = (date: Date) => boolean;
@@ -50,7 +51,7 @@ export { useToday } from "@/lib/use-today";
 
 const { spring, duration, ease } = motionTokens;
 /** Months sit side by side on one strip. Rapid clicks retarget the same spring, so the strip never queues or stacks panes. */
-const stripSpring = { type: "spring", visualDuration: 0.36, bounce: 0, restDelta: 0.002 } as const;
+const stripSpring = { type: "spring", visualDuration: motionTokens.spring.moderate.visualDuration, bounce: 0, restDelta: 0.002 } as const;
 const monthIndex = (date: Date) => date.getFullYear() * 12 + date.getMonth();
 const fromIndex = (index: number) => new Date(Math.floor(index / 12), ((index % 12) + 12) % 12, 1);
 
@@ -58,7 +59,7 @@ const fromIndex = (index: number) => new Date(Math.floor(index / 12), ((index % 
 const titleSlide: Variants = {
   enter: (direction: number) => ({ opacity: 0, x: direction * 12 }),
   center: { opacity: 1, x: 0, transition: { duration: duration.standard, ease: ease.enter } },
-  exit: (direction: number) => ({ opacity: 0, x: direction * -12, transition: { duration: 0.14, ease: ease.standard } }),
+  exit: (direction: number) => ({ opacity: 0, x: direction * -12, transition: { duration: motionTokens.duration.fast, ease: ease.standard } }),
 };
 /** Reduced motion swaps the title in place, with no travel and no blank frame. */
 const titleFade: Variants = { enter: { opacity: 1, x: 0 }, center: { opacity: 1, x: 0, transition: { duration: 0 } }, exit: { opacity: 0, transition: { duration: 0 } } };
@@ -80,7 +81,7 @@ function SelectionDisc({ cell, reduced }: { cell: number; reduced: boolean }) {
   useLayoutEffect(() => {
     if (!visible) {
       hidden.current = true;
-      const fade = reduced ? { duration: 0 } : { duration: 0.14, ease: ease.standard };
+      const fade = reduced ? { duration: 0 } : { duration: motionTokens.duration.fast, ease: ease.standard };
       const controls = [animate(opacity, 0, fade), animate(scale, 0.6, fade)];
       return () => controls.forEach((control) => control.stop());
     }
@@ -93,6 +94,19 @@ function SelectionDisc({ cell, reduced }: { cell: number; reduced: boolean }) {
     return () => controls.forEach((control) => control.stop());
   }, [cell, visible, reduced, col, row, opacity, scale]);
   return <motion.span className={styles.highlight} style={{ transform, opacity }} aria-hidden="true"><span className={styles.highlightFill} /></motion.span>;
+}
+
+/**
+ * Fluid hover for one month's days: one fill glides to the day nearest the pointer, under the selected disc. Unavailable
+ * days light nothing, a gap between days stays inert, and focus keeps its own ring.
+ */
+function MonthDays({ children }: { children: ReactNode }) {
+  const box = useRef<HTMLDivElement>(null);
+  const hover = useFluidHover(box, { items: `.${styles.day}`, axis: "xy", disabled: "clear", gapClick: false, followFocus: false });
+  return <div ref={box} className={styles.days} {...hover.handlers}>
+    <FluidHoverHighlight hover={hover} className={styles.dayHover} />
+    {children}
+  </div>;
 }
 
 /** One month on the strip. Only the month being navigated to is focusable and exposed; the one sliding past is inert. */
@@ -256,7 +270,7 @@ export function Calendar({
     return index >= 0 && index < 42 ? index : -1;
   };
 
-  const renderMonth = (paneMonth: Date, present: boolean) => <>
+  const renderMonth = (paneMonth: Date, present: boolean) => <MonthDays>
     <SelectionDisc cell={cellOf(paneMonth)} reduced={reducedMotion} />
     <div className={styles.grid} role="grid" aria-label={formatter.format(paneMonth)}>
     {makeWeeks(paneMonth).map((week) => <div key={dateKey(week[0]!)} className={styles.week} role="row">
@@ -283,7 +297,7 @@ export function Calendar({
       })}
     </div>)}
     </div>
-  </>;
+  </MonthDays>;
 
   return <section className={cx(styles.calendar, className)} aria-labelledby={titleId}>
       <div className={styles.header}>

@@ -6,6 +6,7 @@ import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } fr
 import type { Transition, Variants } from "motion/react";
 import { Check, ChevronDown, Search, X } from "lucide-react";
 import { motionTokens } from "@/lib/motion-tokens";
+import { useNearestItem } from "@/lib/fluid-hover";
 import styles from "./phone-input.module.css";
 
 /* ------------------------------------------------------------------------------------------------
@@ -224,9 +225,9 @@ function useReducedFlag() {
 const layerVariants: Variants = {
   enter: (dir: number) => ({ opacity: 0, y: `${dir * .6}em`, filter: `blur(${blur.soft}px)` }),
   rest: { opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } },
-  exit: (dir: number) => ({ opacity: 0, y: `${dir * -.5}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: .12, ease: standardEase } }),
+  exit: (dir: number) => ({ opacity: 0, y: `${dir * -.5}em`, filter: `blur(${blur.subtle}px)`, transition: { duration: motionTokens.duration.instant, ease: standardEase } }),
 };
-const layerFade: Variants = { enter: { opacity: 0 }, rest: { opacity: 1, y: 0, filter: "none" }, exit: { opacity: 0, transition: { duration: .08 } } };
+const layerFade: Variants = { enter: { opacity: 0 }, rest: { opacity: 1, y: 0, filter: "none" }, exit: { opacity: 0, transition: { duration: motionTokens.duration.instant } } };
 
 function matchesQuery(entry: PhoneCountry, needle: string) {
   if (!needle) return true;
@@ -265,7 +266,7 @@ function MessageRow({ id, text, tone }: { id: string; text: string; tone: "hint"
     <AnimatePresence initial={false} mode="popLayout">
       <motion.span key={text} id={id} className={tone === "error" ? styles.error : styles.hint} role={tone === "error" ? "alert" : undefined}
         initial={reduced ? { opacity: 0 } : { opacity: 0, y: "0.35em", filter: `blur(${blur.soft}px)` }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        exit={{ opacity: 0, transition: { duration: .1 } }} transition={{ duration: reduced ? .12 : motionTokens.duration.standard, ease: enterEase }}>{text}</motion.span>
+        exit={{ opacity: 0, transition: { duration: motionTokens.duration.instant } }} transition={{ duration: reduced ? .12 : motionTokens.duration.standard, ease: enterEase }}>{text}</motion.span>
     </AnimatePresence>
   </motion.span>;
 }
@@ -419,6 +420,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string | null>(null);
+  // Fluid hover: the mouse makes the nearest option active, group labels and padding included, and a click there picks it.
+  const nearest = useNearestItem<HTMLDivElement>({ items: '[role="option"]', onPick: item => setActive(item.dataset.key ?? null) });
   const [roll, setRoll] = useState(1);
   const needle = query.trim().toLowerCase();
 
@@ -631,7 +634,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
               <span className={styles.slot} data-hidden={open || undefined}>
                 <AnimatePresence initial={false} custom={roll}>
                   <motion.span key={current.iso} className={styles.layer} custom={roll} variants={reduced ? layerFade : layerVariants} initial="enter" animate="rest" exit="exit"
-                    transition={reduced ? { duration: .12 } : { y: GLIDE, opacity: { duration: .2, ease: enterEase }, filter: { duration: .22, ease: enterEase } }}>
+                    transition={reduced ? { duration: motionTokens.duration.instant } : { y: GLIDE, opacity: { duration: motionTokens.duration.exit, ease: enterEase }, filter: { duration: motionTokens.duration.exit, ease: enterEase } }}>
                     {face(current)}
                   </motion.span>
                 </AnimatePresence>
@@ -640,7 +643,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
 
             <motion.div className={styles.searchRow} inert={!open || undefined} initial={false}
               animate={open ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: reduced ? "blur(0px)" : `blur(${blur.subtle}px)` }}
-              transition={open ? { duration: .18, ease: enterEase, delay: reduced ? 0 : .05 } : { duration: .1, ease: standardEase }}>
+              transition={open ? { duration: motionTokens.duration.exit, ease: enterEase, delay: reduced ? 0 : motionTokens.duration.instant } : { duration: motionTokens.duration.instant, ease: standardEase }}>
               <Search className={styles.searchIcon} size={16} strokeWidth={1.75} aria-hidden="true" />
               <input ref={searchRef} className={styles.search} type="text" role="combobox" aria-label="Search countries or calling codes" aria-expanded={open} aria-controls={listId}
                 aria-autocomplete="list" aria-activedescendant={open && activeKey ? optionId(activeKey) : undefined} placeholder="Country or code" value={query}
@@ -648,7 +651,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
               <AnimatePresence initial={false}>
                 {query && <motion.button key="clear" type="button" className={styles.clear} aria-label="Clear search" onPointerDown={event => event.preventDefault()}
                   onClick={() => { onQuery(""); searchRef.current?.focus(); }}
-                  initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: .1 } }} transition={reduced ? { duration: 0 } : GLIDE}>
+                  initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6, transition: { duration: motionTokens.duration.instant } }} transition={reduced ? { duration: 0 } : GLIDE}>
                   <X size={14} strokeWidth={1.75} aria-hidden="true" />
                 </motion.button>}
               </AnimatePresence>
@@ -662,17 +665,16 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
 
           <motion.div ref={listFaceRef} className={styles.listFace} inert={!open || undefined} aria-hidden={!open || undefined} initial={false}
             animate={open ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: reduced ? 0 : -6, filter: reduced ? "blur(0px)" : `blur(${blur.subtle}px)` }}
-            transition={open ? { y: GROW, opacity: { duration: .2, ease: enterEase, delay: reduced ? 0 : .04 }, filter: { duration: .22, ease: enterEase, delay: .04 } } : { duration: .1, ease: standardEase }}>
+            transition={open ? { y: GROW, opacity: { duration: motionTokens.duration.exit, ease: enterEase, delay: reduced ? 0 : motionTokens.stagger.word }, filter: { duration: motionTokens.duration.exit, ease: enterEase, delay: motionTokens.stagger.word } } : { duration: motionTokens.duration.instant, ease: standardEase }}>
             <div ref={scrollRef} className={styles.scroll}>
-              <div id={listId} className={styles.options} role="listbox" aria-label="Countries">
+              <div id={listId} className={styles.options} role="listbox" aria-label="Countries" onPointerDown={event => event.preventDefault()} {...nearest}>
                 <motion.span className={styles.highlight} style={{ y: hy, height: hh, opacity: ho }} aria-hidden="true" />
                 {sections.map(section => {
                   const body = section.rows.map(row => {
                     const selected = row.entry.iso === current.iso;
                     return <div key={row.key} id={optionId(row.key)} role="option" aria-selected={selected} className={styles.option} data-active={row.key === activeKey || undefined}
                       ref={node => { if (node) rowRefs.current.set(row.key, node); else rowRefs.current.delete(row.key); }}
-                      onPointerMove={event => { if (event.pointerType === "mouse" && row.key !== activeKey) setActive(row.key); }}
-                      onPointerDown={event => event.preventDefault()} onClick={() => pick(row.entry)}>
+                      data-key={row.key} onPointerDown={event => event.preventDefault()} onClick={() => pick(row.entry)}>
                       <span className={styles.flag} aria-hidden="true">{flagOf(row.entry.iso)}</span>
                       <span className={styles.name}>{row.entry.name}</span>
                       <span className={styles.meta}>+{row.entry.dial}</span>
@@ -701,7 +703,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
         <AnimatePresence initial={false}>
           {showCheck && <motion.span key="ok" className={styles.valid} aria-hidden="true"
             initial={reduced ? { opacity: 0 } : { opacity: 0, scale: .6, filter: `blur(${blur.subtle}px)` }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            exit={{ opacity: 0, scale: reduced ? 1 : .8, transition: { duration: .1 } }} transition={reduced ? { duration: .12 } : motionTokens.spring.snappy}>
+            exit={{ opacity: 0, scale: reduced ? 1 : .8, transition: { duration: motionTokens.duration.instant } }} transition={reduced ? { duration: motionTokens.duration.instant } : motionTokens.spring.snappy}>
             <Check size={16} strokeWidth={2} />
           </motion.span>}
         </AnimatePresence>
