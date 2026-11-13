@@ -19,7 +19,7 @@ These come from Silicon Accounts, which carried them in a local patch of npm 0.4
 - **[Dialog](https://ui.teamofsilicons.com/dialog)'s title is a heading (#37):** `--font-display` at 600 with `--tracking-display` (was the body face at 500). **Its close button is quieter (#29):** a borderless ghost icon button at Button's `xs` size, with the hover fill on keyboard focus.
 - **[Tabs](https://ui.teamofsilicons.com/tabs) have a thinner frame (#32):** 2px around the tabs instead of 4px (the strip is 38px high, was 42px). The keyboard ring is drawn inside the tab, and the tab, selection and hover corners stay concentric.
 - **[Phone input](https://ui.teamofsilicons.com/phone-input)'s calling code reads as part of the number (#33):** the closed country part is at the number's size and weight (400, was 500), the country search follows `--field-text-size`, and each code in the list is its name's size (was 12px).
-- These change how existing screens look: a minor release on npm.
+- These change how existing screens look: a minor release on npm (**0.5.0**). To upgrade, remove any local patch of 0.4.0, and if the app uses `hideHeader`, `placement`, Button's `link` variant or Input's `prefix`/`suffix`, opt in with `siliconUi({ allowExperimental: ["dialog", "button", "button-link", "input"] })`.
 
 ### Fixed
 
