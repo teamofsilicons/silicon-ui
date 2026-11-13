@@ -1,5 +1,5 @@
 /* Press scale is driven by Motion (whileTap) alone, so transform never gets a CSS transition here. */
-.button { position: relative; display: inline-flex; min-height: var(--control-height-md); align-items: center; justify-content: center; gap: var(--space-related); border: 1px solid transparent; border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 0 var(--space-inset); font: inherit; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }
+.button { position: relative; display: inline-flex; min-height: var(--control-height-md); align-items: center; justify-content: center; gap: var(--space-related); border: 1px solid transparent; border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 0 var(--space-inset); font: inherit; font-size: var(--text-sm); font-weight: 500; letter-spacing: var(--tracking-body); line-height: var(--leading-body); white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }
 .button:disabled { cursor: not-allowed; opacity: .52; }
 .button[aria-busy="true"] { cursor: progress; }
 /* Anchors of floating layers never scale: Radix opens on pointerdown and would measure a shrunken trigger. */
@@ -34,13 +34,22 @@
 .secondary:active:not(:disabled), .ghost:active:not(:disabled) { color: var(--foreground); background: var(--surface-muted); }
 .danger:active:not(:disabled) { border-color: var(--danger); background: var(--surface-muted); }
 .soft:active:not(:disabled) { background: var(--surface-pressed); }
-.xs { min-height: var(--control-height-xs); gap: var(--space-tight); padding-inline: var(--space-related); font-size: var(--text-xs); }
+.xs { min-height: var(--control-height-xs); gap: var(--space-tight); padding-inline: var(--space-related); font-size: var(--text-xs); letter-spacing: var(--tracking-body); }
 /* A compact icon-only button is a square, with the icon at its usual 16px. */
 .xs[data-icon-only] { min-width: var(--control-height-xs); padding-inline: 0; }
 .xs svg { width: 16px; height: 16px; }
 .sm { min-height: var(--control-height-sm); padding-inline: var(--space-group); font-size: var(--text-sm); }
 .md { min-height: var(--control-height-md); }
 .lg { min-height: var(--control-height-lg); padding-inline: var(--space-comfort); font-size: var(--text-sm); }
+/* link: text with an underline, no box. The underline is light at rest (--button-link-underline, default --border-strong;
+   transparent shows it on hover only) and takes the text's colour on hover and focus. After the sizes, so it drops their
+   height and padding but keeps their font size. */
+.button.link { min-width: 0; min-height: 0; padding: 0; gap: var(--space-tight); border: 0; background: transparent; color: var(--text-secondary); }
+.link .labelPhase { text-decoration-line: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--button-link-underline, var(--border-strong)); transition: text-decoration-color var(--duration-fast) var(--ease-standard); }
+@media (hover: hover) and (pointer: fine) { .link:hover:not(:disabled) { color: var(--foreground); } .link:hover:not(:disabled) .labelPhase { text-decoration-color: currentColor; } }
+.link:focus-visible, .link:active:not(:disabled) { color: var(--foreground); }
+.link:focus-visible .labelPhase, .link:active:not(:disabled) .labelPhase { text-decoration-color: currentColor; }
+.link:disabled { opacity: 1; color: var(--text-muted); }
 .loader { position: absolute; left: 50%; top: 50%; display: grid; width: var(--space-inset); height: var(--space-inset); margin: calc(var(--space-inset) / -2); }
 .spinner { border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; corner-shape: round; animation: spin .7s linear infinite; }
 .loadingLabel { opacity: 0; }

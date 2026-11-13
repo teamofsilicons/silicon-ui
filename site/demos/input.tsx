@@ -1,3 +1,5 @@
+import { Check } from "lucide-react";
+
 import { Input, type InputProps } from "@/registry/components/input/input";
 import { defineDemo } from "../lib/demo";
 
@@ -12,6 +14,14 @@ export default defineDemo<InputProps>({
       title: "Error",
       description: "The error replaces the description and is tied to the field for screen readers.",
       render: () => <div style={field}><Input label="Billing contact" type="email" defaultValue="finance@northwind" error="Enter a full email address, such as finance@northwind.com." /></div>,
+    },
+    {
+      title: "Prefix and suffix (experimental)",
+      description: "prefix sits before the typed text at its size, with no gap, so \"c:\" and the id read as one word; suffix sits after it, such as a status icon. Both are decorative: say what they mean in the label or description.",
+      render: () => <div style={stack}>
+        <Input label="CarbonID" prefix="c:" defaultValue="anil" description={<>People find you as <strong>c:anil</strong>.</>} />
+        <Input label="Website" prefix="https://" placeholder="example.com" suffix={<Check size={16} style={{ color: "var(--success)" }} />} />
+      </div>,
     },
     {
       title: "Prefilled and disabled",

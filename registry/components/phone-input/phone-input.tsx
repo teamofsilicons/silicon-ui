@@ -1,7 +1,7 @@
 "use client";
 
 import { forwardRef, useCallback, useEffect, useId, useImperativeHandle, useLayoutEffect, useMemo, useReducer, useRef, useState, useSyncExternalStore } from "react";
-import type { ClipboardEvent as ReactClipboardEvent, CSSProperties, FocusEvent as ReactFocusEvent, KeyboardEvent as ReactKeyboardEvent } from "react";
+import type { ClipboardEvent as ReactClipboardEvent, FocusEvent as ReactFocusEvent, KeyboardEvent as ReactKeyboardEvent } from "react";
 import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } from "motion/react";
 import type { Transition, Variants } from "motion/react";
 import { Check, ChevronDown, Search, X } from "lucide-react";
@@ -91,8 +91,6 @@ export const PHONE_COUNTRIES: PhoneCountry[] = [
 const BY_ISO = new Map(PHONE_COUNTRIES.map(entry => [entry.iso, entry]));
 const capacity = (pattern: string) => pattern.split("#").length - 1;
 const lengthsOf = (entry: PhoneCountry) => entry.patterns.map(capacity);
-/** A typed trunk prefix earns its own room; without one the longest valid length is the cap. */
-const capDigits = (entry: PhoneCountry, digits: string) => digits.slice(0, splitTrunk(entry, digits)[0].length + Math.max(...lengthsOf(entry)));
 const onlyDigits = (text: string) => text.replace(/\D/g, "");
 
 /** Regional indicator letters. Platforms without flag glyphs show the two letters, which still read. */
@@ -126,7 +124,7 @@ export function formatNational(entry: PhoneCountry, digits: string) {
   return trunk + (/^#/.test(pattern) ? "" : " ") + body;
 }
 
-export type PhoneStatus = "empty" | "incomplete" | "valid" | "too-long";
+export type PhoneStatus = "empty" | "incomplete" | "valid" | "too-long" | "unsupported";
 
 function statusOf(entry: PhoneCountry, digits: string): PhoneStatus {
   const length = splitTrunk(entry, digits)[1].length;
@@ -138,8 +136,8 @@ function statusOf(entry: PhoneCountry, digits: string): PhoneStatus {
 
 const toE164 = (entry: PhoneCountry, digits: string) => { const rest = splitTrunk(entry, digits)[1]; return rest ? `+${entry.dial}${rest}` : ""; };
 
-/** Reads "+44 (0)7911 123456", "0044 7911…", or "+14165550123" into a country and national digits. Longest calling code wins. */
-export function parsePhoneNumber(input: string, pool: PhoneCountry[] = PHONE_COUNTRIES): { country: PhoneCountry; national: string } | null {
+/** Reads an international number without shortening it. Longest calling code wins. */
+function readPhoneNumber(input: string, pool: PhoneCountry[]): { country: PhoneCountry; national: string; tooLong: boolean } | null {
   const trimmed = input.trim();
   let digits = onlyDigits(trimmed);
   if (!trimmed.startsWith("+")) { if (!trimmed.startsWith("00")) return null; digits = digits.slice(2); }
@@ -151,9 +149,15 @@ export function parsePhoneNumber(input: string, pool: PhoneCountry[] = PHONE_COU
     const entry = matches.find(item => item.areaCodes?.some(code => rest.startsWith(code))) ?? matches.find(item => !item.areaCodes) ?? matches[0]!;
     // "+44 (0)7911…" carries a trunk zero it should not; drop it when the rest is still a full number without it.
     if (entry.trunk && rest.startsWith(entry.trunk) && rest.length - entry.trunk.length >= Math.min(...lengthsOf(entry))) rest = rest.slice(entry.trunk.length);
-    return { country: entry, national: capDigits(entry, rest) };
+    return { country: entry, national: rest, tooLong: splitTrunk(entry, rest)[1].length > Math.max(...lengthsOf(entry)) };
   }
   return null;
+}
+
+/** Reads "+44 (0)7911 123456", "0044 7911…", or "+14165550123". Returns null if the number cannot be represented without losing digits. */
+export function parsePhoneNumber(input: string, pool: PhoneCountry[] = PHONE_COUNTRIES): { country: PhoneCountry; national: string } | null {
+  const parsed = readPhoneNumber(input, pool);
+  return parsed && !parsed.tooLong ? { country: parsed.country, national: parsed.national } : null;
 }
 
 /** Formats an E.164 number for display, such as "+44 7400 123456". Returns the input when it cannot be read. */
@@ -165,8 +169,9 @@ export function formatPhoneNumber(e164: string) {
 /* ------------------------------------------------------------------------------------------------ */
 
 export interface PhoneInputDetails {
+  /** Selected country. For an unsupported draft it is not a parsed country. */
   country: PhoneCountry;
-  /** The number as shown in the field, without the calling code. */
+  /** The number as shown, without the calling code for supported countries; raw text for an unsupported draft. */
   formatted: string;
   status: PhoneStatus;
   valid: boolean;
@@ -178,7 +183,7 @@ export interface PhoneInputProps {
   /** The number in E.164, such as "+14155550132". An empty string clears the field. */
   value?: string;
   defaultValue?: string;
-  /** Fires on every edit with the E.164 number (empty when there are no digits) and its parsed details. */
+  /** Fires on every edit with the E.164 number (empty for no digits or an unsupported draft) and its details. */
   onValueChange?: (value: string, details: PhoneInputDetails) => void;
   /** ISO code of the selected country. */
   country?: string;
@@ -213,7 +218,7 @@ const physical = (visualDuration: number, bounce: number): Transition => {
   return { type: "spring", stiffness: root * root, damping: 2 * (1 - bounce) * root, mass: 1 };
 };
 const GROW = physical(.4, .12), SHRINK = physical(.32, 0), GLIDE = physical(.28, .08), WIDTH = physical(.42, .16);
-const PANEL_MAX = 340, CLOSED_RADIUS = 17, OPEN_RADIUS = 22, PAGE = 8;
+const PANEL_MAX = 340, PAGE = 8;
 
 const subscribe = () => () => {};
 function useReducedFlag() {
@@ -291,45 +296,53 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
   const optionId = (key: string) => `${uid}-opt-${key}`;
 
   const pool = useMemo(() => countries?.length ? PHONE_COUNTRIES.filter(entry => countries.includes(entry.iso)) : PHONE_COUNTRIES, [countries]);
-  const fallback = BY_ISO.get(defaultCountry) ?? PHONE_COUNTRIES[0]!;
+  const fallback = pool.find(entry => entry.iso === defaultCountry) ?? pool[0] ?? PHONE_COUNTRIES[0]!;
 
   const [state, setState] = useState(() => {
-    const parsed = parsePhoneNumber(value ?? defaultValue ?? "", pool);
-    return parsed ? { iso: parsed.country.iso, digits: parsed.national } : { iso: fallback.iso, digits: "" };
+    const initial = value ?? defaultValue ?? "";
+    const parsed = readPhoneNumber(initial, pool);
+    return parsed ? { iso: parsed.country.iso, digits: parsed.national, draft: null as string | null }
+      : { iso: fallback.iso, digits: "", draft: initial.trim() || null };
   });
   const iso = countryProp ?? state.iso;
   const current = BY_ISO.get(iso) ?? fallback;
-  const digits = state.digits;
-  const e164 = toE164(current, digits);
+  const { digits, draft } = state;
+  const e164 = draft === null ? toE164(current, digits) : "";
 
   // A controlled value that differs from what the field last produced is read back in.
   const [seenValue, setSeenValue] = useState(value);
   if (value !== seenValue) {
     setSeenValue(value);
     if (value !== undefined && value !== e164) {
-      const parsed = parsePhoneNumber(value, pool);
-      setState(parsed ? { iso: parsed.country.iso, digits: parsed.national } : { iso, digits: "" });
+      const parsed = readPhoneNumber(value, pool);
+      setState(parsed ? { iso: parsed.country.iso, digits: parsed.national, draft: null }
+        : { iso: current.iso, digits: "", draft: value.trim() || null });
     }
   }
 
-  const formatted = formatNational(current, digits);
-  const status = statusOf(current, digits);
+  const formatted = draft ?? formatNational(current, digits);
+  const status = draft === null ? statusOf(current, digits) : "unsupported";
   const [touched, setTouched] = useState(false);
   const lengths = lengthsOf(current);
   const lengthCopy = lengths.length === 1 ? `${lengths[0]}` : `${lengths.slice(0, -1).join(", ")} or ${lengths[lengths.length - 1]}`;
-  const builtIn = validate && touched && (status === "incomplete" || status === "too-long") ? `Numbers in ${current.name} have ${lengthCopy} digits` : undefined;
+  const builtIn = status === "unsupported" ? "This international number is not supported by the country list." :
+    (status === "too-long" || (validate && touched && status === "incomplete")) ? `Numbers in ${current.name} have ${lengthCopy} digits` : undefined;
   const message = error ?? builtIn;
 
   /* The guide: the rest of the example number, in the shape this country expects, drawn faintly after what was typed. */
   const guide = useMemo(() => {
+    if (draft !== null) return "";
     const [trunk, rest] = splitTrunk(current, digits);
     if (rest.length >= current.example.length) return "";
     const full = formatNational(current, trunk + rest + current.example.slice(rest.length));
     return full.startsWith(formatted) ? full.slice(formatted.length) : "";
-  }, [current, digits, formatted]);
+  }, [current, digits, draft, formatted]);
 
   const inputRef = useRef<HTMLInputElement>(null);
   useImperativeHandle(forwardedRef, () => inputRef.current as HTMLInputElement);
+  const nativeError = status === "unsupported" || status === "too-long" || (validate && status === "incomplete")
+    ? builtIn ?? "Enter a complete phone number." : "";
+  useLayoutEffect(() => { inputRef.current?.setCustomValidity(nativeError); }, [nativeError]);
   const pendingCaret = useRef<number | null>(null);
   const [, rerender] = useReducer((count: number) => count + 1, 0);
 
@@ -338,14 +351,19 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
     onValueChange?.(toE164(entry, nextDigits), { country: entry, formatted: formatNational(entry, nextDigits), status: nextStatus, valid: nextStatus === "valid" });
   }, [onValueChange]);
 
+  const setUnsupported = (raw: string) => {
+    pendingCaret.current = null;
+    setState(last => ({ ...last, draft: raw }));
+    onValueChange?.("", { country: current, formatted: raw, status: "unsupported", valid: false });
+  };
+
   const setNumber = (nextDigits: string, caretDigits: number | null, entry = current) => {
-    const capped = capDigits(entry, nextDigits);
-    pendingCaret.current = caretDigits === null ? null : Math.min(caretDigits, capped.length);
+    pendingCaret.current = caretDigits === null ? null : Math.min(caretDigits, nextDigits.length);
     if (entry.iso !== current.iso) onCountryChange?.(entry.iso);
-    // Nothing changed (a refused digit): React restores the old text after this handler, so the caret is placed on the next render.
-    if (capped === digits && entry.iso === current.iso) { rerender(); return; }
-    setState({ iso: entry.iso, digits: capped });
-    emit(entry, capped);
+    // Nothing changed (for example, a typed separator): React restores the old text, so place the caret on the next render.
+    if (nextDigits === digits && entry.iso === current.iso && draft === null) { rerender(); return; }
+    setState({ iso: entry.iso, digits: nextDigits, draft: null });
+    emit(entry, nextDigits);
   };
 
   function placeCaret() {
@@ -364,13 +382,16 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
   function onNumberChange(input: HTMLInputElement) {
     const raw = input.value;
     // Autofill and dropped text arrive as a change: an international number chooses its own country.
-    if (raw.includes("+") || (/^\s*00/.test(raw) && onlyDigits(raw).length > 6)) {
-      const parsed = parsePhoneNumber(raw.slice(Math.max(0, raw.indexOf("+"))), pool);
-      if (parsed && parsed.national) {
+    if (raw.includes("+") || /^\s*00/.test(raw)) {
+      const international = raw.includes("+") ? raw.slice(raw.indexOf("+")) : raw;
+      const parsed = readPhoneNumber(international, pool);
+      if (parsed) {
         if (parsed.country.iso !== current.iso) setAnnouncement(`Country set to ${parsed.country.name}`);
         setNumber(parsed.national, parsed.national.length, parsed.country);
         return;
       }
+      setUnsupported(raw);
+      return;
     }
     const caret = input.selectionStart ?? raw.length;
     setNumber(onlyDigits(raw), onlyDigits(raw.slice(0, caret)).length);
@@ -379,6 +400,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
   function onNumberKeyDown(event: ReactKeyboardEvent<HTMLInputElement>) {
     const input = event.currentTarget;
     if (event.key === "+" && !event.metaKey && !event.ctrlKey) { event.preventDefault(); openList("+"); return; }
+    if (draft !== null) return;
     const start = input.selectionStart ?? 0, end = input.selectionEnd ?? 0;
     if (start !== end || event.metaKey || event.ctrlKey || event.altKey) return;
     // Deleting a separator deletes the digit beside it instead of doing nothing.
@@ -399,15 +421,16 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
     if (!text) return;
     event.preventDefault();
     const input = event.currentTarget;
-    const parsed = /^\s*(\+|00)/.test(text) ? parsePhoneNumber(text, pool) : null;
-    if (parsed) {
-      if (parsed.country.iso !== current.iso) setAnnouncement(`Country set to ${parsed.country.name}`);
-      setNumber(parsed.national, parsed.national.length, parsed.country);
+    if (/^\s*(\+|00)/.test(text)) {
+      const parsed = readPhoneNumber(text, pool);
+      if (parsed) {
+        if (parsed.country.iso !== current.iso) setAnnouncement(`Country set to ${parsed.country.name}`);
+        setNumber(parsed.national, parsed.national.length, parsed.country);
+      } else setUnsupported(text.trim());
       return;
     }
-    let pasted = onlyDigits(text);
-    // "1 415 555 0132" pasted into a US field: the leading calling code is dropped when the number would not fit otherwise.
-    if (pasted.startsWith(current.dial) && pasted.length > capDigits(current, pasted).length) pasted = pasted.slice(current.dial.length);
+    const pasted = onlyDigits(text);
+    if (draft !== null) { setNumber(pasted, pasted.length); return; }
     // A whole number replaces what was there; a fragment goes in at the caret.
     if (pasted.length >= Math.min(...lengthsOf(current))) { setNumber(pasted, pasted.length); return; }
     const a = onlyDigits(input.value.slice(0, input.selectionStart ?? 0)).length;
@@ -443,6 +466,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
 
   const rootRef = useRef<HTMLDivElement>(null);
   const controlRef = useRef<HTMLDivElement>(null);
+  const anchorRef = useRef<HTMLDivElement>(null);
   const measureRef = useRef<HTMLSpanElement>(null);
   const listFaceRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -450,20 +474,28 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
   const searchRef = useRef<HTMLInputElement>(null);
   const rowRefs = useRef(new Map<string, HTMLElement>());
 
-  /* One surface whose width, height, and corners spring between the country button and the open list. */
+  /* One surface whose width and height spring between the country button and the open list. */
   const anchorW = useMotionValue<number | string>("auto");
-  const shapeW = useMotionValue<number | string>("100%"), shapeH = useMotionValue<number | string>("100%"), radius = useMotionValue(CLOSED_RADIUS);
+  const shapeW = useMotionValue<number | string>("100%"), shapeH = useMotionValue<number | string>("100%");
   const sizes = useRef({ trigger: 0, lid: 0, panel: 0, list: 0 });
   const live = useRef({ open: false, reduced: false, measured: false });
   useLayoutEffect(() => { live.current.reduced = reduced; }, [reduced]);
+
+  const syncAnchor = useCallback(() => {
+    const anchor = anchorRef.current, root = rootRef.current;
+    if (!anchor || !root) return;
+    const rect = anchor.getBoundingClientRect();
+    root.style.setProperty("--pi-anchor-top", `${rect.top}px`);
+    root.style.setProperty("--pi-anchor-left", `${rect.left}px`);
+  }, []);
 
   const place = useCallback((animated: boolean) => {
     const { trigger, lid, panel, list } = sizes.current;
     if (!trigger || !lid) return;
     const isOpen = live.current.open;
-    const next = isOpen ? { w: Math.max(trigger, panel), h: lid + 2 + list, r: OPEN_RADIUS } : { w: trigger, h: lid, r: CLOSED_RADIUS };
+    const next = isOpen ? { w: Math.max(trigger, panel), h: lid + 2 + list } : { w: trigger, h: lid };
     if (!animated || live.current.reduced || !live.current.measured) {
-      anchorW.jump(trigger); shapeW.jump(next.w); shapeH.jump(next.h); radius.jump(next.r);
+      anchorW.jump(trigger); shapeW.jump(next.w); shapeH.jump(next.h);
       live.current.measured = true;
       return;
     }
@@ -471,19 +503,19 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
     animate(anchorW, trigger, WIDTH);
     animate(shapeW, next.w, growing ? GROW : SHRINK);
     animate(shapeH, next.h, growing ? GROW : SHRINK);
-    animate(radius, next.r, growing ? GROW : SHRINK);
-  }, [anchorW, radius, shapeH, shapeW]);
+  }, [anchorW, shapeH, shapeW]);
 
   const read = useCallback(() => {
     const measure = measureRef.current, control = controlRef.current, face = listFaceRef.current, root = rootRef.current;
     if (!measure || !control || !face || !root) return false;
+    syncAnchor();
     const panel = Math.min(PANEL_MAX, control.offsetWidth);
     root.style.setProperty("--pi-panel-w", `${panel}px`);
     const previous = sizes.current;
     const next = { trigger: measure.offsetWidth, lid: control.clientHeight, panel, list: face.offsetHeight };
     sizes.current = next;
     return next.trigger !== previous.trigger || next.lid !== previous.lid || next.panel !== previous.panel || (live.current.open && next.list !== previous.list);
-  }, []);
+  }, [syncAnchor]);
 
   useLayoutEffect(() => {
     const measure = measureRef.current, control = controlRef.current, face = listFaceRef.current;
@@ -493,6 +525,14 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
     observer.observe(measure); observer.observe(control); observer.observe(face);
     return () => observer.disconnect();
   }, [place, read]);
+
+  // A fixed open surface escapes scrollable dialogs; keep it attached to the field as its ancestors scroll.
+  useEffect(() => {
+    if (!open) return;
+    window.addEventListener("scroll", syncAnchor, true);
+    window.addEventListener("resize", syncAnchor);
+    return () => { window.removeEventListener("scroll", syncAnchor, true); window.removeEventListener("resize", syncAnchor); };
+  }, [open, syncAnchor]);
 
   const pendingFocus = useRef<"trigger" | "search" | "number" | null>(null);
   useLayoutEffect(() => {
@@ -518,7 +558,11 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
       scrollIntent.current = false;
       const pad = 6;
       if (top < scroller.scrollTop + pad) scroller.scrollTop = top - pad;
-      else if (top + height > scroller.scrollTop + scroller.clientHeight - pad) scroller.scrollTop = top + height - scroller.clientHeight + pad;
+      else if (top + height > scroller.scrollTop + scroller.clientHeight - pad) {
+        const needed = top + height - scroller.clientHeight + pad;
+        const nextStart = [...rowRefs.current.values()].map(row => row.offsetTop).filter(start => start >= needed).sort((a, b) => a - b)[0];
+        scroller.scrollTop = (nextStart ?? needed) + (parseFloat(getComputedStyle(scroller).paddingTop) || 0);
+      }
     }
   }, [activeKey, hh, ho, hy, open, reduced, sections]);
 
@@ -541,12 +585,14 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
     if (!entry) return;
     if (entry.iso !== current.iso) {
       setRoll(Math.sign((orderOf.get(entry.iso) ?? 0) - (orderOf.get(current.iso) ?? 0)) || 1);
-      const nextDigits = capDigits(entry, digits);
-      if (countryProp === undefined) setState({ iso: entry.iso, digits: nextDigits });
-      else setState(last => ({ ...last, digits: nextDigits }));
+      const nextDigits = draft === null ? digits : "";
+      if (countryProp === undefined) setState({ iso: entry.iso, digits: nextDigits, draft: null });
+      else setState(last => ({ ...last, digits: nextDigits, draft: null }));
       onCountryChange?.(entry.iso);
       emit(entry, nextDigits);
       setAnnouncement(`${entry.name}, +${entry.dial}`);
+    } else if (draft !== null) {
+      setNumber("", 0);
     }
     close("number");
   }
@@ -610,23 +656,22 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
 
   const showCheck = status === "valid";
   const invalid = !!message;
-  const describedBy = [description ? hintId : null, message ? errorId : null].filter(Boolean).join(" ") || undefined;
-  const rootStyle = { "--pi-closed-r": `${CLOSED_RADIUS}px` } as CSSProperties;
+  const describedBy = message ? errorId : description ? hintId : undefined;
 
   const face = (entry: PhoneCountry) => <>
     <span className={styles.flag} aria-hidden="true">{flagOf(entry.iso)}</span>
     <span className={styles.dial}>+{entry.dial}</span>
   </>;
 
-  return <div ref={rootRef} className={[styles.field, className].filter(Boolean).join(" ")} style={rootStyle} data-open={open || undefined} data-disabled={disabled || undefined} onBlur={onRootBlur}>
+  return <div ref={rootRef} className={[styles.field, className].filter(Boolean).join(" ")} data-open={open || undefined} data-disabled={disabled || undefined} onBlur={onRootBlur}>
     <label htmlFor={inputId} className={hideLabel ? styles.srOnly : styles.label}>{label}</label>
 
     <div ref={controlRef} className={styles.control} data-invalid={invalid || undefined}>
-      <motion.div className={styles.anchor} style={{ width: anchorW }}>
+      <motion.div ref={anchorRef} className={styles.anchor} style={{ width: anchorW }}>
         {/* Sizes the closed button: same padding and content, so the width spring has a target before anything moves. */}
         <span ref={measureRef} className={`${styles.trigger} ${styles.measure}`} aria-hidden="true">{face(current)}</span>
 
-        <motion.div className={styles.shape} style={{ width: shapeW, height: shapeH, borderRadius: radius }}>
+        <motion.div className={styles.shape} style={{ width: shapeW, height: shapeH }}>
           <div className={styles.lid}>
             <button ref={triggerRef} type="button" className={styles.trigger} disabled={disabled} inert={open || undefined} tabIndex={open ? -1 : 0}
               aria-haspopup="listbox" aria-expanded={open} aria-controls={listId} aria-label={`Country, ${current.name} +${current.dial}`}
@@ -712,7 +757,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
 
     <AnimatePresence initial={false}>{description && !message && <MessageRow key="hint" id={hintId} text={description} tone="hint" />}</AnimatePresence>
     <AnimatePresence initial={false}>{message && <MessageRow key="error" id={errorId} text={message} tone="error" />}</AnimatePresence>
-    {name && <input type="hidden" name={name} value={e164} />}
+    {name && <input type="hidden" name={name} value={e164} disabled={disabled} />}
     <span className={styles.srOnly} role="status" aria-live="polite">{announcement || (showCheck ? `Valid ${current.name} number` : "")}</span>
   </div>;
 });

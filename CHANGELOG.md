@@ -2,6 +2,34 @@
 
 Changes ship continuously from `main`. Every item links to its live preview on [ui.teamofsilicons.com](https://ui.teamofsilicons.com).
 
+## 2026-11-13
+
+These come from Silicon Accounts, which carried them in a local patch of npm 0.4.0.
+
+### Added
+
+- **[Dialog](https://ui.teamofsilicons.com/dialog) without a visible header (experimental, #31).** `hideHeader` keeps the title and optional description for assistive technology while removing the header, close button and body padding, so a [Command palette](https://ui.teamofsilicons.com/command-palette) can be the dialog's surface. `placement="top"` places the dialog near the top of the viewport; the default stays centered. Both are experimental props.
+- **[Button](https://ui.teamofsilicons.com/button) `variant="link"` (experimental, #35).** Underlined text with no box, height or padding (the size keeps its font size), for an action among words such as a switch under a field. `--button-link-underline` sets the resting line (`transparent`: on hover only). Works on [Button link](https://ui.teamofsilicons.com/button-link) too.
+- **[Input](https://ui.teamofsilicons.com/input) `prefix` and `suffix` (experimental, #36).** Fixed text or an icon inside the field, before and after the typed text: the prefix at the typed text's size with no gap ("c:anil" reads as one id), the suffix after it. Hover, focus, invalid and disabled stay on the bordered box. `description` now takes markup.
+- **Field variables (#33).** `--field-text-size` (default `--text-sm`) sets the typed text and value of Input, Textarea, PhoneInput, Select, Combobox, DatePicker, MultiSelect, TimePicker, PasswordField and TagInput; `--field-hint-size` (default `--text-xs`) and `--field-hint-colour` (default `--text-muted`) set fields' hints and errors. Defaults are unchanged.
+- **Dialog variables (#37).** `--dialog-width` (default 440px; 640px with `hideHeader`) and `--dialog-description-colour` (default `--text-secondary`). `description` now takes markup.
+
+### Changed
+
+- **[Dialog](https://ui.teamofsilicons.com/dialog)'s title is a heading (#37):** `--font-display` at 600 with `--tracking-display` (was the body face at 500). **Its close button is quieter (#29):** a borderless ghost icon button at Button's `xs` size, with the hover fill on keyboard focus.
+- **[Tabs](https://ui.teamofsilicons.com/tabs) have a thinner frame (#32):** 2px around the tabs instead of 4px (the strip is 38px high, was 42px). The keyboard ring is drawn inside the tab, and the tab, selection and hover corners stay concentric.
+- **[Phone input](https://ui.teamofsilicons.com/phone-input)'s calling code reads as part of the number (#33):** the closed country part is at the number's size and weight (400, was 500), the country search follows `--field-text-size`, and each code in the list is its name's size (was 12px).
+- These change how existing screens look: a minor release on npm (**0.5.0**). To upgrade, remove any local patch of 0.4.0, and if the app uses `hideHeader`, `placement`, Button's `link` variant or Input's `prefix`/`suffix`, opt in with `siliconUi({ allowExperimental: ["dialog", "button", "button-link", "input"] })`.
+
+### Fixed
+
+- **[Phone input](https://ui.teamofsilicons.com/phone-input)'s chevron no longer covers the calling code (#28).** The hidden copy that sizes the country part has the visible part's gap, and the chevron's room comes from its own size, not `--space-block`.
+- **Phone input keeps what was typed (#38).** An international number from a country outside the list stays as typed with a message (status `"unsupported"`, empty value); extra digits stay with the length message instead of being cut. `parsePhoneNumber` returns `null` rather than a shortened number. Unsupported, too-long and (with `validate`) incomplete numbers set the input's native validity, so forms don't submit them. With `countries`, the default country comes from the list; a disabled field doesn't submit its hidden value; the field is described by the message it shows.
+- **Phone input's country list in a scrolling dialog (#39).** The open list escapes the dialog's scroll clip and follows the field as it scrolls or the window resizes; its corners use `--radius-control` and `--corner-shape`; keyboard scrolling shows whole rows.
+- **[Command palette](https://ui.teamofsilicons.com/command-palette) keyboard access (#30).** The Esc button's name includes its visible word ("Esc, close command palette"); results are reached with the arrow keys, not Tab; quiet text (group headings, descriptions, keys, the placeholder) uses `--text-secondary`.
+- **[Select](https://ui.teamofsilicons.com/select)'s option highlight (#40)** measures options in the viewport that draws it, so it no longer sits off its option or clips at the ends.
+- **Letter-spacing (#34).** Field labels, hints and errors, Button's label, Dialog's description and Phone input's calling code set `--tracking-body` themselves, instead of inheriting a parent's `em` tracking as pixels.
+
 ## 2026-10-28
 
 ### Changed

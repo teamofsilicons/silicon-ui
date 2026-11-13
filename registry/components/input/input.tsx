@@ -1,14 +1,20 @@
 "use client";
 
 import { forwardRef, useEffect, useId, useRef, useState } from "react";
-import type { InputHTMLAttributes } from "react";
+import type { InputHTMLAttributes, ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { motionTokens } from "@/lib/motion-tokens";
 import styles from "./input.module.css";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "prefix"> {
   label: string;
-  description?: string;
+  /** Fixed text or an icon inside the field before what is typed (a currency, "c:"). It takes the typed text's size and
+   * a quieter colour, with no gap: the value reads as one word with it. */
+  prefix?: ReactNode;
+  /** An icon or short text inside the field after what is typed (a status icon, a unit). */
+  suffix?: ReactNode;
+  /** Plain text animates word by word when it changes; markup (a bold id) is shown as given. */
+  description?: ReactNode;
   error?: string;
 }
 
@@ -33,8 +39,9 @@ function RollingNumber({ word }: { word: string }) {
 }
 
 /** Changed words rise in and unblur while unchanged words hold still, and numbers roll. Assistive tech reads the plain copy. */
-function MotionText({ text }: { text: string }) {
+function MotionText({ text }: { text: ReactNode }) {
   const reduced = useReducedMotion();
+  if (typeof text !== "string") return text;
   const words = text.split(" ");
   return <><span className={styles.srOnly}>{text}</span><span className={styles.words} aria-hidden="true"><AnimatePresence initial={false} mode="popLayout">{words.map((word, index) => <motion.span key={`${index}:${isNumber(word) ? "#" : word}`} className={styles.word}
     initial={reduced ? { opacity: 0 } : { opacity: 0, y: "0.35em", filter: `blur(${motionTokens.blur.soft}px)` }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -43,12 +50,12 @@ function MotionText({ text }: { text: string }) {
 }
 
 /** Helper and error copy: the row opens its height on a spring, then the words settle in. */
-function FieldMessage({ id, text, className, alert }: { id?: string; text?: string; className?: string; alert?: boolean }) {
+function FieldMessage({ id, text, className, alert }: { id?: string; text?: ReactNode; className?: string; alert?: boolean }) {
   return <AnimatePresence initial={false}>{text ? <MessageRow key="message" id={id} text={text} className={className} alert={alert} /> : null}</AnimatePresence>;
 }
 
 /** The row tracks the measured copy, so a longer message that wraps opens its next line instead of snapping. */
-function MessageRow({ id, text, className, alert }: { id?: string; text: string; className?: string; alert?: boolean }) {
+function MessageRow({ id, text, className, alert }: { id?: string; text: ReactNode; className?: string; alert?: boolean }) {
   const reduced = useReducedMotion();
   const copyRef = useRef<HTMLSpanElement>(null);
   const [height, setHeight] = useState<number | "auto">("auto");
@@ -67,7 +74,7 @@ function MessageRow({ id, text, className, alert }: { id?: string; text: string;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { label, description, error, id, className, ...props }, ref,
+  { label, description, error, id, className, prefix, suffix, ...props }, ref,
 ) {
   const generatedId = useId();
   const controlId = id ?? generatedId;
@@ -76,7 +83,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const describedBy = [props["aria-describedby"], hintId, errorId].filter(Boolean).join(" ") || undefined;
   return <div className={styles.field}>
     <label className={styles.label} htmlFor={controlId}>{label}</label>
-    <input {...props} id={controlId} ref={ref} className={[styles.input, className].filter(Boolean).join(" ")} aria-invalid={error ? true : props["aria-invalid"]} aria-describedby={describedBy}/>
+    {prefix != null || suffix != null ? <div className={styles.control}>
+      {prefix != null ? <span className={styles.prefix} aria-hidden="true">{prefix}</span> : null}
+      <input {...props} id={controlId} ref={ref} className={[styles.input, styles.bare, className].filter(Boolean).join(" ")} aria-invalid={error ? true : props["aria-invalid"]} aria-describedby={describedBy}/>
+      {suffix != null ? <span className={styles.suffix} aria-hidden="true">{suffix}</span> : null}
+    </div> : <input {...props} id={controlId} ref={ref} className={[styles.input, className].filter(Boolean).join(" ")} aria-invalid={error ? true : props["aria-invalid"]} aria-describedby={describedBy}/>}
     <FieldMessage id={hintId} text={description} className={styles.description} />
     <FieldMessage id={errorId} text={error} className={styles.error} alert />
   </div>;

@@ -1,6 +1,6 @@
 /* No row gap: grid tracks clamp a negative margin at zero, so a closed message row would still pay the gap. Each row carries its own space instead. */
 .field { display: grid; min-width: 0; font-family: var(--font-body); letter-spacing: var(--tracking-body); }
-.label { justify-self: start; margin-bottom: var(--space-related); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); }
+.label { justify-self: start; margin-bottom: var(--space-related); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); letter-spacing: var(--tracking-body); }
 
 /* One tall shell: the amount on the left, the currency on the right. Set --money-input-height to resize it. */
 .control { position: relative; display: flex; min-width: 0; height: var(--money-input-height, 76px); box-sizing: border-box; align-items: center; gap: var(--space-related); padding: 0 var(--space-related) 0 var(--space-comfort); border: 1px solid var(--border-strong); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard); }
@@ -67,8 +67,8 @@
 .range[data-flash] { color: var(--warning); transition-duration: var(--duration-instant); }
 
 .messageSlot { position: relative; display: block; overflow: hidden; }
-.hint, .error { display: block; padding-top: var(--space-related); font-size: var(--text-xs); line-height: var(--leading-body); }
-.hint { color: var(--text-muted); }
+.hint, .error { display: block; padding-top: var(--space-related); font-size: var(--field-hint-size, var(--text-xs)); line-height: var(--leading-body); letter-spacing: var(--tracking-body); }
+.hint { color: var(--field-hint-colour, var(--text-muted)); }
 .error { color: var(--danger); }
 
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }

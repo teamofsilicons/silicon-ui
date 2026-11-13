@@ -72,7 +72,7 @@
 .input { width: 100%; min-width: 0; border: 0; background: transparent; color: var(--foreground); caret-color: var(--foreground); }
 .input[data-morphing] { color: transparent; }
 .morph { position: absolute; inset: 0; display: flex; align-items: center; overflow: hidden; color: var(--foreground); pointer-events: none; white-space: nowrap; }
-.error { min-height: 0; margin: calc(var(--space-group) * -1) var(--space-hair) calc(var(--space-tight) * -1); color: var(--danger); font-size: var(--text-xs); }
+.error { min-height: 0; margin: calc(var(--space-group) * -1) var(--space-hair) calc(var(--space-tight) * -1); color: var(--danger); font-size: var(--field-hint-size, var(--text-xs)); letter-spacing: var(--tracking-body); }
 .error:empty { display: none; }
 
 .contrast { display: flex; align-items: center; gap: var(--space-group); font-size: var(--text-sm); }
