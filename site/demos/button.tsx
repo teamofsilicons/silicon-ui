@@ -1,4 +1,5 @@
 import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Copy, Ellipsis, FileText, Plus, Search, Upload } from "lucide-react";
+import type { CSSProperties } from "react";
 
 import { Button } from "@/registry/components/button/button";
 import { defineDemo } from "../lib/demo";
@@ -17,6 +18,18 @@ export default defineDemo({
         <Button variant="soft" size="sm" aria-label="Next"><ChevronRight size={16} aria-hidden="true" /></Button>
         <Button variant="soft" size="xs" aria-label="Add a page"><Plus aria-hidden="true" /></Button>
         <Button variant="soft" size="sm" disabled>Disabled</Button>
+      </div>,
+    },
+    {
+      title: "Link, for an action among words (experimental)",
+      description: "variant=\"link\" is underlined text with no box, at its size's font size: a switch under a field. Set --button-link-underline to transparent to show the line on hover only.",
+      render: () => <div style={{ display: "grid", gap: "var(--space-related)", justifyItems: "start", width: "min(100%, 320px)" }}>
+        <span style={{ color: "var(--text-secondary)", fontSize: "var(--text-sm)" }}>We sent a code to +44 7400 123456.</span>
+        <div style={{ display: "flex", gap: "var(--space-group)", flexWrap: "wrap" }}>
+          <Button variant="link" size="sm">Use a different number</Button>
+          <Button variant="link" size="sm" style={{ "--button-link-underline": "transparent" } as CSSProperties}>Resend code</Button>
+          <Button variant="link" size="sm" disabled>Call me instead</Button>
+        </div>
       </div>,
     },
     {

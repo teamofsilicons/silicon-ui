@@ -1,8 +1,8 @@
 .field { display: grid; gap: var(--space-related); min-width: 0; }
-.label { color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); }
+.label { color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); letter-spacing: var(--tracking-body); }
 .anchor { position: relative; min-width: 0; }
 /* The trigger anchors the calendar, so press feedback stays in color; it never scales. */
-.trigger { position: relative; display: flex; width: 100%; min-height: var(--control-height-md); align-items: center; gap: var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); padding: 0 var(--space-group); background: var(--surface); color: var(--foreground); font: inherit; font-size: var(--text-sm); text-align: left; cursor: pointer; transition: border-color var(--duration-fast) var(--ease-standard), background var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }
+.trigger { position: relative; display: flex; width: 100%; min-height: var(--control-height-md); align-items: center; gap: var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); padding: 0 var(--space-group); background: var(--surface); color: var(--foreground); font: inherit; font-size: var(--field-text-size, var(--text-sm)); text-align: left; cursor: pointer; transition: border-color var(--duration-fast) var(--ease-standard), background var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .trigger:hover:not(:disabled) { border-color: var(--border-strong); background: var(--surface-muted); } }
 .trigger:active:not(:disabled), .trigger[aria-expanded="true"] { border-color: var(--border-strong); background: var(--surface-muted); }
 .trigger:disabled { cursor: not-allowed; opacity: .5; }
@@ -28,7 +28,7 @@
 @media (hover: hover) and (pointer: fine) { .footer button:hover:not(:disabled) { background: var(--surface-muted); color: var(--foreground); } }
 .footer button:active:not(:disabled) { transform: scale(.97); transition-duration: var(--duration-fast), var(--duration-fast), var(--duration-fast); transition-timing-function: var(--ease-standard); }
 .footer button:disabled { cursor: not-allowed; opacity: .4; }
-.description { color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); transition: opacity var(--duration-fast) var(--ease-standard); }
+.description { color: var(--field-hint-colour, var(--text-muted)); font-size: var(--field-hint-size, var(--text-xs)); line-height: var(--leading-body); transition: opacity var(--duration-fast) var(--ease-standard); letter-spacing: var(--tracking-body); }
 /* The open calendar covers the hint; fading it keeps its first letters from peeking past the popover's rounded corner. */
 .anchor:has(.popover) + .description { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .trigger, .chevron, .footer button, .description { transition: none; } .footer button:active:not(:disabled) { transform: none; } }

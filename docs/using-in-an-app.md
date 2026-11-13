@@ -28,6 +28,16 @@ import { ButtonLink } from "@teamofsilicons/silicon-ui/button-link";
 import { Dialog, DialogContent } from "@teamofsilicons/silicon-ui/dialog";
 ```
 
+For a command palette, use `DialogContent` with a hidden accessible title and top placement. Its child supplies the visible surface:
+
+```tsx
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogContent title="Search" hideHeader placement="top">
+    <CommandPalette items={items} autoFocus onClose={() => setOpen(false)} />
+  </DialogContent>
+</Dialog>
+```
+
 The import path is the component's name on [ui.teamofsilicons.com](https://ui.teamofsilicons.com), which shows
 every prop and variant live. `@teamofsilicons/silicon-ui/components.json` lists every component with its exports.
 
@@ -81,6 +91,18 @@ On `<html>`:
 | `data-theme` | `light`, `dark` |
 | `data-accent` | `neutral`, `violet`, `blue`, `green`, `amber`, `orange`, `coral`, `rose` |
 | `data-corners` | `squircle` (default), `round` |
+
+Component variables, unset by default, that a theme file may set on `:root` or on a part of the page (such as
+`[role="dialog"]`):
+
+| Variable | Sets | Default |
+| --- | --- | --- |
+| `--field-text-size` | the typed text and value of every field (Input, Textarea, Select, Combobox, PhoneInput …) | `--text-sm` |
+| `--field-hint-size` | fields' hints and errors | `--text-xs` |
+| `--field-hint-colour` | fields' hints | `--text-muted` |
+| `--dialog-width` | DialogContent's width (440px; 640px with `hideHeader`) | |
+| `--dialog-description-colour` | DialogContent's description | `--text-secondary` |
+| `--button-link-underline` | Button `variant="link"`'s resting underline (`transparent`: on hover only) | `--border-strong` |
 
 ### What an app may and may not change
 

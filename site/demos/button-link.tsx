@@ -14,6 +14,7 @@ export default defineDemo({
         <ButtonLink href="#">Get started <ArrowRight size={16} aria-hidden="true" /></ButtonLink>
         <ButtonLink href="#" variant="secondary">Read the docs</ButtonLink>
         <ButtonLink href="#" variant="ghost">Sign in</ButtonLink>
+        <ButtonLink href="#" variant="link" size="sm">Forgot your password?</ButtonLink>
       </div>,
     },
   ],

@@ -26,7 +26,12 @@ export const DialogClose = DialogPrimitive.Close;
 
 export interface DialogContentProps extends ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
   title: string;
-  description?: string;
+  /** Plain text swaps in with a rise when it changes; markup (a bold id) is shown as given. */
+  description?: ReactNode;
+  /** Keep the title and optional description available to assistive technology without drawing a header or close button. */
+  hideHeader?: boolean;
+  /** Place the dialog near the top of the viewport; centered by default. */
+  placement?: "center" | "top";
   children: ReactNode;
 }
 
@@ -41,7 +46,7 @@ function SwapText({ text }: { text: string }) {
   </AnimatePresence>;
 }
 
-export function DialogContent({ title, description, children, className, onPointerDownOutside, onEscapeKeyDown, onOpenAutoFocus, onCloseAutoFocus, ...props }: DialogContentProps) {
+export function DialogContent({ title, description, hideHeader = false, placement = "center", children, className, onPointerDownOutside, onEscapeKeyDown, onOpenAutoFocus, onCloseAutoFocus, ...props }: DialogContentProps) {
   const open = useContext(OpenContext);
   // Closing puts focus back on what opened the dialog, Trigger or not (lib/return-focus.ts).
   const returnFocus = useReturnFocus(open, onOpenAutoFocus, onCloseAutoFocus);
@@ -56,21 +61,27 @@ export function DialogContent({ title, description, children, className, onPoint
     onPointerDownOutside?.(event);
     if (open !== null && (!change.current.open || event.detail.originalEvent.timeStamp < change.current.at)) event.preventDefault();
   };
-  const classes = [styles.content, className].filter(Boolean).join(" ");
-  const inner = <>
-    <div className={styles.header}><div><DialogPrimitive.Title className={styles.title}><SwapText text={title}/></DialogPrimitive.Title>{description ? <DialogPrimitive.Description className={styles.description}><SwapText text={description}/></DialogPrimitive.Description> : null}</div><DialogPrimitive.Close className={styles.close} aria-label="Close dialog"><X size={16} strokeWidth={1.75} aria-hidden="true"/></DialogPrimitive.Close></div>
+  const classes = [styles.content, hideHeader && styles.headerless, placement === "top" && styles.top, className].filter(Boolean).join(" ");
+  const inner = hideHeader ? <>
+    <DialogPrimitive.Title className={styles.visuallyHidden}>{title}</DialogPrimitive.Title>
+    {description ? <DialogPrimitive.Description className={styles.visuallyHidden}>{description}</DialogPrimitive.Description> : null}
+    <div className={styles.body}>{children}</div>
+  </> : <>
+    <div className={styles.header}><div><DialogPrimitive.Title className={styles.title}><SwapText text={title}/></DialogPrimitive.Title>{description ? <DialogPrimitive.Description className={styles.description}>{typeof description === "string" ? <SwapText text={description}/> : <span className={styles.swap}>{description}</span>}</DialogPrimitive.Description> : null}</div><DialogPrimitive.Close className={styles.close} aria-label="Close dialog"><X size={16} strokeWidth={1.75} aria-hidden="true"/></DialogPrimitive.Close></div>
     <div className={styles.body}>{children}</div>
   </>;
+  // Explicitly remove Radix's generated description reference when no description was supplied.
+  const describedBy = props["aria-describedby"];
   // Under a bare Radix root the open state is unknown here, so CSS keyframes keyed off data-state animate the layers instead.
   if (open === null) return <DialogPrimitive.Portal>
     <DialogPrimitive.Overlay className={`${styles.overlay} ${styles.keyframes}`}/>
-    <DialogPrimitive.Content {...props} {...escape} onPointerDownOutside={pressOutside} className={`${classes} ${styles.keyframes}`}>{inner}</DialogPrimitive.Content>
+    <DialogPrimitive.Content {...props} {...escape} aria-describedby={describedBy} onPointerDownOutside={pressOutside} className={`${classes} ${styles.keyframes}`}>{inner}</DialogPrimitive.Content>
   </DialogPrimitive.Portal>;
   // The overlay fades while the dialog rises 8px and scales up on a spring. Closing is shorter and quieter, and starts from wherever the entrance is.
   return <AnimatePresence>
     {open && <DialogPrimitive.Portal key="dialog" forceMount>
       <DialogPrimitive.Overlay asChild forceMount><motion.div className={styles.overlay} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: reduced ? fade : leave }} transition={reduced ? fade : { duration: motionTokens.duration.standard, ease: [...motionTokens.ease.enter] }}/></DialogPrimitive.Overlay>
-      <DialogPrimitive.Content {...props} {...escape} onPointerDownOutside={pressOutside} asChild forceMount>
+      <DialogPrimitive.Content {...props} {...escape} aria-describedby={describedBy} onPointerDownOutside={pressOutside} asChild forceMount>
         <motion.div className={classes} initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8, scale: .96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduced ? { opacity: 0, transition: fade } : { opacity: 0, y: 4, scale: .98, transition: leave }} transition={reduced ? fade : { default: motionTokens.spring.smooth, opacity: { duration: motionTokens.duration.fast, ease: [...motionTokens.ease.enter] } }}>{inner}</motion.div>
       </DialogPrimitive.Content>
     </DialogPrimitive.Portal>}

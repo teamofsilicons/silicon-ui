@@ -67,11 +67,12 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(function Select
           </SelectPrimitive.Icon>
         </SelectPrimitive.Trigger>
         <SelectPrimitive.Portal>
-          <SelectPrimitive.Content className={styles.content} position="popper" sideOffset={4} collisionPadding={12} {...contentProps}>
+          <SelectPrimitive.Content className={styles.content} position="popper" sideOffset={4} collisionPadding={12}>
             <SelectPrimitive.ScrollUpButton className={styles.scrollButton}>
               <ChevronUp size={16} strokeWidth={1.75} aria-hidden="true" />
             </SelectPrimitive.ScrollUpButton>
-            <SelectPrimitive.Viewport className={styles.viewport}>
+            {/* Measure options in the same coordinate space that contains the highlight. */}
+            <SelectPrimitive.Viewport className={styles.viewport} {...contentProps}>
               <MenuHighlight state={highlight} className={styles.highlight} />
               {options.map((option) => (
                 <SelectPrimitive.Item key={option.value} value={option.value} disabled={option.disabled} className={styles.item}>

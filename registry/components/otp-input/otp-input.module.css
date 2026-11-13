@@ -1,6 +1,6 @@
 /* No row gap: grid tracks clamp a negative margin at zero, so a closed message row would still pay the gap. Each row carries its own space instead. */
 .field { display: grid; min-width: 0; }
-.label { margin-bottom: var(--space-related); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); }
+.label { margin-bottom: var(--space-related); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); letter-spacing: var(--tracking-body); }
 .inputs { position: relative; display: flex; width: fit-content; max-width: 100%; gap: var(--space-related); }
 .slot { position: relative; display: grid; width: 42px; height: 48px; min-width: 0; flex: 0 1 42px; }
 /* The native text is transparent (caret stays visible); .glyph draws the digit so it can rise in. */
@@ -17,8 +17,8 @@
 .inputs[data-invalid="true"] .ring { border-color: var(--danger); }
 /* The row's space is padding inside the clipped slot, so the height animates from a true zero. */
 .messageSlot { display: block; overflow: hidden; }
-.description, .error { display: block; padding-top: var(--space-related); font-size: var(--text-xs); line-height: var(--leading-body); }
-.description { color: var(--text-muted); }.error { color: var(--danger); }
+.description, .error { display: block; padding-top: var(--space-related); font-size: var(--field-hint-size, var(--text-xs)); line-height: var(--leading-body); letter-spacing: var(--tracking-body); }
+.description { color: var(--field-hint-colour, var(--text-muted)); }.error { color: var(--danger); }
 /* Words are measured against this box when they pop out to leave, so it must be the positioned parent. */
 .words { position: relative; display: block; }
 .word { display: inline-block; white-space: pre; }
