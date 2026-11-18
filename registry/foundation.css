@@ -99,8 +99,12 @@
   --corner-shape: squircle;
   /* xs is for dense UI (tree rows, toolbars); 24px is the smallest target WCAG 2.5.8 allows, so the scale stops there. */
   --control-height-xs: 1.5rem; --control-height-sm: 2.25rem; --control-height-md: 2.75rem; --control-height-lg: 3.125rem;
-  --font-display: var(--font-geist, "Geist Variable"), sans-serif;
-  --font-body: var(--font-hanken-grotesk, "Hanken Grotesk Variable"), sans-serif;
+  /* One face for every Silicon product: Allo (Josh Puckett, SIL OFL 1.1, the allo-font package), variable in weight,
+     optical size (automatic: text sizes get text shapes, titles get display shapes) and roundness. */
+  --font-display: var(--font-allo, "Allo"), sans-serif;
+  --font-body: var(--font-allo, "Allo"), sans-serif;
+  /* Allo's roundness, 0 (sharp) to 100 (round); see the roundness rule after the corner rule. */
+  --font-roundness: 20;
   --text-xs: .75rem; --text-sm: .875rem; --text-base: 1rem; --text-lg: 1.125rem;
   --text-xl: 1.375rem; --text-2xl: 1.75rem; --text-3xl: 2.25rem;
   --text-4xl: 3.25rem; --text-5xl: 4.5rem;
@@ -179,6 +183,11 @@
    data-corners="round" on <html>, or on any element for its subtree, to use round corners instead. */
 :root[data-corners="round"], [data-corners="round"] { --corner-shape: round; }
 :root[data-corners="squircle"], [data-corners="squircle"] { --corner-shape: squircle; }
+
+/* Allo's roundness on every element. Marked important because the `font` shorthand resets font-variation-settings to
+   normal. It names only ROND, so weight and optical size still follow font-weight and font-size; faces without the
+   axis ignore it. Set --font-roundness to change it. */
+*, *::before, *::after { font-variation-settings: "ROND" var(--font-roundness) !important; }
 *, ::before, ::after { corner-shape: var(--corner-shape); }
 /* A squircle at the same radius reads about 0.55x as round as a circular corner, so squircle radii are about 1.8x the
    round ones: 4 / 11 / 14 / 21 feel like 2 / 6 / 8 / 12. Only browsers that draw squircles get them; the rest keep the

@@ -1,5 +1,6 @@
 import type { Decorator, Preview } from "@storybook/nextjs-vite";
 import { useEffect, type ReactNode } from "react";
+import "allo-font/allo.css";
 import "../registry/foundation.css";
 
 /** Theme, accent and corner shape are attributes on <html>, as in an app; the toolbar switches them. */
