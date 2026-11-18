@@ -62,7 +62,7 @@
 .card[aria-disabled="true"] .indicator { border-color: var(--border); }
 
 .body { display: grid; min-width: 0; gap: var(--space-hair); grid-area: body; }
-.label { display: flex; min-width: 0; align-items: center; gap: var(--space-related); font-weight: 500; }
+.label { display: flex; min-width: 0; align-items: center; gap: var(--space-related); font-weight: var(--weight-medium); }
 .labelText { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .icon { display: grid; width: 18px; height: 18px; flex: none; place-items: center; color: var(--text-secondary); }
 .icon > svg { width: 18px; height: 18px; }
@@ -71,7 +71,7 @@
 
 .meta { grid-area: meta; color: var(--foreground); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .root[data-layout="grid"] .meta { margin-top: var(--space-group); font-size: var(--text-lg); }
-.root[data-layout="list"] .meta { font-weight: 500; }
+.root[data-layout="list"] .meta { font-weight: var(--weight-medium); }
 
 @media (hover: hover) and (pointer: fine) {
   .card:not([data-checked]):not([aria-disabled="true"]):hover { border-color: var(--border-strong); }

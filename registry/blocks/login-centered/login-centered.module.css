@@ -11,11 +11,11 @@
 .axis { transform: translate(var(--dx, 0px), var(--dy, 0px)); }
 
 .bar, .foot { display: flex; min-width: 0; align-items: center; justify-content: space-between; gap: var(--space-inset); padding: 0 var(--space-section); }
-.mark { display: inline-flex; align-items: center; gap: var(--space-related); font-size: var(--text-base); font-weight: 500; line-height: 1; }
+.mark { display: inline-flex; align-items: center; gap: var(--space-related); font-size: var(--text-base); font-weight: var(--weight-medium); line-height: 1; }
 .switch { display: inline-flex; min-width: 0; align-items: center; gap: var(--space-tight); margin: 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-body); white-space: nowrap; }
 .switchPrompt { position: relative; display: inline-grid; justify-items: end; }
 .switchPrompt > span, .switchButton > span { grid-area: 1 / 1; }
-.switchButton { position: relative; display: inline-grid; min-height: var(--control-height-sm); align-items: center; justify-items: center; border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group); background: none; color: var(--foreground); font: inherit; font-weight: 500; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard); }
+.switchButton { position: relative; display: inline-grid; min-height: var(--control-height-sm); align-items: center; justify-items: center; border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group); background: none; color: var(--foreground); font: inherit; font-weight: var(--weight-medium); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard); }
 .switchButton:active { background: var(--surface-muted); }
 
 .stage { display: grid; min-width: 0; place-items: center; padding: var(--space-section) var(--space-inset); }
@@ -26,7 +26,7 @@
 .step { display: grid; min-width: 0; padding: var(--space-block); }
 
 .heading { display: grid; gap: var(--space-related); margin-bottom: var(--space-section); }
-.heading h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 400; letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
+.heading h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-3xl); font-weight: var(--weight-regular); letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
 .heading p { margin: 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-body); text-wrap: pretty; }
 .address { color: var(--foreground); overflow-wrap: anywhere; }
 
@@ -42,10 +42,10 @@
 .sso { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-related); }
 .sso .ssoButton { min-width: 0; padding-inline: var(--space-related); }
 
-.textButton { position: relative; display: inline-flex; min-height: var(--control-height-sm); align-items: center; justify-self: center; gap: var(--space-related); margin: var(--space-inset) 0 calc(var(--space-related) * -1); border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
+.textButton { position: relative; display: inline-flex; min-height: var(--control-height-sm); align-items: center; justify-self: center; gap: var(--space-related); margin: var(--space-inset) 0 calc(var(--space-related) * -1); border: 0; border-radius: var(--radius-full); corner-shape: round; padding: 0 var(--space-group); background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: var(--leading-body); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
 .textButton:active:not([aria-disabled="true"]) { color: var(--foreground); background: var(--surface-muted); }
-.textButton[aria-disabled="true"] { color: var(--text-muted); font-weight: 400; cursor: default; }
-.inlineButton { border: 0; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); padding: 0; background: none; color: var(--foreground); font: inherit; font-weight: 500; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; cursor: pointer; transition: text-decoration-color var(--duration-fast) var(--ease-standard); }
+.textButton[aria-disabled="true"] { color: var(--text-muted); font-weight: var(--weight-regular); cursor: default; }
+.inlineButton { border: 0; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); padding: 0; background: none; color: var(--foreground); font: inherit; font-weight: var(--weight-medium); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; cursor: pointer; transition: text-decoration-color var(--duration-fast) var(--ease-standard); }
 .resendLabel { display: inline-flex; align-items: baseline; gap: .3em; white-space: nowrap; }
 .time { display: inline-flex; font-variant-numeric: tabular-nums; }
 .timeColumn { position: relative; display: inline-flex; justify-content: center; }

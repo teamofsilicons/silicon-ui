@@ -22,7 +22,7 @@
 .centerLabel, .centerMeta { display: block; width: 100%; min-height: calc(1em * var(--leading-body)); overflow: hidden; font-size: var(--text-xs); line-height: var(--leading-body); text-overflow: ellipsis; white-space: nowrap; }
 .centerLabel { color: var(--text-secondary); }
 .centerMeta { color: var(--text-muted); font-variant-numeric: tabular-nums; }
-.centerValue { display: block; max-width: 100%; min-height: calc(1em * var(--leading-display)); overflow: hidden; font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
+.centerValue { display: block; max-width: 100%; min-height: calc(1em * var(--leading-display)); overflow: hidden; font-family: var(--font-display); font-size: var(--text-2xl); font-weight: var(--weight-medium); letter-spacing: var(--tracking-display); line-height: var(--leading-display); font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
 
 /* Legend rows mirror the segments: hovering either lights both. */
 /* Rows carry their own 2px spacing so a row closing its height takes its gap with it; the list's negative margin drops the last one. */
@@ -41,7 +41,7 @@
 .rowLabel, .rowMembers { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rowMembers { color: var(--text-muted); font-size: var(--text-xs); }
 .rowValue { justify-self: end; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
-.rowShare { justify-self: end; color: var(--foreground); font-weight: 500; font-variant-numeric: tabular-nums; }
+.rowShare { justify-self: end; color: var(--foreground); font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; }
 @media (hover: hover) and (pointer: fine) { .row:hover { background: color-mix(in oklab, var(--foreground) 5%, transparent); } }
 
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

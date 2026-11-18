@@ -171,6 +171,9 @@ Components read semantic tokens, never raw colors. Change a token in `foundation
 | `--space-tight` … `--space-screen` | Spacing by role: tight 4, related 8, group 12, inset 16, comfort 20, section 24, block 32, page 48, stage 64, screen 80 |
 | `--font-display`, `--font-body` | Allo for everything: its optical size gives titles their display shapes |
 | `--leading-display`, `--leading-body`, `--leading-read` | 1.1 for titles, 1.4 for UI text, 1.5 for paragraphs of running text (about 70ch) |
+| `--font-mono` | Code and ids: the system monospace |
+| `--weight-title`, `--weight-medium`, `--weight-regular` | 600 for headings, 500 for labels and controls, 400 for what you read; every component uses them |
+| `--display`, `--h1`, `--h2`, `--h3`, `--body`, `--label`, `--small`, `--caption`, `--hint` | Text roles as `font` shorthands, each with a `-tracking` token: `font: var(--h1); letter-spacing: var(--h1-tracking);`. Headings are compact (display 28, h1 22, h2 18, h3 16); `data-density="comfortable"` steps them up (36, 28, 22, 18) |
 | `--font-roundness` | Allo's roundness, 0 (sharp) to 100 (round); 20 by default |
 
 - **Dark mode:** set `data-theme="dark"` on `<html>`. Dark values are tuned separately, not inverted.

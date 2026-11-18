@@ -16,19 +16,19 @@
 /* The countdown is one run of text: every cell shares the line box, so digits, colons, and the day mark sit on the message baseline. */
 .countdown { display: inline-flex; align-items: baseline; gap: var(--space-related); color: var(--muted); white-space: nowrap; }
 .countdownLabel { color: inherit; }
-.time { display: inline-flex; align-items: baseline; color: var(--foreground); font-variant-numeric: tabular-nums; font-weight: 500; line-height: inherit; }
+.time { display: inline-flex; align-items: baseline; color: var(--foreground); font-variant-numeric: tabular-nums; font-weight: var(--weight-medium); line-height: inherit; }
 .time[data-pending] { opacity: 0; }
 .bar[data-tone="inverted"] .time { color: var(--background); }
 .digit { position: relative; display: inline-block; overflow: hidden; overflow: clip; text-align: center; }
 .digitSizer { visibility: hidden; }
 .digitFace { position: absolute; inset: 0; display: block; }
 .unit { display: inline-flex; align-items: baseline; }
-.unitMark { margin-left: 1px; color: var(--muted); font-weight: 400; }
+.unitMark { margin-left: 1px; color: var(--muted); font-weight: var(--weight-regular); }
 /* "case" lifts the colon to the middle of the figures, which it loses once the digits are split into cells. */
-.sep { display: inline-block; padding-inline: 1px; color: var(--muted); font-feature-settings: "case"; font-weight: 400; }
+.sep { display: inline-block; padding-inline: 1px; color: var(--muted); font-feature-settings: "case"; font-weight: var(--weight-regular); }
 .gap { display: inline-block; width: .4em; }
 
-.cta { display: inline-flex; align-items: center; gap: var(--space-tight); padding: 0; border: 0; background: none; color: inherit; cursor: pointer; font: inherit; font-weight: 500; text-decoration: none; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+.cta { display: inline-flex; align-items: center; gap: var(--space-tight); padding: 0; border: 0; background: none; color: inherit; cursor: pointer; font: inherit; font-weight: var(--weight-medium); text-decoration: none; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
 .cta svg { transition: transform var(--duration-fast) var(--ease-standard); }
 
 .controls { display: flex; align-items: center; gap: var(--control-gap); }

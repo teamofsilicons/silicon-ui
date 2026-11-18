@@ -30,7 +30,7 @@
 .spinner { display: block; width: 15px; height: 15px; border: 1.75px solid currentColor; border-right-color: transparent; border-radius: var(--radius-full); corner-shape: round; animation: spin .8s linear infinite; }
 
 .copy { position: relative; min-width: 0; flex: 1; font-size: var(--text-sm); letter-spacing: var(--tracking-body); line-height: 20px; }
-.title { position: relative; display: block; font-weight: 500; }
+.title { position: relative; display: block; font-weight: var(--weight-medium); }
 .line { display: block; }
 .description { display: block; margin-top: var(--space-hair); color: var(--text-secondary); }
 
@@ -38,7 +38,7 @@
 .actionSlot { display: flex; flex: none; justify-content: flex-end; margin-top: calc(var(--space-tight) * -1); }
 .actionSlot[data-moving="true"] { overflow: hidden; }
 .action, .close { flex: none; border: 1px solid transparent; font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: scale var(--duration-spring) var(--ease-spring), background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard); }
-.action { height: 28px; padding: 0 var(--space-group); border-color: var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; white-space: nowrap; }
+.action { height: 28px; padding: 0 var(--space-group); border-color: var(--border); border-radius: var(--radius-full); corner-shape: round; background: var(--surface); color: var(--foreground); font-size: var(--text-sm); font-weight: var(--weight-medium); white-space: nowrap; }
 .close { display: grid; width: 28px; height: 28px; margin: calc(var(--space-tight) * -1) calc(var(--space-hair) * -1) 0 0; place-items: center; border-radius: var(--radius-full); corner-shape: round; background: transparent; color: var(--text-muted); }
 @media (hover: hover) and (pointer: fine) {
   .action:hover { border-color: var(--border-strong); background: var(--surface-muted); }

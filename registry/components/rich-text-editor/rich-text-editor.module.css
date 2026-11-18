@@ -29,7 +29,7 @@
 .editor p { margin: 0; }
 .editor h1,
 .editor h2,
-.editor h3 { font-weight: 500; letter-spacing: -.02em; line-height: 1.25; }
+.editor h3 { font-weight: var(--weight-medium); letter-spacing: -.02em; line-height: 1.25; }
 .editor h1 { font-size: var(--text-2xl); }
 .editor h2 { font-size: var(--text-xl); }
 .editor h3 { font-size: var(--text-lg); }
@@ -37,7 +37,7 @@
 .editor > :is(h1, h2, h3):first-child { margin-top: 0; }
 .editor > :is(h1, h2, h3) + * { margin-top: .45em; }
 
-.editor strong { font-weight: 600; }
+.editor strong { font-weight: var(--weight-title); }
 .editor s { color: var(--text-secondary); text-decoration-thickness: 1px; }
 .editor a { color: var(--accent-strong); text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent); text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: text; }
 .editor code {
@@ -195,7 +195,7 @@
 }
 .slashOption[aria-selected="true"] { color: var(--foreground); }
 .slashIcon { display: grid; width: 20px; flex: none; place-items: center; }
-.slashLabel { min-width: 0; flex: 1; overflow: hidden; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.slashLabel { min-width: 0; flex: 1; overflow: hidden; font-weight: var(--weight-medium); text-overflow: ellipsis; white-space: nowrap; }
 .slashHint { flex: none; color: var(--text-muted); font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: var(--text-xs); }
 
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

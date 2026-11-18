@@ -4,7 +4,7 @@
 .group { position: relative; isolation: isolate; display: flex; flex-wrap: wrap; gap: var(--space-related); }
 
 /* The button is only the hit area and the layout box. What you see is the surface, which trails the box on a spring while the width morphs. */
-.chip { position: relative; display: inline-flex; max-width: 100%; padding: 0; border: 0; border-radius: var(--radius-full); corner-shape: round; background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: 500; letter-spacing: var(--tracking-body); line-height: 20px; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard); }
+.chip { position: relative; display: inline-flex; max-width: 100%; padding: 0; border: 0; border-radius: var(--radius-full); corner-shape: round; background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); font-weight: var(--weight-medium); letter-spacing: var(--tracking-body); line-height: 20px; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard); }
 /* Press answers on the body with the individual scale property, so it never fights the layout transform on the button. */
 .body { position: relative; isolation: isolate; display: inline-flex; min-width: 0; height: var(--control-height-sm); align-items: center; padding: 0 var(--space-inset); transition: scale var(--duration-spring) var(--ease-spring); }
 .chip:active .body { scale: .97; transition-duration: var(--duration-instant); transition-timing-function: var(--ease-standard); }

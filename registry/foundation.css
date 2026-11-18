@@ -112,6 +112,28 @@
   /* Line heights: display for titles; body for UI text (labels, names, rows, short descriptions); read for paragraphs
      of running text at a reading measure (about 70ch), where the extra room eases the sweep to the next line. */
   --leading-display: 1.1; --leading-body: 1.4; --leading-read: 1.5;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+  /* Weights: title for headings, medium for labels and controls, regular for what you read. */
+  --weight-title: 600; --weight-medium: 500; --weight-regular: 400;
+  /* Text roles. Each is a `font` shorthand with its tracking beside it, because `font` can't carry letter-spacing:
+     `font: var(--h1); letter-spacing: var(--h1-tracking);`. A rule that sets a family after `font:` keeps the role's size
+     and line. In px:
+       display 28 title    Home greetings, story headlines      h1 22 title   a page's title
+       h2      18 title    a section                            h3 16 medium  an item's title: a card, a tile, a group
+       body    16 regular  UI text you read                     label 14 medium  buttons, inputs, a row's title
+       small   14 regular  descriptions, meta, timestamps       caption 12 medium  small labels and ids
+       hint    12 regular  a field's hint and error
+     Paragraphs of running text use body's size with --leading-read. The headings are the compact set; set
+     data-density="comfortable" for one step up (display 36, h1 28, h2 22, h3 18). */
+  --display: var(--weight-title) var(--text-2xl)/var(--leading-display) var(--font-display); --display-tracking: var(--tracking-display);
+  --h1: var(--weight-title) var(--text-xl)/var(--leading-display) var(--font-display); --h1-tracking: var(--tracking-display);
+  --h2: var(--weight-title) var(--text-lg)/var(--leading-body) var(--font-display); --h2-tracking: var(--tracking-display);
+  --h3: var(--weight-medium) var(--text-base)/var(--leading-body) var(--font-body); --h3-tracking: var(--tracking-body);
+  --body: var(--weight-regular) var(--text-base)/var(--leading-body) var(--font-body); --body-tracking: var(--tracking-body);
+  --label: var(--weight-medium) var(--text-sm)/var(--leading-body) var(--font-body); --label-tracking: var(--tracking-body);
+  --small: var(--weight-regular) var(--text-sm)/var(--leading-body) var(--font-body); --small-tracking: var(--tracking-body);
+  --caption: var(--weight-medium) var(--text-xs)/var(--leading-body) var(--font-body); --caption-tracking: var(--tracking-body);
+  --hint: var(--weight-regular) var(--text-xs)/var(--leading-body) var(--font-body); --hint-tracking: var(--tracking-body);
   --ease-enter: cubic-bezier(.16,1,.3,1);
   --ease-standard: cubic-bezier(.22,1,.36,1);
   --ease-exit: cubic-bezier(.7,0,.84,0);
@@ -185,6 +207,14 @@
    data-corners="round" on <html>, or on any element for its subtree, to use round corners instead. */
 :root[data-corners="round"], [data-corners="round"] { --corner-shape: round; }
 :root[data-corners="squircle"], [data-corners="squircle"] { --corner-shape: squircle; }
+
+/* The comfortable headings: one step up from the compact set in :root. */
+:root[data-density="comfortable"], [data-density="comfortable"] {
+  --display: var(--weight-title) var(--text-3xl)/var(--leading-display) var(--font-display);
+  --h1: var(--weight-title) var(--text-2xl)/var(--leading-display) var(--font-display);
+  --h2: var(--weight-title) var(--text-xl)/var(--leading-body) var(--font-display);
+  --h3: var(--weight-medium) var(--text-lg)/var(--leading-body) var(--font-body);
+}
 
 /* Allo's roundness on every element. Marked important because the `font` shorthand resets font-variation-settings to
    normal. It names only ROND, so weight and optical size still follow font-weight and font-size; faces without the

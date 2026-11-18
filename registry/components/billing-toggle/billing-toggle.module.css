@@ -74,7 +74,7 @@
 }
 .option:not([data-selected]):active .content { transform: scale(.97); }
 
-.label { font-weight: 500; }
+.label { font-weight: var(--weight-medium); }
 
 /* The savings note: quiet until its option is chosen, then it takes the accent tint. */
 .badge {
@@ -86,7 +86,7 @@
   background: color-mix(in oklab, var(--foreground) 6%, transparent);
   color: var(--text-secondary);
   font-size: var(--text-xs);
-  font-weight: 500;
+  font-weight: var(--weight-medium);
   font-variant-numeric: tabular-nums;
   transition: background-color var(--duration-standard) var(--ease-standard), color var(--duration-standard) var(--ease-standard);
 }
@@ -117,7 +117,7 @@
   color: var(--foreground);
   font-family: var(--font-display);
   font-size: var(--text-3xl);
-  font-weight: 400;
+  font-weight: var(--weight-regular);
   letter-spacing: var(--tracking-display);
   line-height: 1;
   font-variant-numeric: tabular-nums;

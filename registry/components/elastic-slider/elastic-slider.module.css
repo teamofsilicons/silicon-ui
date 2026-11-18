@@ -1,7 +1,7 @@
 /* Set --elastic-thumb and --elastic-track to resize. The rail is inset by half a thumb, so a thumb at either limit stays inside the box. */
 .root { --elastic-thumb: 24px; --elastic-track: 8px; display: grid; width: 100%; min-width: 0; gap: var(--space-related); color: var(--foreground); font-size: var(--text-sm); line-height: var(--leading-body); letter-spacing: var(--tracking-body); user-select: none; -webkit-user-select: none; }
 .header { display: flex; min-width: 0; align-items: baseline; justify-content: space-between; gap: var(--space-inset); }
-.label { min-width: 0; font-weight: 500; }
+.label { min-width: 0; font-weight: var(--weight-medium); }
 .readout { flex: none; color: var(--text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap; transition: opacity var(--duration-fast) var(--ease-standard); }
 /* While the tag rides the thumb it carries the value, so the readout steps back instead of competing with it. */
 .root[data-tag] .readout { opacity: 0; }
@@ -28,7 +28,7 @@
 /* The tag centers on the thumb until it would pass the component's edge, then holds there. It hangs from its bottom edge, so a swing pivots on the thumb. */
 .bubbleAnchor { --edge: calc(var(--elastic-thumb) / 2); --x: calc(var(--at, 0) * 1cqw); position: absolute; right: 0; bottom: calc(50% + var(--elastic-thumb) / 2 + var(--space-group)); display: flex; translate: clamp(calc(100% - var(--edge) - var(--x)), 50%, calc(100cqw + var(--edge) - var(--x))) 0; pointer-events: none; }
 @media (pointer: coarse) { .bubbleAnchor { bottom: calc(50% + var(--elastic-thumb) / 2 + var(--space-comfort)); } }
-.bubble { display: inline-flex; min-height: 1.75rem; align-items: center; padding: 0 var(--space-group); border-radius: var(--radius-full); corner-shape: round; background: var(--foreground); color: var(--background); box-shadow: var(--shadow-raised); font-size: var(--text-sm); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; transform-origin: 50% 130%; }
+.bubble { display: inline-flex; min-height: 1.75rem; align-items: center; padding: 0 var(--space-group); border-radius: var(--radius-full); corner-shape: round; background: var(--foreground); color: var(--background); box-shadow: var(--shadow-raised); font-size: var(--text-sm); font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; white-space: nowrap; transform-origin: 50% 130%; }
 .marks { position: relative; grid-area: 2 / 2; height: 1.25rem; margin: 0 calc(var(--elastic-thumb) / 2); color: var(--text-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
 .markLabel { position: absolute; top: 0; translate: -50% 0; white-space: nowrap; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard); }
 .markLabel[data-edge="start"] { translate: max(-50%, calc(var(--elastic-thumb) / -2)) 0; }

@@ -6,7 +6,7 @@
 .track[data-fade-start] { --fade-start: 20px; }
 .track[data-fade-end] { --fade-end: 20px; }
 /* Items never scale or change weight; only the highlight travels and the label color follows it. */
-.button { position: relative; flex: 0 0 auto; min-height: var(--control-height-sm); border: 0; border-radius: calc(var(--radius-control) - var(--space-hair)); padding: 0 var(--space-group); background: transparent; color: var(--text-muted); font: inherit; font-size: var(--text-sm); font-weight: 500; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard); }
+.button { position: relative; flex: 0 0 auto; min-height: var(--control-height-sm); border: 0; border-radius: calc(var(--radius-control) - var(--space-hair)); padding: 0 var(--space-group); background: transparent; color: var(--text-muted); font: inherit; font-size: var(--text-sm); font-weight: var(--weight-medium); white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard); }
 /* The frame around the options is 2px, as in Tabs: too thin to hold the keyboard ring outside an option, so it is drawn inside. */
 .button:focus-visible { --focus-outline-offset: -3px; }
 @media (hover: hover) and (pointer: fine) { .button:hover { color: var(--foreground); } }

@@ -1,14 +1,14 @@
 .cta { container: cta / inline-size; background: var(--background); color: var(--foreground); font-family: var(--font-body); letter-spacing: var(--tracking-body); }
 .cta *, .cta *::before, .cta *::after { box-sizing: border-box; }
 
-.title { margin: 0; font-family: var(--font-display); font-size: clamp(var(--text-2xl), var(--text-base) + 3.4cqi, var(--text-4xl)); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
+.title { margin: 0; font-family: var(--font-display); font-size: clamp(var(--text-2xl), var(--text-base) + 3.4cqi, var(--text-4xl)); font-weight: var(--weight-medium); letter-spacing: var(--tracking-display); line-height: var(--leading-display); text-wrap: balance; }
 .description { margin: 0; color: var(--text-secondary); font-size: var(--text-lg); line-height: var(--leading-body); text-wrap: pretty; }
 .actions { display: flex; flex-wrap: wrap; gap: var(--space-group); }
 
 /* Actions: the arrow leans forward on hover; links match the button shapes. */
 .arrow { transition: transform var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .action:hover .arrow, .linkAction:hover .arrow { transform: translateX(3px); } }
-.linkAction { display: inline-flex; height: var(--control-height-lg); align-items: center; justify-content: center; gap: var(--space-related); border: 1px solid transparent; border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 0 var(--space-comfort); font-size: var(--text-sm); font-weight: 500; text-decoration: none; transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
+.linkAction { display: inline-flex; height: var(--control-height-lg); align-items: center; justify-content: center; gap: var(--space-related); border: 1px solid transparent; border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: 0 var(--space-comfort); font-size: var(--text-sm); font-weight: var(--weight-medium); text-decoration: none; transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
 .linkAction[data-size="sm"] { height: var(--control-height-sm); padding: 0 var(--space-inset); }
 .linkAction[data-variant="primary"] { background: var(--foreground); color: var(--background); }
 .linkAction[data-variant="secondary"] { border-color: var(--border); background: var(--surface); color: var(--foreground); }
@@ -35,12 +35,12 @@
 
 .setup { width: min(100%, 360px); border: 1px solid var(--border); border-radius: var(--radius-container); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-raised); overflow: hidden; }
 .setupHead { display: flex; align-items: center; gap: var(--space-group); padding: var(--space-inset) var(--space-comfort) var(--space-inset); }
-.workspaceMark { display: grid; width: 28px; height: 28px; flex: none; place-items: center; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); background: var(--foreground); color: var(--background); font-size: var(--text-sm); font-weight: 500; }
-.setupTitle { font-size: var(--text-sm); font-weight: 500; }
+.workspaceMark { display: grid; width: 28px; height: 28px; flex: none; place-items: center; border-radius: var(--radius-detail); corner-shape: var(--corner-shape); background: var(--foreground); color: var(--background); font-size: var(--text-sm); font-weight: var(--weight-medium); }
+.setupTitle { font-size: var(--text-sm); font-weight: var(--weight-medium); }
 .setupStatus { display: inline-grid; margin-left: auto; color: var(--text-muted); font-size: var(--text-xs); justify-items: end; }
 .setupStatus > span { grid-area: 1 / 1; opacity: 0; transform: translateY(4px); filter: blur(2px); transition: opacity var(--duration-fast) var(--ease-standard), transform var(--duration-standard) var(--ease-enter), filter var(--duration-fast) var(--ease-standard); }
 .setupStatus > span[data-shown] { opacity: 1; transform: none; filter: blur(0); }
-.setup[data-done] .setupStatus > span:last-child { color: var(--success); font-weight: 500; }
+.setup[data-done] .setupStatus > span:last-child { color: var(--success); font-weight: var(--weight-medium); }
 .progress { height: 2px; margin: 0 var(--space-comfort); border-radius: var(--radius-full); corner-shape: round; background: var(--border); overflow: hidden; }
 .progress > span { display: block; height: 100%; background: var(--success); transform-origin: left; transition: transform var(--duration-expressive) var(--ease-in-out); }
 .steps { display: grid; gap: var(--space-hair); margin: 0; padding: var(--space-group) var(--space-related) var(--space-group); list-style: none; }
@@ -62,7 +62,7 @@
 .bannerPad { max-width: calc(1120px + 2 * var(--space-block)); margin: 0 auto; padding: var(--space-section) var(--space-block); }
 .banner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-inset); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: var(--space-group) var(--space-group) var(--space-group) var(--space-comfort); background: var(--surface); }
 .bannerText { display: flex; min-width: 0; flex-wrap: wrap; align-items: baseline; gap: var(--space-hair) var(--space-related); margin: 0; font-size: var(--text-sm); line-height: var(--leading-body); }
-.bannerText strong { font-weight: 500; }
+.bannerText strong { font-weight: var(--weight-medium); }
 .bannerText span { color: var(--text-secondary); }
 .bannerActions { display: flex; flex: none; align-items: center; gap: var(--space-tight); }
 .dismiss { display: grid; width: var(--control-height-sm); height: var(--control-height-sm); place-items: center; border: 0; border-radius: 50%; corner-shape: round; background: none; color: var(--text-muted); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }

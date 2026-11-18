@@ -31,7 +31,7 @@
 .highlight[data-pressing] { background: var(--fbg-highlight-press); transition-duration: var(--duration-instant); }
 
 /* Buttons are not positioned, so the highlight measures them against the tray and stacks above their background. */
-.item { display: inline-flex; min-width: var(--fbg-h); height: var(--fbg-h); flex: none; align-items: center; justify-content: center; margin: 0; padding: 0 var(--fbg-pad-x); border: 0; border-radius: var(--fbg-radius); background: transparent; color: inherit; font: inherit; font-size: var(--text-sm); font-weight: 500; line-height: 1; white-space: nowrap; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
+.item { display: inline-flex; min-width: var(--fbg-h); height: var(--fbg-h); flex: none; align-items: center; justify-content: center; margin: 0; padding: 0 var(--fbg-pad-x); border: 0; border-radius: var(--fbg-radius); background: transparent; color: inherit; font: inherit; font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: 1; white-space: nowrap; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
 .sm .item { font-size: var(--text-xs); }
 .item[data-icon]:not([data-icon-only]) { padding-left: calc(var(--fbg-pad-x) - var(--space-hair)); }
 .item[data-icon-only] { width: var(--fbg-h); padding: 0; }
@@ -59,7 +59,7 @@
 .kbd { font: inherit; color: color-mix(in oklab, var(--background) 58%, var(--foreground)); font-variant-numeric: tabular-nums; }
 
 /* Side tooltips for a column match the library tooltip, rising a few pixels away from the rail instead of up. */
-.sideTip { --tip-x: -3px; z-index: var(--layer-tooltip); max-width: 15rem; padding: var(--space-group) var(--space-inset); border: 1px solid color-mix(in oklab, var(--background) 14%, var(--foreground)); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--foreground); color: var(--background); box-shadow: var(--shadow-raised); font-family: var(--font-body); font-size: var(--text-sm); font-weight: 400; letter-spacing: var(--tracking-body); line-height: var(--leading-body); transform-origin: var(--radix-tooltip-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-fast) var(--ease-enter); }
+.sideTip { --tip-x: -3px; z-index: var(--layer-tooltip); max-width: 15rem; padding: var(--space-group) var(--space-inset); border: 1px solid color-mix(in oklab, var(--background) 14%, var(--foreground)); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--foreground); color: var(--background); box-shadow: var(--shadow-raised); font-family: var(--font-body); font-size: var(--text-sm); font-weight: var(--weight-regular); letter-spacing: var(--tracking-body); line-height: var(--leading-body); transform-origin: var(--radix-tooltip-content-transform-origin); transition: opacity var(--duration-fast) var(--ease-enter), transform var(--duration-fast) var(--ease-enter); }
 .sideTip[data-side="left"] { --tip-x: 3px; }
 @starting-style {
   .sideTip[data-state$="-open"] { opacity: 0; transform: translateX(var(--tip-x)) scale(.97); }

@@ -5,11 +5,11 @@
 .intro { display: grid; align-content: start; gap: var(--space-group); min-width: 0; }
 .brandRow { display: inline-flex; align-items: center; gap: var(--space-related); }
 .brandMark { width: 22px; height: 22px; flex: none; color: var(--foreground); }
-.brand { border: 0; padding: 0; background: none; color: var(--foreground); font: inherit; font-size: var(--text-base); font-weight: 500; text-decoration: none; cursor: pointer; }
+.brand { border: 0; padding: 0; background: none; color: var(--foreground); font: inherit; font-size: var(--text-base); font-weight: var(--weight-medium); text-decoration: none; cursor: pointer; }
 .tagline { max-width: 320px; margin: 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-body); }
 
 .columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-section); }
-.column h2 { margin: 0 0 var(--space-group); font-size: var(--text-sm); font-weight: 500; }
+.column h2 { margin: 0 0 var(--space-group); font-size: var(--text-sm); font-weight: var(--weight-medium); }
 .column ul, .inline { margin: 0; padding: 0; list-style: none; }
 .column ul { display: grid; gap: var(--space-related); }
 .link { display: inline-flex; align-items: center; gap: var(--space-tight); border: 0; padding: var(--space-hair) 0; background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); text-align: left; text-decoration: none; cursor: pointer; transition: color var(--duration-fast) var(--ease-standard); }
@@ -22,7 +22,7 @@
 
 /* Newsletter: input and button share one shell; the shell carries validation state with its border only. */
 .newsletter { display: grid; gap: var(--space-related); max-width: 400px; margin-top: var(--space-comfort); }
-.newsletterTitle { margin: 0; font-size: var(--text-sm); font-weight: 500; }
+.newsletterTitle { margin: 0; font-size: var(--text-sm); font-weight: var(--weight-medium); }
 .newsletterRow { display: flex; height: var(--control-height-md); align-items: center; gap: var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: var(--space-tight) var(--space-tight) var(--space-tight) var(--space-inset); background: var(--surface); transition: border-color var(--duration-fast) var(--ease-standard); }
 .newsletterRow:focus-within { border-color: var(--border-strong); }
 .newsletterRow[data-invalid] { border-color: var(--danger); }
