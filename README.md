@@ -170,6 +170,7 @@ Components read semantic tokens, never raw colors. Change a token in `foundation
 | `--radius-detail`, `--radius-control`, `--radius-container`, `--radius-overlay`, `--radius-full` | Marks, controls, cards and menus, dialogs and sheets, pills and dots. Squircle radii are 4 / 11 / 14 / 21, which feel like round 2 / 6 / 8 / 12 |
 | `--space-tight` … `--space-screen` | Spacing by role: tight 4, related 8, group 12, inset 16, comfort 20, section 24, block 32, page 48, stage 64, screen 80 |
 | `--font-display`, `--font-body` | Allo for everything: its optical size gives titles their display shapes |
+| `--leading-display`, `--leading-body`, `--leading-read` | 1.1 for titles, 1.4 for UI text, 1.5 for paragraphs of running text (about 70ch) |
 | `--font-roundness` | Allo's roundness, 0 (sharp) to 100 (round); 20 by default |
 
 - **Dark mode:** set `data-theme="dark"` on `<html>`. Dark values are tuned separately, not inverted.

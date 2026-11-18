@@ -109,7 +109,9 @@
   --text-xl: 1.375rem; --text-2xl: 1.75rem; --text-3xl: 2.25rem;
   --text-4xl: 3.25rem; --text-5xl: 4.5rem;
   --tracking-display: -.03em; --tracking-body: -.01em;
-  --leading-display: 1.1; --leading-body: 1.4;
+  /* Line heights: display for titles; body for UI text (labels, names, rows, short descriptions); read for paragraphs
+     of running text at a reading measure (about 70ch), where the extra room eases the sweep to the next line. */
+  --leading-display: 1.1; --leading-body: 1.4; --leading-read: 1.5;
   --ease-enter: cubic-bezier(.16,1,.3,1);
   --ease-standard: cubic-bezier(.22,1,.36,1);
   --ease-exit: cubic-bezier(.7,0,.84,0);
