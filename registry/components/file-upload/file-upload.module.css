@@ -9,11 +9,11 @@
 .uploadIcon { width: 24px; height: 24px; transition: transform var(--duration-spring) var(--ease-spring); }
 .dragging .uploadIcon { transform: translateY(-3px); }
 .copy { display: grid; min-width: 0; gap: var(--space-tight); flex: 1; }
-.copy strong { font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); }
+.copy strong { font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: var(--leading-body); }
 .label { position: relative; display: block; min-width: 0; }
 .labelText { display: block; }
 .copy > span { color: var(--field-hint-colour, var(--text-muted)); font-size: var(--field-hint-size, var(--text-xs)); line-height: var(--leading-body); overflow-wrap: anywhere; }
-.browse { flex: 0 0 auto; color: var(--accent-strong); font-size: var(--field-hint-size, var(--text-xs)); font-weight: 500; }
+.browse { flex: 0 0 auto; color: var(--accent-strong); font-size: var(--field-hint-size, var(--text-xs)); font-weight: var(--weight-medium); }
 .statusFrame { overflow: hidden; }
 .status { position: relative; min-height: 16px; margin: 0; padding-top: var(--space-related); color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); }
 .statusText { display: block; }
@@ -23,7 +23,7 @@
 .fileItem { display: flex; margin-top: var(--space-related); min-width: 0; align-items: center; gap: var(--space-group); padding: var(--space-group) var(--space-group) var(--space-group) var(--space-group); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--surface-muted); }
 .fileIcon { width: 24px; height: 24px; color: var(--text-secondary); }
 .fileCopy { display: grid; min-width: 0; flex: 1; gap: var(--space-hair); }
-.fileCopy strong { overflow: hidden; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); text-overflow: ellipsis; white-space: nowrap; }
+.fileCopy strong { overflow: hidden; font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: var(--leading-body); text-overflow: ellipsis; white-space: nowrap; }
 .fileCopy > span { color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); }
 .meta { display: flex; min-width: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .dot { padding-inline: var(--space-tight); }

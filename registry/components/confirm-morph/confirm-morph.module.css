@@ -52,7 +52,7 @@
   color: var(--foreground);
   cursor: pointer;
   font: inherit;
-  font-weight: 500;
+  font-weight: var(--weight-medium);
   transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
 }
 .trigger:active:not(:disabled) { background: color-mix(in oklab, var(--foreground) 9%, transparent); transition-duration: 0ms; }
@@ -62,7 +62,7 @@
 .trigger:disabled .icon { color: inherit; }
 .icon > svg { width: 16px; height: 16px; }
 
-.prompt { max-width: 16rem; overflow: hidden; padding: 0 var(--space-related) 0 var(--space-group); color: var(--foreground); font-weight: 500; font-variant-numeric: tabular-nums; }
+.prompt { max-width: 16rem; overflow: hidden; padding: 0 var(--space-related) 0 var(--space-group); color: var(--foreground); font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; }
 .prompt > span { overflow: hidden; text-overflow: ellipsis; }
 
 .secondary,
@@ -78,7 +78,7 @@
   border-radius: var(--radius-full); corner-shape: round;
   cursor: pointer;
   font: inherit;
-  font-weight: 500;
+  font-weight: var(--weight-medium);
   transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
   touch-action: manipulation;
 }
@@ -97,7 +97,7 @@
 .fill { position: absolute; inset: 0; display: inline-flex; align-items: center; justify-content: center; background: var(--danger); color: var(--background); pointer-events: none; }
 .root[data-tone="neutral"] .fill { background: var(--accent-strong); color: var(--accent-foreground); }
 
-.status { gap: var(--space-related); padding: 0 var(--space-group) 0 var(--space-group); color: var(--foreground); font-weight: 500; font-variant-numeric: tabular-nums; }
+.status { gap: var(--space-related); padding: 0 var(--space-group) 0 var(--space-group); color: var(--foreground); font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; }
 .status > svg { flex: none; }
 .statusText { display: inline-flex; align-items: baseline; gap: .25em; }
 .face[data-face="pending"] .status { padding-inline: var(--space-group) var(--space-inset); color: var(--text-secondary); }

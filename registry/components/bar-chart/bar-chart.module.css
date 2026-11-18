@@ -5,8 +5,8 @@
 .kind, .when { display: block; min-height: calc(1em * var(--leading-body)); font-size: var(--text-sm); line-height: var(--leading-body); }
 .kind { color: var(--text-secondary); }
 .when { color: var(--text-muted); }
-.value { display: flex; min-width: 0; align-items: baseline; gap: var(--space-related); font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-display); font-variant-numeric: tabular-nums; }
-.unit { color: var(--text-secondary); font-family: var(--font-body); font-size: var(--text-base); font-weight: 400; letter-spacing: var(--tracking-body); }
+.value { display: flex; min-width: 0; align-items: baseline; gap: var(--space-related); font-family: var(--font-display); font-size: var(--text-3xl); font-weight: var(--weight-medium); letter-spacing: var(--tracking-display); line-height: var(--leading-display); font-variant-numeric: tabular-nums; }
+.unit { color: var(--text-secondary); font-family: var(--font-body); font-size: var(--text-base); font-weight: var(--weight-regular); letter-spacing: var(--tracking-body); }
 .swap { position: relative; display: block; min-width: 0; }
 .swapText { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* A rolling number: outgoing digits are popped out of flow and anchored right, and the clip hides a digit still rising into a new place. */
@@ -35,7 +35,7 @@
 .gutter { position: relative; grid-area: 1 / 2; min-width: 0; }
 .tick, .meanLabel { position: absolute; top: 0; left: var(--space-group); display: block; height: 0; white-space: nowrap; pointer-events: none; }
 .tickText { display: block; transform: translateY(-50%); color: var(--text-muted); font-size: var(--text-xs); line-height: 1; font-variant-numeric: tabular-nums; }
-.meanLabel .tickText { color: var(--foreground); font-weight: 500; }
+.meanLabel .tickText { color: var(--foreground); font-weight: var(--weight-medium); }
 
 .axis { position: relative; grid-area: 2 / 1; min-width: 0; overflow: hidden; }
 .axisLabel { position: absolute; top: var(--space-related); left: 0; color: var(--text-muted); font-size: var(--text-xs); line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }

@@ -11,9 +11,9 @@
 .crumbSep { padding: 0 var(--space-tight); color: var(--border-strong); font-size: var(--text-sm); }
 .crumbButton { min-height: 32px; padding: 0 var(--space-related); margin: 0 calc(var(--space-hair) * -1); border: 0; border-radius: var(--radius-detail); background: transparent; color: var(--text-secondary); cursor: pointer; font: inherit; font-size: var(--text-sm); line-height: var(--leading-body); white-space: nowrap; -webkit-tap-highlight-color: transparent; transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
 .crumbButton:active { transform: scale(.97); }
-.crumbCurrent { padding: 0 var(--space-tight); color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); white-space: nowrap; }
+.crumbCurrent { padding: 0 var(--space-tight); color: var(--foreground); font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: var(--leading-body); white-space: nowrap; }
 @media (hover: hover) and (pointer: fine) { .crumbButton:hover { background: color-mix(in oklab, var(--foreground) 5%, transparent); color: var(--foreground); } }
-.total { position: relative; display: inline-grid; flex: none; justify-items: end; overflow: hidden; margin: 0; color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); font-variant-numeric: tabular-nums; }
+.total { position: relative; display: inline-grid; flex: none; justify-items: end; overflow: hidden; margin: 0; color: var(--foreground); font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: var(--leading-body); font-variant-numeric: tabular-nums; }
 .totalValue { display: block; }
 
 /* Tiles are absolutely placed and sized each frame, so text never scales while a tile grows or shrinks. */
@@ -21,7 +21,7 @@
 .tile { position: absolute; top: 0; left: 0; display: flex; flex-direction: column; gap: 1px; overflow: hidden; padding: var(--space-related) var(--space-related); border-radius: var(--radius-detail); background: var(--fill); color: var(--foreground); cursor: pointer; visibility: hidden; will-change: transform, width, height; transition: background-color var(--duration-considered) var(--ease-standard), color var(--duration-considered) var(--ease-standard), filter var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }
 .tile[data-branch][data-level="1"] { padding: var(--space-tight) var(--space-related); border-radius: var(--radius-detail); background: color-mix(in oklab, var(--hue) 9%, var(--surface)); color: var(--foreground); cursor: zoom-in; }
 .tileLabel, .tileValue { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--text-xs); line-height: 16px; opacity: 0; transition: opacity var(--duration-fast) var(--ease-standard); }
-.tileLabel { font-weight: 500; }
+.tileLabel { font-weight: var(--weight-medium); }
 .tileValue { opacity: 0; font-variant-numeric: tabular-nums; }
 .tile[data-room="name"] .tileLabel, .tile[data-room="full"] .tileLabel, .tile[data-room="full"] .tileValue { opacity: 1; }
 .tile[data-room="full"] .tileValue { opacity: .72; }
@@ -43,7 +43,7 @@
 .tipTitle { margin: 0; overflow: hidden; color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); text-overflow: ellipsis; white-space: nowrap; }
 .tipValue { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-group); margin: 0; font-size: var(--text-sm); line-height: 1.35; }
 .tipName { min-width: 0; overflow: hidden; color: var(--foreground); text-overflow: ellipsis; white-space: nowrap; }
-.tipAmount { flex: none; color: var(--foreground); font-weight: 500; font-variant-numeric: tabular-nums; }
+.tipAmount { flex: none; color: var(--foreground); font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; }
 .tipNote { margin: 0; color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); font-variant-numeric: tabular-nums; }
 
 /* The color scale: stepped swatches from light to dark, never a gradient. */

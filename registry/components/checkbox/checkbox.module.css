@@ -10,6 +10,6 @@
 .box:disabled { opacity: .5; cursor: not-allowed; }
 /* The label's first line centers on the square: (44px box - 19.6px line) / 2. */
 .copy { display: grid; gap: var(--space-hair); min-width: 0; margin-left: 1px; padding-top: calc((var(--control-height-md) - var(--text-sm) * 1.4) / 2); }
-.copy label { color: var(--foreground); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); cursor: pointer; }
+.copy label { color: var(--foreground); font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: var(--leading-body); cursor: pointer; }
 .copy span { color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); }
 @media (prefers-reduced-motion: reduce) { .visual, .box:active:not(:disabled) .visual { transition: none; transform: none; } }

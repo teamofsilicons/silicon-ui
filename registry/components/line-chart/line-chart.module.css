@@ -38,7 +38,7 @@
 .tipSwatch { width: 10px; height: 2.5px; flex: none; border-radius: var(--radius-full); corner-shape: round; background: var(--series); }
 .tipSwatch[data-dashed] { background: repeating-linear-gradient(to right, var(--series) 0 3px, transparent 3px 5px); }
 .tipName { min-width: 0; flex: 1; overflow: hidden; color: var(--text-secondary); text-overflow: ellipsis; white-space: nowrap; }
-.tipValue { flex: none; margin-left: var(--space-related); color: var(--foreground); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tipValue { flex: none; margin-left: var(--space-related); color: var(--foreground); font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .message { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--text-muted); font-size: var(--text-sm); pointer-events: none; }
 /* First load with nothing to keep on screen: a calm band that breathes where the lines will be. */

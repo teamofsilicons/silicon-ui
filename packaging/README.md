@@ -40,9 +40,10 @@ components you use. Theme, accent and corners are set on `<html>`:
 `data-theme` is `light` or `dark`. `data-accent` is `neutral`, `violet`, `blue`, `green`, `amber`, `orange`,
 `coral` or `rose`. `data-corners` is `squircle` or `round`.
 
-Fonts: the tokens use `--font-geist` and `--font-hanken-grotesk` when set (for example by `next/font`), and fall back
-to Geist Variable, Hanken Grotesk Variable (the names `@fontsource-variable/geist` and
-`@fontsource-variable/hanken-grotesk` register), then sans-serif. Load the fonts in the app.
+Fonts: the tokens use `--font-allo` when set (for example by `next/font/local`), and fall back to "Allo" (the name
+the `allo-font` package's `allo.css` registers), then sans-serif. Load the font in the app: `npm i allo-font` and
+`import "allo-font/allo.css"`, or self-host `AlloVariable.woff2` from it. `--font-roundness` (default 20) sets Allo's
+roundness.
 
 ## Links and images
 

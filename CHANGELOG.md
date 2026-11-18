@@ -2,6 +2,16 @@
 
 Changes ship continuously from `main`. Every item links to its live preview on [ui.teamofsilicons.com](https://ui.teamofsilicons.com).
 
+## 2026-11-18
+
+### Changed
+
+- **Allo is Silicon UI's face (Anil).** [Allo](https://allo.joshpuckett.me) (Josh Puckett, SIL OFL 1.1) replaces Geist for titles and Hanken Grotesk for text: `--font-display` and `--font-body` are both `var(--font-allo, "Allo"), sans-serif`, and Allo's automatic optical size gives titles their display shapes. Its roundness is 20 on every element, set by the new `--font-roundness` token (0 sharp to 100 round). Load it in the app with the `allo-font` package (`import "allo-font/allo.css"`) or self-host its `AlloVariable.woff2` as `--font-allo`. Geist and Hanken are no longer loaded by the docs site or Storybook.
+- **[Segmented control](https://ui.teamofsilicons.com/segmented-control) and [Billing toggle](https://ui.teamofsilicons.com/billing-toggle) have Tabs' thinner frame (Anil).** 2px around the options instead of 4px (Billing toggle: was 3px, 4px at `lg`), so a Segmented control is 40px high (was 44px). The keyboard ring is drawn inside the option, and Segmented control's option and hover corners stay concentric. The `xs` Segmented control already had a 2px frame and is unchanged.
+- **A reading line height (Anil).** New token `--leading-read: 1.5` for paragraphs of running text at a reading measure (about 70ch); `--leading-body` (1.4) stays for UI text: names, labels, rows, chips and short descriptions. [Accordion](https://ui.teamofsilicons.com/accordion)'s answers use it.
+- **Text roles, weights and mono (Anil), from Silicon Accounts and the Apps store.** New tokens: `--font-mono`; `--weight-title` (600), `--weight-medium` (500) and `--weight-regular` (400), which every component now uses in place of the numbers (same values, so nothing moves); and nine roles as `font` shorthands with a `-tracking` token each: `--display` 28, `--h1` 22, `--h2` 18 (600), `--h3` 16, `--label` 14 and `--caption` 12 (500), `--body` 16, `--small` 14 and `--hint` 12 (400). The headings are the compact set; `data-density="comfortable"` on `<html>` or any element steps them up to 36, 28, 22 and 18.
+- This changes how every screen looks: a minor release on npm (**0.6.0**). To upgrade, load Allo; an app that keeps its own face sets `--font-body` and `--font-display` as before.
+
 ## 2026-11-13
 
 These come from Silicon Accounts, which carried them in a local patch of npm 0.4.0.

@@ -1,6 +1,6 @@
 .field { position: relative; display: grid; gap: var(--space-related); min-width: 0; }
 .control { position: relative; min-width: 0; }
-.label { font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); letter-spacing: var(--tracking-body); }
+.label { font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: var(--leading-body); letter-spacing: var(--tracking-body); }
 /* The trigger anchors the menu, so press feedback stays in color; it never scales. */
 .trigger { position: relative; display: flex; width: 100%; min-height: var(--control-height-md); align-items: center; gap: var(--space-related); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); padding: var(--space-tight) var(--space-group) var(--space-tight) var(--space-group); background: var(--surface); color: var(--foreground); font: inherit; font-size: var(--field-text-size, var(--text-sm)); text-align: left; cursor: pointer; transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }
 @media (hover: hover) and (pointer: fine) { .trigger:hover:not(:disabled) { border-color: var(--border-strong); background: var(--surface-muted); } }

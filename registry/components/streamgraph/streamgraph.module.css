@@ -27,7 +27,7 @@
 .crosshair { stroke: var(--foreground); stroke-opacity: .5; stroke-width: 1; shape-rendering: crispEdges; opacity: 0; transition: opacity var(--duration-instant) var(--ease-standard); pointer-events: none; }
 .chart[data-active] .crosshair { opacity: 1; }
 
-.label { fill: var(--foreground); font-size: var(--text-xs); font-weight: 500; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-opacity: .85; stroke-linejoin: round; pointer-events: none; transition: opacity var(--duration-standard) var(--ease-standard), fill var(--duration-fast) var(--ease-standard); }
+.label { fill: var(--foreground); font-size: var(--text-xs); font-weight: var(--weight-medium); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-opacity: .85; stroke-linejoin: round; pointer-events: none; transition: opacity var(--duration-standard) var(--ease-standard), fill var(--duration-fast) var(--ease-standard); }
 .label[data-hidden] { opacity: 0 !important; }
 .chart[data-layer] .label[data-dim] { opacity: 0 !important; }
 
@@ -39,7 +39,7 @@
 .tipSwatch { width: 10px; height: 2.5px; flex: none; border-radius: var(--radius-full); corner-shape: round; background: var(--series); }
 .tipName { min-width: 0; flex: 1; overflow: hidden; color: var(--text-secondary); text-overflow: ellipsis; white-space: nowrap; }
 .tipRow[data-active] .tipName { color: var(--foreground); }
-.tipValue { flex: none; margin-left: var(--space-related); color: var(--foreground); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tipValue { flex: none; margin-left: var(--space-related); color: var(--foreground); font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .message { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--text-muted); font-size: var(--text-sm); pointer-events: none; }
 

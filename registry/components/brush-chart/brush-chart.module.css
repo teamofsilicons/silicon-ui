@@ -31,7 +31,7 @@
 .tooltip { position: absolute; top: 0; left: 0; z-index: 2; display: grid; min-width: 132px; max-width: min(220px, 100%); gap: var(--space-hair); padding: var(--space-group) var(--space-group); border: 1px solid var(--border); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--surface-raised); box-shadow: var(--shadow-floating); opacity: 0; pointer-events: none; scale: .96; transition: opacity var(--duration-fast) var(--ease-standard), scale var(--duration-fast) var(--ease-standard); }
 .chart[data-active] .tooltip { opacity: 1; scale: 1; }
 .tipTitle { margin: 0 0 var(--space-hair); color: var(--text-secondary); font-size: var(--text-xs); line-height: var(--leading-body); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.tipValue { margin: 0; color: var(--foreground); font-size: var(--text-base); font-weight: 500; line-height: var(--leading-body); font-variant-numeric: tabular-nums; }
+.tipValue { margin: 0; color: var(--foreground); font-size: var(--text-base); font-weight: var(--weight-medium); line-height: var(--leading-body); font-variant-numeric: tabular-nums; }
 .tipNote { margin: 0; color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-body); font-variant-numeric: tabular-nums; }
 .tipEvent { display: flex; align-items: center; gap: var(--space-related); margin: var(--space-tight) 0 0; color: var(--foreground); font-size: var(--text-xs); line-height: var(--leading-body); }
 .tipEventDot { width: 7px; height: 7px; flex: none; border-radius: 50%; corner-shape: round; background: var(--series-2); }

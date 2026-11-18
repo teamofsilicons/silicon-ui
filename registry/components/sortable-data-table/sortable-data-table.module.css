@@ -9,10 +9,10 @@
 
 .table th, .table td { --cell-base: var(--surface); --cell-fill: var(--cell-base); background-color: var(--cell-fill); transition: background-color var(--duration-standard) var(--ease-standard), color var(--duration-standard) var(--ease-standard); }
 .table th[data-sorted], .table td[data-sorted] { --cell-base: var(--column-tint); }
-.table th { height: 44px; padding: 0 var(--space-inset); border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: var(--text-sm); font-weight: 500; text-align: left; white-space: nowrap; }
+.table th { height: 44px; padding: 0 var(--space-inset); border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: var(--text-sm); font-weight: var(--weight-medium); text-align: left; white-space: nowrap; }
 .table th[data-sortable] { padding: 0; }
 .table th[data-sorted] { color: var(--foreground); }
-.table td { height: 52px; padding: 0 var(--space-inset); border-bottom: 1px solid var(--border-subtle); color: var(--foreground); font-weight: 400; vertical-align: middle; overflow-wrap: anywhere; }
+.table td { height: 52px; padding: 0 var(--space-inset); border-bottom: 1px solid var(--border-subtle); color: var(--foreground); font-weight: var(--weight-regular); vertical-align: middle; overflow-wrap: anywhere; }
 .table tbody tr:last-child td { border-bottom: 0; }
 .table [data-numeric] { text-align: right; font-variant-numeric: tabular-nums; }
 .table[data-selectable] tbody tr { cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -50,7 +50,7 @@
 .swapInner { position: relative; display: inline-flex; width: max-content; }
 .swapText { display: inline-block; white-space: nowrap; }
 .number { font-variant-numeric: tabular-nums; }
-.clear { height: 30px; flex: none; border: 0; border-radius: var(--radius-control); padding: 0 var(--space-group); background: transparent; color: var(--foreground); font: inherit; font-weight: 500; letter-spacing: inherit; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-standard); -webkit-tap-highlight-color: transparent; }
+.clear { height: 30px; flex: none; border: 0; border-radius: var(--radius-control); padding: 0 var(--space-group); background: transparent; color: var(--foreground); font: inherit; font-weight: var(--weight-medium); letter-spacing: inherit; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-standard); -webkit-tap-highlight-color: transparent; }
 
 .empty { height: 120px !important; color: var(--text-muted) !important; text-align: center !important; }
 
@@ -92,7 +92,7 @@
   .table tbody tr:last-child { border-bottom: 0; }
   .table td { order: 2; display: block; min-width: 0; height: auto; border: 0; padding: 0; background: transparent; color: var(--text-secondary); font-size: var(--text-xs); text-align: left; }
   .table[data-selectable] td[data-primary]:not([data-sortable]) { padding-left: 0; }
-  .table td[data-primary] { order: 0; flex: 1 1 0; color: var(--foreground); font-size: var(--text-sm); font-weight: 500; }
+  .table td[data-primary] { order: 0; flex: 1 1 0; color: var(--foreground); font-size: var(--text-sm); font-weight: var(--weight-medium); }
   .table td[data-numeric]:not([data-primary]) { order: 0; flex: none; margin-left: auto; padding-left: var(--space-related); color: var(--foreground); font-size: var(--text-sm); }
   .table td[data-numeric] ~ td[data-numeric] { order: 2; margin-left: 0; padding-left: 0; color: var(--text-secondary); font-size: var(--text-xs); }
   /* The sorted value lifts to full contrast, echoing the tinted column on wider screens. */

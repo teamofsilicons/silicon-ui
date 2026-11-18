@@ -2,7 +2,7 @@
 .root {
   --_accent: var(--billing-accent, var(--success));
   --_h: 34px;
-  --_pad: 3px;
+  --_pad: var(--space-hair); /* a 2px frame, as in Tabs and Segmented control */
   position: relative;
   isolation: isolate;
   display: inline-flex;
@@ -17,7 +17,7 @@
   letter-spacing: var(--tracking-body);
   line-height: 1;
 }
-.root[data-size="lg"] { --_h: 42px; --_pad: 4px; font-size: var(--text-base); }
+.root[data-size="lg"] { --_h: 42px; font-size: var(--text-base); }
 
 /* One thumb for the whole track. Its position and width are measured from the selected option. */
 .thumb,
@@ -36,6 +36,8 @@
   box-shadow: 0 0 0 1px var(--border), var(--shadow-thumb);
 }
 
+/* The 2px frame is too thin to hold the keyboard ring outside an option, so it is drawn inside. */
+.option:focus-visible { --focus-outline-offset: -3px; }
 .option {
   position: relative;
   display: inline-flex;
@@ -72,7 +74,7 @@
 }
 .option:not([data-selected]):active .content { transform: scale(.97); }
 
-.label { font-weight: 500; }
+.label { font-weight: var(--weight-medium); }
 
 /* The savings note: quiet until its option is chosen, then it takes the accent tint. */
 .badge {
@@ -84,7 +86,7 @@
   background: color-mix(in oklab, var(--foreground) 6%, transparent);
   color: var(--text-secondary);
   font-size: var(--text-xs);
-  font-weight: 500;
+  font-weight: var(--weight-medium);
   font-variant-numeric: tabular-nums;
   transition: background-color var(--duration-standard) var(--ease-standard), color var(--duration-standard) var(--ease-standard);
 }
@@ -115,7 +117,7 @@
   color: var(--foreground);
   font-family: var(--font-display);
   font-size: var(--text-3xl);
-  font-weight: 400;
+  font-weight: var(--weight-regular);
   letter-spacing: var(--tracking-display);
   line-height: 1;
   font-variant-numeric: tabular-nums;

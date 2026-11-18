@@ -58,7 +58,7 @@
 .logo { width: 18px; height: 18px; background: center / contain no-repeat; }
 .glyph { color: var(--text-secondary); }
 .text { display: grid; flex: 1; min-width: 0; }
-.text strong { overflow: hidden; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.text strong { overflow: hidden; font-weight: var(--weight-medium); text-overflow: ellipsis; white-space: nowrap; }
 .text small { overflow: hidden; color: var(--text-muted); font-size: var(--text-xs); text-overflow: ellipsis; white-space: nowrap; }
 .state { display: grid; flex: none; justify-items: end; }
 .stateInner { display: inline-flex; align-items: center; gap: var(--space-related); }

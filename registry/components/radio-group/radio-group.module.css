@@ -1,5 +1,5 @@
 .group { display: grid; min-width: 0; margin: 0; border: 0; padding: 0; }
-.group legend { margin-bottom: var(--space-related); padding: 0; font-size: var(--text-sm); font-weight: 500; }
+.group legend { margin-bottom: var(--space-related); padding: 0; font-size: var(--text-sm); font-weight: var(--weight-medium); }
 /* One highlight travels between the rows: above their borders and fills, below their text, so it never crosses a label. */
 .options { position: relative; display: grid; gap: var(--space-related); }
 .highlight { position: absolute; top: 0; right: 0; left: 0; z-index: 1; box-sizing: border-box; border: 1px solid var(--control-on); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: color-mix(in oklab, var(--control-on) 5%, transparent); opacity: 0; pointer-events: none; }
@@ -25,7 +25,7 @@
 .option:has(input:checked) .mark { border-color: var(--control-on); background: var(--control-on); }
 .option:has(input:checked) .dot { background: var(--control-glyph); }
 .option strong, .option small { display: block; }
-.option strong { color: var(--text-secondary); font-size: var(--text-sm); font-weight: 500; transition: color var(--duration-standard) var(--ease-standard); }
+.option strong { color: var(--text-secondary); font-size: var(--text-sm); font-weight: var(--weight-medium); transition: color var(--duration-standard) var(--ease-standard); }
 .option:has(input:checked) strong { color: var(--foreground); }
 .option small { margin-top: var(--space-hair); color: var(--text-muted); font-size: var(--text-xs); }
 @media (prefers-reduced-motion: reduce) { .option, .mark, .mark::after, .option strong { transition: none; } .option:active .mark { transform: none; } }

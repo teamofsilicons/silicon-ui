@@ -2,7 +2,7 @@
 .group { display: inline-flex; align-items: stretch; border: 1px solid var(--foreground); border-radius: var(--radius-control); corner-shape: var(--corner-shape); background: var(--foreground); transition: transform var(--duration-spring) var(--ease-spring); }
 .group:has(> .primary:active:not(:disabled)) { transform: scale(.97); transition-duration: var(--duration-instant); transition-timing-function: var(--ease-standard); }
 .primary, .trigger { border: 0; background: var(--foreground); color: var(--background); font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
-.primary { position: relative; display: inline-grid; min-height: var(--control-height-md); place-items: center; padding: 0 var(--space-inset); border-radius: calc(var(--radius-control) - var(--space-hair)) 0 0 calc(var(--radius-control) - var(--space-hair)); corner-shape: var(--corner-shape); font-size: var(--text-sm); font-weight: 500; }
+.primary { position: relative; display: inline-grid; min-height: var(--control-height-md); place-items: center; padding: 0 var(--space-inset); border-radius: calc(var(--radius-control) - var(--space-hair)) 0 0 calc(var(--radius-control) - var(--space-hair)); corner-shape: var(--corner-shape); font-size: var(--text-sm); font-weight: var(--weight-medium); }
 /* TextMorph springs the label's width, so the main half grows and shrinks with its text. */
 .primarySlot { display: inline-flex; min-width: 0; align-items: center; }
 .primaryContent { display: inline-flex; flex: none; align-items: center; gap: var(--space-related); white-space: nowrap; }
