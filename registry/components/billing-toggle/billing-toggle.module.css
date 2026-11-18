@@ -2,7 +2,7 @@
 .root {
   --_accent: var(--billing-accent, var(--success));
   --_h: 34px;
-  --_pad: 3px;
+  --_pad: var(--space-hair); /* a 2px frame, as in Tabs and Segmented control */
   position: relative;
   isolation: isolate;
   display: inline-flex;
@@ -17,7 +17,7 @@
   letter-spacing: var(--tracking-body);
   line-height: 1;
 }
-.root[data-size="lg"] { --_h: 42px; --_pad: 4px; font-size: var(--text-base); }
+.root[data-size="lg"] { --_h: 42px; font-size: var(--text-base); }
 
 /* One thumb for the whole track. Its position and width are measured from the selected option. */
 .thumb,
@@ -36,6 +36,8 @@
   box-shadow: 0 0 0 1px var(--border), var(--shadow-thumb);
 }
 
+/* The 2px frame is too thin to hold the keyboard ring outside an option, so it is drawn inside. */
+.option:focus-visible { --focus-outline-offset: -3px; }
 .option {
   position: relative;
   display: inline-flex;
